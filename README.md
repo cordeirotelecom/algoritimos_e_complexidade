@@ -1,4 +1,20 @@
-# Algoritmos e Complexidade Computacional
+# Algoritmos e Complexi## 📚 Material de Estudo Completo
+
+### **🎓 NOVIDADE: Material Didático Completo e Interativo**
+
+**📖 Apostila Completa de Algoritmos e Complexidade**
+- 📄 **[Apostila Completa](docs/apostila_completa.md)** - Material didático universitário com teoria e prática
+- 📕 **[PDF da Apostila](docs/apostila_completa.pdf)** - Versão profissional para estudo
+- ⚡ **[Resumo Rápido](docs/resumo_rapido.md)** - Guia de consulta instantânea
+- 📋 **[PDF do Resumo](docs/resumo_rapido.pdf)** - Cola para consultas rápidas
+
+**📝 Exercícios Resolvidos e Lista de Conceitos**
+- 🧮 **[Exercícios Resolvidos Completos](exercicios/exercicios_resolvidos_completos.md)** - Soluções detalhadas passo a passo
+- 📊 **[PDF dos Exercícios](exercicios/exercicios_resolvidos_completos.pdf)** - Lista completa para impressão
+- 🎯 **[Lista de Conceitos Completa](docs/lista_conceitos_completa.md)** - Teóricos, práticos e exemplos do dia a dia
+- 📖 **[PDF dos Conceitos](docs/lista_conceitos_completa.pdf)** - Referência completa
+
+### **📋 DESTAQUE: Revisão Completa de Análise de Algoritmos**e Computacional
 
 **Curso:** Sistemas de Informação  
 **Disciplina:** ARA0174 - Algoritmos e Complexidade  
@@ -32,13 +48,18 @@ A disciplina de Algoritmos e Complexidade é **fundamental** para qualquer profi
 - 💻 **[Código C Completo](exemplos/c/complexidade/analise_algoritmos_completa.c)** - Implementações práticas com benchmarks
 - 🐍 **[Código Python Interativo](exemplos/python/complexidade/analise_algoritmos_completa.py)** - Demonstrações com gráficos
 
-**Características do Material:**
+**Características do Material Completo:**
+- ✅ Apostila universitária com teoria, prática e exemplos do mundo real
+- ✅ Lista completa de exercícios resolvidos com análise detalhada
+- ✅ Conceitos teóricos e práticos com aplicações reais
+- ✅ Resumo rápido para consultas instantâneas
 - ✅ Análise matemática detalhada de O(1), O(log n), O(n), O(n²), O(2ⁿ)
 - ✅ Comparação prática entre estruturas homogêneas e heterogêneas  
 - ✅ Demonstração de ponteiros e referências com analogias claras
 - ✅ Benchmarks reais com medição de performance
 - ✅ Problemas computacionais do mundo real
 - ✅ Trade-offs entre tempo, memória e complexidade
+- ✅ Dicas para entrevistas técnicas e debugging
 
 ## 📚 Cronograma de Aulas
 
