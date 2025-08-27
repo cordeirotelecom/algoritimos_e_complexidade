@@ -4,7 +4,7 @@
 **Disciplina:** ARA0174 - Algoritmos e Complexidade  
 **Professor:** Vagner Cordeiro  
 **Período:** 2025.2  
-**Carga Horária:** 80 horas (4 horas/semana)  
+**Carga Horária:** 60 horas (4 horas/semana)  
 
 ## 👨‍🏫 Apresentação da Disciplina
 
