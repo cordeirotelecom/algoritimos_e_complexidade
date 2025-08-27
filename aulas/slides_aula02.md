@@ -11,7 +11,7 @@ style: |
     color: #000080;
     border: 3px solid #000080;
     font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
   }
   h1, h2, h3 {
     color: #000080;
@@ -24,28 +24,44 @@ style: |
     background-color: #f0f0f0;
     border: 1px solid #000080;
   }
+  .math {
+    color: #000080;
+    font-size: 16px;
+  }
 ---
 
-# Algoritmos e Complexidade
-## Aula 02: Estruturas de Dados - Homogêneas, Heterogêneas e Ponteiros
+# 📊 Algoritmos e Complexidade
+## Aula 02: Fundamentos Matemáticos de Estruturas de Dados
 
 **Prof. Vagner Cordeiro**  
 **Sistemas de Informação**  
-**Universidade - 2024**
+**2025.2**
 
 ---
 
-## Agenda da Aula
+## 🎯 Objetivos de Aprendizagem
 
-1. **Estruturas de Dados: Conceitos Fundamentais**
-2. **Arrays (Vetores) - Estruturas Homogêneas**
-3. **Matrizes e Arrays Multidimensionais**
-4. **Ponteiros: Conceitos e Aplicações**
-5. **Estruturas Heterogêneas (Structs)**
-6. **Unions e Manipulação de Memória**
-7. **Operações e Algoritmos**
-8. **Comparações C vs Python**
-9. **Análise de Performance e Complexidade**
+Ao final desta aula, você será capaz de:
+
+- **Compreender matematicamente** como estruturas de dados ocupam memória
+- **Calcular complexidade** de acesso e operações em diferentes estruturas
+- **Diferenciar teoricamente** estruturas homogêneas e heterogêneas
+- **Analisar ponteiros** como referências matemáticas de endereços
+- **Aplicar fórmulas** para cálculo de posições em arrays multidimensionais
+- **Comparar trade-offs** entre diferentes representações de dados
+
+---
+
+## 📋 Agenda da Aula
+
+1. **🔢 Fundamentos Matemáticos de Memória**
+2. **📐 Arrays: Análise Matemática Detalhada**
+3. **🎯 Matrizes: Fórmulas de Indexação**
+4. **🔗 Ponteiros: Teoria e Cálculos de Endereços**
+5. **🏗️ Estruturas Heterogêneas: Análise de Layout**
+6. **⚡ Complexidade: Provas Matemáticas**
+7. **💡 Exemplos Práticos Simples**
+8. **📊 Comparações e Trade-offs**
 
 ---
 
@@ -70,18 +86,67 @@ style: |
 
 ---
 
-## 1. Estruturas de Dados: Fundamentos Matemáticos
+## 🔢 Fundamentos Matemáticos de Memória
 
-### Definição Formal de Estrutura de Dados
+### **Como a Memória Funciona Matematicamente**
 
-Uma estrutura de dados é um sistema matemático organizado:
+A memória do computador é um **espaço linear indexado**:
 
-$$S = (D, O, R)$$
+$$\text{Memória} = \{M[0], M[1], M[2], \ldots, M[n-1]\}$$
 
-Onde:
-- $D$ = Conjunto finito de dados armazenados
-- $O$ = Conjunto de operações primitivas permitidas  
-- $R$ = Conjunto de relações e invariantes entre elementos
+Onde cada posição $M[i]$ armazena **exatamente 1 byte**.
+
+### **Tamanhos Fundamentais (em bytes):**
+
+| Tipo | C | Python | Fórmula |
+|------|---|--------|---------|
+| `char` | 1 | - | $2^0$ |
+| `int` | 4 | 28+ | $2^2$ |
+| `float` | 4 | 24+ | $2^2$ |
+| `double` | 8 | - | $2^3$ |
+| `pointer` | 8 | 8 | $2^3$ |
+
+### **Alinhamento de Memória**
+
+O processador acessa dados mais eficientemente quando alinhados:
+
+$$\text{endereço\_alinhado} \equiv 0 \pmod{\text{sizeof}(T)}$$
+
+**Exemplo:** `int` (4 bytes) deve estar em endereços múltiplos de 4: 0, 4, 8, 12...
+
+---
+
+## 📊 Arrays: Base Matemática Fundamental
+
+### **Definição Formal**
+
+Um array $A$ de $n$ elementos do tipo $T$ é uma **função matemática**:
+
+$$A: \{0, 1, 2, \ldots, n-1\} \rightarrow T$$
+
+### **Cálculo de Endereços**
+
+Se $A$ inicia no endereço base $\text{base}_A$:
+
+$$\text{endereço}(A[i]) = \text{base}_A + i \times \text{sizeof}(T)$$
+
+### **Exemplo Detalhado:**
+```c
+int numeros[5] = {10, 20, 30, 40, 50};
+// Se base = 1000, sizeof(int) = 4:
+// numeros[0]: 1000 + 0×4 = 1000 → valor 10
+// numeros[1]: 1000 + 1×4 = 1004 → valor 20  
+// numeros[2]: 1000 + 2×4 = 1008 → valor 30
+// numeros[3]: 1000 + 3×4 = 1012 → valor 40
+// numeros[4]: 1000 + 4×4 = 1016 → valor 50
+```
+
+### **Representação Visual:**
+```
+Memória: [1000][1004][1008][1012][1016]
+Valores: [ 10 ][ 20 ][ 30 ][ 40 ][ 50 ]
+Índices:   [0]   [1]   [2]   [3]   [4]
+```
 
 ### Taxonomia Fundamental
 
@@ -132,7 +197,291 @@ Onde:
 - $T$ = Tipo uniforme dos elementos (contradomínio)
 - Propriedade de injetividade: cada índice mapeia para exatamente um elemento
 
-### Características Computacionais Essenciais
+---
+
+## ⚡ Complexidade de Acesso: Prova Matemática
+
+### **Teorema: Acesso a Array é O(1)**
+
+**Prova:**
+Para acessar $A[i]$, o computador executa:
+
+1. **Cálculo do endereço:** $\text{endereço} = \text{base} + i \times \text{sizeof}(T)$ 
+   - Operações: 1 multiplicação + 1 soma = **2 operações**
+
+2. **Acesso à memória:** 1 operação de leitura = **1 operação**
+
+**Total:** 3 operações, **independente de** $i$ ou $n$
+
+$$\therefore T(n) = 3 = O(1) \text{ (tempo constante)}$$
+
+### **Exemplo Numérico:**
+- Array com 10 elementos: 3 operações
+- Array com 1.000.000 elementos: 3 operações
+- **Mesma performance!** ✅
+
+### **Comparação com Busca Linear:**
+```c
+// Acesso direto: O(1)
+int valor = array[5];  // Sempre 3 operações
+
+// Busca linear: O(n)  
+for(int i = 0; i < n; i++) {
+    if(array[i] == target) return i;  // Até n operações
+}
+```
+
+---
+
+## 🎯 Matrizes: Matemática Multidimensional
+
+### **Representação Linear**
+
+Uma matriz $M_{m \times n}$ é armazenada **linearmente** na memória:
+
+**Row-major (C):** $M[i][j] \rightarrow \text{posição } i \times n + j$
+
+**Column-major (Fortran):** $M[i][j] \rightarrow \text{posição } j \times m + i$
+
+### **Fórmula de Endereçamento Row-Major:**
+
+$$\text{endereço}(M[i][j]) = \text{base}_M + (i \times n + j) \times \text{sizeof}(T)$$
+
+---
+
+## 🔗 Ponteiros: Teoria Matemática Avançada
+
+### **Definição Formal**
+
+Um ponteiro $p$ é uma **variável que armazena um endereço**:
+
+$$p: \text{Variável} \rightarrow \text{Endereço de Memória}$$
+
+### **Operações Matemáticas:**
+
+1. **Declaração:** `int *p;` → $p$ pode apontar para endereços de `int`
+2. **Atribuição:** `p = &x;` → $p = \text{endereço de } x$
+3. **Desreferenciamento:** `*p` → $\text{valor armazenado em endereço } p$
+
+### **Aritmética de Ponteiros:**
+
+Se $p$ aponta para posição $i$ de um array:
+
+$$p + k \text{ aponta para posição } i + k$$
+$$\text{endereço}(p + k) = \text{endereço}(p) + k \times \text{sizeof}(T)$$
+
+### **Exemplo Matemático Detalhado:**
+```c
+int arr[5] = {10, 20, 30, 40, 50};
+int *p = arr;        // p aponta para arr[0]
+
+// Endereços (supondo base = 3000):
+// p     → 3000 (arr[0])
+// p + 1 → 3004 (arr[1]) 
+// p + 2 → 3008 (arr[2])
+// p + 3 → 3012 (arr[3])
+// p + 4 → 3016 (arr[4])
+```
+
+### **Equivalências Matemáticas:**
+- `arr[i]` ≡ `*(arr + i)` ≡ `*(p + i)` ≡ `p[i]`
+- `&arr[i]` ≡ `arr + i` ≡ `p + i`
+
+---
+
+## 🏗️ Estruturas Heterogêneas: Análise de Layout
+
+### **Definição Matemática**
+
+Uma estrutura heterogênea $S$ é uma tupla de tipos diferentes:
+
+$$S = (T_1, T_2, \ldots, T_k)$$
+
+Onde $T_i$ pode ser de qualquer tipo primitivo ou composto.
+
+### **Cálculo de Tamanho com Padding**
+
+O tamanho real considera **alinhamento de memória**:
+
+$$\text{sizeof}(S) = \sum_{i=1}^{k} (\text{sizeof}(T_i) + \text{padding}_i)$$
+
+### **Exemplo Prático:**
+```c
+struct Pessoa {
+    char nome[20];    // 20 bytes
+    int idade;        // 4 bytes  
+    double salario;   // 8 bytes
+};
+```
+
+**Sem padding:** $20 + 4 + 8 = 32$ bytes
+**Com padding:** Depende do alinhamento!
+
+### **Layout na Memória:**
+```
+Offset: 0    20   24   32
+Campo:  nome idade sal. padding
+Bytes:  [20] [4]  [8]  [0]
+Total: 32 bytes (eficiente)
+```
+
+---
+
+## ⚖️ Complexidade: Análise Matemática Comparativa
+
+### **Operações em Arrays**
+
+| Operação | Fórmula | Complexidade | Justificativa |
+|----------|---------|--------------|---------------|
+| **Acesso** | $T = c$ | $O(1)$ | Cálculo direto de endereço |
+| **Busca** | $T = n/2$ | $O(n)$ | Média de comparações |
+| **Inserção** | $T = n - i$ | $O(n)$ | Deslocamento de elementos |
+| **Remoção** | $T = n - i - 1$ | $O(n)$ | Compactação necessária |
+
+### **Demonstração: Inserção em Array**
+
+Para inserir na posição $i$ de um array de tamanho $n$:
+
+1. **Deslocar elementos:** de $i$ até $n-1$ → $(n-i)$ operações
+2. **Inserir novo elemento:** → $1$ operação
+
+$$T_{\text{inserção}}(i) = (n - i) + 1 = O(n)$$
+
+**Casos especiais:**
+- **Início** ($i = 0$): $n + 1$ operações (pior caso)
+- **Final** ($i = n$): $1$ operação (melhor caso)
+- **Meio** ($i = n/2$): $n/2 + 1$ operações (caso médio)
+
+---
+
+## 💡 Exemplos Práticos Simples
+
+### **Exemplo 1: Calculadora de Notas**
+```c
+// Estrutura homogênea
+float notas[4] = {8.5, 7.0, 9.2, 6.8};
+
+// Cálculo da média: O(n)
+float soma = 0;
+for(int i = 0; i < 4; i++) {
+    soma += notas[i];  // Acesso O(1)
+}
+float media = soma / 4;
+
+printf("Média: %.2f\n", media);  // 7.88
+```
+
+### **Exemplo 2: Cadastro de Estudante**
+```c
+// Estrutura heterogênea
+struct Estudante {
+    char nome[50];
+    int matricula;
+    float notas[4];
+    char status;  // 'A'=Aprovado, 'R'=Reprovado
+};
+
+struct Estudante aluno = {
+    "João Silva",
+    12345,
+    {8.5, 7.0, 9.2, 6.8},
+    'A'
+};
+
+// Acesso aos dados: O(1)
+printf("Nome: %s\n", aluno.nome);
+printf("Matrícula: %d\n", aluno.matricula);
+```
+
+### **Exemplo 3: Matriz de Distâncias**
+```c
+// Matriz simétrica 3x3
+int distancias[3][3] = {
+    {0, 10, 20},
+    {10, 0, 15},
+    {20, 15, 0}
+};
+
+// Buscar menor distância: O(n²)
+int menor = distancias[0][1];
+for(int i = 0; i < 3; i++) {
+    for(int j = i+1; j < 3; j++) {
+        if(distancias[i][j] < menor) {
+            menor = distancias[i][j];
+        }
+    }
+}
+printf("Menor distância: %d\n", menor);  // 10
+```
+
+---
+
+## 📊 Comparações e Trade-offs
+
+### **Homogêneas vs Heterogêneas**
+
+| Aspecto | Homogêneas (Arrays) | Heterogêneas (Structs) |
+|---------|-------------------|----------------------|
+| **Simplicidade** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| **Flexibilidade** | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Eficiência** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| **Uso de Memória** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| **Facilidade Debug** | ⭐⭐⭐⭐ | ⭐⭐⭐ |
+
+### **Quando Usar Cada Uma?**
+
+**Arrays (Homogêneas):**
+- ✅ Cálculos matemáticos (vetores, matrizes)
+- ✅ Processamento de sinais/imagens
+- ✅ Algoritmos numéricos
+- ✅ Performance crítica
+
+**Structs (Heterogêneas):**
+- ✅ Modelagem de entidades reais
+- ✅ Bancos de dados
+- ✅ Interfaces de usuário
+- ✅ Sistemas complexos
+
+### **Trade-offs de Performance**
+
+**Localidade de Referência:**
+- **Arrays:** Excelente (dados contíguos)
+- **Structs:** Boa (campos relacionados próximos)
+- **Ponteiros:** Variável (pode fragmentar)
+
+**Cache Hit Rate:**
+```
+Arrays sequenciais: ~95% hits
+Structs bem organizadas: ~85% hits  
+Ponteiros aleatórios: ~60% hits
+```
+
+---
+
+## 🎯 Resumo: Fundamentos Matemáticos
+
+### **Fórmulas Essenciais**
+
+1. **Endereçamento:** $\text{addr}(A[i]) = \text{base} + i \times \text{sizeof}(T)$
+
+2. **Matriz 2D:** $\text{addr}(M[i][j]) = \text{base} + (i \times n + j) \times \text{sizeof}(T)$
+
+3. **Complexidade de Acesso:** $T_{\text{array}} = O(1)$, $T_{\text{busca}} = O(n)$
+
+4. **Tamanho de Struct:** $\text{sizeof}(S) = \sum \text{sizeof}(T_i) + \text{padding}$
+
+### **Princípios Fundamentais**
+
+1. **Arrays oferecem acesso O(1)** por cálculo matemático direto
+2. **Estruturas heterogêneas** modelam realidade com flexibilidade
+3. **Ponteiros** permitem indireção e estruturas dinâmicas
+4. **Alinhamento de memória** afeta performance e tamanho
+5. **Trade-offs** sempre existem entre simplicidade e flexibilidade
+
+### **Próxima Aula**
+🚀 **Algoritmos de Ordenação:** Bubble Sort, Selection Sort, Quick Sort
+📊 **Análise de Complexidade:** Melhor, médio e pior caso
+🔢 **Matemática:** Análise assintótica detalhada
 
 **Vantagens Fundamentais:**
 - **Acesso Aleatório:** $T_{acesso}(i) = O(1)$ constante

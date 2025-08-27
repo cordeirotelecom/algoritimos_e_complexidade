@@ -26,97 +26,273 @@ style: |
   }
 ---
 
-# Algoritmos e Complexidade
-## Aula 04: Estruturas de Dados Avançadas - Árvores, Hash Tables e Grafos
+# 🌳 Algoritmos e Complexidade
+## Aula 04: Estruturas de Dados Dinâmicas - Teoria e Implementação Completa
 
 **Prof. Vagner Cordeiro**  
 **Sistemas de Informação**  
-**Universidade - 2024**
+**Universidade - 2025**
 
 ---
 
-## Agenda da Aula
+## 📋 Agenda Detalhada da Aula
 
-1. **Árvores Binárias: Fundamentos e Implementação**
-2. **Árvores Binárias de Busca (BST)**
-3. **Árvores Balanceadas: AVL e Red-Black**
-4. **Hash Tables: Teoria e Implementação**
-5. **Funções de Hash e Tratamento de Colisões**
-6. **Grafos: Representação e Algoritmos Básicos**
-7. **Algoritmos de Busca: DFS e BFS**
-8. **Aplicações Práticas e Análise de Performance**
+### **🌲 Parte I: Estruturas Hierárquicas**
+1. **Ponteiros e Alocação Dinâmica - Fundamentos Matemáticos**
+2. **Listas Ligadas - Análise Completa de Complexidade**
+3. **Pilhas e Filas - Implementação e Análise**
+4. **Árvores Binárias - Teoria Matemática e Propriedades**
 
----
+### **🔍 Parte II: Estruturas de Busca**
+5. **Árvores Binárias de Busca (BST) - Análise Detalhada**
+6. **Árvores Balanceadas (AVL) - Matemática das Rotações**
+7. **Hash Tables - Teoria Probabilística e Implementação**
+8. **Tratamento de Colisões - Análise de Performance**
 
-## Objetivos de Aprendizagem
-
-### Ao final desta aula, o estudante será capaz de:
-
-**Estruturas Hierárquicas:**
-- **Implementar** árvores binárias e suas operações fundamentais
-- **Analisar** complexidade de operações em árvores balanceadas e não balanceadas
-- **Aplicar** algoritmos de balanceamento em estruturas críticas
-
-**Hash Tables:**
-- **Projetar** funções de hash eficientes para diferentes tipos de dados
-- **Implementar** estratégias de resolução de colisões
-- **Otimizar** performance através de análise de fator de carga
-
-**Grafos:**
-- **Representar** grafos usando listas de adjacência e matrizes
-- **Implementar** algoritmos fundamentais de busca e travessia
-- **Resolver** problemas práticos usando teoria de grafos
+### **📊 Parte III: Análise e Aplicações**
+9. **Comparação Matemática entre Estruturas**
+10. **Problemas Reais e Casos de Uso**
+11. **Benchmarks e Medições Práticas**
+12. **Exercícios e Implementações**
 
 ---
 
-## 1. Árvores Binárias: Fundamentos Matemáticos
+## 🎯 Objetivos de Aprendizagem Avançados
 
-### Definição Formal
+### **📚 Conhecimentos Teóricos:**
+- **Dominar** análise matemática de estruturas dinâmicas
+- **Calcular** complexidade amortizada e worst-case
+- **Provar** propriedades matemáticas de árvores balanceadas
+- **Compreender** teoria probabilística de hash tables
 
-Uma **árvore binária** é uma estrutura hierárquica onde cada nó tem no máximo dois filhos:
+### **💻 Habilidades Práticas:**
+- **Implementar** estruturas eficientemente em C
+- **Gerenciar** memória dinamicamente sem vazamentos
+- **Otimizar** operações críticas para performance
+- **Debugar** problemas complexos com ponteiros
 
-$$T = (V, E)$$
-
-Onde:
-- $V$ = Conjunto de vértices (nós)
-- $E$ = Conjunto de arestas (conexões pai-filho)
-- Para cada nó $v \in V$: $|\text{filhos}(v)| \leq 2$
-
-### Propriedades Matemáticas Fundamentais
-
-**Altura e Nós:**
-- **Altura máxima:** $h_{max} = n - 1$ (árvore degenerada)
-- **Altura mínima:** $h_{min} = \lfloor \log_2 n \rfloor$ (árvore completa)
-- **Número máximo de nós no nível $i$:** $2^i$
-- **Número máximo de nós com altura $h$:** $2^{h+1} - 1$
-
-**Relações Importantes:**
-$$n_{folhas} = n_{internos} + 1$$
-$$n_{total} = 2 \times n_{internos} + 1$$
+### **🚀 Competências Avançadas:**
+- **Projetar** estruturas híbridas para problemas específicos
+- **Analisar** trade-offs entre diferentes implementações
+- **Aplicar** estruturas em sistemas reais de grande escala
 
 ---
 
-## Implementação de Árvore Binária em C
+## 🧮 Parte I: Fundamentos Matemáticos de Estruturas Dinâmicas
 
-### Estrutura Básica e Operações
+### **📍 Ponteiros: A Base das Estruturas Dinâmicas**
+
+**🎯 Conceito Fundamental:**
+> Um **ponteiro** é uma variável que armazena o **endereço de memória** de outra variável.
+
+**📐 Análise Matemática da Memória:**
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+// Exemplo conceitual de layout de memória
+int x = 42;        // Endereço: 0x1000, Valor: 42
+int *p = &x;       // Endereço: 0x1004, Valor: 0x1000 (aponta para x)
+int **pp = &p;     // Endereço: 0x1008, Valor: 0x1004 (aponta para p)
+```
 
-typedef struct NoArvore {
-    int dados;
-    struct NoArvore *esquerda;
-    struct NoArvore *direita;
-    int altura;  // Para árvores balanceadas
-} NoArvore;
+**Operações Fundamentais:**
+- **Desreferenciamento:** `*p` = valor na posição apontada
+- **Referência:** `&x` = endereço da variável x
+- **Aritmética:** `p + 1` = próxima posição do tipo
+
+**⚖️ Custo das Operações com Ponteiros:**
+| Operação | Complexidade | Justificativa |
+|----------|-------------|---------------|
+| `p = &x` | $O(1)$ | Atribuição direta de endereço |
+| `*p` | $O(1)$ | Acesso direto à memória |
+| `p++` | $O(1)$ | Aritmética de ponteiro |
+| `malloc(n)` | $O(\log n)$ | Busca em heap (worst case) |
+| `free(p)` | $O(1)$ | Liberação direta |
+
+---
+
+### **🔗 Listas Ligadas: Análise Matemática Completa**
+
+**🎯 Definição Formal:**
+> Uma **lista ligada** é uma sequência de nós onde cada nó contém **dados** e um **ponteiro** para o próximo nó.
+
+**📊 Análise de Complexidade Detalhada:**
+
+```c
+typedef struct No {
+    int dados;           // 4 bytes
+    struct No *proximo;  // 8 bytes (64-bit)
+} No;                    // Total: 12 bytes + padding
 
 typedef struct {
-    NoArvore *raiz;
+    No *inicio;          // Ponteiro para primeiro nó
+    No *fim;             // Ponteiro para último nó (otimização)
+    int tamanho;         // Contador de elementos
+} ListaLigada;
+```
+
+**📈 Complexidade das Operações:**
+
+| Operação | Lista Array | Lista Ligada | Justificativa |
+|----------|-------------|--------------|---------------|
+| **Acesso [i]** | $O(1)$ | $O(n)$ | Array: cálculo direto vs Lista: travessia |
+| **Busca** | $O(n)$ | $O(n)$ | Ambos: busca linear |
+| **Inserção início** | $O(n)$ | $O(1)$ | Array: shift vs Lista: atualizar ponteiros |
+| **Inserção fim** | $O(1)$ | $O(1)$ | Com ponteiro para fim |
+| **Remoção início** | $O(n)$ | $O(1)$ | Array: shift vs Lista: atualizar ponteiros |
+| **Remoção meio** | $O(n)$ | $O(n)$ | Ambos: busca + remoção |
+
+**🧮 Análise de Memória:**
+- **Array:** $n \times \text{sizeof}(\text{elemento})$ contíguo
+- **Lista:** $n \times (\text{sizeof}(\text{elemento}) + \text{sizeof}(\text{ponteiro}))$ fragmentado
+- **Overhead:** ~33% para inteiros (4 bytes dados + 8 bytes ponteiro)
+
+```c
+// Implementação completa com análise de performance
+typedef struct {
+    No *inicio;
+    No *fim;
     int tamanho;
-    int altura_maxima;
-} ArvoreBinaria;
+    long operacoes_realizadas;  // Contador para análise
+} ListaLigadaCompleta;
+
+// Inserção no início - O(1)
+void inserir_inicio(ListaLigadaCompleta *lista, int valor) {
+    No *novo = malloc(sizeof(No));
+    if (!novo) {
+        printf("Erro: Memória insuficiente\n");
+        return;
+    }
+    
+    novo->dados = valor;
+    novo->proximo = lista->inicio;
+    lista->inicio = novo;
+    
+    // Se lista estava vazia, fim também aponta para novo nó
+    if (lista->tamanho == 0) {
+        lista->fim = novo;
+    }
+    
+    lista->tamanho++;
+    lista->operacoes_realizadas++;
+}
+
+// Busca com contagem de operações - O(n)
+No* buscar_elemento(ListaLigadaCompleta *lista, int valor, int *operacoes) {
+    No *atual = lista->inicio;
+    *operacoes = 0;
+    
+    while (atual != NULL) {
+        (*operacoes)++;
+        if (atual->dados == valor) {
+            lista->operacoes_realizadas += *operacoes;
+            return atual;
+        }
+        atual = atual->proximo;
+    }
+    
+    lista->operacoes_realizadas += *operacoes;
+    return NULL;  // Não encontrado
+}
+
+// Análise estatística da lista
+void analisar_lista(ListaLigadaCompleta *lista) {
+    printf("=== ANÁLISE DA LISTA LIGADA ===\n");
+    printf("Elementos: %d\n", lista->tamanho);
+    printf("Memória utilizada: %ld bytes\n", 
+           lista->tamanho * sizeof(No) + sizeof(ListaLigadaCompleta));
+    printf("Operações realizadas: %ld\n", lista->operacoes_realizadas);
+    
+    if (lista->tamanho > 0) {
+        printf("Operações médias por elemento: %.2f\n", 
+               (double)lista->operacoes_realizadas / lista->tamanho);
+    }
+}
+```
+
+---
+
+### **📚 Pilhas: LIFO - Last In, First Out**
+
+**🎯 Princípio Matemático:**
+> Estrutura que segue o princípio **LIFO**: o último elemento inserido é o primeiro a ser removido.
+
+**📐 Operações Fundamentais:**
+- **Push:** Inserir elemento no topo - $O(1)$
+- **Pop:** Remover elemento do topo - $O(1)$
+- **Top/Peek:** Visualizar topo sem remover - $O(1)$
+- **IsEmpty:** Verificar se está vazia - $O(1)$
+
+```c
+#define MAX_PILHA 1000
+
+typedef struct {
+    int dados[MAX_PILHA];
+    int topo;                    // Índice do elemento no topo
+    int operacoes_push;          // Contador de operações
+    int operacoes_pop;
+    int tamanho_maximo_atingido; // Para análise
+} Pilha;
+
+// Inicialização
+void inicializar_pilha(Pilha *p) {
+    p->topo = -1;  // Pilha vazia
+    p->operacoes_push = 0;
+    p->operacoes_pop = 0;
+    p->tamanho_maximo_atingido = 0;
+}
+
+// Push com análise - O(1)
+bool push(Pilha *p, int valor) {
+    if (p->topo >= MAX_PILHA - 1) {
+        printf("Erro: Stack Overflow!\n");
+        return false;
+    }
+    
+    p->dados[++p->topo] = valor;
+    p->operacoes_push++;
+    
+    // Atualiza estatísticas
+    int tamanho_atual = p->topo + 1;
+    if (tamanho_atual > p->tamanho_maximo_atingido) {
+        p->tamanho_maximo_atingido = tamanho_atual;
+    }
+    
+    return true;
+}
+
+// Pop com análise - O(1)
+bool pop(Pilha *p, int *valor) {
+    if (p->topo < 0) {
+        printf("Erro: Stack Underflow!\n");
+        return false;
+    }
+    
+    *valor = p->dados[p->topo--];
+    p->operacoes_pop++;
+    return true;
+}
+
+// Análise estatística
+void analisar_pilha(Pilha *p) {
+    printf("=== ANÁLISE DA PILHA ===\n");
+    printf("Elementos atuais: %d\n", p->topo + 1);
+    printf("Capacidade máxima: %d\n", MAX_PILHA);
+    printf("Ocupação máxima atingida: %d (%.1f%%)\n", 
+           p->tamanho_maximo_atingido,
+           (100.0 * p->tamanho_maximo_atingido) / MAX_PILHA);
+    printf("Total de PUSH: %d\n", p->operacoes_push);
+    printf("Total de POP: %d\n", p->operacoes_pop);
+    printf("Diferença (vazamentos?): %d\n", 
+           p->operacoes_push - p->operacoes_pop - (p->topo + 1));
+}
+```
+
+**🌟 Aplicações Clássicas de Pilhas:**
+1. **Recursão:** Controle de chamadas de função
+2. **Expressões:** Avaliação de expressões matemáticas
+3. **Navegação:** Histórico de páginas web (botão "Voltar")
+4. **Parsing:** Análise sintática de código
+5. **Backtracking:** Algoritmos de busca com retrocesso
 
 // Criação de nó
 NoArvore* criar_no(int valor) {
