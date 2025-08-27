@@ -21,7 +21,26 @@ A disciplina de Algoritmos e Complexidade é **fundamental** para qualquer profi
 - **Conhecimento essencial** para entrevistas técnicas
 - **Fundamentos** para áreas avançadas como IA, Big Data e Sistemas Distribuídos
 
-## 📚 Ementa da Disciplina
+## � Material de Estudo
+
+### **📋 DESTAQUE: Revisão Completa de Análise de Algoritmos**
+**Conteúdo especial desenvolvido com foco em Big O e estruturas de dados fundamentais:**
+
+- 📄 **[Revisão Teórica Completa](aulas/revisao_analise_algoritmos.md)** - Material didático com análise passo a passo
+- 📕 **[PDF da Revisão](aulas/pdf/revisao_analise_algoritmos.pdf)** - Versão para impressão e estudo offline
+- 🧪 **[Laboratório Prático](exercicios/laboratorio_analise_algoritmos.md)** - Exercícios progressivos com critérios de avaliação
+- 💻 **[Código C Completo](exemplos/c/complexidade/analise_algoritmos_completa.c)** - Implementações práticas com benchmarks
+- 🐍 **[Código Python Interativo](exemplos/python/complexidade/analise_algoritmos_completa.py)** - Demonstrações com gráficos
+
+**Características do Material:**
+- ✅ Análise matemática detalhada de O(1), O(log n), O(n), O(n²), O(2ⁿ)
+- ✅ Comparação prática entre estruturas homogêneas e heterogêneas  
+- ✅ Demonstração de ponteiros e referências com analogias claras
+- ✅ Benchmarks reais com medição de performance
+- ✅ Problemas computacionais do mundo real
+- ✅ Trade-offs entre tempo, memória e complexidade
+
+## 📚 Cronograma de Aulas
 
 ### **Unidade I: Fundamentos e Funções (16h)**
 - Conceitos básicos de algoritmos e funções
