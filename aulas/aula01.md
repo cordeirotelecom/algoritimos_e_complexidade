@@ -394,9 +394,116 @@ Fatorial: 120
 
 ---
 
-## 8. Exercícios Práticos (Para Fixar o Aprendizado)
+## 7. Conceitos Práticos (Foco na Teoria)
 
-### 8.1 Exercícios Básicos
+### 7.1 Sistema de Calculadora - Abordagem Conceitual
+
+**Ideia principal:** Dividir operações matemáticas em funções específicas.
+
+**Estrutura conceitual:**
+```c
+float somar(float a, float b) { return a + b; }     // O(1)
+float dividir(float a, float b) { return a / b; }   // O(1)
+```
+
+**Benefícios desta abordagem:**
+- Cada função tem uma responsabilidade única
+- Fácil de testar e manter
+- Pode ser reutilizada em diferentes partes do programa
+- Complexidade constante O(1) para cada operação
+
+### 7.2 Conceitos de Validação
+
+**Problema:** Como verificar se dados estão corretos?
+
+**Solução conceitual:** Funções de validação
+```c
+int eh_positivo(int numero) { return numero > 0; }  // O(1)
+```
+
+**Vantagens:**
+- Centraliza regras de validação
+- Melhora legibilidade do código
+- Facilita mudanças futuras
+
+---
+
+## 8. Exercícios Conceituais
+
+### 8.1 Exercícios de Compreensão
+
+1. **Conceitual:** Por que dividir um programa em funções é melhor que escrever tudo junto?
+
+2. **Análise:** Se uma função calcula área de círculo, qual sua complexidade e por quê?
+
+3. **Design:** Como você organizaria funções para um sistema de biblioteca?
+
+### 8.2 Exercícios de Análise
+
+4. **Complexidade:** Analise a complexidade de uma função que verifica se um número é primo.
+
+5. **Comparação:** Compare passagem por valor vs por referência em termos de eficiência.
+
+6. **Escopo:** Explique quando usar variáveis locais vs globais.
+
+---
+
+## 9. Conceitos para a Próxima Aula
+
+Na **Aula 02**, estudaremos conceitos teóricos de:
+- **Estruturas homogêneas:** Arrays e suas propriedades
+- **Estruturas heterogêneas:** Structs e tipos abstratos de dados
+- **Ponteiros:** Conceitos de indireção e referência
+- **Gerenciamento de memória:** Alocação estática vs dinâmica
+
+**Foco:** Compreender os fundamentos teóricos antes de implementar.
+
+---
+
+## 10. Principais Conceitos desta Aula
+
+### 10.1 Síntese Teórica
+
+**Algoritmos:**
+- Sequência de passos para resolver problemas
+- Devem ser finitos, definidos e efetivos
+- Independem de linguagem de programação
+
+**Funções:**
+- Blocos de código com responsabilidade única
+- Facilitam modularização e reutilização
+- Têm complexidade de tempo e espaço específicas
+
+**Passagem de parâmetros:**
+- Por valor: trabalha com cópia (não modifica original)
+- Por referência: trabalha com endereço (modifica original)
+
+**Escopo:**
+- Local: variáveis existem apenas dentro da função
+- Global: variáveis existem em todo o programa
+
+### 10.2 Complexidade das Operações Vistas
+
+| Operação | Complexidade | Explicação |
+|----------|--------------|------------|
+| Criar função | O(1) | Operação de definição |
+| Chamar função | O(1) | Chamada simples |
+| Passar por valor | O(1) | Cópia de valor |
+| Passar por referência | O(1) | Cópia de endereço |
+| Acesso variável local | O(1) | Acesso direto |
+| Acesso variável global | O(1) | Acesso direto |
+
+---
+
+## Bibliografia desta Aula
+
+- **Cormen, T.H. et al.** *Introduction to Algorithms*, 4ª ed., Capítulos 1-2
+- **Kernighan, B.W.; Ritchie, D.M.** *The C Programming Language*, 2ª ed.
+- **Sedgewick, R.** *Algorithms in C*, Parte I
+
+---
+
+*"A programação é a arte de resolver problemas através de funções bem organizadas."*
 
 **1. Área do Círculo**
 Crie uma função que calcule a área de um círculo dado o raio.

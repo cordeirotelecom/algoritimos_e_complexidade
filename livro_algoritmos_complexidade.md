@@ -239,38 +239,26 @@ tipo_de_retorno nome_da_funcao(parametros) {
 4. **Corpo:** O que a função vai fazer
 5. **Return:** O resultado que a função vai devolver
 
-### 2.4 Exemplo Prático: Calculadora de Área
+### 2.4 Exemplo Conceitual: Funções Matemáticas
 
+Imagine que você tem uma "máquina" que calcula áreas:
+
+**Função para área do círculo:**
 ```c
-#include <stdio.h>
-
-// Função para calcular área do círculo
-float area_circulo(float raio) {           // O(1)
-    float area = 3.14159 * raio * raio;   // O(1)
-    return area;                          // O(1)
-}
-
-// Função para calcular área do retângulo  
-float area_retangulo(float base, float altura) {  // O(1)
-    return base * altura;                         // O(1)
-}
-
-int main() {
-    float r = 5.0;                               // O(1)
-    float b = 10.0, h = 6.0;                    // O(1)
-    
-    printf("Área do círculo: %.2f\n", area_circulo(r));        // O(1)
-    printf("Área do retângulo: %.2f\n", area_retangulo(b, h)); // O(1)
-    
-    return 0;
+float area_circulo(float raio) {    // O(1)
+    return 3.14 * raio * raio;     // O(1)
 }
 ```
 
-**Saída:**
-```
-Área do círculo: 78.54
-Área do retângulo: 60.00
-```
+**Conceitos fundamentais:**
+- **Entrada:** raio (um número)
+- **Processamento:** fórmula matemática (π × r²)
+- **Saída:** área calculada
+- **Complexidade:** O(1) - tempo constante
+
+**Por que é O(1)?** Não importa se o raio é 1 ou 1000, a operação matemática sempre demora o mesmo tempo.
+
+**Aplicação prática:** Esta função pode ser usada para calcular área de qualquer círculo, seja um botão ou uma roda gigante.
 
 ### 2.5 Tipos de Funções
 
@@ -417,107 +405,89 @@ numeros[1] = 20; // Segunda gaveta
 - **Inserção/remoção lenta:** O(n) no pior caso
 - **Memória desperdiçada:** Se não usar todos os espaços
 
-#### 3.4.4 Operações Básicas com Arrays
+#### 3.4.4 Conceitos Fundamentais com Arrays
 
+**Acesso a elemento:** O(1)
 ```c
-#include <stdio.h>
+int primeiro = arr[0];  // Acesso direto por índice
+```
 
-void imprimir_array(int arr[], int tamanho) {
-    for (int i = 0; i < tamanho; i++) {    // O(n)
-        printf("%d ", arr[i]);             // O(1)
-    }
-    printf("\n");
-}
-
-int buscar_elemento(int arr[], int tamanho, int valor) {
-    for (int i = 0; i < tamanho; i++) {    // O(n)
-        if (arr[i] == valor) {             // O(1)
-            return i;  // Retorna a posição
-        }
-    }
-    return -1;  // Não encontrado
-}
-
-int main() {
-    int numeros[] = {10, 25, 30, 45, 50};  // O(1)
-    int tam = 5;                           // O(1)
-    
-    printf("Array: ");
-    imprimir_array(numeros, tam);          // O(n)
-    
-    int posicao = buscar_elemento(numeros, tam, 30);  // O(n)
-    if (posicao != -1) {
-        printf("Elemento 30 encontrado na posição %d\n", posicao);
-    }
-    
-    return 0;
+**Busca linear:** O(n)
+```c
+// Buscar valor no array
+for (int i = 0; i < n; i++) {
+    if (arr[i] == valor) return i;
 }
 ```
 
-### 3.5 Estruturas (Structs): Agrupando Dados Relacionados
+**Conceitos teóricos importantes:**
 
-#### 3.5.1 Conceito
-Uma struct é como uma ficha com vários campos relacionados.
+**1. Localidade de Memória**
+Arrays armazenam elementos em posições consecutivas na memória, permitindo acesso rápido e eficiente.
 
-**Exemplo:** Ficha de um aluno
+**2. Indexação**
+Cada elemento tem uma posição única (índice), permitindo acesso direto em tempo O(1).
+
+**3. Trade-offs dos Arrays**
+- **Vantagem:** Acesso rápido O(1)
+- **Desvantagem:** Tamanho fixo
+- **Uso ideal:** Quando conhecemos o tamanho máximo
+
+**4. Complexidade das Operações**
+- Acesso: O(1)
+- Busca: O(n)
+- Inserção no final: O(1)
+- Inserção no meio: O(n)
+- Remoção: O(n)
+```
+
+### 3.5 Estruturas (Structs): Conceitos Fundamentais
+
+#### 3.5.1 Teoria das Estruturas Heterogêneas
+
+Uma struct permite agrupar dados relacionados de **tipos diferentes**, criando uma nova estrutura de dados customizada.
+
+**Conceito básico:**
 ```c
-struct aluno {
-    char nome[50];      // Campo para nome
-    int idade;          // Campo para idade
-    float nota;         // Campo para nota
+struct pessoa {
+    char nome[50];  // String
+    int idade;      // Inteiro  
+    float altura;   // Float
 };
 ```
 
-#### 3.5.2 Exemplo Prático: Sistema de Biblioteca
+#### 3.5.2 Vantagens Teóricas das Structs
 
-```c
-#include <stdio.h>
-#include <string.h>
+**1. Organização Lógica**
+Agrupa dados que pertencem à mesma entidade.
 
-struct livro {
-    char titulo[100];
-    char autor[50];
-    int ano;
-    int disponivel;  // 1 = sim, 0 = não
-};
+**2. Reutilização**
+Define um "molde" que pode ser usado várias vezes.
 
-void imprimir_livro(struct livro l) {             // O(1)
-    printf("Título: %s\n", l.titulo);            // O(1)
-    printf("Autor: %s\n", l.autor);              // O(1)
-    printf("Ano: %d\n", l.ano);                  // O(1)
-    printf("Disponível: %s\n", l.disponivel ? "Sim" : "Não");  // O(1)
-    printf("------------------------\n");
-}
+**3. Manutenibilidade**
+Mudanças na estrutura são feitas em um só lugar.
 
-int main() {
-    struct livro biblioteca[3];                   // O(1)
-    
-    // Cadastrando livros
-    strcpy(biblioteca[0].titulo, "1984");         // O(1)
-    strcpy(biblioteca[0].autor, "George Orwell");
-    biblioteca[0].ano = 1949;
-    biblioteca[0].disponivel = 1;
-    
-    strcpy(biblioteca[1].titulo, "Dom Casmurro");
-    strcpy(biblioteca[1].autor, "Machado de Assis");
-    biblioteca[1].ano = 1899;
-    biblioteca[1].disponivel = 0;
-    
-    strcpy(biblioteca[2].titulo, "O Cortiço");
-    strcpy(biblioteca[2].autor, "Aluísio Azevedo");
-    biblioteca[2].ano = 1890;
-    biblioteca[2].disponivel = 1;
-    
-    // Listando livros disponíveis
-    printf("=== LIVROS DISPONÍVEIS ===\n");
-    for (int i = 0; i < 3; i++) {                // O(n)
-        if (biblioteca[i].disponivel) {          // O(1)
-            imprimir_livro(biblioteca[i]);       // O(1)
-        }
-    }
-    
-    return 0;
-}
+**4. Legibilidade**
+O código fica mais expressivo e fácil de entender.
+
+#### 3.5.3 Aplicações Práticas
+
+**Sistemas de informação:**
+- Cadastros (cliente, produto, funcionário)
+- Registros bancários
+- Dados de jogos (posição, pontuação, vida)
+
+**Estruturas de dados avançadas:**
+- Nós de listas ligadas
+- Vértices de grafos
+- Elementos de árvores
+
+#### 3.5.4 Complexidade das Operações
+
+- **Acesso a campo:** O(1)
+- **Atribuição:** O(1) 
+- **Cópia de struct:** O(k), onde k é o número de campos
+- **Comparação:** O(k) para comparação completa
 ```
 
 ### 3.6 Comparação: Arrays vs Structs
@@ -587,44 +557,40 @@ int *ponteiro = &numero;
 printf("%d", *ponteiro);  // Mostra o valor que está no endereço
 ```
 
-### 4.4 Declaração e Uso de Ponteiros
+### 4.4 Conceitos Fundamentais de Ponteiros
 
-#### 4.4.1 Sintaxe Básica
+#### 4.4.1 Teoria dos Endereços de Memória
+
+**Conceito básico:**
 ```c
-tipo *nome_do_ponteiro;
+int idade = 25;        // Variável
+int *ptr = &idade;     // Ponteiro para a variável
 ```
 
-#### 4.4.2 Exemplo Passo a Passo
+**Operadores fundamentais:**
+- `&` (endereço-de): obtém o endereço de uma variável
+- `*` (conteúdo-de): acessa o valor no endereço
 
-```c
-#include <stdio.h>
+#### 4.4.2 Vantagens Teóricas dos Ponteiros
 
-int main() {
-    int idade = 25;              // O(1) - cria variável
-    int *ptr_idade;              // O(1) - declara ponteiro
-    
-    ptr_idade = &idade;          // O(1) - ponteiro aponta para idade
-    
-    printf("Valor da idade: %d\n", idade);        // O(1) - imprime 25
-    printf("Endereço da idade: %p\n", &idade);    // O(1) - imprime endereço
-    printf("Valor do ponteiro: %p\n", ptr_idade); // O(1) - mesmo endereço
-    printf("Valor apontado: %d\n", *ptr_idade);   // O(1) - imprime 25
-    
-    *ptr_idade = 30;             // O(1) - modifica através do ponteiro
-    printf("Nova idade: %d\n", idade);            // O(1) - imprime 30
-    
-    return 0;
-}
-```
+**1. Eficiência de Memória**
+Evita cópias desnecessárias de dados grandes.
 
-**Saída:**
-```
-Valor da idade: 25
-Endereço da idade: 0x7fff5fbff6ac
-Valor do ponteiro: 0x7fff5fbff6ac
-Valor apontado: 25
-Nova idade: 30
-```
+**2. Flexibilidade**
+Permite modificar variáveis através de funções.
+
+**3. Estruturas Dinâmicas**
+Base para listas, árvores e outras estruturas avançadas.
+
+**4. Compartilhamento de Dados**
+Múltiplas partes do programa podem acessar os mesmos dados.
+
+#### 4.4.3 Complexidade das Operações
+
+- **Declaração:** O(1)
+- **Atribuição de endereço:** O(1)
+- **Acesso via ponteiro:** O(1)
+- **Aritmética de ponteiros:** O(1)
 
 ### 4.5 Ponteiros e Funções
 
@@ -814,22 +780,27 @@ Em vez de medir tempo, contamos **operações básicas**.
 
 ### 5.4 Exemplo Prático: Busca em Lista
 
-#### 5.4.1 Busca Linear
+#### 5.4.1 Teoria da Busca Linear
+
+**Conceito:** Examina cada elemento sequencialmente até encontrar o desejado.
+
+**Algoritmo conceitual:**
 ```c
-int busca_linear(int arr[], int n, int valor) {
-    for (int i = 0; i < n; i++) {        // Loop executa até n vezes
-        if (arr[i] == valor) {           // 1 comparação por iteração
-            return i;                    // 1 operação de retorno
-        }
-    }
-    return -1;                           // 1 operação de retorno
-}
+// Para cada elemento do array
+//   Se elemento == valor procurado
+//     Retorna posição encontrada
+// Se chegou ao fim, valor não existe
 ```
 
-**Análise:**
-- **Melhor caso:** Elemento está na primeira posição → 1 comparação
-- **Pior caso:** Elemento não existe → n comparações
-- **Caso médio:** Elemento está no meio → n/2 comparações
+**Análise teórica de complexidade:**
+- **Melhor caso:** O(1) - elemento na primeira posição
+- **Pior caso:** O(n) - elemento inexistente ou na última posição  
+- **Caso médio:** O(n/2) ≈ O(n) - elemento no meio
+
+**Características:**
+- Funciona em arrays ordenados e não-ordenados
+- Simples de implementar e entender
+- Ineficiente para grandes volumes de dados
 
 #### 5.4.2 Visualizando o Crescimento
 
@@ -1000,70 +971,52 @@ int vazio = (tamanho == 0);              // O(1)
 
 #### 6.2.2 O(log n) - Complexidade Logarítmica
 
-**Característica:** Cada operação reduz o problema pela metade.
+**Teoria fundamental:** Cada operação reduz o espaço de busca pela metade.
 
-**Exemplos do dia a dia:**
-- Procurar uma palavra no dicionário
-- Encontrar um livro em uma biblioteca organizada
-- Jogo de "adivinhar o número" (1 a 100)
-
-**Algoritmo clássico: Busca Binária**
+**Algoritmo conceitual - Busca Binária:**
 ```c
-int busca_binaria(int arr[], int n, int valor) {
-    int inicio = 0, fim = n - 1;
-    
-    while (inicio <= fim) {              // O(log n) iterações
-        int meio = (inicio + fim) / 2;   // O(1)
-        
-        if (arr[meio] == valor) {        // O(1)
-            return meio;
-        } else if (arr[meio] < valor) {  // O(1)
-            inicio = meio + 1;
-        } else {
-            fim = meio - 1;
-        }
-    }
-    return -1;
-}
+// Enquanto há elementos para examinar
+//   Verifica elemento do meio
+//   Se encontrou, retorna
+//   Se é menor, busca na metade direita
+//   Se é maior, busca na metade esquerda
 ```
 
-**Por que log n?**
-- A cada iteração, eliminamos metade das possibilidades
-- Para n elementos, precisamos de no máximo log₂(n) divisões
-- Exemplo: array de 1000 elementos → máximo 10 comparações
+**Por que é logarítmica?**
+- Dividimos o problema pela metade a cada passo
+- Para n elementos: máximo log₂(n) divisões
+- Exemplo: 1000 elementos → máximo 10 comparações
+
+**Pré-requisito:** Array deve estar ordenado
+
+**Aplicações práticas:**
+- Busca em dicionários
+- Sistemas de indexação de bancos de dados
+- Algoritmos de navegação (GPS)
 
 #### 6.2.3 O(n) - Complexidade Linear
 
-**Característica:** Tempo cresce proporcionalmente ao tamanho.
+**Teoria fundamental:** Tempo de execução cresce proporcionalmente ao tamanho da entrada.
 
-**Exemplos do dia a dia:**
-- Contar todas as pessoas em uma fila
-- Ler um livro página por página
-- Lavar todos os pratos da pia
-
-**Algoritmos clássicos:**
+**Conceito da busca linear:**
 ```c
-// Busca linear
-int busca_linear(int arr[], int n, int valor) {
-    for (int i = 0; i < n; i++) {        // O(n)
-        if (arr[i] == valor) {           // O(1)
-            return i;
-        }
-    }
-    return -1;
-}
-
-// Encontrar maior elemento
-int encontrar_maior(int arr[], int n) {
-    int maior = arr[0];                  // O(1)
-    for (int i = 1; i < n; i++) {        // O(n)
-        if (arr[i] > maior) {            // O(1)
-            maior = arr[i];
-        }
-    }
-    return maior;
-}
+// Para cada elemento no array
+//   Verifica se é o elemento procurado
+//   Se sim, retorna posição
+// Se chegou ao fim, não encontrou
 ```
+
+**Características teóricas:**
+- Relação direta entre input e tempo
+- Dobrando a entrada, dobra o tempo
+- Mais eficiente que métodos quadráticos
+- Menos eficiente que métodos logarítmicos
+
+**Algoritmos clássicos O(n):**
+- Busca linear em array não-ordenado
+- Soma de elementos de um array
+- Encontrar maior/menor elemento
+- Contagem de elementos específicos
 
 #### 6.2.4 O(n log n) - Complexidade Quase-Linear
 
@@ -1094,40 +1047,27 @@ void merge_sort(int arr[], int inicio, int fim) {
 
 #### 6.2.5 O(n²) - Complexidade Quadrática
 
-**Característica:** Para cada elemento, processamos todos os outros.
+**Teoria fundamental:** Para cada elemento, processamos todos os outros elementos.
 
-**Exemplos do dia a dia:**
-- Comparar todas as pessoas em uma sala entre si
-- Verificar todas as combinações possíveis de duplas
-
-**Algoritmos clássicos:**
+**Padrão conceitual - Dois loops aninhados:**
 ```c
-// Bubble Sort
-void bubble_sort(int arr[], int n) {
-    for (int i = 0; i < n - 1; i++) {        // O(n)
-        for (int j = 0; j < n - i - 1; j++) { // O(n)
-            if (arr[j] > arr[j + 1]) {       // O(1)
-                // trocar elementos
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-}
-
-// Verificar duplicatas (método ingênuo)
-int tem_duplicatas(int arr[], int n) {
-    for (int i = 0; i < n; i++) {            // O(n)
-        for (int j = i + 1; j < n; j++) {    // O(n)
-            if (arr[i] == arr[j]) {          // O(1)
-                return 1;  // Tem duplicata
-            }
-        }
-    }
-    return 0;  // Não tem duplicata
-}
+// Para cada elemento i
+//   Para cada elemento j
+//     Compara elemento i com elemento j
 ```
+
+**Características teóricas:**
+- Crescimento explosivo com entrada grande
+- Dobrando a entrada, quadruplica o tempo
+- Comum em algoritmos ingênuos
+- Aceitável apenas para pequenos conjuntos de dados
+
+**Algoritmos clássicos O(n²):**
+- Bubble Sort (ordenação simples)
+- Selection Sort
+- Insertion Sort
+- Verificação de duplicatas (método ingênuo)
+- Multiplicação de matrizes (método básico)
 
 #### 6.2.6 O(2ⁿ) - Complexidade Exponencial
 
