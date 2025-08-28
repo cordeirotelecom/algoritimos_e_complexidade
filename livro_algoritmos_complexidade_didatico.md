@@ -1,30 +1,36 @@
-# 🚀 ALGORITHMS MASTERY: The Patrick Journey
-### *From Zero to Algorithm Architect - The Ultimate Guide to Computational Thinking*
+# Algoritmos e Análise de Complexidade
+## Manual Científico e Didático
 
-<div align="center">
-
-![Algorithm Complexity](https://img.shields.io/badge/Complexity-O(awesome)-brightgreen)
-![Build Status](https://img.shields.io/badge/Build-Passing-success)
-![Language](https://img.shields.io/badge/Language-Universal-blue)
-![Level](https://img.shields.io/badge/Level-Beginner%20to%20Expert-orange)
-
-**🏆 A REFERÊNCIA MUNDIAL EM ANÁLISE DE ALGORITMOS 🏆**
-
-*"O livro que transforma estudantes em mestres do pensamento algorítmico"*
-
-</div>
+### Autor: Prof. Vagner Cordeiro
+### Disciplina: Algoritmos e Complexidade Computacional
 
 ---
 
-## 📖 **SOBRE ESTA OBRA REVOLUCIONÁRIA**
+## Prefácio
 
-**Autor:** Prof. Vagner Cordeiro 🎓  
-**LinkedIn:** [linkedin.com/in/vagnercordeiro](https://linkedin.com/in/vagnercordeiro)  
-**Especialização:** Algoritmos & Análise de Complexidade  
-**Inovação:** Método Científico dos 7 Passos  
-**Aplicação:** Casos Reais da Indústria  
-**Status:** Referência Mundial  
-**Versão:** 2025 Ultimate Edition  
+Este livro foi desenvolvido com o objetivo de fornecer uma base sólida e científica para o estudo de algoritmos e análise de complexidade computacional. O conteúdo é apresentado de forma didática e rigorosa, com demonstrações matemáticas, exemplos práticos e implementações em código.
+
+### Objetivos de Aprendizagem
+
+Ao final desta obra, o estudante será capaz de:
+- Analisar matematicamente a complexidade de algoritmos
+- Aplicar notação assintótica (Big O, Ω, Θ) corretamente
+- Implementar e comparar estruturas de dados fundamentais
+- Projetar algoritmos eficientes para problemas específicos
+- Compreender trade-offs entre tempo e espaço
+- Calcular complexidades usando métodos matemáticos rigorosos
+
+### Metodologia
+
+Cada conceito é apresentado seguindo uma sequência didática:
+1. **Definição formal** com base matemática
+2. **Demonstração teórica** quando aplicável
+3. **Exemplo numérico** detalhado
+4. **Implementação prática** em pseudocódigo e código real
+5. **Análise de complexidade** passo a passo
+6. **Exercícios graduais** para fixação
+
+---  
 
 ---
 
@@ -2054,44 +2060,149 @@ Dr. Silva explicou: "Patrick, você descobriu a diferença entre RESOLVER um pro
 
 ### Como Medir a Eficiência: A Notação Big O
 
-Patrick aprendeu que Big O é como medir a velocidade de crescimento do tempo de execução. É como uma "categoria de velocidade" para algoritmos.
+#### **Definição Matemática Formal**
+
+**Big O (O)** - Limite Superior Assintótico:
+```
+f(n) = O(g(n)) se e somente se existem constantes c > 0 e n₀ ≥ 0 
+tais que 0 ≤ f(n) ≤ c·g(n) para todo n ≥ n₀
+```
+
+**Interpretação:** f(n) cresce no máximo tão rápido quanto g(n), desconsiderando constantes e valores pequenos de n.
+
+**Notações Relacionadas:**
+- **Ω (Omega)** - Limite inferior: f(n) = Ω(g(n)) ⟺ ∃c,n₀ : f(n) ≥ c·g(n) ∀n≥n₀
+- **Θ (Theta)** - Limite justo: f(n) = Θ(g(n)) ⟺ f(n) = O(g(n)) ∧ f(n) = Ω(g(n))
+
+Patrick aprendeu que Big O mede matematicamente como o tempo de execução cresce em função do tamanho da entrada n.
 
 #### O(1) - Tempo Constante: "O Teletransporte"
-**O que significa:** Não importa quantos dados, sempre demora o mesmo tempo.
 
-**Analogias do Dia a Dia:**
-- Ligar a luz: 1 segundo para 1 lâmpada ou 1000 lâmpadas
-- Consultar relógio: mesmo tempo se é 1h ou 23h59
-- Sacar dinheiro no caixa eletrônico: mesmo tempo para R$10 ou R$1000
-
-**Exemplo Prático - Sistema de Login:**
+**Definição Matemática:**
 ```
-Patrick tem sistema com 1 usuário:
-Login do "patrick123": 0.001 segundos
+T(n) = c, onde c é uma constante
+Ou seja: T(n) ∈ O(1) ⟺ ∃c,n₀ : T(n) ≤ c ∀n≥n₀
+```
 
-Sistema cresce para 1 milhão de usuários:
-Login do "patrick123": ainda 0.001 segundos
+**O que significa:** O tempo de execução é independente do tamanho da entrada n.
 
-Por quê? Hash table calcula posição diretamente!
+**Análise Matemática:**
+```
+Para qualquer operação O(1):
+- Quando n = 1: T(1) = c
+- Quando n = 1.000: T(1000) = c  
+- Quando n = 1.000.000: T(1000000) = c
+- Limite: lim(n→∞) T(n)/1 = c (constante)
+```
+
+**Exemplos Matematicamente Analisados:**
+
+1. **Acesso a Array por Índice:**
+```python
+def acessar_elemento(array, indice):
+    return array[indice]  # 1 operação de memória
+
+# Análise: T(n) = 1 operação ∈ O(1)
+```
+
+2. **Operações Aritméticas:**
+```python
+def operacao_matematica(a, b):
+    return (a + b) * 2 - 1  # 3 operações CPU
+
+# Análise: T(n) = 3 operações ∈ O(1)
+```
+
+**Prova Matemática - Hash Table:**
+```
+Função hash: h(key) = key mod m
+Acesso: table[h(key)]
+
+Operações:
+1. Calcular h(key): 1 divisão + 1 módulo = 2 ops
+2. Acessar table[índice]: 1 operação de memória
+Total: T(n) = 3 operações, independente de n
+
+∴ T(n) ∈ O(1)
 ```
 
 **Outros Exemplos O(1):**
-- Acessar elemento em array: lista[5] sempre é instantâneo
-- Verificar se número é par ou ímpar
-- Descobrir primeiro elemento de uma lista
+- Verificar se número é par: `n % 2 == 0` (1 operação)
+- Calcular área do círculo: `π * r²` (2 operações)
+- Trocar valores de duas variáveis (3 operações)
 
 #### O(log n) - Tempo Logarítmico: "O Detetive Inteligente"
-**O que significa:** Tempo cresce devagar, mesmo com muitos dados.
 
-**Analogia Principal - Jogo da Adivinhação:**
+**Definição Matemática:**
 ```
-Patrick joga "adivinhe o número":
+T(n) = c·log₂(n) + d, onde c,d são constantes
+Ou seja: T(n) ∈ O(log n) ⟺ ∃c,n₀ : T(n) ≤ c·log₂(n) ∀n≥n₀
+```
 
-Para números de 1 a 8:
-Máximo 3 tentativas (2³ = 8)
+**Propriedades do Logaritmo:**
+```
+log₂(1) = 0      log₂(2) = 1      log₂(4) = 2
+log₂(8) = 3      log₂(16) = 4     log₂(1024) = 10
+log₂(2ⁿ) = n     log₂(n·m) = log₂(n) + log₂(m)
+```
 
-Para números de 1 a 1024:
-Máximo 10 tentativas (2¹⁰ = 1024)  
+**Análise Matemática - Busca Binária:**
+```
+Array ordenado de tamanho n
+Algoritmo: Divide o espaço de busca pela metade a cada passo
+
+Demonstração:
+- Passo 1: n elementos → n/2 elementos
+- Passo 2: n/2 elementos → n/4 elementos  
+- Passo k: n/2^(k-1) elementos → n/2^k elementos
+
+Parar quando: n/2^k = 1
+Resolvendo: 2^k = n ⟺ k = log₂(n)
+
+∴ T(n) = log₂(n) comparações ∈ O(log n)
+```
+
+**Implementação e Análise:**
+```python
+def busca_binaria(array, x):
+    esquerda, direita = 0, len(array) - 1
+    comparacoes = 0
+    
+    while esquerda <= direita:
+        meio = (esquerda + direita) // 2  # O(1)
+        comparacoes += 1
+        
+        if array[meio] == x:              # O(1)
+            return meio, comparacoes
+        elif array[meio] < x:             # O(1)
+            esquerda = meio + 1
+        else:
+            direita = meio - 1
+    
+    return -1, comparacoes
+
+# Análise: Máximo log₂(n) iterações, cada uma O(1)
+# ∴ T(n) = O(log n)
+```
+
+**Prova por Indução:**
+```
+Base: Para n = 1, T(1) = 1 ≤ c·log₂(1) + 1 = c·0 + 1 = 1 ✓
+
+Hipótese: Para n = 2^k, T(2^k) ≤ c·k
+
+Passo: Para n = 2^(k+1):
+- Primeira comparação: 1 operação
+- Problema reduzido para 2^k elementos
+- T(2^(k+1)) = 1 + T(2^k) ≤ 1 + c·k = c·(k+1) ✓
+
+∴ T(n) ∈ O(log n) por indução matemática
+```
+
+**Exemplos Reais:**
+- **Busca em Dicionário:** 500.000 palavras → máximo 19 comparações
+- **Sistema de Arquivos:** Árvore B+ de 1TB → máximo ~40 acessos a disco
+- **Roteamento Internet:** BGP com 800.000 rotas → ~20 saltos  
 
 Para números de 1 a 1.048.576:
 Máximo 20 tentativas (2²⁰ = 1.048.576)
@@ -2116,36 +2227,85 @@ Máximo de tentativas: 10 (log₂ 1000 ≈ 10)
 - Algoritmos "dividir para conquistar"
 
 #### O(n) - Tempo Linear: "O Inspetor Metódico"
-**O que significa:** Tempo dobra quando dados dobram.
 
-**Analogias do Dia a Dia:**
+**Definição Matemática:**
 ```
-Contar dinheiro na carteira:
-10 notas = 10 segundos
-20 notas = 20 segundos
-1000 notas = 1000 segundos
-
-Ler um livro:
-100 páginas = 2 horas
-200 páginas = 4 horas
-1000 páginas = 20 horas
+T(n) = c·n + d, onde c,d são constantes
+Ou seja: T(n) ∈ O(n) ⟺ ∃c,n₀ : T(n) ≤ c·n ∀n≥n₀
 ```
 
-**Exemplo Prático - Encontrar Maior Nota:**
+**Propriedade Fundamental:**
 ```
-Patrick precisa encontrar a maior nota entre os alunos:
-
-10 alunos: olha as 10 notas = 10 comparações
-100 alunos: olha as 100 notas = 100 comparações  
-1000 alunos: olha as 1000 notas = 1000 comparações
-
-Não tem jeito mais rápido - precisa olhar todas!
+Se T(n) ∈ O(n), então:
+- Dobrar entrada: T(2n) ≈ 2·T(n)
+- Triplicar entrada: T(3n) ≈ 3·T(n)
+- k vezes entrada: T(k·n) ≈ k·T(n)
 ```
 
-**Outros Exemplos O(n):**
-- Somar todos os números de uma lista
-- Procurar nome em lista não ordenada
-- Imprimir todos os elementos
+**Análise Matemática - Busca Linear:**
+```python
+def busca_linear(array, x):
+    for i in range(len(array)):      # n iterações
+        if array[i] == x:            # 1 comparação por iteração
+            return i
+    return -1
+
+# Pior caso: elemento não existe ou está no final
+# T(n) = n comparações = 1·n ∈ O(n)
+```
+
+**Demonstração Matemática:**
+```
+Seja f(n) = número de operações para entrada tamanho n
+
+Melhor caso: f(n) = 1 (elemento no início)
+Caso médio: f(n) = n/2 (elemento no meio)
+Pior caso: f(n) = n (elemento no final ou inexistente)
+
+Análise assintótica (pior caso):
+f(n) = n ≤ 1·n para todo n ≥ 1
+∴ f(n) ∈ O(n) com c = 1, n₀ = 1
+```
+
+**Prova de Limite:**
+```
+lim(n→∞) T(n)/n = lim(n→∞) (c·n + d)/n 
+                 = lim(n→∞) (c + d/n) 
+                 = c (constante)
+
+Como o limite é finito e positivo, T(n) ∈ Θ(n)
+```
+
+**Exemplos Rigorosamente Analisados:**
+
+1. **Soma de Array:**
+```python
+def somar_array(array):
+    soma = 0                    # 1 operação
+    for elemento in array:      # n iterações
+        soma += elemento        # 1 adição por iteração
+    return soma                 # 1 operação
+
+# T(n) = 1 + n·1 + 1 = n + 2 ∈ O(n)
+```
+
+2. **Máximo de Array:**
+```python
+def encontrar_maximo(array):
+    if not array: return None   # 1 operação
+    maximo = array[0]          # 1 operação
+    for i in range(1, len(array)): # n-1 iterações
+        if array[i] > maximo:   # 1 comparação
+            maximo = array[i]   # 1 atribuição (pior caso)
+    return maximo               # 1 operação
+
+# T(n) = 1 + 1 + (n-1)·2 + 1 = 2n + 1 ∈ O(n)
+```
+
+**Aplicações Práticas:**
+- **Processamento de Streams:** Cada item processado uma vez
+- **Validação de Dados:** Verificar n registros
+- **I/O Sequencial:** Ler/escrever n elementos
 
 #### O(n log n) - Tempo Quasi-Linear: "O Organizador Eficiente"
 **O que significa:** Um pouco pior que linear, mas ainda gerenciável.
@@ -2182,62 +2342,175 @@ Cresce, mas de forma controlada!
 - Construir certas estruturas de dados
 
 #### O(n²) - Tempo Quadrático: "O Comparador Exaustivo"
-**O que significa:** Tempo quadruplica quando dados dobram.
 
-**Analogia - Festa de Cumpleaños:**
+**Definição Matemática:**
 ```
-Patrick organiza festa e quer que todos cumprimentem todos:
-
-10 pessoas: 45 cumprimentos (10×9/2)
-20 pessoas: 190 cumprimentos (20×19/2)  
-100 pessoas: 4.950 cumprimentos (100×99/2)
-
-Duplicou pessoas, mas cumprimentos ficaram 4x mais!
+T(n) = c·n² + d·n + e, onde c,d,e são constantes
+Ou seja: T(n) ∈ O(n²) ⟺ ∃c,n₀ : T(n) ≤ c·n² ∀n≥n₀
 ```
 
-**Exemplo Prático - Bubble Sort:**
+**Propriedade Fundamental:**
 ```
-Patrick compara cada número com todos os outros:
-
-10 números: 45 comparações
-100 números: 4.950 comparações
-1000 números: 499.500 comparações
-10.000 números: 49.995.000 comparações
-
-Fica impraticável rapidamente!
+Se T(n) ∈ O(n²), então:
+- Dobrar entrada: T(2n) ≈ 4·T(n)
+- Triplicar entrada: T(3n) ≈ 9·T(n)  
+- k vezes entrada: T(k·n) ≈ k²·T(n)
 ```
 
-**Outros Exemplos O(n²):**
-- Comparar cada item com todos os outros
-- Algoritmos de ordenação ingênuos
-- Algumas soluções de força bruta
+**Análise Matemática - Bubble Sort:**
+```python
+def bubble_sort(array):
+    n = len(array)
+    comparacoes = 0
+    
+    for i in range(n):           # n iterações (loop externo)
+        for j in range(n-i-1):   # (n-i-1) iterações (loop interno)
+            comparacoes += 1
+            if array[j] > array[j+1]:
+                array[j], array[j+1] = array[j+1], array[j]
+    
+    return comparacoes
+
+# Contagem total de comparações:
+# T(n) = Σ(i=0 até n-1) (n-i-1) = Σ(k=1 até n-1) k = n(n-1)/2 ∈ Θ(n²)
+```
+
+**Demonstração Matemática:**
+```
+T(n) = (n-1) + (n-2) + ... + 1
+     = Σ(k=1 até n-1) k
+     = (n-1)·n/2
+     = (n² - n)/2
+     = (1/2)n² - (1/2)n
+
+Para análise assintótica:
+T(n) ≤ (1/2)n² para n ≥ 1
+∴ T(n) ∈ O(n²) com c = 1/2, n₀ = 1
+```
+
+**Crescimento Quadrático Demonstrado:**
+```
+n = 10    → T(n) = 45 operações
+n = 20    → T(n) = 190 operações   (4.2x maior)
+n = 100   → T(n) = 4.950 operações (25x maior que n=20)
+n = 1000  → T(n) = 499.500 operações (100x maior que n=100)
+```
+
+**Exemplo Real - Verificação de Duplicatas:**
+```python
+def tem_duplicatas_naive(array):
+    n = len(array)
+    for i in range(n):
+        for j in range(i+1, n):    # Compara cada par
+            if array[i] == array[j]:
+                return True
+    return False
+
+# Pior caso: sem duplicatas
+# Comparações = C(n,2) = n(n-1)/2 ∈ Θ(n²)
+```
 
 #### O(2ⁿ) - Tempo Exponencial: "O Pesadelo dos Algoritmos"
-**O que significa:** Tempo dobra a cada novo elemento. Horror puro!
 
-**Analogia - Senhas de Celular:**
+**Definição Matemática:**
 ```
-Patrick esqueceu senha do celular:
-
-4 dígitos: máximo 16 tentativas (2⁴)
-10 dígitos: máximo 1.024 tentativas (2¹⁰)
-20 dígitos: máximo 1.048.576 tentativas (2²⁰)
-50 dígitos: 1.125.899.906.842.624 tentativas (2⁵⁰)
-
-Impossível na prática!
+T(n) = c·2ⁿ + termos de menor ordem
+Ou seja: T(n) ∈ O(2ⁿ) ⟺ ∃c,n₀ : T(n) ≤ c·2ⁿ ∀n≥n₀
 ```
 
-**Exemplo Prático - Problema da Mochila (Força Bruta):**
+**Propriedade Fundamental (Crescimento Explosivo):**
 ```
-Patrick tem mochila e precisa escolher quais itens levar:
-
-5 itens: 32 combinações possíveis
-10 itens: 1.024 combinações
-20 itens: 1.048.576 combinações
-30 itens: 1.073.741.824 combinações
-
-Computador mais rápido do mundo levaria anos!
+Se T(n) ∈ O(2ⁿ), então:
+- Aumentar n em 1: T(n+1) ≈ 2·T(n)
+- Aumentar n em 10: T(n+10) ≈ 1024·T(n)
+- Aumentar n em 20: T(n+20) ≈ 1.048.576·T(n)
 ```
+
+**Análise Matemática - Fibonacci Ingênuo:**
+```python
+def fibonacci_naive(n):
+    if n <= 1:
+        return n
+    return fibonacci_naive(n-1) + fibonacci_naive(n-2)
+
+# Recorrência: T(n) = T(n-1) + T(n-2) + O(1)
+# Solução: T(n) = Θ(φⁿ) onde φ = (1+√5)/2 ≈ 1.618
+# Como φⁿ < 2ⁿ, temos T(n) ∈ O(2ⁿ)
+```
+
+**Demonstração da Recorrência:**
+```
+Seja T(n) o número de chamadas para fibonacci_naive(n)
+
+T(0) = 1, T(1) = 1
+T(n) = T(n-1) + T(n-2) + 1 para n ≥ 2
+
+Prova que T(n) ≥ 2^(n/2) por indução:
+
+Base: T(0) = 1 ≥ 2^0 = 1 ✓
+      T(1) = 1 ≥ 2^(1/2) ≈ 1.41 ✗, mas T(2) = 3 ≥ 2^1 = 2 ✓
+
+Hipótese: T(k) ≥ 2^(k/2) para todo k < n
+
+Passo: T(n) = T(n-1) + T(n-2) + 1
+            ≥ 2^((n-1)/2) + 2^((n-2)/2)
+            = 2^((n-2)/2)[2^(1/2) + 1]
+            ≥ 2^((n-2)/2) · 2
+            = 2^(n/2)
+
+∴ T(n) ∈ Ω(2^(n/2)) ⊆ Ω(1.41ⁿ), que é exponencial
+```
+
+**Problema do Conjunto Potência:**
+```python
+def gerar_subconjuntos(conjunto):
+    if not conjunto:
+        return [[]]
+    
+    primeiro = conjunto[0]
+    resto = conjunto[1:]
+    subconjuntos_resto = gerar_subconjuntos(resto)
+    
+    # Para cada subconjunto, criar versão com e sem primeiro elemento
+    resultado = []
+    for sub in subconjuntos_resto:
+        resultado.append(sub)                    # sem primeiro
+        resultado.append([primeiro] + sub)       # com primeiro
+    
+    return resultado
+
+# Recorrência: T(n) = 2·T(n-1) + O(1)
+# Solução: T(n) = Θ(2ⁿ)
+# Resultado: 2ⁿ subconjuntos (matematicamente correto)
+```
+
+**Demonstração do Conjunto Potência:**
+```
+Para conjunto com n elementos:
+- Cada elemento pode estar ou não em um subconjunto
+- 2 escolhas para cada um dos n elementos
+- Total de subconjuntos = 2 × 2 × ... × 2 (n vezes) = 2ⁿ
+
+Esta é uma barreira matemática fundamental!
+Não existe algoritmo mais rápido que O(2ⁿ) para enumerar 
+todos os subconjuntos de um conjunto.
+```
+
+**Crescimento Catastrófico:**
+```
+n = 10  → 2¹⁰ = 1.024 operações (≈ 1 microssegundo)
+n = 20  → 2²⁰ = 1.048.576 operações (≈ 1 milissegundo)  
+n = 30  → 2³⁰ = 1.073.741.824 operações (≈ 1 segundo)
+n = 40  → 2⁴⁰ = 1.099.511.627.776 operações (≈ 18 minutos)
+n = 50  → 2⁵⁰ = 1.125.899.906.842.624 operações (≈ 13 dias)
+n = 60  → 2⁶⁰ operações (≈ 36 anos)
+```
+
+**Quando O(2ⁿ) é Inevitável:**
+- Enumerar todos os subconjuntos de um conjunto
+- Problema da mochila por força bruta  
+- Algumas soluções de programação dinâmica sem memoização
+- Verificação de todas as permutações/combinações
 
 ### O Experimento Revelador de Patrick
 
@@ -3724,6 +3997,284 @@ Conclusão: Iterativa é mais eficiente em espaço
 ### Lições Fundamentais
 
 Patrick resumiu suas descobertas:
+
+---
+
+## 📐 **CAPÍTULO ESPECIAL: ANÁLISE MATEMÁTICA RIGOROSA DOS ALGORITMOS DE ORDENAÇÃO**
+
+### **Teorema Fundamental da Ordenação por Comparação**
+
+**Teorema:** Qualquer algoritmo de ordenação baseado em comparações requer Ω(n log n) comparações no pior caso.
+
+**Demonstração:**
+```
+Considere n elementos distintos a serem ordenados.
+Existem n! permutações possíveis.
+Cada comparação tem 2 resultados possíveis.
+Para distinguir entre n! casos, precisamos de uma árvore de decisão.
+
+Altura mínima da árvore = ⌈log₂(n!)⌉
+
+Usando aproximação de Stirling: n! ≈ √(2πn)(n/e)ⁿ
+log₂(n!) ≈ log₂(√(2πn)) + n·log₂(n/e)
+         ≈ (1/2)log₂(2πn) + n·log₂(n) - n·log₂(e)
+         ≈ n·log₂(n) - n·log₂(e) + O(log n)
+         = n·log₂(n) - 1.44n + O(log n)
+         ∈ Ω(n log n)
+
+∴ Qualquer algoritmo de ordenação por comparação é Ω(n log n)
+```
+
+### **1. Merge Sort - Análise Matemática Completa**
+
+**Recorrência:**
+```
+T(n) = 2T(n/2) + Θ(n)  para n > 1
+T(1) = Θ(1)
+```
+
+**Resolução pelo Método Master:**
+```
+a = 2, b = 2, f(n) = n
+n^(log_b(a)) = n^(log_2(2)) = n¹ = n
+
+Como f(n) = Θ(n^(log_b(a))), estamos no Caso 2:
+T(n) = Θ(n^(log_b(a)) · log n) = Θ(n log n)
+```
+
+**Demonstração por Expansão:**
+```
+T(n) = 2T(n/2) + cn
+     = 2[2T(n/4) + c(n/2)] + cn
+     = 4T(n/4) + cn + cn
+     = 4T(n/4) + 2cn
+     = 4[2T(n/8) + c(n/4)] + 2cn
+     = 8T(n/8) + cn + 2cn
+     = 8T(n/8) + 3cn
+     ...
+     = 2^k T(n/2^k) + k·cn
+
+Quando n/2^k = 1 ⟹ k = log₂(n):
+T(n) = 2^(log₂(n)) · T(1) + log₂(n) · cn
+     = n · Θ(1) + c·n·log₂(n)
+     = Θ(n log n)
+```
+
+**Implementação Otimizada:**
+```python
+def merge_sort_optimized(arr, temp_arr=None):
+    if temp_arr is None:
+        temp_arr = [0] * len(arr)  # Evita realocações
+    
+    def merge_sort_helper(arr, temp_arr, left, right):
+        if left >= right:
+            return
+        
+        mid = left + (right - left) // 2  # Evita overflow
+        
+        merge_sort_helper(arr, temp_arr, left, mid)
+        merge_sort_helper(arr, temp_arr, mid + 1, right)
+        merge(arr, temp_arr, left, mid, right)
+    
+    def merge(arr, temp_arr, left, mid, right):
+        # Copia para array temporário
+        for i in range(left, right + 1):
+            temp_arr[i] = arr[i]
+        
+        i, j, k = left, mid + 1, left
+        
+        # Merge otimizado
+        while i <= mid and j <= right:
+            if temp_arr[i] <= temp_arr[j]:  # Estável
+                arr[k] = temp_arr[i]
+                i += 1
+            else:
+                arr[k] = temp_arr[j]
+                j += 1
+            k += 1
+        
+        # Copia elementos restantes
+        while i <= mid:
+            arr[k] = temp_arr[i]
+            i += 1
+            k += 1
+        
+        while j <= right:
+            arr[k] = temp_arr[j]
+            j += 1
+            k += 1
+    
+    merge_sort_helper(arr, temp_arr, 0, len(arr) - 1)
+    return arr
+
+# Complexidade garantida: Θ(n log n) em todos os casos
+# Complexidade de espaço: Θ(n) para array auxiliar
+# Estabilidade: SIM (elementos iguais mantêm ordem relativa)
+```
+
+### **2. Quick Sort - Análise Probabilística Rigorosa**
+
+**Recorrências por Caso:**
+
+**Melhor Caso (pivô sempre mediana):**
+```
+T(n) = 2T(n/2) + Θ(n) = Θ(n log n)
+```
+
+**Pior Caso (pivô sempre menor/maior):**
+```
+T(n) = T(n-1) + T(0) + Θ(n) = T(n-1) + Θ(n)
+Resolvendo: T(n) = Θ(n²)
+```
+
+**Caso Médio (análise probabilística):**
+```
+Seja X_ij uma variável aleatória indicadora:
+X_ij = 1 se elementos a_i e a_j são comparados, 0 caso contrário
+
+Total de comparações = Σ(i=1 até n-1) Σ(j=i+1 até n) X_ij
+
+E[comparações] = Σ(i=1 até n-1) Σ(j=i+1 até n) E[X_ij]
+                = Σ(i=1 até n-1) Σ(j=i+1 até n) Pr[a_i e a_j são comparados]
+
+Dois elementos a_i e a_j são comparados se e somente se 
+um deles for escolhido como pivô antes de qualquer elemento
+entre eles (inclusive) na ordem ordenada.
+
+Pr[a_i e a_j comparados] = 2/(j-i+1)
+
+E[comparações] = Σ(i=1 até n-1) Σ(j=i+1 até n) 2/(j-i+1)
+                = 2 Σ(k=2 até n) Σ(i=1 até n-k+1) 1/k
+                = 2 Σ(k=2 até n) (n-k+1)/k
+                ≤ 2 Σ(k=2 até n) n/k
+                = 2n Σ(k=1 até n) 1/k
+                = 2n H_n
+
+Como H_n = Θ(log n), temos E[comparações] = Θ(n log n)
+```
+
+**Implementação com Análise de Complexidade:**
+```python
+def quick_sort_randomized(arr, left=0, right=None):
+    if right is None:
+        right = len(arr) - 1
+    
+    if left >= right:
+        return
+    
+    # Randomização evita pior caso em dados já ordenados
+    pivot_idx = random.randint(left, right)
+    arr[left], arr[pivot_idx] = arr[pivot_idx], arr[left]
+    
+    # Partição de Hoare (mais eficiente que Lomuto)
+    pivot_final = partition_hoare(arr, left, right)
+    
+    quick_sort_randomized(arr, left, pivot_final)
+    quick_sort_randomized(arr, pivot_final + 1, right)
+
+def partition_hoare(arr, left, right):
+    pivot = arr[left]
+    i, j = left - 1, right + 1
+    
+    while True:
+        i += 1
+        while arr[i] < pivot:
+            i += 1
+        
+        j -= 1
+        while arr[j] > pivot:
+            j -= 1
+        
+        if i >= j:
+            return j
+        
+        arr[i], arr[j] = arr[j], arr[i]
+
+# Complexidade esperada: Θ(n log n)
+# Pior caso: Θ(n²) com probabilidade 1/n!
+# Complexidade de espaço: Θ(log n) média, Θ(n) pior caso
+# Estabilidade: NÃO
+```
+
+### **3. Heap Sort - Análise via Propriedades de Heap**
+
+**Propriedades do Heap Binário:**
+```
+Heap máximo: Para todo nó i: A[pai(i)] ≥ A[i]
+Altura de heap com n nós: h = ⌊log₂(n)⌋
+Número de nós em altura h: ⌈n/2^(h+1)⌉
+```
+
+**Análise de Heapify:**
+```
+Max-heapify em nó de altura h: O(h)
+Build-heap:
+  Σ(h=0 até ⌊log₂(n)⌋) ⌈n/2^(h+1)⌉ · O(h)
+  = O(n · Σ(h=0 até ⌊log₂(n)⌋) h/2^h)
+  = O(n · Σ(h=0 até ∞) h/2^h)  [soma converge]
+  = O(n · 2) = O(n)
+
+Heap-sort total:
+  Build-heap: O(n)
+  n × Extract-max: n × O(log n) = O(n log n)
+  Total: O(n log n)
+```
+
+### **4. Counting Sort - Algoritmo Linear**
+
+**Quando aplicável:** Elementos inteiros em faixa [0, k] onde k = O(n)
+
+**Análise de Complexidade:**
+```python
+def counting_sort(arr, k):  # k = valor máximo
+    count = [0] * (k + 1)          # O(k) espaço, O(k) tempo
+    output = [0] * len(arr)        # O(n) espaço
+    
+    # Contar ocorrências: O(n)
+    for num in arr:
+        count[num] += 1
+    
+    # Transformar em posições: O(k)
+    for i in range(1, k + 1):
+        count[i] += count[i - 1]
+    
+    # Construir resultado: O(n)
+    for i in range(len(arr) - 1, -1, -1):
+        output[count[arr[i]] - 1] = arr[i]
+        count[arr[i]] -= 1
+    
+    return output
+
+# Complexidade total: O(n + k)
+# Quando k = O(n): O(n) - linear!
+# Estabilidade: SIM
+```
+
+**Limitação fundamental:** Não é baseado em comparações, funciona apenas para integers em faixa limitada.
+
+### **5. Radix Sort - Análise Multi-Dígito**
+
+**Para inteiros de d dígitos na base b:**
+```
+Complexidade: O(d(n + b))
+Quando d = O(log_b(n)): O(log_b(n) · (n + b))
+Escolhendo b = n: O(log_n(n) · n) = O(n)
+
+Mas com limitação de memória: b ≤ n
+Na prática: b = 256 (bytes), d = ⌈log_256(max_value)⌉
+```
+
+### **Resumo Comparativo Matemático**
+
+| Algoritmo | Melhor | Médio | Pior | Espaço | Estável | Comparações |
+|-----------|--------|-------|------|--------|---------|-------------|
+| Merge Sort | Θ(n log n) | Θ(n log n) | Θ(n log n) | Θ(n) | Sim | Sim |
+| Quick Sort | Θ(n log n) | Θ(n log n) | Θ(n²) | Θ(log n) | Não | Sim |
+| Heap Sort | Θ(n log n) | Θ(n log n) | Θ(n log n) | Θ(1) | Não | Sim |
+| Counting | Θ(n+k) | Θ(n+k) | Θ(n+k) | Θ(k) | Sim | Não |
+| Radix | Θ(d(n+b)) | Θ(d(n+b)) | Θ(d(n+b)) | Θ(n+b) | Sim | Não |
+
+**Conclusão Teórica:** Para ordenação geral por comparação, Θ(n log n) é ótimo. Algoritmos lineares existem apenas para casos especiais com restrições nos dados.
 
 1. **Não existe algoritmo universalmente melhor** - depende do contexto
 2. **Ordenação prévia pode valer a pena** se há muitas consultas
@@ -7076,54 +7627,154 @@ Estruturas de dados são formas de **organizar e armazenar** informações no co
 - **Supermercado:** Produtos organizados por categoria
 - **Arquivo de documentos:** Pastas organizadas alfabeticamente
 
-### 2.2 Arrays (Vetores)
+### 2.2 Arrays (Vetores) - Análise Matemática Rigorosa
 
-**Conceito:** Coleção de elementos do mesmo tipo, armazenados em posições consecutivas na memória.
+**Definição Formal:**
+Um array A de tamanho n é uma estrutura de dados que mapeia índices inteiros [0, n-1] para valores, usando uma função de mapeamento linear para localização na memória.
 
-**Analogia:** Apartamentos numerados em um edifício
-- Apartamento 101, 102, 103... (índices 0, 1, 2...)
-- Cada apartamento tem a mesma estrutura
-- Para acessar o apartamento 105, você vai diretamente lá
+**Função de Acesso:**
+```
+Endereço(A[i]) = base_address + i × sizeof(element)
+onde 0 ≤ i < n
+```
 
-**Características Técnicas:**
-- **Acesso:** O(1) - acesso direto por índice
-- **Busca:** O(n) - pode precisar verificar todos elementos
-- **Inserção/Remoção:** O(n) - pode precisar mover elementos
-- **Memória:** Contígua, cache-friendly
+**Análise de Complexidade Detalhada:**
 
-**Vantagens:**
-- Acesso extremamente rápido por índice
-- Uso eficiente de memória
-- Suporte nativo em todas as linguagens
-- Operações matemáticas vetorizadas
+1. **Acesso por Índice: O(1)**
+```python
+def acessar_elemento(array, indice):
+    return array[indice]  # 1 operação de aritmética + 1 acesso à memória
 
-**Desvantagens:**
-- Tamanho fixo (na maioria das linguagens)
-- Inserção/remoção custosas
-- Fragmentação de memória ao redimensionar
+# Análise matemática:
+# T(n) = c₁ + c₂ = constante, independente de n
+# ∴ T(n) ∈ Θ(1)
+```
 
-**Variações de Arrays:**
+2. **Busca Linear: O(n)**
+```python
+def buscar_elemento(array, valor):
+    for i in range(len(array)):     # máximo n iterações
+        if array[i] == valor:       # 1 comparação por iteração
+            return i
+    return -1
 
-#### **Arrays Estáticos**
-- Tamanho definido em tempo de compilação
-- Alocados na stack
-- Muito rápidos mas inflexíveis
+# Análise probabilística:
+# Melhor caso: T_best(n) = 1 (primeiro elemento)
+# Caso médio: T_avg(n) = (n+1)/2 (distribuição uniforme)
+# Pior caso: T_worst(n) = n (último elemento ou ausente)
+# ∴ T(n) ∈ Θ(n)
+```
 
-#### **Arrays Dinâmicos**
-- Tamanho pode mudar em runtime
-- Alocados na heap
-- Flexíveis mas com overhead de gerenciamento
+3. **Inserção: O(n)**
+```python
+def inserir_em_posicao(array, indice, valor):
+    # Precisa mover todos os elementos à direita
+    for i in range(len(array)-1, indice, -1):  # (n-indice) movimentos
+        array[i] = array[i-1]
+    array[indice] = valor
 
-#### **Arrays Multidimensionais**
-- Matrizes 2D, 3D, etc.
-- Representação linear na memória
-- Row-major vs column-major ordering
+# Análise por posição de inserção:
+# Inserir em posição i: (n-i) movimentos
+# Caso médio: Σ(i=0 até n-1) (n-i)/n = n/2 movimentos
+# Pior caso: n movimentos (inserir no início)
+# ∴ T(n) ∈ Θ(n)
+```
 
-**Quando usar Arrays:**
-- Acesso frequente por índice
-- Operações matemáticas em sequências
-- Tamanho relativamente estável
-- Performance crítica
+**Demonstração Matemática - Cache Locality:**
+```
+Arrays têm excelente locality temporal e espacial:
+
+Acesso sequencial A[i], A[i+1], A[i+2]:
+- Endereços consecutivos na memória
+- Cache line aproveitada ao máximo
+- Prefetching automático do hardware
+
+Performance real:
+- Cache hit: ~1-2 ciclos de CPU
+- Cache miss: ~200-300 ciclos de CPU
+- Array sequencial: ~99% cache hits
+- Lista ligada: ~10-20% cache hits
+```
+
+**Análise de Memória:**
+```
+Memória total = n × sizeof(element) + overhead
+
+Overhead mínimo para arrays estáticos: 0 bytes
+Overhead para arrays dinâmicos: 8-24 bytes (ponteiro + metadados)
+
+Fragmentação interna: 0% (packing perfeito)
+Fragmentação externa: possível durante realocação
+```
+
+**Arrays Dinâmicos - Análise Amortizada:**
+```python
+class ArrayDinamico:
+    def __init__(self):
+        self.capacidade = 1
+        self.tamanho = 0
+        self.dados = [None] * self.capacidade
+    
+    def inserir(self, valor):
+        if self.tamanho == self.capacidade:
+            self._redimensionar()  # O(n) para copiar elementos
+        
+        self.dados[self.tamanho] = valor  # O(1)
+        self.tamanho += 1
+    
+    def _redimensionar(self):
+        nova_capacidade = self.capacidade * 2  # estratégia de duplicação
+        novos_dados = [None] * nova_capacidade
+        for i in range(self.tamanho):
+            novos_dados[i] = self.dados[i]  # O(n) cópias
+        self.dados = novos_dados
+        self.capacidade = nova_capacidade
+
+# Análise amortizada:
+# Redimensionamentos ocorrem nas inserções: 1, 2, 4, 8, 16, ..., 2^k
+# Para inserir n elementos:
+# - Número de redimensionamentos: ⌊log₂(n)⌋
+# - Custo total de cópias: 1 + 2 + 4 + ... + n = 2n - 1
+# - Custo amortizado por inserção: (2n-1)/n ≈ 2 = O(1)
+```
+
+**Variações Especializadas:**
+
+1. **Circular Buffer:**
+```python
+class CircularBuffer:
+    def __init__(self, capacidade):
+        self.buffer = [None] * capacidade
+        self.capacidade = capacidade
+        self.inicio = 0
+        self.fim = 0
+        self.tamanho = 0
+    
+    def enqueue(self, item):  # O(1)
+        self.buffer[self.fim] = item
+        self.fim = (self.fim + 1) % self.capacidade
+        if self.tamanho < self.capacidade:
+            self.tamanho += 1
+        else:
+            self.inicio = (self.inicio + 1) % self.capacidade
+    
+    def dequeue(self):  # O(1)
+        if self.tamanho == 0:
+            return None
+        item = self.buffer[self.inicio]
+        self.inicio = (self.inicio + 1) % self.capacidade
+        self.tamanho -= 1
+        return item
+
+# Vantagem: Operações de fila em O(1) com espaço fixo
+```
+
+2. **Sparse Arrays:**
+```python
+# Para arrays com muitos zeros, usar representação esparsa
+# Exemplo: array [0, 0, 5, 0, 0, 0, 3, 0] → {2: 5, 6: 3}
+# Economia de memória quando densidade < 10%
+```
 
 **Quando NÃO usar Arrays:**
 - Muitas inserções/remoções no meio
