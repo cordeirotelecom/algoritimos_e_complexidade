@@ -1,5 +1,5 @@
 # Algoritmos e Complexidade Computacional
-**Curso de Sistemas de Informação - UNIVALI São José, SC**
+**Material Didático Completo para Ciência da Computação**
 
 ---
 
@@ -7,10 +7,10 @@
 
 ### **📖 Livro Didático Principal**
 - **[📕 Algoritmos e Complexidade - Livro Didático](livro_algoritmos_complexidade_didatico.md)**
-  - Livro completo com 70 páginas
-  - Contexto brasileiro (Santa Catarina)
-  - Abordagem teórica e prática
-  - Exemplos regionais e aplicações reais
+  - Livro completo expandido com 100+ páginas
+  - Contexto brasileiro (tecnologia nacional)
+  - Abordagem teórica e didática aprofundada
+  - Exemplos práticos e aplicações reais
 
 ---
 
@@ -56,25 +56,29 @@
 
 ### **Metodologia**
 - **Teoria sólida** com base matemática
-- **Exemplos práticos** do contexto catarinense
+- **Exemplos práticos** do contexto brasileiro
 - **Exercícios progressivos** do básico ao avançado
-- **Aplicações reais** em empresas de SC
+- **Aplicações reais** em empresas nacionais
 
 ---
 
-## 🏢 Aplicações Práticas em SC
+## 🏢 Aplicações Práticas no Brasil
 
-### **Empresas Parceiras**
-- **Softplan** (Florianópolis) - Software jurídico
-- **WEG** (Jaraguá do Sul) - Automação industrial
-- **Energisa** - Otimização de redes elétricas
-- **Porto de Itajaí** - Logística e otimização
+### **Empresas e Setores**
+- **Fintechs** - Detecção de fraudes, análise de risco
+- **E-commerce** - Sistemas de recomendação, busca otimizada  
+- **Saúde Digital** - Prontuários eletrônicos, diagnósticos
+- **Logística** - Otimização de rotas, supply chain
+- **Agronegócio** - Precision farming, otimização de recursos
+- **Energia** - Smart grids, otimização de redes
 
 ### **Setores de Aplicação**
-- 🏦 **Fintech** - Detecção de fraudes, análise de risco
-- 🛒 **E-commerce** - Sistemas de recomendação, busca
-- 🏥 **Saúde** - Prontuários eletrônicos, diagnósticos
-- 🚛 **Logística** - Otimização de rotas, supply chain
+- 🏦 **Fintech** - Pagamentos digitais, investimentos
+- 🛒 **Marketplace** - Matching, recomendações
+- 🏥 **HealthTech** - Telemedicina, análise de dados
+- 🚛 **Logística** - Last mile, warehouse optimization
+- 🌱 **AgriTech** - IoT, machine learning
+- ⚡ **EnergyTech** - Grid optimization, renewable energy
 
 ---
 
@@ -108,17 +112,17 @@
 - **35%** - Projeto prático final
 
 ### **Projeto Final**
-Implementação de um sistema completo utilizando os conceitos aprendidos, com tema relacionado ao contexto de Santa Catarina.
+Implementação de um sistema completo utilizando os conceitos aprendidos, com tema relacionado ao contexto tecnológico brasileiro.
 
 ---
 
 ## 👨‍🏫 Professor
 
 **Vagner Cordeiro**  
-- Doutor em Ciência da Computação
 - Especialista em Algoritmos e Complexidade
-- Experiência em empresas de tecnologia de SC
+- Experiência em empresas de tecnologia
 - Pesquisador em otimização e sistemas distribuídos
+- Autor de material didático especializado
 
 ---
 
@@ -126,9 +130,9 @@ Implementação de um sistema completo utilizando os conceitos aprendidos, com t
 
 ### **Recursos Online**
 - 🌐 **Repositório GitHub:** [github.com/cordeirotelecom/algoritimos_e_complexidade](https://github.com/cordeirotelecom/algoritimos_e_complexidade)
-- 📧 **Email:** vagner.cordeiro@univali.br
-- 💬 **Discord:** Servidor da disciplina
-- 📹 **YouTube:** Canal com videoaulas
+- 📧 **Email:** Disponível no repositório
+- 💬 **Comunidade:** Discussões no GitHub
+- 📹 **Conteúdo:** Material complementar
 
 ### **Bibliografia Recomendada**
 1. **Cormen, T.** - "Introduction to Algorithms" (Livro-texto principal)
@@ -148,6 +152,6 @@ Após concluir esta disciplina, você estará preparado para:
 
 ---
 
-> *"No coração tecnológico de Santa Catarina, formamos profissionais que dominam não apenas algoritmos, mas a arte de resolver problemas complexos com elegância e eficiência."*
+> *"Algoritmos são a linguagem universal da resolução de problemas. Dominar esta linguagem é dominar a essência da computação moderna."*
 
-**🎓 Bem-vindos ao curso de Algoritmos e Complexidade Computacional!**
+**🎓 Bem-vindos ao estudo de Algoritmos e Complexidade Computacional!**
