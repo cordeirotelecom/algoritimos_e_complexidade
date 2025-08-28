@@ -63,33 +63,32 @@ Este livro é a jornada de Patrick descobrindo que algoritmos eficientes são a 
 - **Capítulo 2:** A Biblioteca Perdida - Estruturas de Dados Fundamentais  
 - **Capítulo 3:** A Corrida Contra o Tempo - Introdução à Complexidade
 
-### **PARTE II - A ARTE DA EFICIÊNCIA** (Capítulos 4-6)
-**Como Patrick aprendeu a medir e comparar algoritmos**
+### **PARTE II - A ARTE DA EFICIÊNCIA** (Capítulos 4-5)
+**Como Patrick aprendeu a medir e analisar algoritmos sistematicamente**
 
-- **Capítulo 4:** O Mistério da Notação Big O
-- **Capítulo 5:** Comparando Soluções - Análise de Casos
-- **Capítulo 6:** O Dilema do Espaço vs Tempo
+- **Capítulo 4:** O Método Científico de Patrick - Passo a Passo para Análise de Algoritmos
+- **Capítulo 5:** O Laboratório de Patrick - Exercícios Práticos de Análise
 
-### **PARTE III - ALGORITMOS FUNDAMENTAIS** (Capítulos 7-9)
+### **PARTE III - ALGORITMOS FUNDAMENTAIS** (Capítulos 6-8)
 **Patrick mergulha nos algoritmos essenciais**
 
-- **Capítulo 7:** A Busca Perfeita - Do Linear ao Binário
-- **Capítulo 8:** A Grande Ordenação - Bubble, Quick e Merge Sort
-- **Capítulo 9:** Dividir para Conquistar - Recursão e Suas Aplicações
+- **Capítulo 6:** A Busca Perfeita - Do Linear ao Binário
+- **Capítulo 7:** A Grande Ordenação - Bubble, Quick e Merge Sort
+- **Capítulo 8:** Dividir para Conquistar - Recursão e Suas Aplicações
 
-### **PARTE IV - ESTRUTURAS AVANÇADAS** (Capítulos 10-12)
+### **PARTE IV - ESTRUTURAS AVANÇADAS** (Capítulos 9-11)
 **Descobrindo estruturas que transformam problemas complexos em simples**
 
-- **Capítulo 10:** O Reino das Árvores - BST, AVL e Heap
-- **Capítulo 11:** Navegando Grafos - DFS, BFS e Caminhos Mínimos
-- **Capítulo 12:** A Magia do Hashing - Tabelas Hash e Aplicações
+- **Capítulo 9:** O Reino das Árvores - BST, AVL e Heap
+- **Capítulo 10:** Navegando Grafos - DFS, BFS e Caminhos Mínimos
+- **Capítulo 11:** A Magia do Hashing - Tabelas Hash e Aplicações
 
-### **PARTE V - ALGORITMOS AVANÇADOS** (Capítulos 13-15)
+### **PARTE V - ALGORITMOS AVANÇADOS** (Capítulos 12-14)
 **Patrick enfrenta os desafios mais complexos**
 
-- **Capítulo 13:** A Estratégia Gulosa - Algoritmos Greedy
-- **Capítulo 14:** Memorizando Soluções - Programação Dinâmica
-- **Capítulo 15:** O Projeto Final - Integrando Tudo que Aprendeu
+- **Capítulo 12:** A Estratégia Gulosa - Algoritmos Greedy
+- **Capítulo 13:** Memorizando Soluções - Programação Dinâmica
+- **Capítulo 14:** O Projeto Final - Integrando Tudo que Aprendeu
 
 ---
 
@@ -2239,6 +2238,3418 @@ Patrick identificou padrões comuns:
 - Fibonacci recursivo, Torres de Hanói
 
 "Agora posso reconhecer padrões instantaneamente!" comemorou Patrick. "A análise de algoritmos não é mais um mistério!"
+
+---
+
+# PARTE III - ALGORITMOS FUNDAMENTAIS
+
+## Capítulo 6: A Busca Perfeita - Do Linear ao Binário
+
+### O Desafio da Biblioteca Digital
+
+Dr. Silva apresentou um novo problema para Patrick: "Você foi contratado para otimizar o sistema de busca da biblioteca digital da cidade. Ela tem 1 milhão de livros catalogados. Os usuários fazem três tipos de consulta:
+
+1. Buscar livro por título exato
+2. Encontrar todos os livros de um autor
+3. Localizar livros por palavras-chave no título
+
+Como você projetaria o sistema de busca?"
+
+Patrick pensou: "Cada tipo de busca tem características diferentes. Preciso entender as opções disponíveis!"
+
+### Os Quatro Tipos Fundamentais de Busca
+
+#### Busca 1: Linear (Sequencial)
+**Como funciona:** Examina cada elemento até encontrar o alvo ou esgotar a lista.
+
+**Algoritmo de Patrick:**
+```
+Função busca_linear(lista, alvo):
+  Para i de 0 até tamanho(lista) - 1:
+    Se lista[i] == alvo:
+      Retornar i
+  Retornar -1  // Não encontrado
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(1) - elemento está na primeira posição
+- **Pior caso:** O(n) - elemento está na última posição ou não existe
+- **Caso médio:** O(n/2) = O(n) - elemento está no meio
+- **Espaço:** O(1) - apenas variáveis auxiliares
+
+**Quando Patrick usa:**
+- Listas pequenas (< 100 elementos)
+- Dados não organizados
+- Quando implementação simples é prioridade
+
+**Exemplo Prático - Lista de Compras:**
+```
+Patrick tem lista: ["leite", "pão", "ovos", "queijo", "frutas"]
+Buscar "ovos": verifica "leite" (não), "pão" (não), "ovos" (sim!) = 3 comparações
+```
+
+#### Busca 2: Binária
+**Como funciona:** Divide repetidamente o espaço de busca pela metade (requer dados ordenados).
+
+**Algoritmo de Patrick:**
+```
+Função busca_binaria(lista_ordenada, alvo):
+  esquerda = 0
+  direita = tamanho(lista_ordenada) - 1
+  
+  Enquanto esquerda <= direita:
+    meio = (esquerda + direita) / 2
+    
+    Se lista_ordenada[meio] == alvo:
+      Retornar meio
+    Senão se lista_ordenada[meio] < alvo:
+      esquerda = meio + 1
+    Senão:
+      direita = meio - 1
+      
+  Retornar -1  // Não encontrado
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(1) - elemento está no meio
+- **Pior caso:** O(log n) - elemento nas extremidades
+- **Caso médio:** O(log n)
+- **Espaço:** O(1) - versão iterativa
+- **Pré-requisito:** Lista deve estar ordenada
+
+**Demonstração Visual de Patrick:**
+```
+Lista ordenada: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+Buscar 13:
+
+Passo 1: meio = índice 4 (valor 9)
+  9 < 13, buscar na metade direita [11, 13, 15, 17, 19]
+
+Passo 2: meio = índice 7 (valor 15)  
+  15 > 13, buscar na metade esquerda [11, 13]
+
+Passo 3: meio = índice 6 (valor 13)
+  13 == 13, encontrado!
+
+Total: 3 comparações para lista de 10 elementos
+```
+
+**Quando Patrick usa:**
+- Listas grandes e ordenadas
+- Consultas frequentes
+- Quando performance é crítica
+
+#### Busca 3: Hash (Tabela de Dispersão)
+**Como funciona:** Usa função hash para calcular posição direta do elemento.
+
+**Conceito de Patrick:**
+```
+Função busca_hash(tabela_hash, alvo):
+  posicao = funcao_hash(alvo)
+  
+  Se tabela_hash[posicao] == alvo:
+    Retornar posicao
+  Senão:
+    // Tratar colisão (buscar próximas posições)
+    Retornar busca_com_colisao(tabela_hash, alvo, posicao)
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(1) - sem colisões
+- **Pior caso:** O(n) - todas as chaves colidem
+- **Caso médio:** O(1) - com boa função hash
+- **Espaço:** O(n) - tabela hash
+
+**Exemplo Prático - Cadastro de Usuários:**
+```
+Patrick cria tabela hash para 1000 usuários:
+funcao_hash(nome) = soma_ascii(nome) % 1000
+
+"Alice": hash = 507 → posição 507
+"Bob": hash = 298 → posição 298  
+"Carol": hash = 507 → COLISÃO! → posição 508 (próxima livre)
+
+Buscar "Alice": calcula hash(507) → verifica posição 507 → encontrado O(1)
+```
+
+**Quando Patrick usa:**
+- Verificações rápidas de existência
+- Chaves únicas bem distribuídas
+- Memória abundante disponível
+
+#### Busca 4: Árvore de Busca Binária
+**Como funciona:** Estrutura hierárquica onde elementos menores ficam à esquerda e maiores à direita.
+
+**Conceito de Patrick:**
+```
+Função busca_arvore(raiz, alvo):
+  Se raiz é nula:
+    Retornar nulo
+  
+  Se raiz.valor == alvo:
+    Retornar raiz
+  Senão se alvo < raiz.valor:
+    Retornar busca_arvore(raiz.esquerda, alvo)
+  Senão:
+    Retornar busca_arvore(raiz.direita, alvo)
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(log n) - árvore balanceada
+- **Pior caso:** O(n) - árvore degenerada (como lista ligada)
+- **Caso médio:** O(log n)
+- **Espaço:** O(log n) - pilha de recursão
+
+**Quando Patrick usa:**
+- Dados que mudam frequentemente
+- Necessidade de busca E inserção eficientes
+- Quando ordem dos elementos importa
+
+### Comparação Prática: O Experimento de Patrick
+
+Patrick testou os quatro algoritmos com diferentes cenários:
+
+#### Teste 1: Lista com 10.000 elementos
+
+**Cenário: Buscar elemento específico**
+```
+Busca Linear: 
+  Média: 5.000 comparações
+  Tempo: 0.5 ms
+
+Busca Binária (lista ordenada):
+  Máximo: 14 comparações  
+  Tempo: 0.001 ms
+
+Hash Table:
+  Média: 1 comparação
+  Tempo: 0.0001 ms
+
+Árvore Binária Balanceada:
+  Máximo: 14 comparações
+  Tempo: 0.002 ms
+```
+
+#### Teste 2: Lista com 1.000.000 elementos
+
+**Cenário: Buscar elemento específico**
+```
+Busca Linear:
+  Média: 500.000 comparações
+  Tempo: 50 ms
+
+Busca Binária:
+  Máximo: 20 comparações
+  Tempo: 0.002 ms
+
+Hash Table:
+  Média: 1 comparação  
+  Tempo: 0.0001 ms
+
+Árvore Binária:
+  Máximo: 20 comparações
+  Tempo: 0.003 ms
+```
+
+**Conclusão de Patrick:** "Com dados grandes, a diferença é dramática! Busca linear se torna impraticável."
+
+### Como Escolher o Algoritmo Certo?
+
+Patrick desenvolveu um guia de decisão:
+
+#### Pergunta 1: Os dados estão ordenados?
+- **Sim:** Busca binária é excelente opção
+- **Não:** Considere linear (dados pequenos) ou hash (dados grandes)
+
+#### Pergunta 2: Quantas buscas vou fazer?
+- **Poucas:** Busca linear pode servir
+- **Muitas:** Vale investir em estrutura otimizada
+
+#### Pergunta 3: Os dados mudam frequentemente?
+- **Sim:** Árvore binária balanceada ou hash table
+- **Não:** Ordenar uma vez e usar busca binária
+
+#### Pergunta 4: Preciso de características especiais?
+- **Ordem relativa:** Árvore de busca binária
+- **Busca por faixa:** Árvore ou array ordenado
+- **Busca exata rapidíssima:** Hash table
+
+### Implementação do Sistema da Biblioteca
+
+Patrick projetou uma solução híbrida:
+
+#### Para Busca por Título Exato:
+```
+Estrutura: Hash table
+Chave: título completo (normalizado)
+Valor: referência para dados do livro
+
+Exemplo:
+"dom casmurro" → hash(123456) → dados do livro
+Busca: O(1) na maioria dos casos
+```
+
+#### Para Busca por Autor:
+```
+Estrutura: Hash table de listas
+Chave: nome do autor
+Valor: lista de livros desse autor
+
+Exemplo:  
+"machado de assis" → ["Dom Casmurro", "O Cortiço", ...]
+Busca: O(1) para encontrar autor + O(k) para listar k livros
+```
+
+#### Para Busca por Palavras-chave:
+```
+Estrutura: Índice invertido (hash table de listas)
+Chave: cada palavra do título
+Valor: lista de livros que contêm essa palavra
+
+Exemplo:
+"programação" → ["Algoritmos em C", "Python para Iniciantes", ...]
+"algoritmos" → ["Algoritmos em C", "Estruturas de Dados", ...]
+
+Busca por "algoritmos programação":
+1. Buscar livros com "algoritmos" → lista A
+2. Buscar livros com "programação" → lista B  
+3. Interseção de A e B → resultado final
+```
+
+### Otimizações Avançadas
+
+#### Busca Binária Interpolativa
+Para dados uniformemente distribuídos, Patrick descobriu uma melhoria:
+
+```
+Em vez de sempre ir para o meio:
+meio = esquerda + ((alvo - lista[esquerda]) / (lista[direita] - lista[esquerda])) * (direita - esquerda)
+
+Complexidade: O(log log n) para dados bem distribuídos
+```
+
+#### Hash Table com Chaining
+Para resolver colisões eficientemente:
+
+```
+Cada posição da tabela aponta para uma lista ligada
+Inserção: adiciona no início da lista
+Busca: percorre lista na posição hash(chave)
+
+Complexidade média: O(1) se fator de carga < 1
+```
+
+### Exercícios Práticos
+
+#### Exercício 1: Análise de Cenários
+Para cada situação, qual algoritmo de busca você escolheria?
+
+1. **Sistema de login:** Verificar se usuário existe
+2. **Dicionário eletrônico:** Buscar definição de palavra
+3. **Lista de reprodução:** Encontrar música por título
+4. **Sistema bancário:** Localizar conta por número
+5. **Catálogo de produtos:** Buscar por nome exato
+
+#### Exercício 2: Implementação
+Implemente busca binária recursiva e compare com a versão iterativa:
+
+```
+Função busca_binaria_recursiva(lista, alvo, inicio, fim):
+  // Sua implementação aqui
+```
+
+Analise a diferença de complexidade de espaço.
+
+#### Exercício 3: Otimização
+Você tem uma lista de 1 milhão de números inteiros ordenados. Como otimizaria para:
+
+1. Uma única busca
+2. 1000 buscas aleatórias
+3. Busca + inserções frequentes
+
+### Gabarito dos Exercícios
+
+#### Exercício 1:
+1. **Sistema de login:** Hash table (verificação O(1))
+2. **Dicionário:** Hash table (acesso direto por palavra)
+3. **Lista de reprodução:** Busca linear (lista pequena, ordem importa)
+4. **Sistema bancário:** Hash table (número único, acesso crítico)
+5. **Catálogo:** Hash table + busca por índices
+
+#### Exercício 2:
+```
+Busca recursiva: O(log n) espaço pela pilha
+Busca iterativa: O(1) espaço
+Conclusão: Iterativa é mais eficiente em espaço
+```
+
+#### Exercício 3:
+1. **Uma busca:** Busca binária O(log n)
+2. **1000 buscas:** Manter ordenado, busca binária para cada
+3. **Busca + inserções:** Árvore binária balanceada (AVL/Red-Black)
+
+### Lições Fundamentais
+
+Patrick resumiu suas descobertas:
+
+1. **Não existe algoritmo universalmente melhor** - depende do contexto
+2. **Ordenação prévia pode valer a pena** se há muitas consultas
+3. **Hash tables são poderosas** mas requerem boa função hash
+4. **Complexidade prática** pode diferir da teórica
+5. **Combinar estruturas** resolve problemas complexos
+
+"Agora entendo," disse Patrick, "busca eficiente não é sobre decorar algoritmos, é sobre entender trade-offs e escolher a ferramenta certa para cada problema!"
+
+## Capítulo 7: A Grande Ordenação - Bubble, Quick e Merge Sort
+
+### O Torneio dos Algoritmos
+
+Dr. Silva organizou um "Torneio de Ordenação" na classe: "Vocês vão implementar diferentes algoritmos de ordenação e competir para ver qual é mais rápido. Mas atenção: vou testar com diferentes tipos de dados!"
+
+Patrick estava empolgado: "Finalmente vou entender por que alguns algoritmos são melhores que outros!"
+
+### Os Competidores: Algoritmos de Ordenação
+
+#### Competidor 1: Bubble Sort (O Persistente)
+**Estratégia:** Compara pares adjacentes e os troca se estiverem fora de ordem.
+
+**Algoritmo de Patrick:**
+```
+Função bubble_sort(lista):
+  n = tamanho(lista)
+  
+  Para i de 0 até n-1:
+    Para j de 0 até n-i-2:
+      Se lista[j] > lista[j+1]:
+        Trocar lista[j] com lista[j+1]
+```
+
+**Como funciona passo a passo:**
+```
+Lista inicial: [64, 34, 25, 12, 22, 11, 90]
+
+Passada 1:
+[64, 34, 25, 12, 22, 11, 90] → compara 64 e 34
+[34, 64, 25, 12, 22, 11, 90] → compara 64 e 25  
+[34, 25, 64, 12, 22, 11, 90] → compara 64 e 12
+[34, 25, 12, 64, 22, 11, 90] → compara 64 e 22
+[34, 25, 12, 22, 64, 11, 90] → compara 64 e 11
+[34, 25, 12, 22, 11, 64, 90] → compara 64 e 90
+[34, 25, 12, 22, 11, 64, 90] → 90 já está no lugar certo
+
+Resultado da passada 1: maior elemento (90) "borbulhou" para o final
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(n) - lista já ordenada (com otimização)
+- **Pior caso:** O(n²) - lista em ordem reversa
+- **Caso médio:** O(n²)
+- **Espaço:** O(1) - ordena in-place
+- **Estável:** Sim - mantém ordem relativa de elementos iguais
+
+**Vantagens:**
+- Simples de implementar
+- Detecta se lista já está ordenada
+- Ordena in-place
+
+**Desvantagens:**
+- Muito lento para listas grandes
+- Muitas comparações desnecessárias
+
+#### Competidor 2: Selection Sort (O Selecionador)
+**Estratégia:** Encontra o menor elemento e o coloca na primeira posição, depois repete para o restante.
+
+**Algoritmo de Patrick:**
+```
+Função selection_sort(lista):
+  n = tamanho(lista)
+  
+  Para i de 0 até n-1:
+    menor_indice = i
+    
+    Para j de i+1 até n-1:
+      Se lista[j] < lista[menor_indice]:
+        menor_indice = j
+    
+    Trocar lista[i] com lista[menor_indice]
+```
+
+**Demonstração visual:**
+```
+[64, 34, 25, 12, 22, 11, 90]
+  ↑                    ↑
+  i=0              menor=11
+
+[11, 34, 25, 12, 22, 64, 90]
+     ↑       ↑
+     i=1   menor=12
+
+[11, 12, 25, 34, 22, 64, 90]
+         ↑       ↑
+         i=2   menor=22
+
+E assim por diante...
+```
+
+**Análise Completa:**
+- **Todos os casos:** O(n²) - sempre faz n²/2 comparações
+- **Espaço:** O(1)
+- **Trocas:** O(n) - minimal número de trocas
+- **Estável:** Não
+
+**Características únicas:**
+- Número mínimo de trocas entre algoritmos O(n²)
+- Performance consistente (sempre O(n²))
+
+#### Competidor 3: Insertion Sort (O Organizador)
+**Estratégia:** Constrói lista ordenada inserindo cada elemento na posição correta.
+
+**Algoritmo de Patrick:**
+```
+Função insertion_sort(lista):
+  Para i de 1 até tamanho(lista)-1:
+    chave = lista[i]
+    j = i - 1
+    
+    Enquanto j >= 0 E lista[j] > chave:
+      lista[j+1] = lista[j]
+      j = j - 1
+    
+    lista[j+1] = chave
+```
+
+**Como funciona (analogia com cartas):**
+```
+Você recebe cartas uma por vez e as insere na posição correta:
+
+Mão inicial: [5]
+Recebe 2: [2, 5]
+Recebe 8: [2, 5, 8]  
+Recebe 1: [1, 2, 5, 8]
+Recebe 9: [1, 2, 5, 8, 9]
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(n) - lista já ordenada
+- **Pior caso:** O(n²) - lista em ordem reversa
+- **Caso médio:** O(n²)
+- **Espaço:** O(1)
+- **Estável:** Sim
+
+**Vantagens especiais:**
+- Eficiente para listas pequenas
+- Ótimo para listas quase ordenadas
+- Ordena online (pode receber elementos durante execução)
+
+#### Competidor 4: Quick Sort (O Conquistador)
+**Estratégia:** Divide a lista em torno de um pivô, ordena as partes recursivamente.
+
+**Algoritmo de Patrick:**
+```
+Função quick_sort(lista, baixo, alto):
+  Se baixo < alto:
+    indice_pivo = particionar(lista, baixo, alto)
+    quick_sort(lista, baixo, indice_pivo - 1)
+    quick_sort(lista, indice_pivo + 1, alto)
+
+Função particionar(lista, baixo, alto):
+  pivo = lista[alto]  // Escolhe último como pivô
+  i = baixo - 1
+  
+  Para j de baixo até alto-1:
+    Se lista[j] <= pivo:
+      i = i + 1
+      Trocar lista[i] com lista[j]
+  
+  Trocar lista[i+1] com lista[alto]
+  Retornar i + 1
+```
+
+**Demonstração do particionamento:**
+```
+Lista: [10, 80, 30, 90, 40, 50, 70]
+Pivô: 70
+
+Depois do particionamento:
+[10, 30, 40, 50, 70, 90, 80]
+              ↑
+           Posição do pivô
+
+Elementos ≤ 70 ficam à esquerda, > 70 à direita
+```
+
+**Análise Completa:**
+- **Melhor caso:** O(n log n) - pivô sempre divide pela metade
+- **Pior caso:** O(n²) - pivô sempre é extremo
+- **Caso médio:** O(n log n)
+- **Espaço:** O(log n) - pilha de recursão
+- **Estável:** Não
+
+**Otimizações importantes:**
+- Escolha inteligente do pivô (mediana de três)
+- Troca para insertion sort em listas pequenas
+- Particionamento de três vias para elementos duplicados
+
+#### Competidor 5: Merge Sort (O Estrategista)
+**Estratégia:** Divide lista pela metade, ordena cada parte, depois une ordenadamente.
+
+**Algoritmo de Patrick:**
+```
+Função merge_sort(lista, inicio, fim):
+  Se inicio < fim:
+    meio = (inicio + fim) / 2
+    merge_sort(lista, inicio, meio)
+    merge_sort(lista, meio + 1, fim)
+    merge(lista, inicio, meio, fim)
+
+Função merge(lista, inicio, meio, fim):
+  // Cria arrays temporários
+  esquerda = lista[inicio..meio]
+  direita = lista[meio+1..fim]
+  
+  i = j = 0
+  k = inicio
+  
+  // Mescla as duas partes ordenadas
+  Enquanto i < tamanho(esquerda) E j < tamanho(direita):
+    Se esquerda[i] <= direita[j]:
+      lista[k] = esquerda[i]
+      i++
+    Senão:
+      lista[k] = direita[j]
+      j++
+    k++
+  
+  // Copia elementos restantes
+  Enquanto i < tamanho(esquerda):
+    lista[k] = esquerda[i]
+    i++; k++
+    
+  Enquanto j < tamanho(direita):
+    lista[k] = direita[j]
+    j++; k++
+```
+
+**Visualização da divisão:**
+```
+[38, 27, 43, 3, 9, 82, 10]
+       ↓ Divide
+[38, 27, 43]    [3, 9, 82, 10]
+     ↓              ↓
+[38] [27, 43]   [3, 9] [82, 10]
+  ↓     ↓        ↓        ↓
+[38] [27][43]  [3][9]  [82][10]
+
+Agora une ordenadamente:
+[27, 38, 43]    [3, 9, 10, 82]
+       ↓
+[3, 9, 10, 27, 38, 43, 82]
+```
+
+**Análise Completa:**
+- **Todos os casos:** O(n log n) - sempre divide pela metade
+- **Espaço:** O(n) - arrays temporários
+- **Estável:** Sim
+- **Previsível:** Performance garantida
+
+### O Grande Torneio: Resultados Experimentais
+
+Patrick testou todos os algoritmos com diferentes cenários:
+
+#### Teste 1: Lista Pequena (100 elementos)
+```
+Bubble Sort:     0.02 ms
+Selection Sort:  0.01 ms  
+Insertion Sort:  0.005 ms
+Quick Sort:      0.003 ms
+Merge Sort:      0.004 ms
+
+Vencedor: Quick Sort (mas diferença é pequena)
+```
+
+#### Teste 2: Lista Média (10.000 elementos aleatórios)
+```
+Bubble Sort:     1.200 ms
+Selection Sort:  480 ms
+Insertion Sort:  520 ms  
+Quick Sort:      12 ms
+Merge Sort:      15 ms
+
+Vencedor: Quick Sort
+```
+
+#### Teste 3: Lista Grande (100.000 elementos aleatórios)
+```
+Bubble Sort:     120.000 ms (2 minutos!)
+Selection Sort:  48.000 ms
+Insertion Sort:  52.000 ms
+Quick Sort:      180 ms
+Merge Sort:      200 ms
+
+Vencedor: Quick Sort
+```
+
+#### Teste 4: Lista Já Ordenada (100.000 elementos)
+```
+Bubble Sort:     500 ms (com otimização)
+Selection Sort:  48.000 ms
+Insertion Sort:  5 ms ⭐
+Quick Sort:      15.000 ms (pior caso!)
+Merge Sort:      200 ms
+
+Vencedor: Insertion Sort!
+```
+
+#### Teste 5: Lista Ordem Reversa (100.000 elementos)
+```
+Bubble Sort:     120.000 ms
+Selection Sort:  48.000 ms  
+Insertion Sort:  95.000 ms
+Quick Sort:      15.000 ms (pior caso!)
+Merge Sort:      200 ms ⭐
+
+Vencedor: Merge Sort!
+```
+
+### As Lições do Torneio
+
+Patrick descobriu padrões importantes:
+
+#### Lição 1: Contexto Determina o Vencedor
+- **Listas pequenas:** Insertion Sort ou Quick Sort
+- **Listas grandes aleatórias:** Quick Sort
+- **Listas já ordenadas:** Insertion Sort
+- **Pior caso garantido:** Merge Sort
+- **Memória limitada:** Insertion Sort ou Quick Sort
+
+#### Lição 2: Algoritmos O(n²) Têm Seus Méritos
+- **Bubble Sort:** Educativo, detecta lista ordenada
+- **Selection Sort:** Mínimo número de trocas
+- **Insertion Sort:** Excelente para listas pequenas e quase ordenadas
+
+#### Lição 3: Algoritmos O(n log n) São Escaláveis
+- **Quick Sort:** Rápido na prática, mas instável no pior caso
+- **Merge Sort:** Previsível e estável, usa mais memória
+
+### Algoritmos Híbridos: O Melhor dos Mundos
+
+Patrick descobriu que algoritmos reais combinam estratégias:
+
+#### TimSort (usado no Python)
+```
+Se tamanho < 64:
+  Use Insertion Sort
+Senão:
+  Use Merge Sort com otimizações:
+  - Detecta sequências já ordenadas
+  - Usa insertion sort para pequenos pedaços
+  - Merge inteligente
+```
+
+#### IntroSort (usado no C++)
+```
+Use Quick Sort até atingir profundidade limite
+Se profundidade > 2 * log(n):
+  Mude para Heap Sort (garante O(n log n))
+  
+Para pedaços pequenos (< 16):
+  Use Insertion Sort
+```
+
+### Exercícios Práticos
+
+#### Exercício 1: Escolha o Algoritmo
+Para cada cenário, qual algoritmo você usaria?
+
+1. Ordenar 50 números em um microcontrolador com pouca memória
+2. Ordenar 1 milhão de registros onde performance é crítica
+3. Ordenar lista que pode estar 90% ordenada
+4. Sistema onde não pode haver pior caso O(n²)
+5. Ordenar online (elementos chegam um por vez)
+
+#### Exercício 2: Otimização de Quick Sort
+Implemente as seguintes otimizações:
+
+1. **Mediana de três:** Escolha pivô como mediana entre primeiro, meio e último
+2. **Insertion sort híbrido:** Use insertion sort para sublistas < 10 elementos
+3. **Particionamento três vias:** Trate elementos iguais ao pivô separadamente
+
+#### Exercício 3: Análise de Estabilidade
+Explique por que estabilidade importa e demonstre com exemplo prático.
+
+### Gabarito dos Exercícios
+
+#### Exercício 1:
+1. **Microcontrolador:** Insertion Sort (O(1) espaço, código simples)
+2. **1 milhão registros:** Quick Sort otimizado ou IntroSort
+3. **90% ordenada:** Insertion Sort (detecta ordenação)
+4. **Sem pior caso O(n²):** Merge Sort ou Heap Sort
+5. **Ordenação online:** Insertion Sort (insere conforme recebe)
+
+#### Exercício 2:
+```python
+def quicksort_otimizado(lista, baixo, alto):
+    while baixo < alto:
+        if alto - baixo < 10:
+            insertion_sort(lista, baixo, alto)
+            break
+        
+        pivo = mediana_de_tres(lista, baixo, alto)
+        indice_pivo = particionar_tres_vias(lista, baixo, alto, pivo)
+        
+        # Recursão apenas na menor metade
+        if indice_pivo - baixo < alto - indice_pivo:
+            quicksort_otimizado(lista, baixo, indice_pivo - 1)
+            baixo = indice_pivo + 1
+        else:
+            quicksort_otimizado(lista, indice_pivo + 1, alto)
+            alto = indice_pivo - 1
+```
+
+#### Exercício 3:
+**Estabilidade preserva ordem relativa de elementos iguais.**
+
+Exemplo: Ordenar pessoas por idade, mantendo ordem alfabética entre pessoas da mesma idade.
+
+```
+Entrada: [(Ana, 25), (Bob, 23), (Carol, 25)]
+Estável: [(Bob, 23), (Ana, 25), (Carol, 25)]
+Instável: [(Bob, 23), (Carol, 25), (Ana, 25)]
+```
+
+### A Grande Descoberta de Patrick
+
+"Professor," disse Patrick, "descobri que não existe 'melhor algoritmo de ordenação'! Cada um é melhor em situações específicas. O segredo é entender quando usar cada um!"
+
+Dr. Silva sorriu: "Exato, Patrick! E essa é a essência da ciência da computação: não existe bala de prata, existe a ferramenta certa para cada problema."
+
+### Resumo das Complexidades
+
+| Algoritmo | Melhor | Médio | Pior | Espaço | Estável |
+|-----------|--------|-------|------|--------|---------|
+| Bubble Sort | O(n) | O(n²) | O(n²) | O(1) | Sim |
+| Selection Sort | O(n²) | O(n²) | O(n²) | O(1) | Não |
+| Insertion Sort | O(n) | O(n²) | O(n²) | O(1) | Sim |
+| Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) | Não |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Sim |
+
+Patrick agora sabia que dominar ordenação era sobre compreender trade-offs, não decorar algoritmos!
+
+## Capítulo 8: Estruturas de Dados - As Fundações do Algoritmo
+
+### A Biblioteca Mágica
+
+No próximo semestre, Patrick visitou uma biblioteca muito especial com Dr. Silva. "Esta biblioteca," explicou o professor, "organiza livros de formas diferentes dependendo de como você precisa acessá-los. É igual às estruturas de dados!"
+
+Patrick olhou ao redor e viu seções organizadas de maneiras distintas:
+- Uma pilha de livros novos na entrada
+- Uma fila de pessoas esperando para pegar livros emprestados  
+- Estantes com índices para busca rápida
+- Uma árvore genealógica de autores na parede
+
+"Cada organização," disse Dr. Silva, "oferece vantagens diferentes!"
+
+### Estrutura 1: Arrays (As Estantes Numeradas)
+
+A primeira seção tinha estantes com posições numeradas: 0, 1, 2, 3...
+
+**Características dos Arrays:**
+```
+Livros: [Dom Casmurro, 1984, O Cortiço, Neuromancer]
+Índices:    0          1      2         3
+
+Acesso direto: livro[2] = "O Cortiço" em O(1)
+```
+
+**Operações e Complexidades:**
+
+| Operação | Complexidade | Explicação |
+|----------|--------------|------------|
+| Acesso por índice | O(1) | Matemática simples: endereço = base + índice × tamanho |
+| Busca por valor | O(n) | Pode precisar verificar todos elementos |
+| Inserção no final | O(1) | Se há espaço disponível |
+| Inserção no meio | O(n) | Precisa deslocar todos elementos posteriores |
+| Remoção | O(n) | Precisa deslocar elementos |
+
+**Exemplo prático - Lista de notas:**
+```python
+notas = [8.5, 7.0, 9.2, 6.8, 8.8]
+
+# Acesso rápido
+primeira_nota = notas[0]  # O(1)
+
+# Calcular média
+soma = 0
+for nota in notas:  # O(n)
+    soma += nota
+media = soma / len(notas)
+
+# Inserir nova nota no meio
+notas.insert(2, 8.0)  # O(n) - desloca [9.2, 6.8, 8.8]
+```
+
+**Vantagens:**
+- Acesso direto por índice
+- Cache-friendly (elementos adjacentes na memória)
+- Baixo overhead de memória
+
+**Desvantagens:**
+- Tamanho fixo (em linguagens como C)
+- Inserções/remoções custosas
+- Memória desperdiciada se não totalmente usado
+
+### Estrutura 2: Listas Ligadas (A Corrente de Livros)
+
+Na segunda seção, os livros estavam conectados por cordas, cada um apontando para o próximo.
+
+**Estrutura de uma Lista Ligada:**
+```
+[Dados|Próximo] -> [Dados|Próximo] -> [Dados|NULL]
+    Node 1            Node 2           Node 3
+```
+
+**Implementação conceitual:**
+```python
+class No:
+    def __init__(self, dados):
+        self.dados = dados
+        self.proximo = None
+
+class ListaLigada:
+    def __init__(self):
+        self.cabeca = None
+    
+    def inserir_inicio(self, dados):  # O(1)
+        novo_no = No(dados)
+        novo_no.proximo = self.cabeca
+        self.cabeca = novo_no
+    
+    def buscar(self, valor):  # O(n)
+        atual = self.cabeca
+        while atual:
+            if atual.dados == valor:
+                return atual
+            atual = atual.proximo
+        return None
+    
+    def remover(self, valor):  # O(n)
+        if not self.cabeca:
+            return
+        
+        if self.cabeca.dados == valor:
+            self.cabeca = self.cabeca.proximo
+            return
+        
+        atual = self.cabeca
+        while atual.proximo:
+            if atual.proximo.dados == valor:
+                atual.proximo = atual.proximo.proximo
+                return
+            atual = atual.proximo
+```
+
+**Complexidades:**
+
+| Operação | Complexidade | Explicação |
+|----------|--------------|------------|
+| Inserção no início | O(1) | Apenas atualiza ponteiros |
+| Inserção no final | O(n) | Precisa percorrer até o final |
+| Busca | O(n) | Percorre sequencialmente |
+| Remoção | O(n) | Precisa encontrar o elemento |
+| Acesso por índice | O(n) | Não há acesso direto |
+
+**Variações importantes:**
+
+#### Lista Duplamente Ligada
+```
+NULL <- [Ant|Dados|Próx] <-> [Ant|Dados|Próx] -> NULL
+```
+- Navegação bidirecional
+- Remoção em O(1) se tiver referência do nó
+
+#### Lista Circular
+```
+[Dados|Próx] -> [Dados|Próx] -> [Dados|Próx]
+      ^                               |
+      +-------------------------------+
+```
+- Último nó aponta para o primeiro
+- Útil para algoritmos round-robin
+
+### Estrutura 3: Pilhas (A Torre de Livros)
+
+Na entrada, Patrick viu uma pilha de livros novos. "Último que entra, primeiro que sai - LIFO!"
+
+**Princípio da Pilha:**
+```
+    |   Topo   |  <- pop() / push()
+    |  Livro 3 |
+    |  Livro 2 |
+    |  Livro 1 |  <- Base
+    +----------+
+```
+
+**Implementação:**
+```python
+class Pilha:
+    def __init__(self):
+        self.itens = []
+    
+    def push(self, item):  # O(1)
+        self.itens.append(item)
+    
+    def pop(self):  # O(1)
+        if self.vazia():
+            raise Exception("Pilha vazia")
+        return self.itens.pop()
+    
+    def topo(self):  # O(1)
+        if self.vazia():
+            return None
+        return self.itens[-1]
+    
+    def vazia(self):  # O(1)
+        return len(self.itens) == 0
+```
+
+**Aplicações práticas da Pilha:**
+
+#### 1. Verificação de Parênteses Balanceados
+```python
+def parenteses_balanceados(expressao):
+    pilha = Pilha()
+    pares = {'(': ')', '[': ']', '{': '}'}
+    
+    for char in expressao:
+        if char in pares:  # Abertura
+            pilha.push(char)
+        elif char in pares.values():  # Fechamento
+            if pilha.vazia():
+                return False
+            if pares[pilha.pop()] != char:
+                return False
+    
+    return pilha.vazia()
+
+# Exemplo:
+print(parenteses_balanceados("([{}])"))  # True
+print(parenteses_balanceados("([)]"))    # False
+```
+
+#### 2. Conversão de Notação Infixa para Pós-fixa
+```python
+def infixa_para_posfixa(expressao):
+    precedencia = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+    pilha = Pilha()
+    resultado = []
+    
+    for token in expressao.split():
+        if token.isdigit():
+            resultado.append(token)
+        elif token in precedencia:
+            while (not pilha.vazia() and 
+                   pilha.topo() in precedencia and
+                   precedencia[pilha.topo()] >= precedencia[token]):
+                resultado.append(pilha.pop())
+            pilha.push(token)
+        elif token == '(':
+            pilha.push(token)
+        elif token == ')':
+            while pilha.topo() != '(':
+                resultado.append(pilha.pop())
+            pilha.pop()  # Remove '('
+    
+    while not pilha.vazia():
+        resultado.append(pilha.pop())
+    
+    return ' '.join(resultado)
+
+# Exemplo: "3 + 4 * 2" -> "3 4 2 * +"
+```
+
+#### 3. Navegação no Histórico do Browser
+```python
+class HistoricoBrowser:
+    def __init__(self):
+        self.historico = Pilha()
+        self.pagina_atual = None
+    
+    def visitar_pagina(self, url):
+        if self.pagina_atual:
+            self.historico.push(self.pagina_atual)
+        self.pagina_atual = url
+    
+    def voltar(self):
+        if not self.historico.vazia():
+            self.pagina_atual = self.historico.pop()
+        return self.pagina_atual
+```
+
+### Estrutura 4: Filas (A Fila da Biblioteca)
+
+Patrick observou pessoas na fila para empréstimo: "Primeiro que entra, primeiro que sai - FIFO!"
+
+**Princípio da Fila:**
+```
+Entrada -> [Pessoa1] [Pessoa2] [Pessoa3] -> Saída
+           (Fim)                          (Início)
+```
+
+**Implementação eficiente:**
+```python
+class Fila:
+    def __init__(self):
+        self.itens = []
+        self.inicio = 0  # Evita O(n) no dequeue
+    
+    def enqueue(self, item):  # O(1)
+        self.itens.append(item)
+    
+    def dequeue(self):  # O(1) amortizado
+        if self.vazia():
+            raise Exception("Fila vazia")
+        item = self.itens[self.inicio]
+        self.inicio += 1
+        
+        # Reorganiza se necessário
+        if self.inicio > len(self.itens) // 2:
+            self.itens = self.itens[self.inicio:]
+            self.inicio = 0
+        
+        return item
+    
+    def primeiro(self):  # O(1)
+        if self.vazia():
+            return None
+        return self.itens[self.inicio]
+    
+    def vazia(self):  # O(1)
+        return self.inicio >= len(self.itens)
+```
+
+**Aplicações práticas da Fila:**
+
+#### 1. Sistema de Impressão
+```python
+class SistemaImpressao:
+    def __init__(self):
+        self.fila_impressao = Fila()
+    
+    def adicionar_documento(self, documento):
+        self.fila_impressao.enqueue(documento)
+        print(f"Documento '{documento}' adicionado à fila")
+    
+    def imprimir_proximo(self):
+        if not self.fila_impressao.vazia():
+            doc = self.fila_impressao.dequeue()
+            print(f"Imprimindo: {doc}")
+            return doc
+        print("Nenhum documento na fila")
+        return None
+```
+
+#### 2. Busca em Largura (BFS)
+```python
+def busca_largura(grafo, inicio, destino):
+    fila = Fila()
+    visitados = set()
+    
+    fila.enqueue([inicio])
+    visitados.add(inicio)
+    
+    while not fila.vazia():
+        caminho = fila.dequeue()
+        no = caminho[-1]
+        
+        if no == destino:
+            return caminho
+        
+        for vizinho in grafo[no]:
+            if vizinho not in visitados:
+                novo_caminho = caminho + [vizinho]
+                fila.enqueue(novo_caminho)
+                visitados.add(vizinho)
+    
+    return None  # Caminho não encontrado
+```
+
+### Estrutura 5: Deques (Fila Dupla)
+
+"E se precisássemos inserir e remover dos dois lados?" perguntou Patrick.
+
+**Deque (Double-ended queue):**
+```python
+class Deque:
+    def __init__(self):
+        self.itens = []
+    
+    def adicionar_frente(self, item):    # O(n) - lista Python
+        self.itens.insert(0, item)
+    
+    def adicionar_tras(self, item):      # O(1)
+        self.itens.append(item)
+    
+    def remover_frente(self):            # O(n) - lista Python
+        if self.vazio():
+            raise Exception("Deque vazio")
+        return self.itens.pop(0)
+    
+    def remover_tras(self):              # O(1)
+        if self.vazio():
+            raise Exception("Deque vazio")
+        return self.itens.pop()
+```
+
+**Implementação eficiente com lista duplamente ligada:**
+```python
+class NoDeque:
+    def __init__(self, dados):
+        self.dados = dados
+        self.anterior = None
+        self.proximo = None
+
+class DequeEficiente:
+    def __init__(self):
+        self.cabeca = None
+        self.cauda = None
+        self.tamanho = 0
+    
+    def adicionar_frente(self, item):    # O(1)
+        novo_no = NoDeque(item)
+        if self.vazio():
+            self.cabeca = self.cauda = novo_no
+        else:
+            novo_no.proximo = self.cabeca
+            self.cabeca.anterior = novo_no
+            self.cabeca = novo_no
+        self.tamanho += 1
+    
+    def remover_tras(self):              # O(1)
+        if self.vazio():
+            raise Exception("Deque vazio")
+        
+        item = self.cauda.dados
+        if self.tamanho == 1:
+            self.cabeca = self.cauda = None
+        else:
+            self.cauda = self.cauda.anterior
+            self.cauda.proximo = None
+        
+        self.tamanho -= 1
+        return item
+```
+
+### Comparação das Estruturas Lineares
+
+| Estrutura | Acesso | Inserção Início | Inserção Fim | Busca | Melhor Para |
+|-----------|--------|----------------|--------------|-------|-------------|
+| Array | O(1) | O(n) | O(1)* | O(n) | Acesso por índice |
+| Lista Ligada | O(n) | O(1) | O(n) | O(n) | Inserções frequentes |
+| Pilha | O(1) topo | O(1) | N/A | O(n) | LIFO, recursão |
+| Fila | O(1) primeiro | N/A | O(1) | O(n) | FIFO, BFS |
+| Deque | O(1) extremos | O(1) | O(1) | O(n) | Inserção dupla |
+
+*Se há espaço disponível
+
+### Exercícios Práticos
+
+#### Exercício 1: Implementação de Calculadora
+Use uma pilha para avaliar expressões pós-fixas:
+```
+Entrada: "3 4 2 * + 1 -"
+Saída: 10
+
+Algoritmo:
+1. Se número: empilhe
+2. Se operador: desempilhe dois números, calcule, empilhe resultado
+```
+
+#### Exercício 2: Palíndromo com Deque
+```python
+def eh_palindromo(texto):
+    deque = Deque()
+    
+    # Remove espaços e converte para minúsculas
+    texto_limpo = ''.join(texto.split()).lower()
+    
+    # Adiciona caracteres ao deque
+    for char in texto_limpo:
+        deque.adicionar_tras(char)
+    
+    # Compara extremos
+    while len(deque) > 1:
+        if deque.remover_frente() != deque.remover_tras():
+            return False
+    
+    return True
+```
+
+#### Exercício 3: Sistema de Desfazer/Refazer
+```python
+class EditorTexto:
+    def __init__(self):
+        self.texto = ""
+        self.historico = Pilha()  # Desfazer
+        self.redo_stack = Pilha()  # Refazer
+    
+    def digitar(self, novo_texto):
+        self.historico.push(self.texto)
+        self.texto = novo_texto
+        # Limpa redo quando nova ação é feita
+        self.redo_stack = Pilha()
+    
+    def desfazer(self):
+        if not self.historico.vazia():
+            self.redo_stack.push(self.texto)
+            self.texto = self.historico.pop()
+    
+    def refazer(self):
+        if not self.redo_stack.vazia():
+            self.historico.push(self.texto)
+            self.texto = self.redo_stack.pop()
+```
+
+### A Revelação de Patrick
+
+"Professor," disse Patrick empolgado, "cada estrutura é como uma ferramenta especializada! Arrays para acesso rápido, listas ligadas para flexibilidade, pilhas para reversão, filas para ordem..."
+
+Dr. Silva assentiu: "Exato! E aguarde até conhecer árvores e grafos. A escolha da estrutura certa pode transformar um algoritmo O(n²) em O(log n)!"
+
+Patrick mal podia esperar pelo próximo capítulo - sabia que estava construindo as fundações para algoritmos ainda mais poderosos.
+
+## Capítulo 9: Árvores - A Hierarquia Natural dos Dados
+
+### O Jardim Genealógico
+
+Dr. Silva levou Patrick para um jardim especial no campus onde havia uma exposição sobre genealogia. "Olhe," disse apontando para um diagrama gigante, "esta é a árvore genealógica da família real britânica. Vê como os dados se organizam naturalmente em hierarquias?"
+
+Patrick observou a estrutura: "Cada pessoa tem no máximo dois pais, mas pode ter vários filhos. E há uma clara relação de ancestral e descendente!"
+
+"Exatamente! E é assim que funcionam as árvores de dados - uma das estruturas mais poderosas da computação."
+
+### O Conceito de Árvore
+
+**Definição Formal:**
+Uma árvore é uma estrutura de dados hierárquica composta por nós conectados por arestas, onde:
+- Existe exatamente um nó **raiz** (sem pai)
+- Cada nó tem no máximo um **pai**
+- Cada nó pode ter zero ou mais **filhos**
+- Não há ciclos
+
+**Terminologia Essencial:**
+```
+        A (raiz)
+       / \
+      B   C (filhos de A)
+     /   / \
+    D   E   F (folhas)
+```
+
+- **Raiz:** Nó sem pai (A)
+- **Folha:** Nó sem filhos (D, E, F)
+- **Nó interno:** Nó com pelo menos um filho (A, B, C)
+- **Altura:** Maior distância da raiz até uma folha
+- **Profundidade:** Distância de um nó até a raiz
+- **Subárvore:** Árvore formada por um nó e todos seus descendentes
+
+### Árvores Binárias: A Base de Tudo
+
+**Definição:** Cada nó tem no máximo dois filhos (esquerdo e direito).
+
+**Implementação básica:**
+```python
+class NoArvore:
+    def __init__(self, dados):
+        self.dados = dados
+        self.esquerdo = None
+        self.direito = None
+
+class ArvoreBinaria:
+    def __init__(self):
+        self.raiz = None
+    
+    def inserir(self, dados):
+        if self.raiz is None:
+            self.raiz = NoArvore(dados)
+        else:
+            self._inserir_recursivo(self.raiz, dados)
+    
+    def _inserir_recursivo(self, no_atual, dados):
+        if dados < no_atual.dados:
+            if no_atual.esquerdo is None:
+                no_atual.esquerdo = NoArvore(dados)
+            else:
+                self._inserir_recursivo(no_atual.esquerdo, dados)
+        else:
+            if no_atual.direito is None:
+                no_atual.direito = NoArvore(dados)
+            else:
+                self._inserir_recursivo(no_atual.direito, dados)
+```
+
+### Tipos Especiais de Árvores Binárias
+
+#### 1. Árvore Binária Completa
+```
+Todos os níveis preenchidos, exceto possivelmente o último
+(que é preenchido da esquerda para direita)
+
+        1
+       / \
+      2   3
+     / \ /
+    4  5 6
+```
+
+#### 2. Árvore Binária Cheia
+```
+Todos os nós internos têm exatamente dois filhos
+
+        1
+       / \
+      2   3
+     / \ / \
+    4  5 6  7
+```
+
+#### 3. Árvore Binária Perfeita
+```
+Todos os níveis completamente preenchidos
+
+        1
+       / \
+      2   3
+     / \ / \
+    4  5 6  7
+```
+
+### Árvore Binária de Busca (BST)
+
+"Esta é minha favorita!" disse Dr. Silva. "Combina a estrutura hierárquica com eficiência de busca."
+
+**Propriedade Fundamental:**
+- Subárvore esquerda: todos valores < nó atual  
+- Subárvore direita: todos valores > nó atual
+- Aplicada recursivamente a todos os nós
+
+**Exemplo de BST:**
+```
+        8
+       / \
+      3   10
+     / \    \
+    1   6    14
+       / \   /
+      4   7 13
+```
+
+**Operações principais:**
+
+#### Busca - O(log n) médio, O(n) pior caso
+```python
+def buscar(self, no, valor):
+    # Caso base: árvore vazia ou valor encontrado
+    if no is None or no.dados == valor:
+        return no
+    
+    # Valor menor: busca à esquerda
+    if valor < no.dados:
+        return self.buscar(no.esquerdo, valor)
+    
+    # Valor maior: busca à direita
+    return self.buscar(no.direito, valor)
+```
+
+**Demonstração passo a passo - buscar 6:**
+```
+Passo 1: Comparar com 8 → 6 < 8 → ir para esquerda
+Passo 2: Comparar com 3 → 6 > 3 → ir para direita  
+Passo 3: Comparar com 6 → 6 == 6 → encontrado!
+
+Total: 3 comparações em vez de 7 (busca linear)
+```
+
+#### Inserção - O(log n) médio
+```python
+def inserir(self, valor):
+    self.raiz = self._inserir_recursivo(self.raiz, valor)
+
+def _inserir_recursivo(self, no, valor):
+    # Caso base: posição encontrada
+    if no is None:
+        return NoArvore(valor)
+    
+    # Escolhe direção baseada na comparação
+    if valor < no.dados:
+        no.esquerdo = self._inserir_recursivo(no.esquerdo, valor)
+    else:
+        no.direito = self._inserir_recursivo(no.direito, valor)
+    
+    return no
+```
+
+#### Remoção - O(log n) médio (mais complexa)
+```python
+def remover(self, valor):
+    self.raiz = self._remover_recursivo(self.raiz, valor)
+
+def _remover_recursivo(self, no, valor):
+    if no is None:
+        return no
+    
+    # Encontra o nó a ser removido
+    if valor < no.dados:
+        no.esquerdo = self._remover_recursivo(no.esquerdo, valor)
+    elif valor > no.dados:
+        no.direito = self._remover_recursivo(no.direito, valor)
+    else:
+        # Nó encontrado - 3 casos:
+        
+        # Caso 1: Nó folha
+        if no.esquerdo is None and no.direito is None:
+            return None
+        
+        # Caso 2: Nó com um filho
+        if no.esquerdo is None:
+            return no.direito
+        if no.direito is None:
+            return no.esquerdo
+        
+        # Caso 3: Nó com dois filhos
+        # Encontra sucessor (menor valor da subárvore direita)
+        sucessor = self._encontrar_minimo(no.direito)
+        no.dados = sucessor.dados
+        no.direito = self._remover_recursivo(no.direito, sucessor.dados)
+    
+    return no
+
+def _encontrar_minimo(self, no):
+    while no.esquerdo is not None:
+        no = no.esquerdo
+    return no
+```
+
+### Percursos em Árvores
+
+Patrick aprendeu que existem diferentes formas de "visitar" todos os nós:
+
+#### 1. Pré-ordem (Preorder): Raiz → Esquerda → Direita
+```python
+def preorder(self, no):
+    if no is not None:
+        print(no.dados, end=" ")      # Visita raiz
+        self.preorder(no.esquerdo)    # Percorre esquerda
+        self.preorder(no.direito)     # Percorre direita
+
+# Resultado: 8 3 1 6 4 7 10 14 13
+# Uso: Copiar árvore, criar expressão prefixada
+```
+
+#### 2. Em-ordem (Inorder): Esquerda → Raiz → Direita  
+```python
+def inorder(self, no):
+    if no is not None:
+        self.inorder(no.esquerdo)     # Percorre esquerda
+        print(no.dados, end=" ")      # Visita raiz
+        self.inorder(no.direito)      # Percorre direita
+
+# Resultado: 1 3 4 6 7 8 10 13 14
+# IMPORTANTE: Em BST, produz sequência ordenada!
+```
+
+#### 3. Pós-ordem (Postorder): Esquerda → Direita → Raiz
+```python
+def postorder(self, no):
+    if no is not None:
+        self.postorder(no.esquerdo)   # Percorre esquerda
+        self.postorder(no.direito)    # Percorre direita
+        print(no.dados, end=" ")      # Visita raiz
+
+# Resultado: 1 4 7 6 3 13 14 10 8
+# Uso: Deletar árvore, calcular espaço em disco
+```
+
+#### 4. Percurso por Nível (Level Order)
+```python
+def percurso_nivel(self):
+    if not self.raiz:
+        return
+    
+    fila = [self.raiz]
+    
+    while fila:
+        no_atual = fila.pop(0)
+        print(no_atual.dados, end=" ")
+        
+        if no_atual.esquerdo:
+            fila.append(no_atual.esquerdo)
+        if no_atual.direito:
+            fila.append(no_atual.direito)
+
+# Resultado: 8 3 10 1 6 14 4 7 13
+# Uso: Serialização, impressão por níveis
+```
+
+### Árvores Balanceadas: AVL
+
+"O problema das BST," explicou Dr. Silva, "é que podem ficar desbalanceadas."
+
+**Exemplo de BST degenerada:**
+```
+Inserindo: 1, 2, 3, 4, 5
+
+    1
+     \
+      2    ← Vira lista ligada!
+       \     Busca = O(n)
+        3
+         \
+          4
+           \
+            5
+```
+
+**Solução: Árvore AVL**
+- **Propriedade:** Para cada nó, altura das subárvores esquerda e direita diferem no máximo em 1
+- **Garante:** Altura máxima = O(log n)
+- **Operações:** Todas em O(log n) garantido
+
+**Fator de Balanceamento:**
+```
+FB(nó) = altura(direita) - altura(esquerda)
+FB deve estar em {-1, 0, 1}
+```
+
+**Rotações para rebalancear:**
+
+#### Rotação Simples à Direita
+```
+    y              x
+   / \            / \
+  x   C    →     A   y
+ / \                / \
+A   B              B   C
+
+Usa quando: FB(y) = -2 e FB(x) = -1
+```
+
+#### Rotação Simples à Esquerda  
+```
+  x                y
+ / \              / \
+A   y      →     x   C
+   / \          / \
+  B   C        A   B
+
+Usa quando: FB(x) = 2 e FB(y) = 1
+```
+
+#### Rotação Dupla Esquerda-Direita
+```
+    z              z               y
+   / \            / \             / \
+  x   D    →     y   D     →     x   z
+ / \            / \             /|   |\ 
+A   y          x   C           A B   C D
+   / \        / \
+  B   C      A   B
+
+Usa quando: FB(z) = -2 e FB(x) = 1
+```
+
+### Árvores Red-Black
+
+**Propriedades:**
+1. Todo nó é vermelho ou preto
+2. Raiz é preta
+3. Folhas (NIL) são pretas
+4. Nó vermelho tem filhos pretos
+5. Caminhos da raiz até folhas têm mesmo número de nós pretos
+
+**Vantagem:** Máximo 2×log(n) altura, rotações mais simples que AVL
+
+### Aplicações Práticas das Árvores
+
+#### 1. Sistema de Arquivos
+```python
+class NoArquivo:
+    def __init__(self, nome, eh_diretorio=False):
+        self.nome = nome
+        self.eh_diretorio = eh_diretorio
+        self.filhos = [] if eh_diretorio else None
+        self.pai = None
+        self.tamanho = 0
+
+class SistemaArquivos:
+    def __init__(self):
+        self.raiz = NoArquivo("/", True)
+    
+    def criar_arquivo(self, caminho, nome):
+        diretorio = self._navegar_caminho(caminho)
+        novo_arquivo = NoArquivo(nome)
+        novo_arquivo.pai = diretorio
+        diretorio.filhos.append(novo_arquivo)
+    
+    def listar_diretorio(self, caminho):
+        diretorio = self._navegar_caminho(caminho)
+        return [filho.nome for filho in diretorio.filhos]
+```
+
+#### 2. Árvore de Expressão Matemática
+```python
+class NoExpressao:
+    def __init__(self, valor):
+        self.valor = valor
+        self.esquerdo = None
+        self.direito = None
+
+def avaliar_expressao(no):
+    # Folha: é um número
+    if no.esquerdo is None and no.direito is None:
+        return float(no.valor)
+    
+    # Nó interno: é um operador
+    esquerda = avaliar_expressao(no.esquerdo)
+    direita = avaliar_expressao(no.direito)
+    
+    if no.valor == '+':
+        return esquerda + direita
+    elif no.valor == '-':
+        return esquerda - direita
+    elif no.valor == '*':
+        return esquerda * direita
+    elif no.valor == '/':
+        return esquerda / direita
+
+# Exemplo: (3 + 4) * 2
+#     *
+#    / \
+#   +   2
+#  / \
+# 3   4
+```
+
+#### 3. Índice de Banco de Dados
+```python
+class IndiceBTree:
+    """
+    Simplificação de um B-Tree usado em bancos de dados
+    """
+    def __init__(self, grau=3):
+        self.grau = grau  # Máximo de chaves por nó
+        self.raiz = None
+    
+    def buscar_registro(self, chave):
+        # O(log n) mesmo com milhões de registros
+        return self._buscar_recursivo(self.raiz, chave)
+    
+    def _buscar_recursivo(self, no, chave):
+        if no is None:
+            return None
+        
+        # Busca binária nas chaves do nó
+        for i, chave_no in enumerate(no.chaves):
+            if chave == chave_no:
+                return no.valores[i]
+            elif chave < chave_no:
+                return self._buscar_recursivo(no.filhos[i], chave)
+        
+        # Chave maior que todas - vai para último filho
+        return self._buscar_recursivo(no.filhos[-1], chave)
+```
+
+### Análise de Complexidade das Árvores
+
+| Operação | BST Desbalanceada | BST Balanceada | Lista Ligada |
+|----------|------------------|----------------|--------------|
+| Busca | O(n) | O(log n) | O(n) |
+| Inserção | O(n) | O(log n) | O(1) início |
+| Remoção | O(n) | O(log n) | O(n) |
+| Percurso | O(n) | O(n) | O(n) |
+
+**Por que log n é tão bom?**
+```
+Para 1.000.000 elementos:
+- Busca linear: até 1.000.000 comparações
+- BST balanceada: até 20 comparações!
+
+log₂(1.000.000) ≈ 20
+```
+
+### Exercícios Práticos
+
+#### Exercício 1: Validar BST
+```python
+def eh_bst_valida(raiz):
+    """
+    Verifica se árvore satisfaz propriedade BST
+    """
+    def validar(no, minimo, maximo):
+        if no is None:
+            return True
+        
+        if no.dados <= minimo or no.dados >= maximo:
+            return False
+        
+        return (validar(no.esquerdo, minimo, no.dados) and
+                validar(no.direito, no.dados, maximo))
+    
+    return validar(raiz, float('-inf'), float('inf'))
+```
+
+#### Exercício 2: Encontrar Ancestral Comum
+```python
+def ancestral_comum(raiz, p, q):
+    """
+    Encontra o menor ancestral comum de dois nós
+    """
+    if raiz is None:
+        return None
+    
+    # Se ambos estão à esquerda
+    if p < raiz.dados and q < raiz.dados:
+        return ancestral_comum(raiz.esquerdo, p, q)
+    
+    # Se ambos estão à direita
+    if p > raiz.dados and q > raiz.dados:
+        return ancestral_comum(raiz.direito, p, q)
+    
+    # Se estão em lados diferentes, raiz é o ancestral
+    return raiz
+```
+
+#### Exercício 3: Imprimir por Níveis com Quebras
+```python
+def imprimir_niveis(raiz):
+    """
+    Imprime árvore nível por nível com quebras de linha
+    """
+    if not raiz:
+        return
+    
+    fila = [raiz, None]  # None marca fim do nível
+    
+    while fila:
+        no = fila.pop(0)
+        
+        if no is None:
+            print()  # Quebra de linha
+            if fila:  # Se ainda há nós
+                fila.append(None)
+        else:
+            print(no.dados, end=" ")
+            
+            if no.esquerdo:
+                fila.append(no.esquerdo)
+            if no.direito:
+                fila.append(no.direito)
+```
+
+### A Descoberta de Patrick
+
+"Professor," disse Patrick maravilhado, "árvores são incríveis! Elas pegam a organização natural das coisas e transformam em algoritmos eficientes. É como se a natureza já soubesse a melhor forma de organizar informação!"
+
+Dr. Silva sorriu: "Exato! E isso é só o começo. Grafos são ainda mais poderosos - são como árvores, mas podem ter ciclos e múltiplos caminhos entre nós. Imagine as possibilidades!"
+
+Patrick mal podia esperar para descobrir como grafos poderiam resolver problemas ainda mais complexos.
+
+## Capítulo 10: Grafos - Modelando o Mundo Real
+
+### A Rede de Conexões
+
+No último projeto do semestre, Dr. Silva apresentou um desafio: "Patrick, imagine que você precisa otimizar as rotas de ônibus da cidade, encontrar o melhor caminho entre duas pessoas no Facebook, ou detectar fraudes em transações bancárias. O que todas essas situações têm em comum?"
+
+Patrick pensou um momento: "Elas envolvem... conexões? Relacionamentos entre coisas?"
+
+"Perfeito! E para isso usamos **grafos** - a estrutura de dados mais versátil para modelar relacionamentos complexos."
+
+### Conceitos Fundamentais de Grafos
+
+**Definição:** Um grafo G = (V, E) consiste em:
+- **V**: Conjunto de vértices (nós)
+- **E**: Conjunto de arestas (conexões entre vértices)
+
+**Exemplo visual:**
+```
+    A ---- B
+    |      |
+    |      |
+    C ---- D ---- E
+
+V = {A, B, C, D, E}
+E = {(A,B), (A,C), (B,D), (C,D), (D,E)}
+```
+
+### Tipos de Grafos
+
+#### 1. Grafo Não-Direcionado vs Direcionado
+
+**Não-direcionado:** Arestas são bidirecionais
+```
+A ---- B  (A pode ir para B e B pode ir para A)
+```
+
+**Direcionado (Dígrafo):** Arestas têm direção
+```
+A ----> B  (A pode ir para B, mas B não pode ir para A)
+```
+
+#### 2. Grafo Ponderado vs Não-Ponderado
+
+**Não-ponderado:** Arestas têm peso 1 (ou sem peso)
+```python
+# Representação: apenas indica se há conexão
+grafo = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'D'],
+    'D': ['B', 'C', 'E'],
+    'E': ['D']
+}
+```
+
+**Ponderado:** Arestas têm pesos (custos, distâncias, etc.)
+```python
+# Representação: inclui peso da aresta
+grafo_ponderado = {
+    'A': [('B', 4), ('C', 2)],
+    'B': [('A', 4), ('D', 5)],
+    'C': [('A', 2), ('D', 1)],
+    'D': [('B', 5), ('C', 1), ('E', 3)],
+    'E': [('D', 3)]
+}
+```
+
+### Representações de Grafos
+
+#### 1. Lista de Adjacência (Mais Comum)
+```python
+class GrafoListaAdjacencia:
+    def __init__(self):
+        self.grafo = {}
+    
+    def adicionar_vertice(self, vertice):
+        if vertice not in self.grafo:
+            self.grafo[vertice] = []
+    
+    def adicionar_aresta(self, v1, v2, peso=1):
+        # Grafo não-direcionado
+        self.grafo[v1].append((v2, peso))
+        self.grafo[v2].append((v1, peso))
+    
+    def adicionar_aresta_direcionada(self, origem, destino, peso=1):
+        self.grafo[origem].append((destino, peso))
+    
+    def obter_vizinhos(self, vertice):
+        return self.grafo.get(vertice, [])
+```
+
+**Vantagens:**
+- Eficiente em espaço: O(V + E)
+- Rápido para percorrer vizinhos: O(grau do vértice)
+
+**Desvantagens:**  
+- Verificar se aresta existe: O(grau do vértice)
+
+#### 2. Matriz de Adjacência
+```python
+class GrafoMatrizAdjacencia:
+    def __init__(self, num_vertices):
+        self.num_vertices = num_vertices
+        self.matriz = [[0] * num_vertices for _ in range(num_vertices)]
+        self.vertices = {}  # Mapeia nome -> índice
+        self.indice_para_vertice = {}  # Mapeia índice -> nome
+        self.proximo_indice = 0
+    
+    def adicionar_vertice(self, vertice):
+        if vertice not in self.vertices:
+            self.vertices[vertice] = self.proximo_indice
+            self.indice_para_vertice[self.proximo_indice] = vertice
+            self.proximo_indice += 1
+    
+    def adicionar_aresta(self, v1, v2, peso=1):
+        i = self.vertices[v1]
+        j = self.vertices[v2]
+        self.matriz[i][j] = peso
+        self.matriz[j][i] = peso  # Não-direcionado
+    
+    def existe_aresta(self, v1, v2):
+        i = self.vertices[v1]
+        j = self.vertices[v2]
+        return self.matriz[i][j] != 0
+```
+
+**Vantagens:**
+- Verificar aresta: O(1)
+- Simples para grafos densos
+
+**Desvantagens:**
+- Espaço: O(V²) sempre
+- Lento para percorrer vizinhos
+
+### Algoritmos de Percurso
+
+#### 1. Busca em Profundidade (DFS)
+**Estratégia:** Vai o mais fundo possível antes de voltar
+
+```python
+def dfs_recursivo(grafo, inicio, visitados=None):
+    if visitados is None:
+        visitados = set()
+    
+    visitados.add(inicio)
+    print(inicio, end=" ")
+    
+    for vizinho, _ in grafo.obter_vizinhos(inicio):
+        if vizinho not in visitados:
+            dfs_recursivo(grafo, vizinho, visitados)
+    
+    return visitados
+
+def dfs_iterativo(grafo, inicio):
+    visitados = set()
+    pilha = [inicio]
+    
+    while pilha:
+        vertice = pilha.pop()
+        
+        if vertice not in visitados:
+            visitados.add(vertice)
+            print(vertice, end=" ")
+            
+            # Adiciona vizinhos à pilha
+            for vizinho, _ in grafo.obter_vizinhos(vertice):
+                if vizinho not in visitados:
+                    pilha.append(vizinho)
+    
+    return visitados
+```
+
+**Aplicações do DFS:**
+- Detectar ciclos
+- Classificação topológica
+- Encontrar componentes conectados
+- Resolver labirintos
+
+#### 2. Busca em Largura (BFS)
+**Estratégia:** Explora todos vizinhos antes de ir para próximo nível
+
+```python
+from collections import deque
+
+def bfs(grafo, inicio):
+    visitados = set()
+    fila = deque([inicio])
+    visitados.add(inicio)
+    
+    while fila:
+        vertice = fila.popleft()
+        print(vertice, end=" ")
+        
+        for vizinho, _ in grafo.obter_vizinhos(vertice):
+            if vizinho not in visitados:
+                visitados.add(vizinho)
+                fila.append(vizinho)
+    
+    return visitados
+
+def bfs_menor_caminho(grafo, inicio, destino):
+    """Encontra menor caminho (em número de arestas)"""
+    if inicio == destino:
+        return [inicio]
+    
+    visitados = set([inicio])
+    fila = deque([(inicio, [inicio])])
+    
+    while fila:
+        vertice, caminho = fila.popleft()
+        
+        for vizinho, _ in grafo.obter_vizinhos(vertice):
+            if vizinho not in visitados:
+                novo_caminho = caminho + [vizinho]
+                
+                if vizinho == destino:
+                    return novo_caminho
+                
+                visitados.add(vizinho)
+                fila.append((vizinho, novo_caminho))
+    
+    return None  # Não há caminho
+```
+
+**Aplicações do BFS:**
+- Menor caminho (não-ponderado)
+- Encontrar nível/distância entre nós
+- Verificar se grafo é bipartido
+
+### Algoritmos de Menor Caminho
+
+#### 1. Algoritmo de Dijkstra
+**Problema:** Encontrar menor caminho entre dois vértices em grafo ponderado (pesos positivos)
+
+```python
+import heapq
+
+def dijkstra(grafo, inicio, destino=None):
+    """
+    Encontra menor caminho usando algoritmo de Dijkstra
+    Retorna distâncias e predecessores
+    """
+    distancias = {vertice: float('infinity') for vertice in grafo.grafo}
+    predecessores = {vertice: None for vertice in grafo.grafo}
+    distancias[inicio] = 0
+    
+    # Heap de prioridade: (distância, vértice)
+    heap = [(0, inicio)]
+    visitados = set()
+    
+    while heap:
+        dist_atual, u = heapq.heappop(heap)
+        
+        if u in visitados:
+            continue
+        
+        visitados.add(u)
+        
+        # Se chegamos ao destino, podemos parar
+        if destino and u == destino:
+            break
+        
+        for vizinho, peso in grafo.obter_vizinhos(u):
+            if vizinho not in visitados:
+                nova_distancia = dist_atual + peso
+                
+                if nova_distancia < distancias[vizinho]:
+                    distancias[vizinho] = nova_distancia
+                    predecessores[vizinho] = u
+                    heapq.heappush(heap, (nova_distancia, vizinho))
+    
+    return distancias, predecessores
+
+def reconstruir_caminho(predecessores, inicio, destino):
+    """Reconstrói o caminho a partir dos predecessores"""
+    caminho = []
+    atual = destino
+    
+    while atual is not None:
+        caminho.append(atual)
+        atual = predecessores[atual]
+    
+    caminho.reverse()
+    return caminho if caminho[0] == inicio else None
+```
+
+**Demonstração do Dijkstra:**
+```
+Grafo:     A --4-- B
+           |       |
+           2       5
+           |       |
+           C --1-- D --3-- E
+
+Executando dijkstra(grafo, 'A'):
+
+Passo 1: Inicializar
+distancias = {A: 0, B: ∞, C: ∞, D: ∞, E: ∞}
+heap = [(0, A)]
+
+Passo 2: Processar A
+visitados = {A}
+Atualizar vizinhos de A:
+- B: min(∞, 0+4) = 4
+- C: min(∞, 0+2) = 2
+heap = [(2, C), (4, B)]
+
+Passo 3: Processar C (menor distância)
+visitados = {A, C}
+Atualizar vizinhos de C:
+- D: min(∞, 2+1) = 3
+heap = [(3, D), (4, B)]
+
+E assim por diante...
+
+Resultado final:
+A→B: 4 (A→B)
+A→C: 2 (A→C)  
+A→D: 3 (A→C→D)
+A→E: 6 (A→C→D→E)
+```
+
+**Complexidade:** O((V + E) log V) com heap
+
+#### 2. Algoritmo de Bellman-Ford
+**Diferencial:** Funciona com pesos negativos e detecta ciclos negativos
+
+```python
+def bellman_ford(grafo, inicio):
+    """
+    Algoritmo de Bellman-Ford para grafos com pesos negativos
+    """
+    vertices = list(grafo.grafo.keys())
+    distancias = {v: float('infinity') for v in vertices}
+    predecessores = {v: None for v in vertices}
+    distancias[inicio] = 0
+    
+    # Relaxar arestas V-1 vezes
+    for _ in range(len(vertices) - 1):
+        for u in vertices:
+            for vizinho, peso in grafo.obter_vizinhos(u):
+                if distancias[u] + peso < distancias[vizinho]:
+                    distancias[vizinho] = distancias[u] + peso
+                    predecessores[vizinho] = u
+    
+    # Verificar ciclos negativos
+    for u in vertices:
+        for vizinho, peso in grafo.obter_vizinhos(u):
+            if distancias[u] + peso < distancias[vizinho]:
+                raise ValueError("Grafo contém ciclo negativo")
+    
+    return distancias, predecessores
+```
+
+### Árvores Geradoras Mínimas
+
+#### Algoritmo de Kruskal
+**Problema:** Conectar todos vértices com menor custo total
+
+```python
+class UnionFind:
+    def __init__(self, vertices):
+        self.pai = {v: v for v in vertices}
+        self.rank = {v: 0 for v in vertices}
+    
+    def find(self, x):
+        if self.pai[x] != x:
+            self.pai[x] = self.find(self.pai[x])  # Compressão de caminho
+        return self.pai[x]
+    
+    def union(self, x, y):
+        raiz_x = self.find(x)
+        raiz_y = self.find(y)
+        
+        if raiz_x != raiz_y:
+            # União por rank
+            if self.rank[raiz_x] < self.rank[raiz_y]:
+                self.pai[raiz_x] = raiz_y
+            elif self.rank[raiz_x] > self.rank[raiz_y]:
+                self.pai[raiz_y] = raiz_x
+            else:
+                self.pai[raiz_y] = raiz_x
+                self.rank[raiz_x] += 1
+            return True
+        return False
+
+def kruskal(grafo):
+    """Algoritmo de Kruskal para árvore geradora mínima"""
+    vertices = list(grafo.grafo.keys())
+    arestas = []
+    
+    # Coletar todas as arestas
+    for u in vertices:
+        for v, peso in grafo.obter_vizinhos(u):
+            if u < v:  # Evita duplicatas em grafo não-direcionado
+                arestas.append((peso, u, v))
+    
+    # Ordenar arestas por peso
+    arestas.sort()
+    
+    uf = UnionFind(vertices)
+    mst = []
+    custo_total = 0
+    
+    for peso, u, v in arestas:
+        if uf.union(u, v):  # Se não forma ciclo
+            mst.append((u, v, peso))
+            custo_total += peso
+            
+            if len(mst) == len(vertices) - 1:
+                break
+    
+    return mst, custo_total
+```
+
+### Aplicações Práticas dos Grafos
+
+#### 1. Sistema de Recomendação de Amigos
+```python
+class RedeSocial:
+    def __init__(self):
+        self.grafo = GrafoListaAdjacencia()
+        self.usuarios = set()
+    
+    def adicionar_usuario(self, usuario):
+        self.usuarios.add(usuario)
+        self.grafo.adicionar_vertice(usuario)
+    
+    def adicionar_amizade(self, usuario1, usuario2):
+        self.grafo.adicionar_aresta(usuario1, usuario2)
+    
+    def sugerir_amigos(self, usuario, max_sugestoes=5):
+        """Sugere amigos baseado em amigos em comum"""
+        amigos = set(v for v, _ in self.grafo.obter_vizinhos(usuario))
+        candidatos = {}
+        
+        # Para cada amigo, vê os amigos dele
+        for amigo in amigos:
+            for amigo_do_amigo, _ in self.grafo.obter_vizinhos(amigo):
+                if (amigo_do_amigo != usuario and 
+                    amigo_do_amigo not in amigos):
+                    
+                    candidatos[amigo_do_amigo] = candidatos.get(amigo_do_amigo, 0) + 1
+        
+        # Retorna candidatos ordenados por número de amigos em comum
+        sugestoes = sorted(candidatos.items(), key=lambda x: x[1], reverse=True)
+        return [usuario for usuario, _ in sugestoes[:max_sugestoes]]
+    
+    def caminho_entre_usuarios(self, usuario1, usuario2):
+        """Encontra caminho mais curto entre dois usuários"""
+        return bfs_menor_caminho(self.grafo, usuario1, usuario2)
+```
+
+#### 2. Sistema de Rotas de Transporte
+```python
+class SistemaTransporte:
+    def __init__(self):
+        self.grafo = GrafoListaAdjacencia()
+    
+    def adicionar_estacao(self, estacao):
+        self.grafo.adicionar_vertice(estacao)
+    
+    def adicionar_linha(self, origem, destino, tempo_viagem):
+        self.grafo.adicionar_aresta(origem, destino, tempo_viagem)
+    
+    def rota_mais_rapida(self, origem, destino):
+        """Encontra rota mais rápida entre duas estações"""
+        distancias, predecessores = dijkstra(self.grafo, origem, destino)
+        
+        if distancias[destino] == float('infinity'):
+            return None, float('infinity')
+        
+        caminho = reconstruir_caminho(predecessores, origem, destino)
+        return caminho, distancias[destino]
+    
+    def todas_rotas_origem(self, origem):
+        """Calcula tempo para todas estações a partir de uma origem"""
+        distancias, _ = dijkstra(self.grafo, origem)
+        return distancias
+```
+
+#### 3. Detecção de Ciclos e Componentes
+```python
+def detectar_ciclo_nao_direcionado(grafo):
+    """Detecta se há ciclo em grafo não-direcionado usando DFS"""
+    visitados = set()
+    
+    def dfs_ciclo(vertice, pai):
+        visitados.add(vertice)
+        
+        for vizinho, _ in grafo.obter_vizinhos(vertice):
+            if vizinho == pai:
+                continue
+            
+            if vizinho in visitados:
+                return True  # Ciclo encontrado
+            
+            if dfs_ciclo(vizinho, vertice):
+                return True
+        
+        return False
+    
+    for vertice in grafo.grafo:
+        if vertice not in visitados:
+            if dfs_ciclo(vertice, None):
+                return True
+    
+    return False
+
+def componentes_conectados(grafo):
+    """Encontra todos os componentes conectados"""
+    visitados = set()
+    componentes = []
+    
+    for vertice in grafo.grafo:
+        if vertice not in visitados:
+            componente = []
+            dfs_componente(grafo, vertice, visitados, componente)
+            componentes.append(componente)
+    
+    return componentes
+
+def dfs_componente(grafo, vertice, visitados, componente):
+    visitados.add(vertice)
+    componente.append(vertice)
+    
+    for vizinho, _ in grafo.obter_vizinhos(vertice):
+        if vizinho not in visitados:
+            dfs_componente(grafo, vizinho, visitados, componente)
+```
+
+### Exercícios Práticos
+
+#### Exercício 1: Seis Graus de Separação
+Implemente função para verificar se todos os usuários de uma rede social estão conectados por no máximo 6 graus de separação.
+
+#### Exercício 2: Planejamento de Viagem
+Dado um grafo de cidades com custos de viagem, encontre:
+1. Viagem mais barata
+2. Viagem mais rápida  
+3. Viagem que visita todas as cidades (TSP simplificado)
+
+#### Exercício 3: Análise de Dependências
+Dado um grafo de dependências entre tarefas, determine:
+1. Ordem de execução válida (ordenação topológica)
+2. Se há dependências circulares
+3. Caminho crítico (maior tempo para completar)
+
+### A Revelação Final de Patrick
+
+"Professor," disse Patrick, completamente fascinado, "grafos são como a linguagem universal para modelar problemas complexos! Redes sociais, mapas, internet, circuitos, dependências... tudo pode ser representado como grafo!"
+
+Dr. Silva concordou: "Sim, Patrick! E o mais incrível é que uma vez que você modela um problema como grafo, pode usar qualquer algoritmo de grafos para resolvê-lo. É o poder da abstração matemática aplicada à computação."
+
+Patrick finalmente compreendeu que algoritmos e estruturas de dados não eram apenas conceitos acadêmicos - eram ferramentas poderosas para resolver problemas reais do mundo moderno.
+
+### Resumo de Complexidades dos Grafos
+
+| Algoritmo | Complexidade | Aplicação |
+|-----------|--------------|-----------|
+| DFS/BFS | O(V + E) | Percurso, conectividade |
+| Dijkstra | O((V + E) log V) | Menor caminho, pesos positivos |
+| Bellman-Ford | O(VE) | Menor caminho, pesos negativos |
+| Kruskal | O(E log E) | Árvore geradora mínima |
+| Prim | O((V + E) log V) | Árvore geradora mínima |
+
+Patrick agora dominava desde a análise básica de complexidade até estruturas avançadas como grafos - estava pronto para enfrentar qualquer desafio algorítmico!
+
+## Capítulo 11: Programação Dinâmica - A Arte de Lembrar
+
+### O Problema dos Números de Fibonacci
+
+Dr. Silva começou a nova aula com um desafio aparentemente simples: "Patrick, calcule o 40º número de Fibonacci."
+
+Patrick rapidamente escreveu a solução recursiva clássica:
+
+```python
+def fibonacci_ingenuo(n):
+    if n <= 1:
+        return n
+    return fibonacci_ingenuo(n-1) + fibonacci_ingenuo(n-2)
+
+# Patrick tenta calcular
+resultado = fibonacci_ingenuo(40)
+```
+
+Depois de alguns minutos esperando, Patrick ficou impaciente: "Professor, por que está demorando tanto? É só uma função simples!"
+
+"Ah," sorriu Dr. Silva, "deixe-me mostrar por que..."
+
+### O Problema da Explosão Exponencial
+
+Dr. Silva desenhou a árvore de recursão para `fibonacci_ingenuo(5)`:
+
+```
+                    fib(5)
+                   /      \
+               fib(4)      fib(3)
+              /     \      /     \
+          fib(3)   fib(2) fib(2) fib(1)
+         /    \    /   \   /   \
+     fib(2) fib(1) fib(1) fib(0) fib(1) fib(0)
+    /    \
+fib(1) fib(0)
+```
+
+"Vê o problema?" perguntou. "Estamos calculando `fib(3)` duas vezes, `fib(2)` três vezes, `fib(1)` cinco vezes!"
+
+Patrick ficou chocado: "Então para `fib(40)`, estamos recalculando os mesmos valores bilhões de vezes?"
+
+"Exato! A complexidade é O(2^n) - exponencial. Para n=40, são mais de 1 bilhão de operações!"
+
+### A Revolução da Programação Dinâmica
+
+"A solução," disse Dr. Silva, "é **lembrar** dos resultados que já calculamos. Isso se chama **Programação Dinâmica**."
+
+#### Abordagem 1: Memoização (Top-Down)
+```python
+def fibonacci_memoizado(n, memo=None):
+    if memo is None:
+        memo = {}
+    
+    # Se já calculamos, retorna resultado salvo
+    if n in memo:
+        return memo[n]
+    
+    # Caso base
+    if n <= 1:
+        return n
+    
+    # Calcula e salva o resultado
+    memo[n] = fibonacci_memoizado(n-1, memo) + fibonacci_memoizado(n-2, memo)
+    return memo[n]
+
+# Agora é instantâneo!
+resultado = fibonacci_memoizado(40)  # Resultado em milissegundos
+```
+
+#### Abordagem 2: Tabulação (Bottom-Up)
+```python
+def fibonacci_tabela(n):
+    if n <= 1:
+        return n
+    
+    # Cria tabela para armazenar resultados
+    dp = [0] * (n + 1)
+    dp[0] = 0
+    dp[1] = 1
+    
+    # Preenche tabela de baixo para cima
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+    
+    return dp[n]
+
+# Ainda mais eficiente - O(n) tempo, O(n) espaço
+```
+
+#### Abordagem 3: Otimização de Espaço
+```python
+def fibonacci_otimizado(n):
+    if n <= 1:
+        return n
+    
+    # Só precisamos dos dois últimos valores
+    anterior2, anterior1 = 0, 1
+    
+    for i in range(2, n + 1):
+        atual = anterior1 + anterior2
+        anterior2, anterior1 = anterior1, atual
+    
+    return anterior1
+
+# O(n) tempo, O(1) espaço - perfeito!
+```
+
+### Os Princípios da Programação Dinâmica
+
+Patrick aprendeu que PD funciona quando um problema tem:
+
+#### 1. Subestrutura Ótima
+A solução ótima do problema contém soluções ótimas dos subproblemas.
+
+#### 2. Subproblemas Sobrepostos
+Os mesmos subproblemas são resolvidos múltiplas vezes.
+
+"Se tem essas propriedades," explicou Dr. Silva, "PD pode transformar exponencial em polinomial!"
+
+### Problema Clássico: Moedas - Troco Mínimo
+
+**Problema:** Dado um valor e um conjunto de moedas, encontre o número mínimo de moedas para formar o troco.
+
+```python
+def troco_minimo(valor, moedas):
+    """
+    Encontra número mínimo de moedas para formar o valor
+    """
+    # dp[i] = número mínimo de moedas para valor i
+    dp = [float('inf')] * (valor + 1)
+    dp[0] = 0  # 0 moedas para valor 0
+    
+    for i in range(1, valor + 1):
+        for moeda in moedas:
+            if moeda <= i:
+                dp[i] = min(dp[i], dp[i - moeda] + 1)
+    
+    return dp[valor] if dp[valor] != float('inf') else -1
+
+def troco_minimo_com_moedas(valor, moedas):
+    """
+    Retorna também quais moedas usar
+    """
+    dp = [float('inf')] * (valor + 1)
+    parent = [-1] * (valor + 1)
+    dp[0] = 0
+    
+    for i in range(1, valor + 1):
+        for moeda in moedas:
+            if moeda <= i and dp[i - moeda] + 1 < dp[i]:
+                dp[i] = dp[i - moeda] + 1
+                parent[i] = moeda
+    
+    # Reconstrói solução
+    if dp[valor] == float('inf'):
+        return -1, []
+    
+    resultado = []
+    v = valor
+    while v > 0:
+        moeda_usada = parent[v]
+        resultado.append(moeda_usada)
+        v -= moeda_usada
+    
+    return dp[valor], resultado
+
+# Exemplo
+moedas = [1, 3, 4]
+valor = 6
+num_moedas, quais_moedas = troco_minimo_com_moedas(valor, moedas)
+print(f"Valor {valor}: {num_moedas} moedas {quais_moedas}")
+# Resultado: Valor 6: 2 moedas [3, 3]
+```
+
+### Problema da Mochila (Knapsack)
+
+**Problema:** Dado itens com peso e valor, e uma mochila com capacidade limitada, maximize o valor carregado.
+
+```python
+def mochila_01(pesos, valores, capacidade):
+    """
+    Problema da mochila 0-1 (cada item pode ser pego ou não)
+    """
+    n = len(pesos)
+    # dp[i][w] = valor máximo com primeiros i itens e capacidade w
+    dp = [[0] * (capacidade + 1) for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for w in range(capacidade + 1):
+            peso_item = pesos[i-1]
+            valor_item = valores[i-1]
+            
+            # Não pegar o item
+            dp[i][w] = dp[i-1][w]
+            
+            # Pegar o item (se couber)
+            if peso_item <= w:
+                dp[i][w] = max(dp[i][w], 
+                              dp[i-1][w - peso_item] + valor_item)
+    
+    return dp[n][capacidade]
+
+def mochila_otimizada(pesos, valores, capacidade):
+    """
+    Versão otimizada em espaço - O(capacidade) ao invés de O(n*capacidade)
+    """
+    dp = [0] * (capacidade + 1)
+    
+    for i in range(len(pesos)):
+        # Itera de trás para frente para não usar item duas vezes
+        for w in range(capacidade, pesos[i] - 1, -1):
+            dp[w] = max(dp[w], dp[w - pesos[i]] + valores[i])
+    
+    return dp[capacidade]
+
+# Exemplo: itens (peso, valor) e capacidade
+pesos = [10, 20, 30]
+valores = [60, 100, 120]  
+capacidade = 50
+
+valor_maximo = mochila_01(pesos, valores, capacidade)
+print(f"Valor máximo: {valor_maximo}")  # 220
+```
+
+### Maior Subsequência Comum (LCS)
+
+**Problema:** Encontrar a maior subsequência comum entre duas strings.
+
+```python
+def lcs_comprimento(str1, str2):
+    """
+    Calcula comprimento da maior subsequência comum
+    """
+    m, n = len(str1), len(str2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    return dp[m][n]
+
+def lcs_string(str1, str2):
+    """
+    Retorna a string da maior subsequência comum
+    """
+    m, n = len(str1), len(str2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    # Preenche tabela DP
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    # Reconstrói a string
+    lcs = []
+    i, j = m, n
+    
+    while i > 0 and j > 0:
+        if str1[i-1] == str2[j-1]:
+            lcs.append(str1[i-1])
+            i -= 1
+            j -= 1
+        elif dp[i-1][j] > dp[i][j-1]:
+            i -= 1
+        else:
+            j -= 1
+    
+    return ''.join(reversed(lcs))
+
+# Exemplo
+s1 = "ABCDGH"
+s2 = "AEDFHR"
+comprimento = lcs_comprimento(s1, s2)
+subsequencia = lcs_string(s1, s2)
+print(f"LCS entre '{s1}' e '{s2}': '{subsequencia}' (comprimento {comprimento})")
+# Resultado: LCS: "ADH" (comprimento 3)
+```
+
+### Caminho Mínimo em Grade
+
+**Problema:** Encontrar caminho de menor custo do topo-esquerdo ao fundo-direito de uma grade.
+
+```python
+def caminho_minimo_grade(grade):
+    """
+    Encontra caminho de menor custo em uma grade
+    """
+    m, n = len(grade), len(grade[0])
+    dp = [[0] * n for _ in range(m)]
+    
+    # Inicializa primeira célula
+    dp[0][0] = grade[0][0]
+    
+    # Preenche primeira linha
+    for j in range(1, n):
+        dp[0][j] = dp[0][j-1] + grade[0][j]
+    
+    # Preenche primeira coluna
+    for i in range(1, m):
+        dp[i][0] = dp[i-1][0] + grade[i][0]
+    
+    # Preenche resto da tabela
+    for i in range(1, m):
+        for j in range(1, n):
+            dp[i][j] = grade[i][j] + min(dp[i-1][j], dp[i][j-1])
+    
+    return dp[m-1][n-1]
+
+def caminho_minimo_com_caminho(grade):
+    """
+    Retorna custo mínimo e o caminho
+    """
+    m, n = len(grade), len(grade[0])
+    dp = [[0] * n for _ in range(m)]
+    
+    # Preenche DP (mesmo código anterior)
+    dp[0][0] = grade[0][0]
+    for j in range(1, n):
+        dp[0][j] = dp[0][j-1] + grade[0][j]
+    for i in range(1, m):
+        dp[i][0] = dp[i-1][0] + grade[i][0]
+    for i in range(1, m):
+        for j in range(1, n):
+            dp[i][j] = grade[i][j] + min(dp[i-1][j], dp[i][j-1])
+    
+    # Reconstrói caminho
+    caminho = []
+    i, j = m-1, n-1
+    
+    while i > 0 or j > 0:
+        caminho.append((i, j))
+        
+        if i == 0:
+            j -= 1
+        elif j == 0:
+            i -= 1
+        elif dp[i-1][j] < dp[i][j-1]:
+            i -= 1
+        else:
+            j -= 1
+    
+    caminho.append((0, 0))
+    caminho.reverse()
+    
+    return dp[m-1][n-1], caminho
+
+# Exemplo
+grade = [
+    [1, 3, 1],
+    [1, 5, 1],
+    [4, 2, 1]
+]
+custo, caminho = caminho_minimo_com_caminho(grade)
+print(f"Custo mínimo: {custo}")
+print(f"Caminho: {caminho}")
+```
+
+### Padrões Comuns de Programação Dinâmica
+
+#### 1. Problemas de Decisão (0/1)
+- Mochila 0/1
+- Partição de conjunto
+- Soma de subconjunto
+
+**Template:**
+```python
+# dp[i][j] = melhor resultado com primeiros i itens e restrição j
+for i in range(1, n+1):
+    for j in range(capacidade+1):
+        # Não escolher item i
+        dp[i][j] = dp[i-1][j]
+        
+        # Escolher item i (se possível)
+        if pode_escolher(i, j):
+            dp[i][j] = melhor(dp[i][j], dp[i-1][j-custo[i]] + valor[i])
+```
+
+#### 2. Problemas de String
+- LCS, LIS (Longest Increasing Subsequence)
+- Edit distance (Levenshtein)
+- Substring comum
+
+**Template:**
+```python
+# dp[i][j] = resultado considerando str1[0..i-1] e str2[0..j-1]
+for i in range(1, len(str1)+1):
+    for j in range(1, len(str2)+1):
+        if str1[i-1] == str2[j-1]:
+            dp[i][j] = dp[i-1][j-1] + 1  # ou outra operação
+        else:
+            dp[i][j] = função(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])
+```
+
+#### 3. Problemas de Caminho
+- Caminho mínimo em grade
+- Número de caminhos únicos
+- Caminho com obstáculos
+
+**Template:**
+```python
+# dp[i][j] = melhor resultado para chegar na posição (i,j)
+for i in range(m):
+    for j in range(n):
+        if eh_origem(i, j):
+            dp[i][j] = valor_inicial
+        else:
+            dp[i][j] = melhor_de_vizinhos(dp, i, j)
+```
+
+### Otimizações Avançadas
+
+#### 1. Redução de Dimensão
+Muitos problemas 2D podem ser reduzidos para 1D:
+
+```python
+# Em vez de dp[i][j], usar apenas dp[j]
+# Iterar sobre i implicitamente
+```
+
+#### 2. Lazy Evaluation
+Para problemas muito grandes, calcular apenas valores necessários.
+
+#### 3. Bottom-Up vs Top-Down
+- **Bottom-Up (Tabulação):** Mais eficiente, menos overhead
+- **Top-Down (Memoização):** Mais intuitivo, calcula apenas necessário
+
+### Exercícios Práticos
+
+#### Exercício 1: Escada de Moedas
+Você pode subir escada de 1 ou 2 degraus por vez. Quantas formas há de subir n degraus?
+
+#### Exercício 2: Casa do Ladrão
+Ladrão não pode roubar casas adjacentes. Dadas valores das casas, maximize valor roubado.
+
+#### Exercício 3: Palíndromo mais Longo
+Encontre a maior subsequência palíndromo em uma string.
+
+### A Descoberta de Patrick
+
+"Professor," disse Patrick impressionado, "programação dinâmica é como ter memória fotográfica! Em vez de refazer trabalho, lembramos dos resultados."
+
+Dr. Silva assentiu: "Exato! E o mais impressionante é que transforma problemas impossíveis (exponenciais) em tratáveis (polinomiais). É uma das técnicas mais poderosas da ciência da computação."
+
+Patrick agora entendia que PD não era apenas sobre otimização - era sobre reconhecer padrões e usar a estrutura matemática dos problemas para encontrar soluções elegantes.
+
+## Capítulo 12: Algoritmos Avançados - Conquistando o Impossível
+
+### O Desafio Final
+
+No último dia de aula, Dr. Silva apresentou um desafio especial: "Patrick, você aprendeu análise de complexidade, estruturas de dados, e programação dinâmica. Agora vou mostrar algoritmos que resolvem problemas que parecem impossíveis."
+
+"Como assim, professor?"
+
+"Problemas NP-completos, aproximações quando a solução ótima é intratável, e algoritmos randomizados que usam sorte para serem eficientes!"
+
+### Algoritmos de Aproximação
+
+#### O Problema do Caixeiro Viajante (TSP)
+
+**Problema:** Encontrar menor rota que visita todas as cidades exatamente uma vez.
+
+```python
+import math
+import random
+
+def tsp_forca_bruta(cidades, distancias):
+    """
+    Solução ótima - O(n!) - só funciona para n pequeno
+    """
+    from itertools import permutations
+    
+    n = len(cidades)
+    melhor_rota = None
+    menor_distancia = float('inf')
+    
+    for rota in permutations(range(1, n)):  # Fixa cidade 0 como início
+        rota_completa = [0] + list(rota) + [0]
+        distancia_total = 0
+        
+        for i in range(len(rota_completa) - 1):
+            distancia_total += distancias[rota_completa[i]][rota_completa[i+1]]
+        
+        if distancia_total < menor_distancia:
+            menor_distancia = distancia_total
+            melhor_rota = rota_completa
+    
+    return melhor_rota, menor_distancia
+
+def tsp_vizinho_mais_proximo(cidades, distancias):
+    """
+    Heurística gulosa - O(n²) - aproximação 2x
+    """
+    n = len(cidades)
+    visitadas = [False] * n
+    rota = [0]  # Começa na cidade 0
+    visitadas[0] = True
+    distancia_total = 0
+    
+    cidade_atual = 0
+    
+    for _ in range(n - 1):
+        menor_dist = float('inf')
+        proxima_cidade = -1
+        
+        # Encontra cidade mais próxima não visitada
+        for cidade in range(n):
+            if not visitadas[cidade] and distancias[cidade_atual][cidade] < menor_dist:
+                menor_dist = distancias[cidade_atual][cidade]
+                proxima_cidade = cidade
+        
+        # Move para próxima cidade
+        rota.append(proxima_cidade)
+        visitadas[proxima_cidade] = True
+        distancia_total += menor_dist
+        cidade_atual = proxima_cidade
+    
+    # Volta para cidade inicial
+    rota.append(0)
+    distancia_total += distancias[cidade_atual][0]
+    
+    return rota, distancia_total
+
+def tsp_2opt(cidades, distancias, rota_inicial=None):
+    """
+    Otimização local 2-opt - melhora rota iterativamente
+    """
+    if rota_inicial is None:
+        rota_inicial, _ = tsp_vizinho_mais_proximo(cidades, distancias)
+    
+    def calcular_distancia_rota(rota):
+        dist = 0
+        for i in range(len(rota) - 1):
+            dist += distancias[rota[i]][rota[i+1]]
+        return dist
+    
+    def fazer_2opt(rota, i, k):
+        """Reverte segmento entre posições i e k"""
+        nova_rota = rota[:i] + rota[i:k+1][::-1] + rota[k+1:]
+        return nova_rota
+    
+    melhor_rota = rota_inicial[:]
+    melhor_distancia = calcular_distancia_rota(melhor_rota)
+    melhorou = True
+    
+    while melhorou:
+        melhorou = False
+        
+        for i in range(1, len(melhor_rota) - 2):
+            for k in range(i + 1, len(melhor_rota) - 1):
+                nova_rota = fazer_2opt(melhor_rota, i, k)
+                nova_distancia = calcular_distancia_rota(nova_rota)
+                
+                if nova_distancia < melhor_distancia:
+                    melhor_rota = nova_rota
+                    melhor_distancia = nova_distancia
+                    melhorou = True
+                    break
+            
+            if melhorou:
+                break
+    
+    return melhor_rota, melhor_distancia
+```
+
+#### Algoritmo de Aproximação para Set Cover
+
+**Problema:** Dado universo U e coleção S de subconjuntos, encontrar menor subcoleção que cobre todo U.
+
+```python
+def set_cover_guloso(universo, subconjuntos):
+    """
+    Aproximação gulosa para Set Cover
+    Garantia: no máximo ln(n) vezes a solução ótima
+    """
+    universo_restante = set(universo)
+    cobertura = []
+    
+    while universo_restante:
+        # Escolhe subconjunto que cobre mais elementos não cobertos
+        melhor_subconjunto = None
+        maior_cobertura = 0
+        
+        for i, subconjunto in enumerate(subconjuntos):
+            elementos_novos = subconjunto & universo_restante
+            
+            if len(elementos_novos) > maior_cobertura:
+                maior_cobertura = len(elementos_novos)
+                melhor_subconjunto = i
+        
+        if melhor_subconjunto is not None:
+            cobertura.append(melhor_subconjunto)
+            universo_restante -= subconjuntos[melhor_subconjunto]
+    
+    return cobertura
+
+# Exemplo
+universo = {1, 2, 3, 4, 5, 6, 7, 8}
+subconjuntos = [
+    {1, 2, 3},
+    {4, 5, 6},
+    {1, 4, 7},
+    {2, 5, 8},
+    {3, 6, 7, 8}
+]
+
+solucao = set_cover_guloso(universo, subconjuntos)
+print(f"Subconjuntos escolhidos: {solucao}")
+```
+
+### Algoritmos Randomizados
+
+#### QuickSort Randomizado
+```python
+import random
+
+def quicksort_randomizado(arr, baixo=0, alto=None):
+    """
+    QuickSort com escolha aleatória de pivô
+    Complexidade esperada: O(n log n)
+    """
+    if alto is None:
+        alto = len(arr) - 1
+    
+    if baixo < alto:
+        # Escolhe pivô aleatório
+        indice_aleatorio = random.randint(baixo, alto)
+        arr[indice_aleatorio], arr[alto] = arr[alto], arr[indice_aleatorio]
+        
+        indice_pivo = particionar(arr, baixo, alto)
+        quicksort_randomizado(arr, baixo, indice_pivo - 1)
+        quicksort_randomizado(arr, indice_pivo + 1, alto)
+
+def particionar(arr, baixo, alto):
+    pivo = arr[alto]
+    i = baixo - 1
+    
+    for j in range(baixo, alto):
+        if arr[j] <= pivo:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    arr[i + 1], arr[alto] = arr[alto], arr[i + 1]
+    return i + 1
+```
+
+#### Algoritmo de Miller-Rabin (Teste de Primalidade)
+```python
+def miller_rabin(n, k=5):
+    """
+    Teste probabilístico de primalidade
+    Precisão: 1 - 1/4^k
+    """
+    if n < 2:
+        return False
+    if n == 2 or n == 3:
+        return True
+    if n % 2 == 0:
+        return False
+    
+    # Escreve n-1 como d * 2^r
+    r = 0
+    d = n - 1
+    while d % 2 == 0:
+        r += 1
+        d //= 2
+    
+    # Testa k testemunhas
+    for _ in range(k):
+        a = random.randint(2, n - 2)
+        x = pow(a, d, n)  # a^d mod n
+        
+        if x == 1 or x == n - 1:
+            continue
+        
+        for _ in range(r - 1):
+            x = pow(x, 2, n)
+            if x == n - 1:
+                break
+        else:
+            return False  # Composto
+    
+    return True  # Provavelmente primo
+
+def gerar_primo_grande(bits=1024):
+    """Gera número primo grande para criptografia"""
+    while True:
+        candidato = random.getrandbits(bits)
+        candidato |= (1 << bits - 1) | 1  # Garante que é ímpar e tem bits corretos
+        
+        if miller_rabin(candidato, 20):
+            return candidato
+```
+
+#### Skip List - Estrutura Probabilística
+```python
+import random
+
+class NoSkipList:
+    def __init__(self, chave, valor, nivel):
+        self.chave = chave
+        self.valor = valor
+        self.proximo = [None] * nivel
+
+class SkipList:
+    def __init__(self, max_nivel=16):
+        self.max_nivel = max_nivel
+        self.cabeca = NoSkipList(None, None, max_nivel)
+        self.nivel_atual = 0
+    
+    def _nivel_aleatorio(self):
+        """Gera nível aleatório com probabilidade 1/2"""
+        nivel = 0
+        while random.random() < 0.5 and nivel < self.max_nivel - 1:
+            nivel += 1
+        return nivel + 1
+    
+    def buscar(self, chave):
+        """Busca em O(log n) esperado"""
+        atual = self.cabeca
+        
+        # Desce níveis de cima para baixo
+        for i in range(self.nivel_atual - 1, -1, -1):
+            while (atual.proximo[i] and 
+                   atual.proximo[i].chave < chave):
+                atual = atual.proximo[i]
+        
+        # Move para próximo nó no nível 0
+        atual = atual.proximo[0]
+        
+        if atual and atual.chave == chave:
+            return atual.valor
+        return None
+    
+    def inserir(self, chave, valor):
+        """Inserção em O(log n) esperado"""
+        update = [None] * self.max_nivel
+        atual = self.cabeca
+        
+        # Encontra posições de inserção em cada nível
+        for i in range(self.nivel_atual - 1, -1, -1):
+            while (atual.proximo[i] and 
+                   atual.proximo[i].chave < chave):
+                atual = atual.proximo[i]
+            update[i] = atual
+        
+        atual = atual.proximo[0]
+        
+        # Se chave já existe, atualiza valor
+        if atual and atual.chave == chave:
+            atual.valor = valor
+            return
+        
+        # Cria novo nó
+        novo_nivel = self._nivel_aleatorio()
+        
+        if novo_nivel > self.nivel_atual:
+            for i in range(self.nivel_atual, novo_nivel):
+                update[i] = self.cabeca
+            self.nivel_atual = novo_nivel
+        
+        novo_no = NoSkipList(chave, valor, novo_nivel)
+        
+        # Atualiza ponteiros
+        for i in range(novo_nivel):
+            novo_no.proximo[i] = update[i].proximo[i]
+            update[i].proximo[i] = novo_no
+```
+
+### Algoritmos de String Avançados
+
+#### Algoritmo KMP (Knuth-Morris-Pratt)
+```python
+def construir_tabela_kmp(padrao):
+    """Constrói tabela de falhas para KMP"""
+    m = len(padrao)
+    tabela = [0] * m
+    j = 0
+    
+    for i in range(1, m):
+        while j > 0 and padrao[i] != padrao[j]:
+            j = tabela[j - 1]
+        
+        if padrao[i] == padrao[j]:
+            j += 1
+        
+        tabela[i] = j
+    
+    return tabela
+
+def buscar_kmp(texto, padrao):
+    """
+    Busca padrão em texto usando KMP
+    Complexidade: O(n + m)
+    """
+    n, m = len(texto), len(padrao)
+    
+    if m == 0:
+        return []
+    
+    tabela = construir_tabela_kmp(padrao)
+    ocorrencias = []
+    j = 0
+    
+    for i in range(n):
+        while j > 0 and texto[i] != padrao[j]:
+            j = tabela[j - 1]
+        
+        if texto[i] == padrao[j]:
+            j += 1
+        
+        if j == m:
+            ocorrencias.append(i - m + 1)
+            j = tabela[j - 1]
+    
+    return ocorrencias
+
+# Exemplo
+texto = "ABABDABACDABABCABCABCABCABC"
+padrao = "ABABCAB"
+posicoes = buscar_kmp(texto, padrao)
+print(f"Padrão encontrado nas posições: {posicoes}")
+```
+
+#### Algoritmo de Rabin-Karp (Rolling Hash)
+```python
+def buscar_rabin_karp(texto, padrao, base=256, primo=101):
+    """
+    Busca usando rolling hash
+    Complexidade média: O(n + m)
+    """
+    n, m = len(texto), len(padrao)
+    
+    if m > n:
+        return []
+    
+    # Calcula hash do padrão
+    hash_padrao = 0
+    hash_texto = 0
+    h = 1
+    
+    # h = base^(m-1) % primo
+    for i in range(m - 1):
+        h = (h * base) % primo
+    
+    # Hash inicial do padrão e primeira janela do texto
+    for i in range(m):
+        hash_padrao = (base * hash_padrao + ord(padrao[i])) % primo
+        hash_texto = (base * hash_texto + ord(texto[i])) % primo
+    
+    ocorrencias = []
+    
+    # Desliza janela sobre texto
+    for i in range(n - m + 1):
+        # Se hashes coincidem, verifica caractere por caractere
+        if hash_padrao == hash_texto:
+            if texto[i:i+m] == padrao:
+                ocorrencias.append(i)
+        
+        # Calcula hash da próxima janela
+        if i < n - m:
+            hash_texto = (base * (hash_texto - ord(texto[i]) * h) + 
+                         ord(texto[i + m])) % primo
+            
+            # Garante hash positivo
+            if hash_texto < 0:
+                hash_texto += primo
+    
+    return ocorrencias
+```
+
+### Algoritmos Geométricos
+
+#### Problema do Par Mais Próximo
+```python
+import math
+
+def distancia(p1, p2):
+    return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+
+def par_mais_proximo_forca_bruta(pontos):
+    """O(n²) - para n pequeno"""
+    n = len(pontos)
+    menor_dist = float('inf')
+    par = None
+    
+    for i in range(n):
+        for j in range(i + 1, n):
+            dist = distancia(pontos[i], pontos[j])
+            if dist < menor_dist:
+                menor_dist = dist
+                par = (pontos[i], pontos[j])
+    
+    return par, menor_dist
+
+def par_mais_proximo_dividir_conquistar(pontos):
+    """
+    Algoritmo divide-e-conquista O(n log n)
+    """
+    def par_proximo_rec(px, py):
+        n = len(px)
+        
+        # Caso base: força bruta para n pequeno
+        if n <= 3:
+            return par_mais_proximo_forca_bruta(px)
+        
+        # Divide
+        meio = n // 2
+        ponto_meio = px[meio]
+        
+        pyl = [p for p in py if p[0] <= ponto_meio[0]]
+        pyr = [p for p in py if p[0] > ponto_meio[0]]
+        
+        # Conquista
+        par_esq, dist_esq = par_proximo_rec(px[:meio], pyl)
+        par_dir, dist_dir = par_proximo_rec(px[meio:], pyr)
+        
+        # Encontra menor distância
+        if dist_esq < dist_dir:
+            menor_dist = dist_esq
+            par_menor = par_esq
+        else:
+            menor_dist = dist_dir
+            par_menor = par_dir
+        
+        # Verifica pontos próximos à linha divisória
+        faixa = [p for p in py if abs(p[0] - ponto_meio[0]) < menor_dist]
+        
+        for i in range(len(faixa)):
+            j = i + 1
+            while j < len(faixa) and (faixa[j][1] - faixa[i][1]) < menor_dist:
+                dist = distancia(faixa[i], faixa[j])
+                if dist < menor_dist:
+                    menor_dist = dist
+                    par_menor = (faixa[i], faixa[j])
+                j += 1
+        
+        return par_menor, menor_dist
+    
+    # Ordena pontos por x e y
+    px = sorted(pontos, key=lambda p: p[0])
+    py = sorted(pontos, key=lambda p: p[1])
+    
+    return par_proximo_rec(px, py)
+```
+
+### A Síntese Final
+
+"Professor," disse Patrick, completamente maravilhado, "cada capítulo foi uma revelação! Da análise simples de complexidade até algoritmos que usam aleatoriedade e aproximação..."
+
+Dr. Silva sorriu com orgulho: "Patrick, você agora possui o toolkit fundamental de qualquer cientista da computação. Mas lembre-se: algoritmos são ferramentas para resolver problemas. O mais importante é saber quando e como usar cada um."
+
+"E se eu não souber qual algoritmo usar?"
+
+"Aí você usa o Método dos 7 Passos que aprendeu no início! Analise o problema, identifique os padrões, escolha a estrutura certa, implemente, teste, otimize e documente. A experiência virá com a prática."
+
+Patrick refletiu sobre sua jornada: começou sem saber nem o que era Big O, e agora dominava desde estruturas básicas até algoritmos probabilísticos. Mais do que isso, aprendeu a pensar algoritmicamente - uma habilidade que usaria pelo resto da vida.
+
+"Professor, qual é o próximo passo?"
+
+"Agora, Patrick, você vai aplicar tudo isso em projetos reais. Construa sistemas, resolva problemas do mundo real, contribua com código aberto. A teoria que você aprendeu só tem valor quando aplicada para fazer a diferença no mundo!"
+
+E assim terminou a jornada de Patrick no mundo dos algoritmos e complexidade - não como um fim, mas como o início de uma carreira dedicada a usar computação para resolver os desafios mais importantes da humanidade.
+
+## Conclusão: A Jornada Continua
+
+Patrick agora entendia que algoritmos e estruturas de dados não eram apenas conceitos acadêmicos - eram as ferramentas fundamentais para transformar ideias em soluções computacionais eficientes. 
+
+Do método científico de análise de algoritmos às estruturas sofisticadas como grafos, da programação dinâmica aos algoritmos randomizados, cada conceito era uma peça em um quebra-cabeças maior: o poder de resolver problemas complexos de forma elegante e eficiente.
+
+A verdadeira descoberta de Patrick foi perceber que a Ciência da Computação é, no fundo, sobre encontrar padrões, otimizar recursos e criar soluções que escalam. E com o conhecimento que agora possuía, estava pronto para enfrentar qualquer desafio algorítmico que o futuro pudesse trazer.
+
+**A jornada não termina aqui - ela apenas começou.**
+
+---
+
+*"A melhor forma de aprender algoritmos é implementando-os. A melhor forma de dominar algoritmos é aplicando-os a problemas reais."* - Dr. Silva
+
+---
+
+### Resumo Final das Complexidades
+
+| Estrutura/Algoritmo | Busca | Inserção | Remoção | Espaço |
+|-------------------|-------|----------|---------|--------|
+| Array | O(n) | O(n) | O(n) | O(n) |
+| Lista Ligada | O(n) | O(1) | O(n) | O(n) |
+| Pilha | O(n) | O(1) | O(1) | O(n) |
+| Fila | O(n) | O(1) | O(1) | O(n) |
+| BST Balanceada | O(log n) | O(log n) | O(log n) | O(n) |
+| Hash Table | O(1)* | O(1)* | O(1)* | O(n) |
+| Heap | O(n) | O(log n) | O(log n) | O(n) |
+
+| Algoritmo de Ordenação | Melhor | Médio | Pior | Espaço |
+|----------------------|--------|-------|------|--------|
+| Bubble Sort | O(n) | O(n²) | O(n²) | O(1) |
+| Insertion Sort | O(n) | O(n²) | O(n²) | O(1) |
+| Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) |
+| Heap Sort | O(n log n) | O(n log n) | O(n log n) | O(1) |
+
+*\* Complexidade amortizada/esperada*
+
+### Referências e Recursos para Continuar
+
+**Livros Recomendados:**
+- "Introduction to Algorithms" - Cormen, Leiserson, Rivest, Stein
+- "Algorithm Design" - Kleinberg, Tardos  
+- "Data Structures and Algorithms in Python" - Goodrich, Tamassia, Goldwasser
+
+**Plataformas de Prática:**
+- LeetCode, HackerRank, CodeForces
+- Project Euler (problemas matemáticos)
+- Kaggle (ciência de dados)
+
+**Próximos Tópicos a Explorar:**
+- Algoritmos distribuídos
+- Machine Learning e IA
+- Computação paralela
+- Criptografia
+- Teoria dos jogos algorítmica
+
+**Lembre-se:** A melhor forma de aprender é fazendo. Implemente, experimente, falhe, aprenda e melhore. A jornada de um algoritmista nunca termina!
 
 **História de Patrick:** Encontrar o maior salário em uma lista. Precisa olhar todos os salários, um por um.
 
