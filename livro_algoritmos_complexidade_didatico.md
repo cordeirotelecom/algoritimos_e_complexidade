@@ -37,15 +37,15 @@ Cada conceito é apresentado seguindo uma sequência didática:
 ## 🌟 **POR QUE ESTE LIVRO É ESPECIAL**
 
 ### 🎯 **Metodologia Única no Mundo**
-- **Narrativa Cinematográfica**: Acompanhe Patrick desde novato até expert
-- **Método dos 7 Passos**: Framework científico exclusivo para análise
+- **Narrativa Didática**: Acompanhe Patrick desde novato até especialista
+- **Método dos 7 Passos**: Metodologia científica para análise
 - **Casos Reais**: Netflix, Google, Tesla, Facebook - veja algoritmos funcionando
 - **Progressão Natural**: Do conceito básico até algoritmos avançados
 - **Hands-On Learning**: Código, diagramas, exercícios e projetos reais
 
 ### 🚀 **O que Você se Tornará**
 ```
-🧠 PENSADOR ALGORÍTMICO EXPERT
+🧠 PENSADOR ALGORÍTMICO ESPECIALISTA
 ├── Analisa complexidade instantaneamente
 ├── Escolhe estruturas de dados ideais
 ├── Otimiza sistemas para milhões de usuários
@@ -67,18 +67,18 @@ Cada conceito é apresentado seguindo uma sequência didática:
 
 ### 🔬 **MÓDULO 2: SCIENTIFIC METHOD** *(O Método Científico)*
 ```
-🎬 CENA: Patrick cria framework para analisar qualquer algoritmo
+🎬 CENA: Patrick cria metodologia para analisar qualquer algoritmo
 📊 APRENDE: Método dos 7 Passos para análise científica
 🛠️ PRATICA: Análise completa de algoritmos do Instagram
 🎯 RESULTADO: Metodologia profissional de análise
 ```
 
-### ⚡ **MÓDULO 3: COMPLEXITY MASTERY** *(Domínio da Complexidade)*
+### ⚡ **MÓDULO 3: ANÁLISE DE COMPLEXIDADE** *(Domínio da Complexidade)*
 ```
 🎬 CENA: Patrick entende por que o WhatsApp funciona instantaneamente
 📊 APRENDE: Big O, notações, análise assintótica
 🛠️ PRATICA: Otimização de sistemas Netflix
-🎯 RESULTADO: Expert em análise de performance
+🎯 RESULTADO: Especialista em análise de desempenho
 ```
 
 ### 🏗️ **MÓDULO 4: DATA STRUCTURES** *(Arquitetura de Dados)*
@@ -89,12 +89,12 @@ Cada conceito é apresentado seguindo uma sequência didática:
 🎯 RESULTADO: Arquiteto de estruturas de dados
 ```
 
-### 🎯 **MÓDULO 5: SEARCH & SORT MASTERY** *(Busca e Ordenação Expert)*
+### 🎯 **MÓDULO 5: BUSCA E ORDENAÇÃO** *(Algoritmos de Busca e Ordenação)*
 ```
 🎬 CENA: Patrick otimiza busca para 1 bilhão de usuários
 📊 APRENDE: Algoritmos de busca e ordenação avançados
 🛠️ PRATICA: Sistema de busca do YouTube
-🎯 RESULTADO: Expert em busca e ordenação
+🎯 RESULTADO: Especialista em busca e ordenação
 ```
 
 ### 🌲 **MÓDULO 6: TREE ALGORITHMS** *(Algoritmos em Árvores)*
@@ -105,23 +105,23 @@ Cada conceito é apresentado seguindo uma sequência didática:
 🎯 RESULTADO: Especialista em estruturas hierárquicas
 ```
 
-### 🕸️ **MÓDULO 7: GRAPH MASTERY** *(Domínio de Grafos)*
+### 🕸️ **MÓDULO 7: ALGORITMOS EM GRAFOS** *(Domínio de Grafos)*
 ```
 🎬 CENA: Patrick otimiza rotas do Uber globalmente
 📊 APRENDE: Algoritmos de grafos, caminhos, redes
 🛠️ PRATICA: Sistema de navegação do Google Maps
-🎯 RESULTADO: Expert em algoritmos de grafos
+🎯 RESULTADO: Especialista em algoritmos de grafos
 ```
 
-### 💎 **MÓDULO 8: DYNAMIC PROGRAMMING** *(Programação Dinâmica)*
+### 💎 **MÓDULO 8: PROGRAMAÇÃO DINÂMICA** *(Programação Dinâmica)*
 ```
 🎬 CENA: Patrick resolve problemas "impossíveis" com DP
 📊 APRENDE: Memoização, otimização, subproblemas
 🛠️ PRATICA: Algoritmos de Machine Learning
-🎯 RESULTADO: Mestre em otimização algorítmica
+🎯 RESULTADO: Especialista em otimização algorítmica
 ```
 
-### 🚀 **MÓDULO 9: ADVANCED ALGORITHMS** *(Algoritmos Avançados)*
+### 🚀 **MÓDULO 9: ALGORITMOS AVANÇADOS** *(Algoritmos Avançados)*
 ```
 🎬 CENA: Patrick trabalha com algoritmos de criptografia
 📊 APRENDE: Randomizados, aproximação, geometria
@@ -167,7 +167,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 2. 🔬 SCIENCE: Análise rigorosa + método científico  
 3. 💻 CODE: Implementação prática + otimizações
 4. 🌍 SCALE: Aplicação global + casos reais
-5. 🚀 MASTER: Domínio completo + projetos avançados
+5. 🚀 ESPECIALISTA: Domínio completo + projetos avançados
 ```
 
 ---
@@ -341,25 +341,25 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 🌟 CONQUISTA: Pensamento algorítmico
 ```
 
-### **🔬 CAPÍTULO 2: O MÉTODO CIENTÍFICO** *(The 7-Step Framework)*
+### **🔬 CAPÍTULO 2: O MÉTODO CIENTÍFICO** *(Metodologia dos 7 Passos)*
 ```
 🎬 CENÁRIO: Laboratório de análise
 🧠 APRENDE: Metodologia dos 7 passos
 💡 DESCOBRE: Análise sistemática
-🌟 CONQUISTA: Framework de expert
+🌟 CONQUISTA: Metodologia de especialista
 ```
 
-### **⚡ CAPÍTULO 3: COMPLEXIDADE ABSOLUTA** *(Big O Mastery)*
+### **⚡ CAPÍTULO 3: ANÁLISE DE COMPLEXIDADE** *(Notação Big O)*
 ```
-🎬 CENÁRIO: Guerra de performance
+🎬 CENÁRIO: Guerra de desempenho
 🧠 APRENDE: Notação Big O
 💡 DESCOBRE: Análise assintótica
-🌟 CONQUISTA: Predição de performance
+🌟 CONQUISTA: Predição de desempenho
 ```
 
-## 🚀 **PARTE II - ESTRUTURAS FUNDAMENTAIS** *(Core Structures)*
+## 🚀 **PARTE II - ESTRUTURAS FUNDAMENTAIS** *(Estruturas Básicas)*
 
-### **📊 CAPÍTULO 4: ARRAYS E LISTAS** *(Linear Structures)*
+### **📊 CAPÍTULO 4: ARRAYS E LISTAS** *(Estruturas Lineares)*
 ```
 🎬 CENÁRIO: Sistema de streaming Netflix
 🧠 APRENDE: Estruturas lineares
@@ -367,7 +367,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 🌟 CONQUISTA: Escolha estrutural otimizada
 ```
 
-### **🗂️ CAPÍTULO 5: PILHAS E FILAS** *(Stack & Queue Mastery)*
+### **🗂️ CAPÍTULO 5: PILHAS E FILAS** *(Estruturas LIFO e FIFO)*
 ```
 🎬 CENÁRIO: Sistema operacional moderno
 🧠 APRENDE: LIFO e FIFO
@@ -393,7 +393,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 🌟 CONQUISTA: Busca ultra-rápida
 ```
 
-## 📈 **PARTE IV - ALGORITMOS DE ORDENAÇÃO** *(Sorting Mastery)*
+## 📈 **PARTE IV - ALGORITMOS DE ORDENAÇÃO** *(Algoritmos de Ordenação)*
 
 ### **⚡ CAPÍTULO 8: ORDENAÇÃO BÁSICA** *(Basic Sorting)*
 ```
@@ -426,7 +426,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 🎬 CENÁRIO: Banco de dados MySQL
 🧠 APRENDE: AVL, Red-Black, B-Trees
 💡 DESCOBRE: Auto-balanceamento
-🌟 CONQUISTA: Performance garantida
+🌟 CONQUISTA: Desempenho garantido
 ```
 
 ## 🕸️ **PARTE VI - ALGORITMOS DE GRAFOS** *(Graph Algorithms)*
@@ -499,7 +499,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 ```
 🔍 SEARCH SPECIALIST: Capítulos 6-7
 📊 DATA ARCHITECT: Capítulos 4-5, 10-11
-⚡ PERFORMANCE GURU: Capítulos 3, 8-9
+⚡ ESPECIALISTA EM DESEMPENHO: Capítulos 3, 8-9
 🕸️ NETWORK EXPERT: Capítulos 12-13
 🧠 AI RESEARCHER: Capítulos 14-15
 🌍 SYSTEM DESIGNER: Capítulos 16-17
@@ -609,14 +609,14 @@ COMPARAÇÕES: 847
 
 **DR. SILVA:** "Aproximadamente 11 horas se tivesse sorte, 22 horas no pior caso."
 
-#### ⚡ **ROUND 2 - ABORDAGEM NINJA (BUSCA BINÁRIA)**
+#### ⚡ **SOLUÇÃO 2 - ABORDAGEM OTIMIZADA (BUSCA BINÁRIA)**
 
 **DR. SILVA:** "Agora, Ana, você tenta. Mas use esta estratégia..."
 
 *Ana sussurra algo ao ouvido de Ana, que sorri.*
 
 ```python
-def busca_ninja(cartoes_ordenados, nome_procurado):
+def busca_otimizada(cartoes_ordenados, nome_procurado):
     """A estratégia secreta do Dr. Silva"""
     inicio = 0
     fim = len(cartoes_ordenados) - 1
@@ -701,7 +701,7 @@ Dr. Silva projeta na tela uma comparação que deixa todos em choque:
 🎯 DESAFIO: Entregar mensagens instantaneamente para 2B usuários
 ⚡ SOLUÇÃO: Grafos distribuídos + roteamento otimizado
 💰 RESULTADO: Vendido por $19 bilhões (55 funcionários!)
-⏱️ PERFORMANCE: 100 bilhões de mensagens/dia
+⏱️ DESEMPENHO: 100 bilhões de mensagens/dia
 ```
 
 **PATRICK:** "Espera... 55 funcionários para 2 bilhões de usuários?!"
@@ -858,7 +858,7 @@ print(f"Maior número: {resultado}")  # Output: 9
 
 ### 🛠️ **HANDS-ON LAB - PRIMEIRO ALGORITMO DE PATRICK**
 
-#### 🔬 **EXPERIMENTO 1: ANÁLISE DE PERFORMANCE**
+#### 🔬 **EXPERIMENTO 1: ANÁLISE DE DESEMPENHO**
 
 **OBJETIVO:** Patrick vai implementar e testar diferentes abordagens para o mesmo problema.
 
@@ -890,8 +890,8 @@ def encontrar_duplicatas_patrick(lista):
                 duplicatas.append(lista[i])
     return duplicatas
 
-# ⚡ ALGORITMO 2: Abordagem Ninja (Hash Set)  
-def encontrar_duplicatas_ninja(lista):
+# ⚡ ALGORITMO 2: Abordagem Otimizada (Hash Set)  
+def encontrar_duplicatas_otimizada(lista):
     """
     🎯 ESTRATÉGIA: Usar conjunto para rastrear elementos vistos
     📊 COMPLEXIDADE: O(n) - Linear
@@ -908,7 +908,7 @@ def encontrar_duplicatas_ninja(lista):
     return list(duplicatas)
 
 # 🧪 EXPERIMENTO EM TEMPO REAL
-print("🔬 LABORATÓRIO DE PATRICK - ANÁLISE DE PERFORMANCE")
+print("🔬 LABORATÓRIO DE PATRICK - ANÁLISE DE DESEMPENHO")
 print("="*60)
 
 for tamanho in [100, 1000, 5000, 10000]:
@@ -931,7 +931,7 @@ for tamanho in [100, 1000, 5000, 10000]:
 
 **RESULTADO EXECUTADO NA SALA:**
 ```
-🔬 LABORATÓRIO DE PATRICK - ANÁLISE DE PERFORMANCE
+🔬 LABORATÓRIO DE PATRICK - ANÁLISE DE DESEMPENHO
 ============================================================
 
 📊 DADOS: 100 elementos
@@ -1157,7 +1157,7 @@ Dr. Silva projeta um gráfico em tempo real:
 
 💻 PRÁTICO:
 ├── ✅ Implementei meu primeiro algoritmo
-├── ✅ Meço performance de diferentes abordagens
+├── ✅ Meço desempenho de diferentes abordagens
 ├── ✅ Compreendo trade-offs básicos
 └── ✅ Identifico tipos de algoritmos
 
@@ -1198,11 +1198,11 @@ d) Usam inteligência artificial
 
 ### 🚀 **PRÉVIA DO PRÓXIMO EPISÓDIO**
 
-**DR. SILVA:** "Patrick, você viu que diferentes algoritmos têm diferentes performances. Mas como podemos PREVER quão rápido um algoritmo será ANTES de implementá-lo?"
+**DR. SILVA:** "Patrick, você viu que diferentes algoritmos têm diferentes desempenhos. Mas como podemos PREVER quão rápido um algoritmo será ANTES de implementá-lo?"
 
 **PATRICK:** "É possível fazer isso?"
 
-**DR. SILVA:** "Não apenas possível - é essencial! No próximo capítulo, você aprenderá o **Método Científico dos 7 Passos** para analisar QUALQUER algoritmo. É como ter uma bola de cristal que prevê performance!"
+**DR. SILVA:** "Não apenas possível - é essencial! No próximo capítulo, você aprenderá o **Método Científico dos 7 Passos** para analisar QUALQUER algoritmo. É como ter uma bola de cristal que prevê desempenho!"
 
 **PATRICK:** (animado) "Método científico? Tipo... experiência de laboratório?"
 
@@ -1228,7 +1228,7 @@ d) Usam inteligência artificial
 
 💻 HABILIDADES PRÁTICAS:
 ├── 🔸 Implementação de algoritmos básicos
-├── 🔸 Medição de performance
+├── 🔸 Medição de desempenho
 ├── 🔸 Comparação de diferentes abordagens
 ├── 🔸 Identificação de trade-offs
 └── 🔸 Análise de casos reais
