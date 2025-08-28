@@ -55,7 +55,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 
 ---
 
-## 📚 **ROADMAP COMPLETO - A JORNADA DE PATRICK**
+## 📚 **ROTEIRO COMPLETO - A JORNADA DE PATRICK**
 
 ### 🌱 **MÓDULO 1: AWAKENING** *(O Despertar do Algoritmista)*
 ```
@@ -117,7 +117,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 ```
 🎬 CENA: Patrick resolve problemas "impossíveis" com DP
 📊 APRENDE: Memoização, otimização, subproblemas
-🛠️ PRATICA: Algoritmos de Machine Learning
+🛠️ PRATICA: Algoritmos de Aprendizagem de Máquina
 🎯 RESULTADO: Especialista em otimização algorítmica
 ```
 
@@ -201,7 +201,7 @@ IMPACTO: Salva vidas humanas
 ### 🎬 **NETFLIX RECOMMENDATIONS**
 ```
 DESAFIO: Recomendações personalizadas para 200M usuários
-ALGORITMOS: Filtragem colaborativa, machine learning
+ALGORITMOS: Filtragem colaborativa, aprendizagem de máquina
 COMPLEXIDADE: O(log n) busca, O(n) processamento
 IMPACTO: 80% do conteúdo assistido via recomendações
 ```
@@ -451,7 +451,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 
 ### **🧠 CAPÍTULO 14: PROGRAMAÇÃO DINÂMICA** *(Dynamic Programming)*
 ```
-🎬 CENÁRIO: Machine Learning Netflix
+🎬 CENÁRIO: Aprendizagem de Máquina Netflix
 🧠 APRENDE: Memoização, otimização
 💡 DESCOBRE: Subproblemas sobrepostos
 🌟 CONQUISTA: Problemas "impossíveis"
@@ -555,7 +555,7 @@ Estes não são problemas acadêmicos - são desafios reais onde algoritmos efic
 **CENÁRIO:** Patrick entra na sala de aula e vê nas telas:
 
 ```
-🔴 ALERTA REAL-TIME:
+🔴 ALERTA TEMPO REAL:
 ├── Google: 40.000 buscas/segundo
 ├── WhatsApp: 100.000 mensagens/segundo  
 ├── Netflix: 1M decisões de recomendação/segundo
@@ -712,7 +712,7 @@ Dr. Silva projeta na tela uma comparação que deixa todos em choque:
 
 ```
 🎯 DESAFIO: Recomendar conteúdo para 200M+ usuários únicos
-⚡ SOLUÇÃO: Machine Learning + filtragem colaborativa
+⚡ SOLUÇÃO: Aprendizagem de Máquina + filtragem colaborativa
 💰 RESULTADO: 80% do conteúdo assistido via recomendações
 📊 IMPACTO: $15+ bilhões em valor de mercado
 ```
@@ -856,7 +856,7 @@ print(f"Maior número: {resultado}")  # Output: 9
 
 ---
 
-### 🛠️ **HANDS-ON LAB - PRIMEIRO ALGORITMO DE PATRICK**
+### 🛠️ **LABORATÓRIO PRÁTICO - PRIMEIRO ALGORITMO DE PATRICK**
 
 #### 🔬 **EXPERIMENTO 1: ANÁLISE DE DESEMPENHO**
 
@@ -9355,7 +9355,7 @@ Cada chamada deve se aproximar do caso base
 **Solução:**
 - Filtragem colaborativa
 - Análise de clusters de usuários
-- Processamento de big data
+- Processamento de grandes volumes de dados
 
 **Complexidades:**
 - Similaridade de usuários: O(n²)
@@ -9453,7 +9453,7 @@ Tamanho dos dados?
 #### **Paralelização**
 - Merge Sort paralelo
 - Quick Sort paralelo
-- Map-Reduce para big data
+- Map-Reduce para grandes volumes de dados
 
 ### 11.5 Casos de Estudo
 
@@ -9498,7 +9498,7 @@ Tamanho dos dados?
 
 #### **Inteligência Artificial**
 **Algoritmos fundamentais:**
-- Redes neurais e deep learning
+- Redes neurais e aprendizagem profunda
 - Algoritmos genéticos
 - Busca heurística (A*)
 - Machine learning (SVM, Random Forest)
