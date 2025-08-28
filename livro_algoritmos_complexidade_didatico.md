@@ -41,7 +41,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 - **Método dos 7 Passos**: Metodologia científica para análise
 - **Casos Reais**: Netflix, Google, Tesla, Facebook - veja algoritmos funcionando
 - **Progressão Natural**: Do conceito básico até algoritmos avançados
-- **Hands-On Learning**: Código, diagramas, exercícios e projetos reais
+- **Aprendizagem Prática**: Código, diagramas, exercícios e projetos reais
 
 ### 🚀 **O que Você se Tornará**
 ```
@@ -97,7 +97,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 🎯 RESULTADO: Especialista em busca e ordenação
 ```
 
-### 🌲 **MÓDULO 6: TREE ALGORITHMS** *(Algoritmos em Árvores)*
+### 🌲 **MÓDULO 6: ALGORITMOS EM ÁRVORES** *(Algoritmos em Árvores)*
 ```
 🎬 CENA: Patrick projeta sistema de arquivos distribuído
 📊 APRENDE: BST, AVL, Red-Black, B-Trees
@@ -157,7 +157,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 
 ✅ DOMINAÇÃO COMPLETA
 ├── Exercícios progressivos
-├── Projetos hands-on
+├── Projetos práticos
 └── Certificação de competência
 ```
 
@@ -167,7 +167,7 @@ Cada conceito é apresentado seguindo uma sequência didática:
 2. 🔬 SCIENCE: Análise rigorosa + método científico  
 3. 💻 CODE: Implementação prática + otimizações
 4. 🌍 SCALE: Aplicação global + casos reais
-5. 🚀 ESPECIALISTA: Domínio completo + projetos avançados
+5. 🚀 ESPECIALISTA: Domínio completo + projetos aplicados
 ```
 
 ---
@@ -363,7 +363,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 ```
 🎬 CENÁRIO: Sistema de streaming Netflix
 🧠 APRENDE: Estruturas lineares
-💡 DESCOBRE: Trade-offs fundamentais
+💡 DESCOBRE: Compensações fundamentais
 🌟 CONQUISTA: Escolha estrutural otimizada
 ```
 
@@ -406,7 +406,7 @@ Este livro não é apenas sobre algoritmos - é sobre **transformar sua forma de
 ### **🏆 CAPÍTULO 9: ORDENAÇÃO AVANÇADA** *(Advanced Sorting)*
 ```
 🎬 CENÁRIO: Sistema de recomendação Amazon
-🧠 APRENDE: Quick, Merge, Heap Sort
+🧠 APRENDE: Ordenação Rápida, Merge, Heap Sort
 💡 DESCOBRE: Divide e conquista
 🌟 CONQUISTA: Ordenação em escala
 ```
@@ -671,8 +671,8 @@ Dr. Silva projeta na tela uma comparação que deixa todos em choque:
 ⏱️ TEMPO REAL - PROCESSADOR MODERNO:
 ┌─────────────────┬────────────────┬───────────────┬──────────────┐
 │ Google Database │ 17 HORAS       │ 0.000001 seg  │ IMPOSSÍVEL!  │
-│ Facebook Users  │ 8,5 HORAS      │ 0.000001 seg  │ vs INSTANT   │
-│ WhatsApp Users  │ 12 HORAS       │ 0.000001 seg  │ vs INSTANT   │
+│ Facebook Users  │ 8,5 HORAS      │ 0.000001 seg  │ vs IMEDIATO │
+│ WhatsApp Users  │ 12 HORAS       │ 0.000001 seg  │ vs IMEDIATO │
 └─────────────────┴────────────────┴───────────────┴──────────────┘
 ```
 
@@ -826,7 +826,7 @@ print(f"Maior número: {resultado}")  # Output: 9
 
 ### 🎮 **GAMIFICAÇÃO - DESBLOQUEANDO CONQUISTAS**
 
-**🏆 CONQUEST UNLOCKED: ALGORITHM AWAKENING**
+**🏆 CONQUISTA DESBLOQUEADA: DESPERTAR ALGORÍTMICO**
 ```
 🎯 Patrick descobriu que algoritmos são ferramentas poderosas
 ⭐ XP GAINED: +100 Algorithm Awareness
@@ -834,7 +834,7 @@ print(f"Maior número: {resultado}")  # Output: 9
 📊 PROGRESS: Beginner Level 1 → Level 2
 ```
 
-#### 🎲 **MINI-GAME: ALGORITHM DETECTIVE**
+#### 🎲 **MINI-EXERCÍCIO: DETETIVE ALGORÍTMICO**
 
 **DESAFIO:** Identifique os algoritmos em ação no seu dia!
 
@@ -925,7 +925,7 @@ for tamanho in [100, 1000, 5000, 10000]:
     print(f"\n📊 DADOS: {tamanho:,} elementos")
     print(f"⏱️  Patrick: {tempo1:.2f}ms")
     print(f"⚡ Ninja:   {tempo2:.2f}ms")
-    print(f"🚀 Speedup: {melhoria:.1f}x mais rápido")
+    print(f"🚀 Aceleração: {melhoria:.1f}x mais rápido")
     print(f"✅ Resultado igual: {set(result1) == set(result2)}")
 ```
 
@@ -937,25 +937,25 @@ for tamanho in [100, 1000, 5000, 10000]:
 📊 DADOS: 100 elementos
 ⏱️  Patrick: 0.45ms
 ⚡ Ninja:   0.02ms  
-🚀 Speedup: 22.5x mais rápido
+🚀 Aceleração: 22.5x mais rápido
 ✅ Resultado igual: True
 
 📊 DADOS: 1,000 elementos
 ⏱️  Patrick: 43.2ms
 ⚡ Ninja:   0.18ms
-🚀 Speedup: 240.0x mais rápido
+🚀 Aceleração: 240.0x mais rápido
 ✅ Resultado igual: True
 
 📊 DADOS: 5,000 elementos  
 ⏱️  Patrick: 1,124ms (1.1 segundos!)
 ⚡ Ninja:   0.89ms
-🚀 Speedup: 1,262x mais rápido
+🚀 Aceleração: 1,262x mais rápido
 ✅ Resultado igual: True
 
 📊 DADOS: 10,000 elementos
 ⏱️  Patrick: 4,567ms (4.6 segundos!)
 ⚡ Ninja:   1.78ms
-🚀 Speedup: 2,565x mais rápido
+🚀 Aceleração: 2,565x mais rápido
 ✅ Resultado igual: True
 ```
 
@@ -1051,7 +1051,7 @@ Dr. Silva projeta um gráfico em tempo real:
 🎯 OBJETIVO: Organizar dados em ordem específica  
 📊 EXEMPLOS:
 ├── Bubble Sort: O(n²) - Educacional
-├── Quick Sort: O(n log n) - Prático
+├── Ordenação Rápida: O(n log n) - Prático
 ├── Merge Sort: O(n log n) - Estável
 └── Radix Sort: O(k*n) - Especializado
 
@@ -1520,7 +1520,7 @@ Patrick descobriu que resolver problemas eficientemente envolve três perguntas 
 - Há repetições que posso aproveitar?
 - Posso dividir o problema em partes menores?
 
-**Exemplo:** Se os números já estão quase ordenados, algoritmos como Insertion Sort podem ser muito mais rápidos que Quick Sort.
+**Exemplo:** Se os números já estão quase ordenados, algoritmos como Insertion Sort podem ser muito mais rápidos que Ordenação Rápida.
 
 #### 3. Que recursos posso trocar?
 - Posso usar mais memória para ser mais rápido?
@@ -1969,7 +1969,7 @@ Patrick teve uma ideia brilhante: usar várias estruturas ao mesmo tempo!
 
 - **Hash Table por Título:** Para responder "vocês têm livro X?"
 - **Hash Table por Autor:** Para responder "livros do autor Y?"
-- **Lista Ordenada por Popularidade:** Para "top 10 mais emprestados"
+- **Lista Ordenada por Popularidade:** Para "10 mais emprestados"
 
 **Resultado:** Respostas em segundos para qualquer tipo de pergunta!
 
@@ -2811,7 +2811,7 @@ Resultado: O(n³)
 **Objetivo:** Entender como o algoritmo se comporta em situações diferentes.
 
 **Como Patrick faz:**
-1. Identifique melhor caso (best case)
+1. Identifique melhor caso (caso otimal)
 2. Identifique pior caso (worst case) 
 3. Calcule caso médio se possível
 4. Determine qual é mais relevante na prática
@@ -6353,7 +6353,7 @@ Patrick ficou chocado: "Então para `fib(40)`, estamos recalculando os mesmos va
 
 "A solução," disse Dr. Silva, "é **lembrar** dos resultados que já calculamos. Isso se chama **Programação Dinâmica**."
 
-#### Abordagem 1: Memoização (Top-Down)
+#### Abordagem 1: Memoização (Descendente)
 ```python
 def fibonacci_memoizado(n, memo=None):
     if memo is None:
@@ -6735,9 +6735,9 @@ Muitos problemas 2D podem ser reduzidos para 1D:
 #### 2. Lazy Evaluation
 Para problemas muito grandes, calcular apenas valores necessários.
 
-#### 3. Bottom-Up vs Top-Down
+#### 3. Ascendente vs Descendente
 - **Bottom-Up (Tabulação):** Mais eficiente, menos overhead
-- **Top-Down (Memoização):** Mais intuitivo, calcula apenas necessário
+- **Descendente (Memoização):** Mais intuitivo, calcula apenas necessário
 
 ### Exercícios Práticos
 
