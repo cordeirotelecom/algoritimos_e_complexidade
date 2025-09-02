@@ -1,0 +1,11 @@
+# Redirecionamentos para Netlify
+/index.html /portal_aprendizado.html 301
+/ /portal_aprendizado.html 200
+
+# Redirecionamentos para páginas principais
+/exercicios /exercicios_interativos.html 301
+/plataforma /plataforma_completa.html 301
+/portal /portal_aprendizado.html 301
+
+# 404 fallback
+/* /portal_aprendizado.html 404
