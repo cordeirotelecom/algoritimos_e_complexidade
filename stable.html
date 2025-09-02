@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Algoritmos - VERSÃO ESTÁVEL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .header h1 {
+            color: #0f172a;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            color: #475569;
+            font-size: 1.3em;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 14px 28px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 15px;
+            background: #ffffff;
+            color: #475569;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border-color: #3b82f6;
+        }
+
+        .section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .section-header h2 {
+            color: #0f172a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #475569;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .language-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .language-card:hover::before {
+            opacity: 1;
+        }
+
+        .language-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            border-color: #3b82f6;
+        }
+
+        .language-card h3 {
+            color: #0f172a;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+
+        .language-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .learning-objective {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .learning-objective h4 {
+            color: #1e40af;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .learning-objective h4::before {
+            content: "🎯";
+            margin-right: 8px;
+        }
+
+        .code-explanation {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .code-explanation h5 {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tips-section h4 {
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tips-section h4::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        .version-indicator {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Academia de Algoritmos e Complexidade</h1>
+            <p>Plataforma Educacional Avançada para Análise Algorítmica Profissional</p>
+        </div>
+
+        <nav class="main-nav">
+            <a href="#overview" class="nav-btn active">Visão Geral</a>
+            <a href="plataforma_completa.html" class="nav-btn">Plataforma Completa</a>
+            <a href="exercicios_interativos.html" class="nav-btn">Exercícios Interativos</a>
+            <a href="portal_aprendizado.html" class="nav-btn">Centro de Recursos</a>
+        </nav>
+
+        <section class="section">
+            <div class="section-header">
+                <h2>🎯 Centro de Aprendizado Algorítmico</h2>
+                <p>Bem-vindo à nossa plataforma educacional avançada, desenvolvida para proporcionar uma experiência de aprendizado completa em algoritmos, estruturas de dados e análise de complexidade computational.</p>
+            </div>
+
+            <div class="learning-objective">
+                <h4>Objetivos de Aprendizagem</h4>
+                <ul style="color: #1e40af; margin-left: 20px;">
+                    <li>Dominar implementação de algoritmos em Python e C</li>
+                    <li>Compreender análise de complexidade temporal e espacial</li>
+                    <li>Aplicar estruturas de dados eficientemente</li>
+                    <li>Desenvolver pensamento algorítmico sistemático</li>
+                </ul>
+            </div>
+
+            <div class="language-grid">
+                <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
+                    <h3>🐍 Programação Python</h3>
+                    <p>Desenvolvimento algorítmico em Python com foco em legibilidade, eficiência e boas práticas de programação. Explore desde estruturas básicas até algoritmos complexos.</p>
+                    <div class="code-explanation">
+                        <h5>Módulos Abordados:</h5>
+                        <ul style="color: #065f46; margin-left: 20px;">
+                            <li>Estruturas de Dados Nativas (Listas, Dicionários, Sets)</li>
+                            <li>Algoritmos de Ordenação e Busca</li>
+                            <li>Programação Recursiva e Dinâmica</li>
+                            <li>Análise de Performance e Otimização</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
+                    <h3>⚡ Linguagem C - Sistemas</h3>
+                    <p>Fundamentos sólidos em C para compreensão de sistemas de baixo nível, gerenciamento de memória e implementação eficiente de algoritmos.</p>
+                    <div class="code-explanation">
+                        <h5>Competências Desenvolvidas:</h5>
+                        <ul style="color: #065f46; margin-left: 20px;">
+                            <li>Gerenciamento Manual de Memória</li>
+                            <li>Ponteiros e Referências Avançadas</li>
+                            <li>Estruturas de Dados Customizadas</li>
+                            <li>Otimização de Performance de Sistema</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
+                    <h3>🏗️ Estruturas de Dados</h3>
+                    <p>Implementação e análise completa de estruturas de dados fundamentais, com foco em aplicações práticas e análise de complexidade.</p>
+                    <div class="code-explanation">
+                        <h5>Estruturas Estudadas:</h5>
+                        <ul style="color: #065f46; margin-left: 20px;">
+                            <li>Arrays, Listas Ligadas e Pilhas</li>
+                            <li>Árvores Binárias e Árvores de Busca</li>
+                            <li>Grafos e Algoritmos de Percurso</li>
+                            <li>Hash Tables e Estruturas Avançadas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
+                    <h3>📊 Análise de Complexidade</h3>
+                    <p>Sistema avançado de análise algorítmica com IA para compreensão profunda de complexidade temporal, espacial e otimizações.</p>
+                    <div class="code-explanation">
+                        <h5>Recursos Analíticos:</h5>
+                        <ul style="color: #065f46; margin-left: 20px;">
+                            <li>Análise Automática Big O</li>
+                            <li>Visualizações Interativas</li>
+                            <li>Sugestões de Otimização</li>
+                            <li>Comparação de Algoritmos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h4>Metodologia de Ensino</h4>
+                <p style="color: #92400e;">Nossa abordagem pedagógica combina teoria sólida com prática intensiva, utilizando exemplos reais e projetos aplicados para consolidar o aprendizado de forma efetiva e duradoura.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="version-indicator">✅ ESTÁVEL v2.1</div>
+</body>
+</html>

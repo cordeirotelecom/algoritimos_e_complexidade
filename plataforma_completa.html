@@ -7,6 +7,35 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    
+    <!-- CSS crítico inline para prevenir FOUC -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important; 
+            background: #f8fafc !important; 
+            color: #1e293b !important; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+        }
+        body.loaded { opacity: 1; }
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+        .header { 
+            background: white !important; 
+            padding: 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header h1 { 
+            color: #0f172a !important; 
+            font-size: 3em; 
+            font-weight: 700; 
+            margin-bottom: 15px; 
+        }
+    </style>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,6 +59,17 @@
             min-height: 100vh;
             color: #1e293b;
             line-height: 1.6;
+            visibility: hidden; /* Previne FOUC */
+        }
+
+        body.fonts-loaded {
+            visibility: visible;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Forçar aplicação dos estilos */
@@ -2413,6 +2453,16 @@ int main() {
             loadCExercises();
             loadStructureExercises();
             updateProgressStats();
+            
+            // Controle de carregamento de fontes
+            document.fonts.ready.then(function() {
+                document.body.classList.add('fonts-loaded');
+            });
+            
+            // Fallback caso as fontes demorem muito
+            setTimeout(function() {
+                document.body.classList.add('fonts-loaded');
+            }, 1000);
         });
     </script>
     
