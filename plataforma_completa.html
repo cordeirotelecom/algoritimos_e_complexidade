@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Completa - Algoritmos e Complexidade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="assets/complexity-analyzer.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #2c3e50;
+        }
+
+        .nav-btn.active {
+            background: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .language-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+
+        .language-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .language-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .code-section {
+            margin: 20px 0;
+        }
+
+        .code-editor {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .complexity-analyzer {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .complexity-input {
+            margin: 15px 0;
+        }
+
+        .complexity-input textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .analyze-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .analysis-result {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+        }
+
+        .step-analysis {
+            margin: 10px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #27ae60;
+        }
+
+        .complexity-result {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .complexity-result h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .data-structure-selector {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .structure-btn {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            border-radius: 20px;
+            background: white;
+            color: #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .structure-btn.active,
+        .structure-btn:hover {
+            background: #3498db;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .exercise-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .exercise-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .difficulty-easy {
+            background: #27ae60;
+            color: white;
+        }
+
+        .difficulty-medium {
+            background: #f39c12;
+            color: white;
+        }
+
+        .difficulty-hard {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .xp-bar {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .streak-counter {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #2c3e50;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .language-grid,
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-structure-selector {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Plataforma Completa de Algoritmos</h1>
+            <p>Python, C, Estruturas de Dados e Análise de Complexidade</p>
+        </div>
+
+        <!-- Navegação Principal -->
+        <nav class="main-nav">
+            <button class="nav-btn active" data-section="overview">Visão Geral</button>
+            <button class="nav-btn" data-section="python">Python</button>
+            <button class="nav-btn" data-section="c-lang">Linguagem C</button>
+            <button class="nav-btn" data-section="data-structures">Estruturas de Dados</button>
+            <button class="nav-btn" data-section="complexity">Análise de Complexidade</button>
+            <button class="nav-btn" data-section="progress">Progresso</button>
+        </nav>
+
+        <!-- Seção: Visão Geral -->
+        <section class="section active" id="overview">
+            <h2>🎯 Bem-vindo à Plataforma Completa!</h2>
+            <div class="language-grid">
+                <div class="language-card" onclick="switchSection('python')">
+                    <h3>🐍 Python</h3>
+                    <p>Aprenda algoritmos em Python com exemplos práticos, desde estruturas básicas até algoritmos avançados de ordenação e busca.</p>
+                    <ul style="margin-top: 15px; color: #7f8c8d;">
+                        <li>Listas e Tuplas</li>
+                        <li>Dicionários e Sets</li>
+                        <li>Algoritmos de Ordenação</li>
+                        <li>Recursão e Dynamic Programming</li>
+                    </ul>
+                </div>
+                
+                <div class="language-card" onclick="switchSection('c-lang')">
+                    <h3>⚡ Linguagem C</h3>
+                    <p>Domine os fundamentos da programação em C, manipulação de memória e implementação eficiente de estruturas de dados.</p>
+                    <ul style="margin-top: 15px; color: #7f8c8d;">
+                        <li>Ponteiros e Alocação Dinâmica</li>
+                        <li>Arrays e Matrizes</li>
+                        <li>Estruturas e Unions</li>
+                        <li>Algoritmos de Baixo Nível</li>
+                    </ul>
+                </div>
+                
+                <div class="language-card" onclick="switchSection('data-structures')">
+                    <h3>🗂️ Estruturas de Dados</h3>
+                    <p>Explore implementações detalhadas de estruturas fundamentais com análise de performance e casos de uso.</p>
+                    <ul style="margin-top: 15px; color: #7f8c8d;">
+                        <li>Ponteiros e Referências</li>
+                        <li>Vetores e Matrizes</li>
+                        <li>Listas Ligadas</li>
+                        <li>Árvores e Grafos</li>
+                    </ul>
+                </div>
+                
+                <div class="language-card" onclick="switchSection('complexity')">
+                    <h3>📊 Análise de Complexidade</h3>
+                    <p>Ferramenta interativa para analisar a complexidade de qualquer algoritmo passo a passo com explicações detalhadas.</p>
+                    <ul style="margin-top: 15px; color: #7f8c8d;">
+                        <li>Análise Big O</li>
+                        <li>Complexidade de Tempo</li>
+                        <li>Complexidade de Espaço</li>
+                        <li>Otimização de Algoritmos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Python -->
+        <section class="section" id="python">
+            <h2>🐍 Programação Python</h2>
+            
+            <div class="data-structure-selector">
+                <button class="structure-btn active" data-topic="python-basics">Básico</button>
+                <button class="structure-btn" data-topic="python-lists">Listas</button>
+                <button class="structure-btn" data-topic="python-dicts">Dicionários</button>
+                <button class="structure-btn" data-topic="python-algorithms">Algoritmos</button>
+                <button class="structure-btn" data-topic="python-advanced">Avançado</button>
+            </div>
+
+            <div class="exercise-grid" id="python-exercises">
+                <!-- Exercícios Python serão inseridos aqui -->
+            </div>
+        </section>
+
+        <!-- Seção: Linguagem C -->
+        <section class="section" id="c-lang">
+            <h2>⚡ Linguagem C</h2>
+            
+            <div class="data-structure-selector">
+                <button class="structure-btn active" data-topic="c-basics">Básico</button>
+                <button class="structure-btn" data-topic="c-pointers">Ponteiros</button>
+                <button class="structure-btn" data-topic="c-arrays">Arrays</button>
+                <button class="structure-btn" data-topic="c-matrices">Matrizes</button>
+                <button class="structure-btn" data-topic="c-memory">Memória</button>
+            </div>
+
+            <div class="exercise-grid" id="c-exercises">
+                <!-- Exercícios C serão inseridos aqui -->
+            </div>
+        </section>
+
+        <!-- Seção: Estruturas de Dados -->
+        <section class="section" id="data-structures">
+            <h2>🗂️ Estruturas de Dados</h2>
+            
+            <div class="data-structure-selector">
+                <button class="structure-btn active" data-topic="pointers">Ponteiros</button>
+                <button class="structure-btn" data-topic="vectors">Vetores</button>
+                <button class="structure-btn" data-topic="matrices">Matrizes</button>
+                <button class="structure-btn" data-topic="linked-lists">Listas Ligadas</button>
+                <button class="structure-btn" data-topic="trees">Árvores</button>
+                <button class="structure-btn" data-topic="graphs">Grafos</button>
+            </div>
+
+            <div class="exercise-grid" id="structure-exercises">
+                <!-- Exercícios de estruturas serão inseridos aqui -->
+            </div>
+        </section>
+
+        <!-- Seção: Análise de Complexidade -->
+        <section class="section" id="complexity">
+            <h2>📊 Analisador de Complexidade Interativo</h2>
+            
+            <div class="complexity-analyzer">
+                <h3>Cole seu código e receba análise detalhada:</h3>
+                
+                <div class="data-structure-selector">
+                    <button class="structure-btn active" data-lang="python">Python</button>
+                    <button class="structure-btn" data-lang="c">C/C++</button>
+                    <button class="structure-btn" data-lang="java">Java</button>
+                    <button class="structure-btn" data-lang="javascript">JavaScript</button>
+                </div>
+                
+                <div class="complexity-input">
+                    <textarea id="codeInput" placeholder="Cole seu código aqui para análise de complexidade...
+Exemplo:
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr"></textarea>
+                </div>
+                
+                <button class="analyze-btn" onclick="analyzeComplexity()">
+                    🔍 Analisar Complexidade
+                </button>
+                
+                <div id="analysisResults"></div>
+            </div>
+        </section>
+
+        <!-- Seção: Progresso -->
+        <section class="section" id="progress">
+            <h2>📈 Seu Progresso</h2>
+            
+            <div class="progress-container">
+                <h3>Progresso Geral</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgress"></div>
+                </div>
+                <p id="progressText">0/50 exercícios completados</p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; flex-wrap: wrap;">
+                    <div class="xp-bar" id="userXP">XP: 0</div>
+                    <div class="streak-counter" id="userStreak">
+                        🔥 Sequência: 0
+                    </div>
+                    <div id="userBadges" style="display: flex; gap: 5px; flex-wrap: wrap;">
+                        <!-- Badges aparecerão aqui -->
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <h4>🐍 Python</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="pythonProgress"></div>
+                    </div>
+                    <p id="pythonText">0/15 exercícios</p>
+                </div>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <h4>⚡ Linguagem C</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="cProgress"></div>
+                    </div>
+                    <p id="cText">0/15 exercícios</p>
+                </div>
+                
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <h4>🗂️ Estruturas</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="structuresProgress"></div>
+                    </div>
+                    <p id="structuresText">0/20 exercícios</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Sistema de navegação
+        function switchSection(sectionId) {
+            // Remove active de todas as seções
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active de todos os botões
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Ativa a seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+            
+            // Carrega conteúdo específico da seção
+            loadSectionContent(sectionId);
+        }
+
+        // Event listeners para navegação
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.getAttribute('data-section');
+                switchSection(section);
+            });
+        });
+
+        // Carrega conteúdo específico de cada seção
+        function loadSectionContent(sectionId) {
+            switch(sectionId) {
+                case 'python':
+                    loadPythonExercises();
+                    break;
+                case 'c-lang':
+                    loadCExercises();
+                    break;
+                case 'data-structures':
+                    loadStructureExercises();
+                    break;
+                case 'complexity':
+                    // Já carregado
+                    break;
+                case 'progress':
+                    updateProgressStats();
+                    break;
+            }
+        }
+
+        // Dados dos exercícios Python
+        const pythonExercises = {
+            'python-basics': [
+                {
+                    title: "Hello World e Variáveis",
+                    difficulty: "easy",
+                    description: "Aprenda a sintaxe básica do Python",
+                    code: `# Exercício: Crie variáveis e imprima valores
+nome = "Python"
+versao = 3.9
+ativo = True
+
+print(f"Linguagem: {nome}")
+print(f"Versão: {versao}")
+print(f"Ativo: {ativo}")`,
+                    complexity: "O(1)"
+                },
+                {
+                    title: "Estruturas Condicionais",
+                    difficulty: "easy",
+                    description: "Trabalhe com if/elif/else",
+                    code: `# Exercício: Sistema de notas
+def avaliar_nota(nota):
+    if nota >= 90:
+        return "A"
+    elif nota >= 80:
+        return "B"
+    elif nota >= 70:
+        return "C"
+    elif nota >= 60:
+        return "D"
+    else:
+        return "F"
+
+# Teste
+print(avaliar_nota(85))`,
+                    complexity: "O(1)"
+                }
+            ],
+            'python-lists': [
+                {
+                    title: "Operações com Listas",
+                    difficulty: "medium",
+                    description: "Manipulação de listas em Python",
+                    code: `# Exercício: Gerenciador de lista
+def gerenciar_lista():
+    lista = []
+    
+    # Adicionar elementos
+    lista.extend([1, 2, 3, 4, 5])
+    
+    # Buscar elemento
+    if 3 in lista:
+        print("3 encontrado!")
+    
+    # Remover elemento
+    lista.remove(3)
+    
+    # Ordenar
+    lista.sort(reverse=True)
+    
+    return lista
+
+resultado = gerenciar_lista()
+print(resultado)`,
+                    complexity: "O(n log n)"
+                }
+            ],
+            'python-dicts': [
+                {
+                    title: "Dicionários e Hash Tables",
+                    difficulty: "medium",
+                    description: "Trabalhe com estruturas de mapeamento",
+                    code: `# Exercício: Contador de palavras
+def contar_palavras(texto):
+    contador = {}
+    palavras = texto.lower().split()
+    
+    for palavra in palavras:
+        if palavra in contador:
+            contador[palavra] += 1
+        else:
+            contador[palavra] = 1
+    
+    return contador
+
+texto = "python é incrível python é poderoso"
+resultado = contar_palavras(texto)
+print(resultado)`,
+                    complexity: "O(n)"
+                }
+            ],
+            'python-algorithms': [
+                {
+                    title: "Bubble Sort",
+                    difficulty: "medium",
+                    description: "Implementação do algoritmo de ordenação",
+                    code: `# Exercício: Bubble Sort
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+# Teste
+numeros = [64, 34, 25, 12, 22, 11, 90]
+print(f"Original: {numeros}")
+print(f"Ordenado: {bubble_sort(numeros.copy())}")`,
+                    complexity: "O(n²)"
+                },
+                {
+                    title: "Busca Binária",
+                    difficulty: "hard",
+                    description: "Algoritmo eficiente de busca",
+                    code: `# Exercício: Busca Binária
+def busca_binaria(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+
+# Teste
+arr_ordenado = [1, 3, 5, 7, 9, 11, 13, 15]
+resultado = busca_binaria(arr_ordenado, 7)
+print(f"Índice do elemento 7: {resultado}")`,
+                    complexity: "O(log n)"
+                }
+            ]
+        };
+
+        // Dados dos exercícios C
+        const cExercises = {
+            'c-basics': [
+                {
+                    title: "Hello World em C",
+                    difficulty: "easy",
+                    description: "Primeiro programa em C",
+                    code: `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\\n");
+    
+    // Variáveis básicas
+    int idade = 25;
+    float altura = 1.75;
+    char inicial = 'J';
+    
+    printf("Idade: %d\\n", idade);
+    printf("Altura: %.2f\\n", altura);
+    printf("Inicial: %c\\n", inicial);
+    
+    return 0;
+}`,
+                    complexity: "O(1)"
+                }
+            ],
+            'c-pointers': [
+                {
+                    title: "Introdução a Ponteiros",
+                    difficulty: "medium",
+                    description: "Conceitos básicos de ponteiros",
+                    code: `#include <stdio.h>
+
+void ponteiros_basicos() {
+    int valor = 42;
+    int *ptr = &valor;
+    
+    printf("Valor: %d\\n", valor);
+    printf("Endereço: %p\\n", &valor);
+    printf("Ponteiro: %p\\n", ptr);
+    printf("Valor via ponteiro: %d\\n", *ptr);
+    
+    // Modificar via ponteiro
+    *ptr = 100;
+    printf("Novo valor: %d\\n", valor);
+}
+
+int main() {
+    ponteiros_basicos();
+    return 0;
+}`,
+                    complexity: "O(1)"
+                },
+                {
+                    title: "Alocação Dinâmica",
+                    difficulty: "hard",
+                    description: "Malloc e gerenciamento de memória",
+                    code: `#include <stdio.h>
+#include <stdlib.h>
+
+int* criar_array(int tamanho) {
+    int *arr = (int*)malloc(tamanho * sizeof(int));
+    
+    if (arr == NULL) {
+        printf("Erro na alocação!\\n");
+        return NULL;
+    }
+    
+    // Inicializar array
+    for (int i = 0; i < tamanho; i++) {
+        arr[i] = i * 2;
+    }
+    
+    return arr;
+}
+
+int main() {
+    int *dinamico = criar_array(5);
+    
+    for (int i = 0; i < 5; i++) {
+        printf("dinamico[%d] = %d\\n", i, dinamico[i]);
+    }
+    
+    free(dinamico); // Liberar memória
+    return 0;
+}`,
+                    complexity: "O(n)"
+                }
+            ],
+            'c-arrays': [
+                {
+                    title: "Manipulação de Arrays",
+                    difficulty: "medium",
+                    description: "Operações com arrays em C",
+                    code: `#include <stdio.h>
+
+void imprimir_array(int arr[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\\n");
+}
+
+int buscar_elemento(int arr[], int tamanho, int target) {
+    for (int i = 0; i < tamanho; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int numeros[] = {10, 20, 30, 40, 50};
+    int tamanho = sizeof(numeros) / sizeof(numeros[0]);
+    
+    printf("Array: ");
+    imprimir_array(numeros, tamanho);
+    
+    int indice = buscar_elemento(numeros, tamanho, 30);
+    printf("Índice do 30: %d\\n", indice);
+    
+    return 0;
+}`,
+                    complexity: "O(n)"
+                }
+            ],
+            'c-matrices': [
+                {
+                    title: "Matrizes 2D",
+                    difficulty: "hard",
+                    description: "Trabalho com matrizes bidimensionais",
+                    code: `#include <stdio.h>
+
+void imprimir_matriz(int matriz[][3], int linhas) {
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\\n");
+    }
+}
+
+void multiplicar_matrizes(int a[][3], int b[][3], int resultado[][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            resultado[i][j] = 0;
+            for (int k = 0; k < 3; k++) {
+                resultado[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int matriz1[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int matriz2[3][3] = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+    int resultado[3][3];
+    
+    printf("Matriz 1:\\n");
+    imprimir_matriz(matriz1, 3);
+    
+    printf("Matriz 2:\\n");
+    imprimir_matriz(matriz2, 3);
+    
+    multiplicar_matrizes(matriz1, matriz2, resultado);
+    
+    printf("Resultado:\\n");
+    imprimir_matriz(resultado, 3);
+    
+    return 0;
+}`,
+                    complexity: "O(n³)"
+                }
+            ]
+        };
+
+        // Dados dos exercícios de estruturas de dados
+        const structureExercises = {
+            'pointers': [
+                {
+                    title: "Ponteiros e Referências Básicas",
+                    difficulty: "easy",
+                    description: "Entenda como funciona o endereçamento de memória",
+                    code: `// Exemplo em C++
+#include <iostream>
+using namespace std;
+
+void demonstrar_ponteiros() {
+    int valor = 42;
+    int* ponteiro = &valor;
+    int& referencia = valor;
+    
+    cout << "Valor original: " << valor << endl;
+    cout << "Endereço: " << &valor << endl;
+    cout << "Via ponteiro: " << *ponteiro << endl;
+    cout << "Via referência: " << referencia << endl;
+    
+    // Modificar via ponteiro
+    *ponteiro = 100;
+    cout << "Após modificação via ponteiro: " << valor << endl;
+    
+    // Modificar via referência
+    referencia = 200;
+    cout << "Após modificação via referência: " << valor << endl;
+}
+
+int main() {
+    demonstrar_ponteiros();
+    return 0;
+}`,
+                    complexity: "O(1)"
+                },
+                {
+                    title: "Aritmética de Ponteiros",
+                    difficulty: "medium",
+                    description: "Operações matemáticas com ponteiros",
+                    code: `#include <stdio.h>
+
+void aritmetica_ponteiros() {
+    int array[] = {10, 20, 30, 40, 50};
+    int* ptr = array; // Aponta para o primeiro elemento
+    
+    printf("Array original: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\\n");
+    
+    // Percorrer array com aritmética de ponteiros
+    printf("Via ponteiros: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *(ptr + i));
+    }
+    printf("\\n");
+    
+    // Incremento de ponteiro
+    printf("Incrementando ponteiro:\\n");
+    ptr = array;
+    while (ptr < array + 5) {
+        printf("Endereço: %p, Valor: %d\\n", ptr, *ptr);
+        ptr++;
+    }
+}
+
+int main() {
+    aritmetica_ponteiros();
+    return 0;
+}`,
+                    complexity: "O(n)"
+                },
+                {
+                    title: "Ponteiros para Ponteiros",
+                    difficulty: "hard",
+                    description: "Múltiplos níveis de indireção",
+                    code: `#include <stdio.h>
+#include <stdlib.h>
+
+void ponteiros_multiplos() {
+    int valor = 42;
+    int* ptr1 = &valor;        // Ponteiro para int
+    int** ptr2 = &ptr1;       // Ponteiro para ponteiro
+    int*** ptr3 = &ptr2;      // Ponteiro para ponteiro para ponteiro
+    
+    printf("Valor original: %d\\n", valor);
+    printf("Via ptr1: %d\\n", *ptr1);
+    printf("Via ptr2: %d\\n", **ptr2);
+    printf("Via ptr3: %d\\n", ***ptr3);
+    
+    // Modificar via triplo ponteiro
+    ***ptr3 = 100;
+    printf("Após modificação via ptr3: %d\\n", valor);
+    
+    // Endereços
+    printf("\\nEndereços:\\n");
+    printf("&valor: %p\\n", &valor);
+    printf("ptr1: %p\\n", ptr1);
+    printf("&ptr1: %p\\n", &ptr1);
+    printf("ptr2: %p\\n", ptr2);
+    printf("*ptr2: %p\\n", *ptr2);
+}
+
+int main() {
+    ponteiros_multiplos();
+    return 0;
+}`,
+                    complexity: "O(1)"
+                }
+            ],
+            'vectors': [
+                {
+                    title: "Implementação de Vetor Dinâmico",
+                    difficulty: "hard",
+                    description: "Crie sua própria implementação de vector com redimensionamento automático",
+                    code: `#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int* data;
+    int size;
+    int capacity;
+} Vector;
+
+Vector* criar_vector() {
+    Vector* v = malloc(sizeof(Vector));
+    v->data = malloc(2 * sizeof(int));
+    v->size = 0;
+    v->capacity = 2;
+    return v;
+}
+
+void redimensionar(Vector* v) {
+    v->capacity *= 2;
+    v->data = realloc(v->data, v->capacity * sizeof(int));
+    printf("Vector redimensionado para capacidade: %d\\n", v->capacity);
+}
+
+void push_back(Vector* v, int value) {
+    if (v->size >= v->capacity) {
+        redimensionar(v);
+    }
+    v->data[v->size++] = value;
+}
+
+int get(Vector* v, int index) {
+    if (index >= 0 && index < v->size) {
+        return v->data[index];
+    }
+    return -1; // Erro
+}
+
+void imprimir_vector(Vector* v) {
+    printf("Vector [");
+    for (int i = 0; i < v->size; i++) {
+        printf("%d", v->data[i]);
+        if (i < v->size - 1) printf(", ");
+    }
+    printf("] (size=%d, capacity=%d)\\n", v->size, v->capacity);
+}
+
+void liberar_vector(Vector* v) {
+    free(v->data);
+    free(v);
+}
+
+int main() {
+    Vector* v = criar_vector();
+    
+    // Adicionar elementos
+    for (int i = 1; i <= 10; i++) {
+        push_back(v, i * 10);
+        imprimir_vector(v);
+    }
+    
+    // Acessar elementos
+    printf("\\nElemento no índice 5: %d\\n", get(v, 5));
+    
+    liberar_vector(v);
+    return 0;
+}`,
+                    complexity: "O(1) amortizado para inserção"
+                },
+                {
+                    title: "Operações Avançadas em Vetores",
+                    difficulty: "medium",
+                    description: "Busca, inserção e remoção em vetores",
+                    code: `#include <stdio.h>
+
+int busca_linear(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int busca_binaria(int arr[], int n, int target) {
+    int left = 0, right = n - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+void inserir_ordenado(int arr[], int* n, int value) {
+    int i = *n - 1;
+    
+    // Desloca elementos maiores para a direita
+    while (i >= 0 && arr[i] > value) {
+        arr[i + 1] = arr[i];
+        i--;
+    }
+    
+    arr[i + 1] = value;
+    (*n)++;
+}
+
+void remover_elemento(int arr[], int* n, int index) {
+    if (index < 0 || index >= *n) return;
+    
+    for (int i = index; i < *n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    (*n)--;
+}
+
+void imprimir_array(int arr[], int n) {
+    printf("[");
+    for (int i = 0; i < n; i++) {
+        printf("%d", arr[i]);
+        if (i < n - 1) printf(", ");
+    }
+    printf("]\\n");
+}
+
+int main() {
+    int arr[20] = {1, 3, 5, 7, 9, 11, 13, 15};
+    int n = 8;
+    
+    printf("Array inicial: ");
+    imprimir_array(arr, n);
+    
+    // Busca linear
+    int pos = busca_linear(arr, n, 7);
+    printf("Busca linear por 7: índice %d\\n", pos);
+    
+    // Busca binária
+    pos = busca_binaria(arr, n, 11);
+    printf("Busca binária por 11: índice %d\\n", pos);
+    
+    // Inserção ordenada
+    inserir_ordenado(arr, &n, 6);
+    printf("Após inserir 6: ");
+    imprimir_array(arr, n);
+    
+    // Remoção
+    remover_elemento(arr, &n, 3);
+    printf("Após remover índice 3: ");
+    imprimir_array(arr, n);
+    
+    return 0;
+}`,
+                    complexity: "O(n) para inserção/remoção, O(log n) para busca binária"
+                }
+            ],
+            'matrices': [
+                {
+                    title: "Operações Básicas com Matrizes",
+                    difficulty: "medium",
+                    description: "Soma, subtração e transposição de matrizes",
+                    code: `#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+void imprimir_matriz(int matriz[][COLS], int rows) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < COLS; j++) {
+            printf("%4d ", matriz[i][j]);
+        }
+        printf("\\n");
+    }
+    printf("\\n");
+}
+
+void somar_matrizes(int a[][COLS], int b[][COLS], int resultado[][COLS]) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            resultado[i][j] = a[i][j] + b[i][j];
+        }
+    }
+}
+
+void transpor_matriz(int matriz[][COLS], int transposta[][ROWS]) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            transposta[j][i] = matriz[i][j];
+        }
+    }
+}
+
+void multiplicar_por_escalar(int matriz[][COLS], int escalar) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            matriz[i][j] *= escalar;
+        }
+    }
+}
+
+int main() {
+    int matriz1[ROWS][COLS] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+    
+    int matriz2[ROWS][COLS] = {
+        {9, 8, 7},
+        {6, 5, 4},
+        {3, 2, 1}
+    };
+    
+    int soma[ROWS][COLS];
+    int transposta[COLS][ROWS];
+    
+    printf("Matriz 1:\\n");
+    imprimir_matriz(matriz1, ROWS);
+    
+    printf("Matriz 2:\\n");
+    imprimir_matriz(matriz2, ROWS);
+    
+    // Soma
+    somar_matrizes(matriz1, matriz2, soma);
+    printf("Soma das matrizes:\\n");
+    imprimir_matriz(soma, ROWS);
+    
+    // Transposição
+    transpor_matriz(matriz1, transposta);
+    printf("Transposta da Matriz 1:\\n");
+    for (int i = 0; i < COLS; i++) {
+        for (int j = 0; j < ROWS; j++) {
+            printf("%4d ", transposta[i][j]);
+        }
+        printf("\\n");
+    }
+    
+    // Multiplicação por escalar
+    multiplicar_por_escalar(matriz1, 2);
+    printf("\\nMatriz 1 multiplicada por 2:\\n");
+    imprimir_matriz(matriz1, ROWS);
+    
+    return 0;
+}`,
+                    complexity: "O(n²) para operações básicas"
+                },
+                {
+                    title: "Multiplicação de Matrizes",
+                    difficulty: "hard",
+                    description: "Implementação clássica da multiplicação matricial",
+                    code: `#include <stdio.h>
+#include <stdlib.h>
+
+void multiplicar_matrizes(int** a, int** b, int** resultado, int rowsA, int colsA, int colsB) {
+    for (int i = 0; i < rowsA; i++) {
+        for (int j = 0; j < colsB; j++) {
+            resultado[i][j] = 0;
+            for (int k = 0; k < colsA; k++) {
+                resultado[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}
+
+int** alocar_matriz(int rows, int cols) {
+    int** matriz = malloc(rows * sizeof(int*));
+    for (int i = 0; i < rows; i++) {
+        matriz[i] = malloc(cols * sizeof(int));
+    }
+    return matriz;
+}
+
+void liberar_matriz(int** matriz, int rows) {
+    for (int i = 0; i < rows; i++) {
+        free(matriz[i]);
+    }
+    free(matriz);
+}
+
+void imprimir_matriz_dinamica(int** matriz, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%4d ", matriz[i][j]);
+        }
+        printf("\\n");
+    }
+    printf("\\n");
+}
+
+void inicializar_matriz(int** matriz, int rows, int cols, int valor_inicial) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matriz[i][j] = valor_inicial + i * cols + j;
+        }
+    }
+}
+
+int main() {
+    int rowsA = 3, colsA = 2, colsB = 4;
+    
+    // Alocar matrizes
+    int** matrizA = alocar_matriz(rowsA, colsA);
+    int** matrizB = alocar_matriz(colsA, colsB);
+    int** resultado = alocar_matriz(rowsA, colsB);
+    
+    // Inicializar matrizes
+    inicializar_matriz(matrizA, rowsA, colsA, 1);
+    inicializar_matriz(matrizB, colsA, colsB, 10);
+    
+    printf("Matriz A (%dx%d):\\n", rowsA, colsA);
+    imprimir_matriz_dinamica(matrizA, rowsA, colsA);
+    
+    printf("Matriz B (%dx%d):\\n", colsA, colsB);
+    imprimir_matriz_dinamica(matrizB, colsA, colsB);
+    
+    // Multiplicar
+    multiplicar_matrizes(matrizA, matrizB, resultado, rowsA, colsA, colsB);
+    
+    printf("Resultado A x B (%dx%d):\\n", rowsA, colsB);
+    imprimir_matriz_dinamica(resultado, rowsA, colsB);
+    
+    // Liberar memória
+    liberar_matriz(matrizA, rowsA);
+    liberar_matriz(matrizB, colsA);
+    liberar_matriz(resultado, rowsA);
+    
+    return 0;
+}`,
+                    complexity: "O(n³) para multiplicação padrão"
+                },
+                {
+                    title: "Matriz Esparsa Otimizada",
+                    difficulty: "hard",
+                    description: "Implementação eficiente para matrizes com muitos zeros",
+                    code: `#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int row, col, value;
+} Element;
+
+typedef struct {
+    Element* elements;
+    int num_elements;
+    int max_elements;
+    int rows, cols;
+} SparseMatrix;
+
+SparseMatrix* criar_matriz_esparsa(int rows, int cols) {
+    SparseMatrix* matrix = malloc(sizeof(SparseMatrix));
+    matrix->elements = malloc(100 * sizeof(Element));
+    matrix->num_elements = 0;
+    matrix->max_elements = 100;
+    matrix->rows = rows;
+    matrix->cols = cols;
+    return matrix;
+}
+
+void inserir_elemento(SparseMatrix* matrix, int row, int col, int value) {
+    if (value == 0) return; // Não armazena zeros
+    
+    // Redimensionar se necessário
+    if (matrix->num_elements >= matrix->max_elements) {
+        matrix->max_elements *= 2;
+        matrix->elements = realloc(matrix->elements, 
+                                 matrix->max_elements * sizeof(Element));
+    }
+    
+    matrix->elements[matrix->num_elements].row = row;
+    matrix->elements[matrix->num_elements].col = col;
+    matrix->elements[matrix->num_elements].value = value;
+    matrix->num_elements++;
+}
+
+int buscar_elemento(SparseMatrix* matrix, int row, int col) {
+    for (int i = 0; i < matrix->num_elements; i++) {
+        if (matrix->elements[i].row == row && 
+            matrix->elements[i].col == col) {
+            return matrix->elements[i].value;
+        }
+    }
+    return 0; // Elemento não encontrado = 0
+}
+
+void imprimir_matriz_esparsa(SparseMatrix* matrix) {
+    printf("Matriz Esparsa %dx%d (elementos não-zero: %d):\\n", 
+           matrix->rows, matrix->cols, matrix->num_elements);
+    
+    for (int i = 0; i < matrix->rows; i++) {
+        for (int j = 0; j < matrix->cols; j++) {
+            printf("%4d ", buscar_elemento(matrix, i, j));
+        }
+        printf("\\n");
+    }
+    
+    printf("\\nRepresentação compacta:\\n");
+    for (int i = 0; i < matrix->num_elements; i++) {
+        printf("(%d,%d): %d\\n", 
+               matrix->elements[i].row, 
+               matrix->elements[i].col, 
+               matrix->elements[i].value);
+    }
+    printf("\\n");
+}
+
+SparseMatrix* somar_matrizes_esparsas(SparseMatrix* a, SparseMatrix* b) {
+    if (a->rows != b->rows || a->cols != b->cols) {
+        return NULL; // Dimensões incompatíveis
+    }
+    
+    SparseMatrix* resultado = criar_matriz_esparsa(a->rows, a->cols);
+    
+    // Adicionar elementos da matriz A
+    for (int i = 0; i < a->num_elements; i++) {
+        inserir_elemento(resultado, 
+                        a->elements[i].row, 
+                        a->elements[i].col, 
+                        a->elements[i].value);
+    }
+    
+    // Adicionar elementos da matriz B
+    for (int i = 0; i < b->num_elements; i++) {
+        int row = b->elements[i].row;
+        int col = b->elements[i].col;
+        int valor_existente = buscar_elemento(resultado, row, col);
+        
+        // Remover elemento existente se houver
+        for (int j = 0; j < resultado->num_elements; j++) {
+            if (resultado->elements[j].row == row && 
+                resultado->elements[j].col == col) {
+                // Remove elemento movendo último para esta posição
+                resultado->elements[j] = resultado->elements[resultado->num_elements - 1];
+                resultado->num_elements--;
+                break;
+            }
+        }
+        
+        // Inserir novo valor
+        int novo_valor = valor_existente + b->elements[i].value;
+        if (novo_valor != 0) {
+            inserir_elemento(resultado, row, col, novo_valor);
+        }
+    }
+    
+    return resultado;
+}
+
+void liberar_matriz_esparsa(SparseMatrix* matrix) {
+    free(matrix->elements);
+    free(matrix);
+}
+
+int main() {
+    SparseMatrix* matriz1 = criar_matriz_esparsa(5, 5);
+    SparseMatrix* matriz2 = criar_matriz_esparsa(5, 5);
+    
+    // Inserir alguns elementos espalhados
+    inserir_elemento(matriz1, 0, 1, 10);
+    inserir_elemento(matriz1, 1, 3, 20);
+    inserir_elemento(matriz1, 2, 2, 30);
+    inserir_elemento(matriz1, 4, 0, 40);
+    
+    inserir_elemento(matriz2, 0, 1, 5);
+    inserir_elemento(matriz2, 1, 1, 15);
+    inserir_elemento(matriz2, 2, 2, 25);
+    inserir_elemento(matriz2, 3, 4, 35);
+    
+    printf("Matriz 1:\\n");
+    imprimir_matriz_esparsa(matriz1);
+    
+    printf("Matriz 2:\\n");
+    imprimir_matriz_esparsa(matriz2);
+    
+    SparseMatrix* soma = somar_matrizes_esparsas(matriz1, matriz2);
+    printf("Soma das matrizes:\\n");
+    imprimir_matriz_esparsa(soma);
+    
+    printf("Eficiência de armazenamento:\\n");
+    printf("Matriz densa 5x5: %d bytes\\n", 25 * sizeof(int));
+    printf("Matriz esparsa: %d bytes\\n", 
+           sizeof(SparseMatrix) + matriz1->num_elements * sizeof(Element));
+    
+    liberar_matriz_esparsa(matriz1);
+    liberar_matriz_esparsa(matriz2);
+    liberar_matriz_esparsa(soma);
+    
+    return 0;
+}`,
+                    complexity: "O(k) onde k é o número de elementos não-zero"
+                }
+            ],
+            'linked-lists': [
+                {
+                    title: "Lista Ligada Simples",
+                    difficulty: "medium",
+                    description: "Implementação básica de lista ligada",
+                    code: `#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+typedef struct {
+    Node* head;
+    int size;
+} LinkedList;
+
+LinkedList* criar_lista() {
+    LinkedList* lista = malloc(sizeof(LinkedList));
+    lista->head = NULL;
+    lista->size = 0;
+    return lista;
+}
+
+void inserir_inicio(LinkedList* lista, int value) {
+    Node* novo = malloc(sizeof(Node));
+    novo->data = value;
+    novo->next = lista->head;
+    lista->head = novo;
+    lista->size++;
+}
+
+void inserir_fim(LinkedList* lista, int value) {
+    Node* novo = malloc(sizeof(Node));
+    novo->data = value;
+    novo->next = NULL;
+    
+    if (lista->head == NULL) {
+        lista->head = novo;
+    } else {
+        Node* atual = lista->head;
+        while (atual->next != NULL) {
+            atual = atual->next;
+        }
+        atual->next = novo;
+    }
+    lista->size++;
+}
+
+int remover_elemento(LinkedList* lista, int value) {
+    if (lista->head == NULL) return 0;
+    
+    // Remover primeiro elemento
+    if (lista->head->data == value) {
+        Node* temp = lista->head;
+        lista->head = lista->head->next;
+        free(temp);
+        lista->size--;
+        return 1;
+    }
+    
+    Node* atual = lista->head;
+    while (atual->next != NULL) {
+        if (atual->next->data == value) {
+            Node* temp = atual->next;
+            atual->next = atual->next->next;
+            free(temp);
+            lista->size--;
+            return 1;
+        }
+        atual = atual->next;
+    }
+    return 0;
+}
+
+void imprimir_lista(LinkedList* lista) {
+    printf("Lista (tamanho %d): ", lista->size);
+    Node* atual = lista->head;
+    while (atual != NULL) {
+        printf("%d -> ", atual->data);
+        atual = atual->next;
+    }
+    printf("NULL\\n");
+}
+
+int buscar_elemento(LinkedList* lista, int value) {
+    Node* atual = lista->head;
+    int posicao = 0;
+    
+    while (atual != NULL) {
+        if (atual->data == value) {
+            return posicao;
+        }
+        atual = atual->next;
+        posicao++;
+    }
+    return -1;
+}
+
+void liberar_lista(LinkedList* lista) {
+    Node* atual = lista->head;
+    while (atual != NULL) {
+        Node* temp = atual;
+        atual = atual->next;
+        free(temp);
+    }
+    free(lista);
+}
+
+int main() {
+    LinkedList* lista = criar_lista();
+    
+    // Inserções
+    inserir_inicio(lista, 10);
+    inserir_inicio(lista, 20);
+    inserir_fim(lista, 5);
+    inserir_fim(lista, 15);
+    
+    imprimir_lista(lista);
+    
+    // Busca
+    int pos = buscar_elemento(lista, 15);
+    printf("Elemento 15 encontrado na posição: %d\\n", pos);
+    
+    // Remoção
+    if (remover_elemento(lista, 20)) {
+        printf("Elemento 20 removido\\n");
+    }
+    imprimir_lista(lista);
+    
+    liberar_lista(lista);
+    return 0;
+}`,
+                    complexity: "O(n) para busca e inserção no fim"
+                }
+            ]
+        };
+
+        // Função para carregar exercícios Python
+        function loadPythonExercises() {
+            const activeButton = document.querySelector('#python .structure-btn.active');
+            const topic = activeButton ? activeButton.getAttribute('data-topic') : 'python-basics';
+            
+            const container = document.getElementById('python-exercises');
+            const exercises = pythonExercises[topic] || [];
+            
+            container.innerHTML = exercises.map(exercise => `
+                <div class="exercise-card">
+                    <div class="difficulty-badge difficulty-${exercise.difficulty}">
+                        ${exercise.difficulty.toUpperCase()}
+                    </div>
+                    <h3 class="exercise-title">${exercise.title}</h3>
+                    <p>${exercise.description}</p>
+                    <p><strong>Complexidade:</strong> ${exercise.complexity}</p>
+                    <div class="code-section">
+                        <textarea class="code-editor" rows="10" readonly>${exercise.code}</textarea>
+                    </div>
+                    <button class="analyze-btn" onclick="analyzeExerciseCode('${exercise.code.replace(/'/g, "\\'")}')">
+                        Analisar Código
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Função para carregar exercícios C
+        function loadCExercises() {
+            const activeButton = document.querySelector('#c-lang .structure-btn.active');
+            const topic = activeButton ? activeButton.getAttribute('data-topic') : 'c-basics';
+            
+            const container = document.getElementById('c-exercises');
+            const exercises = cExercises[topic] || [];
+            
+            container.innerHTML = exercises.map(exercise => `
+                <div class="exercise-card">
+                    <div class="difficulty-badge difficulty-${exercise.difficulty}">
+                        ${exercise.difficulty.toUpperCase()}
+                    </div>
+                    <h3 class="exercise-title">${exercise.title}</h3>
+                    <p>${exercise.description}</p>
+                    <p><strong>Complexidade:</strong> ${exercise.complexity}</p>
+                    <div class="code-section">
+                        <textarea class="code-editor" rows="12" readonly>${exercise.code}</textarea>
+                    </div>
+                    <button class="analyze-btn" onclick="analyzeExerciseCode('${exercise.code.replace(/'/g, "\\'")}')">
+                        Analisar Código
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Função para carregar exercícios de estruturas
+        function loadStructureExercises() {
+            const activeButton = document.querySelector('#data-structures .structure-btn.active');
+            const topic = activeButton ? activeButton.getAttribute('data-topic') : 'pointers';
+            
+            const container = document.getElementById('structure-exercises');
+            const exercises = structureExercises[topic] || [];
+            
+            container.innerHTML = exercises.map(exercise => `
+                <div class="exercise-card">
+                    <div class="difficulty-badge difficulty-${exercise.difficulty}">
+                        ${exercise.difficulty.toUpperCase()}
+                    </div>
+                    <h3 class="exercise-title">${exercise.title}</h3>
+                    <p>${exercise.description}</p>
+                    <p><strong>Complexidade:</strong> ${exercise.complexity}</p>
+                    <div class="code-section">
+                        <textarea class="code-editor" rows="15" readonly>${exercise.code}</textarea>
+                    </div>
+                    <button class="analyze-btn" onclick="analyzeExerciseCode('${exercise.code.replace(/'/g, "\\'")}')">
+                        Analisar Código
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Event listeners para botões de tópicos
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('structure-btn')) {
+                // Remove active de todos os botões do mesmo container
+                const container = e.target.closest('.section');
+                container.querySelectorAll('.structure-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Adiciona active ao botão clicado
+                e.target.classList.add('active');
+                
+                // Recarrega exercícios
+                const sectionId = container.id;
+                if (sectionId === 'python') {
+                    loadPythonExercises();
+                } else if (sectionId === 'c-lang') {
+                    loadCExercises();
+                } else if (sectionId === 'data-structures') {
+                    loadStructureExercises();
+                }
+            }
+        });
+
+        // Analisador de complexidade
+        function analyzeComplexity() {
+            const code = document.getElementById('codeInput').value;
+            const resultsDiv = document.getElementById('analysisResults');
+            
+            if (!code.trim()) {
+                resultsDiv.innerHTML = '<p style="color: #e74c3c;">Por favor, insira algum código para análise.</p>';
+                return;
+            }
+            
+            // Usa o analisador avançado
+            const analysis = complexityAnalyzer.analyzeCode(code);
+            
+            resultsDiv.innerHTML = `
+                <div class="analysis-result">
+                    <h3>📊 Análise Detalhada de Complexidade</h3>
+                    
+                    ${analysis.steps.map(step => `
+                        <div class="step-analysis">
+                            <strong>${step.title}</strong>
+                            <p>${step.explanation}</p>
+                            <small style="color: #7f8c8d;">Tipo: ${step.type}</small>
+                        </div>
+                    `).join('')}
+                    
+                    <div class="complexity-result">
+                        <h3>🎯 Resultado Final</h3>
+                        <p><strong>⏱️ Complexidade de Tempo:</strong> ${analysis.timeComplexity}</p>
+                        <p><strong>💾 Complexidade de Espaço:</strong> ${analysis.spaceComplexity}</p>
+                        
+                        <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4>📋 Resumo:</h4>
+                            <p style="white-space: pre-line;">${analysis.summary}</p>
+                        </div>
+                        
+                        ${analysis.optimizationSuggestions.length > 0 ? `
+                            <div style="margin: 20px 0; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                <h4>🚀 Sugestões de Otimização:</h4>
+                                ${analysis.optimizationSuggestions.map(suggestion => `
+                                    <div style="margin: 10px 0;">
+                                        <strong>${suggestion.issue}:</strong>
+                                        <p>${suggestion.suggestion}</p>
+                                        <small style="color: #28a745;"><strong>Impacto:</strong> ${suggestion.impact}</small>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button class="analyze-btn" onclick="generateComplexityChart('${analysis.timeComplexity}')" style="margin: 5px;">
+                            📈 Ver Gráfico de Crescimento
+                        </button>
+                        <button class="analyze-btn" onclick="exportReport()" style="margin: 5px;">
+                            📄 Exportar Relatório
+                        </button>
+                    </div>
+                    
+                    <div id="complexityChart" style="margin-top: 20px;"></div>
+                </div>
+            `;
+            
+            // Salva a análise atual para exportação
+            window.currentAnalysis = { analysis, code };
+        }
+        
+        // Função para gerar gráfico de complexidade
+        function generateComplexityChart(complexity) {
+            const chartDiv = document.getElementById('complexityChart');
+            chartDiv.innerHTML = '<canvas id="chartCanvas" width="400" height="200"></canvas>';
+            
+            const ctx = document.getElementById('chartCanvas').getContext('2d');
+            const chartConfig = complexityAnalyzer.generateComplexityChart(complexity);
+            
+            new Chart(ctx, chartConfig);
+        }
+        
+        // Função para exportar relatório
+        function exportReport() {
+            if (!window.currentAnalysis) {
+                alert('Nenhuma análise disponível para exportação.');
+                return;
+            }
+            
+            const report = exportAnalysisReport(window.currentAnalysis.analysis, window.currentAnalysis.code);
+            
+            // Cria e baixa o arquivo
+            const blob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'relatorio_complexidade.md';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Função para analisar complexidade de algoritmos
+        function performComplexityAnalysis(code) {
+            // Análise simplificada baseada em padrões
+            const steps = [];
+            let timeComplexity = "O(1)";
+            let spaceComplexity = "O(1)";
+            
+            // Detecta loops
+            const forLoops = (code.match(/for\s*\(/g) || []).length;
+            const whileLoops = (code.match(/while\s*\(/g) || []).length;
+            const totalLoops = forLoops + whileLoops;
+            
+            if (totalLoops === 0) {
+                steps.push({
+                    title: "Análise de Loops",
+                    explanation: "Nenhum loop detectado. Operações são executadas em tempo constante."
+                });
+                timeComplexity = "O(1)";
+            } else if (totalLoops === 1) {
+                steps.push({
+                    title: "Análise de Loops",
+                    explanation: "Um loop detectado. A complexidade é linear em relação ao tamanho da entrada."
+                });
+                timeComplexity = "O(n)";
+            } else if (totalLoops === 2) {
+                // Verifica se são loops aninhados
+                if (code.includes("for") && code.indexOf("for", code.indexOf("for") + 1) !== -1) {
+                    steps.push({
+                        title: "Análise de Loops Aninhados",
+                        explanation: "Dois loops aninhados detectados. Cada elemento do primeiro loop executa o segundo loop completo."
+                    });
+                    timeComplexity = "O(n²)";
+                }
+            } else if (totalLoops >= 3) {
+                steps.push({
+                    title: "Análise de Múltiplos Loops",
+                    explanation: "Múltiplos loops detectados. Complexidade pode ser cúbica ou superior."
+                });
+                timeComplexity = "O(n³)";
+            }
+            
+            // Detecta recursão
+            if (code.includes("return") && code.includes("(")) {
+                const funcName = code.match(/def\s+(\w+)/);
+                if (funcName && code.includes(funcName[1] + "(")) {
+                    steps.push({
+                        title: "Análise de Recursão",
+                        explanation: "Função recursiva detectada. A complexidade depende da profundidade da recursão."
+                    });
+                    if (code.includes("/2") || code.includes("//2")) {
+                        timeComplexity = "O(log n)";
+                    } else {
+                        timeComplexity = "O(2^n)";
+                    }
+                }
+            }
+            
+            // Detecta alocação de memória
+            if (code.includes("[]") || code.includes("list") || code.includes("malloc")) {
+                steps.push({
+                    title: "Análise de Espaço",
+                    explanation: "Estruturas de dados auxiliares detectadas. Espaço adicional necessário."
+                });
+                spaceComplexity = "O(n)";
+            }
+            
+            // Detecta algoritmos conhecidos
+            if (code.toLowerCase().includes("sort")) {
+                steps.push({
+                    title: "Algoritmo de Ordenação",
+                    explanation: "Algoritmo de ordenação detectado. Complexidade típica O(n log n) para algoritmos eficientes."
+                });
+                timeComplexity = "O(n log n)";
+            }
+            
+            if (code.toLowerCase().includes("binary") || code.includes("mid")) {
+                steps.push({
+                    title: "Busca Binária",
+                    explanation: "Padrão de busca binária detectado. Divide o espaço de busca pela metade a cada iteração."
+                });
+                timeComplexity = "O(log n)";
+            }
+            
+            const summary = `Este algoritmo tem complexidade de tempo ${timeComplexity} e complexidade de espaço ${spaceComplexity}. ${getComplexityExplanation(timeComplexity)}`;
+            
+            return { steps, timeComplexity, spaceComplexity, summary };
+        }
+        
+        function getComplexityExplanation(complexity) {
+            const explanations = {
+                "O(1)": "Executa em tempo constante, independente do tamanho da entrada.",
+                "O(log n)": "Muito eficiente, divide o problema pela metade a cada passo.",
+                "O(n)": "Tempo de execução cresce linearmente com o tamanho da entrada.",
+                "O(n log n)": "Complexidade típica de algoritmos de ordenação eficientes.",
+                "O(n²)": "Tempo quadrático, adequado para entradas pequenas.",
+                "O(n³)": "Tempo cúbico, pode ser lento para entradas grandes.",
+                "O(2^n)": "Crescimento exponencial, apenas viável para entradas muito pequenas."
+            };
+            return explanations[complexity] || "Complexidade variável dependendo da implementação.";
+        }
+
+        // Função para analisar código de exercícios
+        function analyzeExerciseCode(code) {
+            document.getElementById('codeInput').value = code;
+            switchSection('complexity');
+            setTimeout(() => analyzeComplexity(), 500);
+        }
+
+        // Atualiza estatísticas de progresso
+        function updateProgressStats() {
+            // Simulação de progresso
+            const pythonProgress = Math.floor(Math.random() * 70) + 20;
+            const cProgress = Math.floor(Math.random() * 60) + 15;
+            const structuresProgress = Math.floor(Math.random() * 50) + 10;
+            const overallProgress = Math.floor((pythonProgress + cProgress + structuresProgress) / 3);
+            
+            document.getElementById('pythonProgress').style.width = pythonProgress + '%';
+            document.getElementById('cProgress').style.width = cProgress + '%';
+            document.getElementById('structuresProgress').style.width = structuresProgress + '%';
+            document.getElementById('overallProgress').style.width = overallProgress + '%';
+            
+            document.getElementById('pythonText').textContent = `${Math.floor(pythonProgress * 15 / 100)}/15 exercícios`;
+            document.getElementById('cText').textContent = `${Math.floor(cProgress * 15 / 100)}/15 exercícios`;
+            document.getElementById('structuresText').textContent = `${Math.floor(structuresProgress * 20 / 100)}/20 exercícios`;
+            document.getElementById('progressText').textContent = `${Math.floor(overallProgress * 50 / 100)}/50 exercícios completados`;
+            
+            // XP e streak
+            document.getElementById('userXP').textContent = `XP: ${Math.floor(overallProgress * 50)}`;
+            document.getElementById('userStreak').textContent = `🔥 Sequência: ${Math.floor(overallProgress / 10)}`;
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPythonExercises();
+            loadCExercises();
+            loadStructureExercises();
+            updateProgressStats();
+        });
+    </script>
+</body>
+</html>

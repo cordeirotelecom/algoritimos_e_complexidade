@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Aprendizado - Algoritmos e Complexidade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(31, 38, 135, 0.37);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(31, 38, 135, 0.5);
+            border-color: #3498db;
+        }
+
+        .nav-card.interactive {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+        }
+
+        .nav-card.interactive:hover {
+            border-color: #ffffff;
+        }
+
+        .nav-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .nav-card .features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .nav-card .features li {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-card .features li::before {
+            content: '✓';
+            background: #27ae60;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .nav-card.interactive .features li::before {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn.secondary {
+            background: #95a5a6;
+        }
+
+        .btn.secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .interactive .btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .interactive .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .stats-banner {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .learning-path {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .path-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            position: relative;
+        }
+
+        .path-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #bdc3c7;
+            z-index: 1;
+        }
+
+        .path-step {
+            background: white;
+            border: 3px solid #bdc3c7;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .path-step.active {
+            border-color: #3498db;
+            background: #3498db;
+            color: white;
+        }
+
+        .path-step.completed {
+            border-color: #27ae60;
+            background: #27ae60;
+            color: white;
+        }
+
+        .footer {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .quick-access {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .quick-btn {
+            background: #e74c3c;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .path-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .path-steps::before {
+                width: 2px;
+                height: 100%;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Algoritmos e Complexidade</h1>
+            <p>Portal Completo de Aprendizado Interativo</p>
+            <p style="font-size: 1em; color: #95a5a6;">Professor Vagner Cordeiro - Material Didático Universitário</p>
+        </div>
+
+        <div class="stats-banner">
+            <h2>📊 Estatísticas do Curso</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span>Aulas Teóricas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20</span>
+                    <span>Exercícios Práticos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span>Laboratórios</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span>Exercícios Interativos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="learning-path">
+            <h2>🗺️ Trilha de Aprendizado</h2>
+            <p>Siga esta sequência para um aprendizado otimizado:</p>
+            <div class="path-steps">
+                <div class="path-step completed" title="Teoria Básica">1</div>
+                <div class="path-step completed" title="Exercícios Simples">2</div>
+                <div class="path-step active" title="Prática Interativa">3</div>
+                <div class="path-step" title="Laboratórios">4</div>
+                <div class="path-step" title="Avaliação">5</div>
+            </div>
+        </div>
+
+        <div class="nav-grid">
+            <!-- Material Teórico -->
+            <div class="nav-card" onclick="window.open('aulas/aula01.md')">
+                <h3>📚 Material Teórico</h3>
+                <p>Aulas completas com conceitos fundamentais, exemplos práticos e explicações detalhadas.</p>
+                <ul class="features">
+                    <li>15 aulas estruturadas</li>
+                    <li>Slides em PDF</li>
+                    <li>Exemplos detalhados</li>
+                    <li>Conceitos progressivos</li>
+                </ul>
+                <a href="aulas/aula01.md" class="btn">Ver Aulas</a>
+                <a href="aulas/pdf/" class="btn secondary">Downloads PDF</a>
+            </div>
+
+            <!-- Exercícios Interativos -->
+            <div class="nav-card interactive" onclick="window.open('exercicios_interativos.html')">
+                <h3>🎯 Exercícios Interativos</h3>
+                <p>Aprenda na prática com nosso sistema gamificado de exercícios progressivos.</p>
+                <ul class="features">
+                    <li>15 exercícios interativos</li>
+                    <li>Sistema de XP e badges</li>
+                    <li>Feedback em tempo real</li>
+                    <li>Análise de complexidade</li>
+                    <li>Editor de código integrado</li>
+                </ul>
+                <a href="exercicios_interativos.html" class="btn">🚀 Começar Agora</a>
+            </div>
+
+            <!-- Plataforma Completa -->
+            <div class="nav-card interactive" onclick="window.open('plataforma_completa.html')">
+                <h3>🚀 Plataforma Completa</h3>
+                <p>Sistema avançado com Python, C, estruturas de dados e análise interativa de complexidade.</p>
+                <ul class="features">
+                    <li>🐍 Seção Python completa</li>
+                    <li>⚡ Linguagem C com ponteiros</li>
+                    <li>🗂️ Estruturas de dados avançadas</li>
+                    <li>📊 Analisador de complexidade AI</li>
+                    <li>💡 Sugestões de otimização</li>
+                </ul>
+                <a href="plataforma_completa.html" class="btn">🔥 Explorar Agora</a>
+            </div>
+
+            <!-- Laboratórios Práticos -->
+            <div class="nav-card" onclick="window.open('exercicios/laboratorio01_introducao_algoritmos.md')">
+                <h3>🔬 Laboratórios Práticos</h3>
+                <p>Roteiros detalhados para prática em IDE com VS Code e Code::Blocks.</p>
+                <ul class="features">
+                    <li>5 laboratórios completos</li>
+                    <li>Configuração de ambiente</li>
+                    <li>Exercícios step-by-step</li>
+                    <li>Análise de performance</li>
+                </ul>
+                <a href="exercicios/laboratorio01_introducao_algoritmos.md" class="btn">Ver Lab 01</a>
+                <a href="exercicios/" class="btn secondary">Todos os Labs</a>
+            </div>
+
+            <!-- Livro Didático -->
+            <div class="nav-card" onclick="window.open('livro_algoritmos_complexidade_didatico.md')">
+                <h3>📖 Livro Didático</h3>
+                <p>Material acadêmico completo com rigor científico e exemplos práticos.</p>
+                <ul class="features">
+                    <li>7.940 linhas de conteúdo</li>
+                    <li>Fórmulas matemáticas</li>
+                    <li>Provas formais</li>
+                    <li>Bibliografia científica</li>
+                </ul>
+                <a href="livro_algoritmos_complexidade_didatico.md" class="btn">Ler Livro</a>
+                <a href="docs/livro_algoritmos_complexidade_didatico.pdf" class="btn secondary">PDF</a>
+            </div>
+
+            <!-- Exemplos de Código -->
+            <div class="nav-card" onclick="window.open('exemplos/')">
+                <h3>💻 Exemplos de Código</h3>
+                <p>Implementações em C e Python com análise de complexidade detalhada.</p>
+                <ul class="features">
+                    <li>Códigos em C e Python</li>
+                    <li>Análise de performance</li>
+                    <li>Comparações práticas</li>
+                    <li>Estruturas de dados</li>
+                </ul>
+                <a href="exemplos/c/" class="btn">Exemplos C</a>
+                <a href="exemplos/python/" class="btn secondary">Exemplos Python</a>
+            </div>
+
+            <!-- Exercícios Resolvidos -->
+            <div class="nav-card" onclick="window.open('exercicios/exercicios_resolvidos_completos.md')">
+                <h3>✅ Exercícios Resolvidos</h3>
+                <p>Listas de exercícios com soluções detalhadas e explicações passo-a-passo.</p>
+                <ul class="features">
+                    <li>Exercícios comentados</li>
+                    <li>Múltiplas soluções</li>
+                    <li>Análise de eficiência</li>
+                    <li>Casos de teste</li>
+                </ul>
+                <a href="exercicios/exercicios_resolvidos_completos.md" class="btn">Ver Soluções</a>
+                <a href="exercicios/exercicios_resolvidos_completos.pdf" class="btn secondary">PDF</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🎯 Objetivos do Curso</h3>
+            <p>Este material foi desenvolvido para proporcionar uma compreensão completa de algoritmos e complexidade computacional, 
+            combinando teoria sólida com prática intensiva. O sistema interativo permite que estudantes aprendam no seu próprio ritmo, 
+            com feedback imediato e gamificação para manter o engajamento.</p>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p><strong>Professor:</strong> Vagner Cordeiro | <strong>Instituição:</strong> Material Acadêmico Universitário</p>
+                <p><strong>Licença:</strong> Uso Educacional | <strong>Versão:</strong> 2.0 (Setembro 2025)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acesso Rápido -->
+    <div class="quick-access">
+        <a href="exercicios_interativos.html" class="quick-btn" title="Exercícios Interativos">🎯</a>
+        <a href="plataforma_completa.html" class="quick-btn" title="Plataforma Completa">🚀</a>
+        <a href="#" class="quick-btn" title="Ajuda" onclick="showHelp()">❓</a>
+    </div>
+
+    <script>
+        // Função para mostrar ajuda
+        function showHelp() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 3000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 15px; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+                    <h2>🎓 Guia de Navegação</h2>
+                    
+                    <h3>📚 Para Iniciantes:</h3>
+                    <ol>
+                        <li>Comece com as <strong>Aulas Teóricas</strong> (Aula 01)</li>
+                        <li>Pratique com os <strong>Exercícios Interativos</strong> (Nível Iniciante)</li>
+                        <li>Realize o <strong>Laboratório 01</strong> para prática em IDE</li>
+                        <li>Consulte os <strong>Exercícios Resolvidos</strong> para dúvidas</li>
+                    </ol>
+                    
+                    <h3>🎯 Para Estudantes Intermediários:</h3>
+                    <ol>
+                        <li>Revise conceitos no <strong>Livro Didático</strong></li>
+                        <li>Complete exercícios de <strong>Nível Intermediário</strong></li>
+                        <li>Analise os <strong>Exemplos de Código</strong> em C/Python</li>
+                        <li>Pratique nos <strong>Laboratórios 02-03</strong></li>
+                    </ol>
+                    
+                    <h3>🚀 Para Estudantes Avançados:</h3>
+                    <ol>
+                        <li>Estude algoritmos complexos no <strong>Livro</strong></li>
+                        <li>Desafie-se com <strong>Nível Avançado</strong> interativo</li>
+                        <li>Complete todos os <strong>Laboratórios</strong></li>
+                        <li>Implemente variações dos algoritmos</li>
+                    </ol>
+                    
+                    <h3>🎮 Sistema Interativo:</h3>
+                    <p>Os exercícios interativos incluem:</p>
+                    <ul>
+                        <li><strong>Sistema XP:</strong> Ganhe pontos por completar exercícios</li>
+                        <li><strong>Badges:</strong> Desbloqueie conquistas especiais</li>
+                        <li><strong>Feedback:</strong> Análise automática de complexidade</li>
+                        <li><strong>Progressão:</strong> Trilha de aprendizado personalizada</li>
+                    </ul>
+                    
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="background: #3498db; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; margin-top: 20px; font-weight: bold;">
+                        Entendi!
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.remove();
+            };
+        }
+
+        // Animação de entrada dos cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.nav-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Rastreamento de cliques para estatísticas
+        document.querySelectorAll('.nav-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                console.log(`Acesso a: ${title}`);
+                
+                // Aqui você poderia enviar dados para analytics
+                // analytics.track('material_access', { section: title });
+            });
+        });
+    </script>
+</body>
+</html>
