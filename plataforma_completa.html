@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Completa - Algoritmos e Complexidade</title>
+    <title>Academia de Algoritmos e Complexidade - Versão 2.0</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,6 +30,24 @@
             min-height: 100vh;
             color: #1e293b;
             line-height: 1.6;
+        }
+
+        /* Forçar aplicação dos estilos */
+        body * {
+            font-family: inherit !important;
+        }
+
+        /* Indicador de versão */
+        .version-indicator {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #3b82f6;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 1000;
         }
 
         .container {
@@ -2394,5 +2415,8 @@ int main() {
             updateProgressStats();
         });
     </script>
+    
+    <!-- Indicador de versão -->
+    <div class="version-indicator">v2.0 - Design Profissional</div>
 </body>
 </html>
