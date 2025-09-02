@@ -1,23 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Algorithms Mastery - Referência Mundial em Algoritmos e Complexidade</title>
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/book-modern-style.css">
-    <!-- 🎯 Modern Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- 🌟 Meta Tags for SEO -->
-    <meta name="description" content="A referência mundial em Algoritmos e Complexidade. Casos reais do Google, Netflix, Tesla. Gamificação e metodologia científica exclusiva.">
-    <meta name="keywords" content="algoritmos, complexidade, big o, estruturas de dados, google, netflix, tesla, programação">
-    <meta name="author" content="Prof. Vagner Cordeiro">
-    <meta property="og:title" content="Algorithms Mastery - Referência Mundial">
-    <meta property="og:description" content="O livro mais completo de algoritmos com casos reais e gamificação">
+    <title>Algoritmos e Complexidade - Plataforma Educacional</title>
+    <meta name="description" content="Plataforma interativa para aprendizado de algoritmos e complexidade computacional com Python, C e análise IA.">
+    <meta name="keywords" content="algoritmos, complexidade, python, c, programação, educação">
+    <meta name="author" content="Cordeiro Telecom">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://algoritmos-complexidade.netlify.app/">
+    <meta property="og:title" content="Algoritmos e Complexidade - Plataforma Educacional">
+    <meta property="og:description" content="Aprenda algoritmos de forma interativa com Python, C e análise automática de complexidade.">
+    <meta property="og:image" content="https://algoritmos-complexidade.netlify.app/assets/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://algoritmos-complexidade.netlify.app/">
+    <meta property="twitter:title" content="Algoritmos e Complexidade - Plataforma Educacional">
+    <meta property="twitter:description" content="Aprenda algoritmos de forma interativa com Python, C e análise automática de complexidade.">
+    <meta property="twitter:image" content="https://algoritmos-complexidade.netlify.app/assets/preview.png">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        
+        .loading-container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+        
+        .logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00f5ff, #0099ff);
+            width: 0%;
+            animation: progress 2s ease-in-out;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
 </head>
 <body>
+    <div class="loading-container">
+        <div class="logo">🚀</div>
+        <h1>Algoritmos e Complexidade</h1>
+        <p>Carregando plataforma educacional...</p>
+        <div class="spinner"></div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <p style="font-size: 0.9em;">Redirecionando para o portal principal...</p>
+    </div>
+
+    <script>
+        // Redireciona após 3 segundos para dar tempo do carregamento visual
+        setTimeout(() => {
+            window.location.href = 'portal_aprendizado.html';
+        }, 3000);
+        
+        // Redireciona imediatamente se o usuário clicar
+        document.addEventListener('click', () => {
+            window.location.href = 'portal_aprendizado.html';
+        });
+        
+        // Analytics básico (se necessário)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Index Redirect',
+                page_location: window.location.href
+            });
+        }
+    </script>
+</body>
+</html>
     <div class="book-container animate-fade-in">
         <!-- 🏆 Header Hero Section -->
         <header class="chapter-intro glow">
