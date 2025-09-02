@@ -13,9 +13,9 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             min-height: 100vh;
-            color: #1e293b;
+            color: #e2e8f0;
             line-height: 1.6;
         }
 
@@ -27,112 +27,131 @@
 
         .header {
             text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 50px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
         }
 
         .header h1 {
-            color: #0f172a;
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.02em;
+            color: #f8fafc;
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .header p {
-            color: #475569;
-            font-size: 1.3em;
+            color: #cbd5e1;
+            font-size: 1.4em;
             font-weight: 400;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .main-nav {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
+            gap: 20px;
+            margin: 30px 0;
             flex-wrap: wrap;
         }
 
         .nav-btn {
-            padding: 14px 28px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 16px 32px;
+            border: 2px solid #475569;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 15px;
-            background: #ffffff;
-            color: #475569;
+            font-size: 16px;
+            background: rgba(15, 23, 42, 0.8);
+            color: #e2e8f0;
             text-decoration: none;
             display: inline-block;
+            backdrop-filter: blur(10px);
         }
 
         .nav-btn.active {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
             color: white;
             border-color: #3b82f6;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
         }
 
         .nav-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.3);
             border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
         }
 
         .section {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+            backdrop-filter: blur(20px);
         }
 
         .section-header {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            padding: 25px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            border-left: 5px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border-left: 4px solid #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .section-header h2 {
-            color: #0f172a;
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            color: #f8fafc;
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .section-header p {
-            color: #475569;
-            font-size: 1.1em;
-            line-height: 1.7;
+            color: #cbd5e1;
+            font-size: 1.2em;
+            line-height: 1.8;
         }
 
         .language-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
         }
 
         .language-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            border-radius: 16px;
-            padding: 30px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+            border-radius: 12px;
+            padding: 35px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            border: 2px solid #e2e8f0;
+            border: 1px solid #475569;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .language-card::before {
@@ -141,8 +160,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -153,91 +172,216 @@
 
         .language-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 25px 80px rgba(59, 130, 246, 0.25);
             border-color: #3b82f6;
         }
 
         .language-card h3 {
-            color: #0f172a;
-            margin-bottom: 15px;
-            font-size: 1.6em;
+            color: #f8fafc;
+            margin-bottom: 20px;
+            font-size: 1.8em;
             font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .language-card p {
-            color: #64748b;
-            line-height: 1.7;
+            color: #cbd5e1;
+            line-height: 1.8;
             font-weight: 400;
+            margin-bottom: 20px;
         }
 
         .learning-objective {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border: 2px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 25px;
+            margin: 25px 0;
         }
 
         .learning-objective h4 {
-            color: #1e40af;
+            color: #34d399;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
+            font-size: 1.3em;
         }
 
         .learning-objective h4::before {
             content: "🎯";
-            margin-right: 8px;
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .learning-objective ul {
+            color: #cbd5e1;
+        }
+
+        .learning-objective li {
+            margin-bottom: 8px;
+            font-size: 1.1em;
         }
 
         .code-explanation {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border-left: 4px solid #10b981;
-            padding: 20px;
-            margin: 15px 0;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+            border-left: 4px solid #06b6d4;
+            padding: 25px;
+            margin: 20px 0;
             border-radius: 8px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
         }
 
         .code-explanation h5 {
-            color: #065f46;
-            font-weight: 600;
-            margin-bottom: 8px;
+            color: #22d3ee;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .code-explanation ul {
+            color: #cbd5e1;
+        }
+
+        .code-explanation li {
+            margin-bottom: 6px;
+            font-size: 1.05em;
         }
 
         .tips-section {
-            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
-            border: 2px solid #f59e0b;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
             border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 25px;
+            margin: 25px 0;
         }
 
         .tips-section h4 {
-            color: #92400e;
+            color: #fbbf24;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
+            font-size: 1.3em;
         }
 
         .tips-section h4::before {
             content: "💡";
-            margin-right: 8px;
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .tips-section p {
+            color: #cbd5e1;
+            font-size: 1.1em;
+            line-height: 1.8;
         }
 
         .version-indicator {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: #10b981;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        /* Novos elementos didáticos */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            color: #f8fafc;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .progress-path {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .progress-path h4 {
+            color: #60a5fa;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-path h4::before {
+            content: "🗺️";
+            margin-right: 12px;
+            font-size: 1.3em;
+        }
+
+        .pathway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pathway-item {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pathway-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+        }
+
+        .pathway-item h5 {
+            color: #f8fafc;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .pathway-item p {
+            color: #94a3b8;
+            font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
@@ -263,8 +407,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎓 Academia de Algoritmos e Complexidade</h1>
-            <p>Plataforma Educacional Avançada para Análise Algorítmica Profissional</p>
+            <h1>🎓 Instituto de Algoritmos Avançados</h1>
+            <p>Plataforma Educacional Corporativa para Desenvolvimento de Competências em Ciência da Computação</p>
         </div>
 
         <nav class="main-nav">
@@ -276,85 +420,163 @@
 
         <section class="section">
             <div class="section-header">
-                <h2>🎯 Centro de Aprendizado Algorítmico</h2>
-                <p>Bem-vindo à nossa plataforma educacional avançada, desenvolvida para proporcionar uma experiência de aprendizado completa em algoritmos, estruturas de dados e análise de complexidade computational.</p>
+                <h2>📚 Metodologia de Ensino Estruturada</h2>
+                <p>Nossa abordagem pedagógica segue uma progressão cientificamente validada, combinando teoria fundamentada com aplicação prática através de projetos reais da indústria de tecnologia.</p>
+            </div>
+
+            <div class="progress-path">
+                <h4>Trilha de Aprendizagem Recomendada</h4>
+                <div class="step-indicator">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Fundamentos Teóricos</div>
+                        <div class="step-description">Estude conceitos fundamentais de algoritmos, estruturas de dados e notação Big O antes de partir para implementações práticas.</div>
+                    </div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Implementação Guiada</div>
+                        <div class="step-description">Pratique implementações básicas em Python com exemplos comentados e explicações passo-a-passo de cada linha de código.</div>
+                    </div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Otimização em C</div>
+                        <div class="step-description">Aprenda implementações de baixo nível em C para compreender gerenciamento de memória e otimizações de performance.</div>
+                    </div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Análise Avançada</div>
+                        <div class="step-description">Utilize ferramentas de análise automática para compreender complexidade e identificar gargalos em algoritmos complexos.</div>
+                    </div>
+                </div>
             </div>
 
             <div class="learning-objective">
-                <h4>Objetivos de Aprendizagem</h4>
-                <ul style="color: #1e40af; margin-left: 20px;">
-                    <li>Dominar implementação de algoritmos em Python e C</li>
-                    <li>Compreender análise de complexidade temporal e espacial</li>
-                    <li>Aplicar estruturas de dados eficientemente</li>
-                    <li>Desenvolver pensamento algorítmico sistemático</li>
+                <h4>Competências Desenvolvidas</h4>
+                <ul style="color: #cbd5e1; margin-left: 25px;">
+                    <li><strong>Pensamento Algorítmico:</strong> Decomposição de problemas complexos em soluções estruturadas</li>
+                    <li><strong>Análise de Complexidade:</strong> Avaliação rigorosa de eficiência temporal e espacial</li>
+                    <li><strong>Implementação Multi-linguagem:</strong> Proficiência em Python e C para diferentes contextos</li>
+                    <li><strong>Otimização de Performance:</strong> Técnicas avançadas de melhoria de algoritmos</li>
+                    <li><strong>Arquitetura de Dados:</strong> Design e implementação de estruturas eficientes</li>
                 </ul>
+            </div>
+
+            <div class="pathway-grid">
+                <div class="pathway-item">
+                    <h5>📊 Nível Iniciante</h5>
+                    <p>Algoritmos básicos, estruturas lineares, ordenação simples</p>
+                </div>
+                <div class="pathway-item">
+                    <h5>⚡ Nível Intermediário</h5>
+                    <p>Recursão, árvores, grafos, programação dinâmica</p>
+                </div>
+                <div class="pathway-item">
+                    <h5>🚀 Nível Avançado</h5>
+                    <p>Algoritmos distribuídos, otimização complexa, paralelismo</p>
+                </div>
+                <div class="pathway-item">
+                    <h5>🔬 Nível Especialista</h5>
+                    <p>Pesquisa operacional, inteligência artificial, análise de dados</p>
+                </div>
             </div>
 
             <div class="language-grid">
                 <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
-                    <h3>🐍 Programação Python</h3>
-                    <p>Desenvolvimento algorítmico em Python com foco em legibilidade, eficiência e boas práticas de programação. Explore desde estruturas básicas até algoritmos complexos.</p>
+                    <h3>🐍 Python - Desenvolvimento Algorítmico</h3>
+                    <p>Módulo focado em implementação elegante e legível de algoritmos, aproveitando as características únicas do Python para prototipagem rápida e desenvolvimento ágil de soluções computacionais.</p>
                     <div class="code-explanation">
-                        <h5>Módulos Abordados:</h5>
-                        <ul style="color: #065f46; margin-left: 20px;">
-                            <li>Estruturas de Dados Nativas (Listas, Dicionários, Sets)</li>
-                            <li>Algoritmos de Ordenação e Busca</li>
-                            <li>Programação Recursiva e Dinâmica</li>
-                            <li>Análise de Performance e Otimização</li>
+                        <h5>Currículo Estruturado:</h5>
+                        <ul style="color: #cbd5e1; margin-left: 20px;">
+                            <li><strong>Fundamentos:</strong> Sintaxe pythônica, estruturas de dados nativas, list comprehensions</li>
+                            <li><strong>Algoritmos:</strong> Ordenação, busca, recursão, programação dinâmica</li>
+                            <li><strong>Bibliotecas:</strong> NumPy, pandas para processamento de dados eficiente</li>
+                            <li><strong>Otimização:</strong> Profiling, memoização, algoritmos paralelos</li>
                         </ul>
+                    </div>
+                    <div class="step-indicator" style="margin-top: 20px;">
+                        <div class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); width: 30px; height: 30px; font-size: 14px;">✓</div>
+                        <div class="step-content">
+                            <div class="step-title" style="font-size: 1em;">Nível Recomendado</div>
+                            <div class="step-description" style="font-size: 0.9em;">Iniciante a Intermediário • 40+ exercícios práticos</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
-                    <h3>⚡ Linguagem C - Sistemas</h3>
-                    <p>Fundamentos sólidos em C para compreensão de sistemas de baixo nível, gerenciamento de memória e implementação eficiente de algoritmos.</p>
+                    <h3>⚡ C - Programação de Sistemas</h3>
+                    <p>Especialização em programação de baixo nível, oferecendo controle direto sobre hardware e memória, essencial para desenvolvimento de sistemas críticos e aplicações de alta performance.</p>
                     <div class="code-explanation">
-                        <h5>Competências Desenvolvidas:</h5>
-                        <ul style="color: #065f46; margin-left: 20px;">
-                            <li>Gerenciamento Manual de Memória</li>
-                            <li>Ponteiros e Referências Avançadas</li>
-                            <li>Estruturas de Dados Customizadas</li>
-                            <li>Otimização de Performance de Sistema</li>
+                        <h5>Competências Técnicas:</h5>
+                        <ul style="color: #cbd5e1; margin-left: 20px;">
+                            <li><strong>Memória:</strong> Alocação dinâmica, ponteiros, gestão manual de recursos</li>
+                            <li><strong>Estruturas:</strong> Arrays multidimensionais, structs, unions customizadas</li>
+                            <li><strong>Sistemas:</strong> Chamadas de sistema, programação concorrente</li>
+                            <li><strong>Performance:</strong> Otimização de loops, cache efficiency, profiling</li>
                         </ul>
+                    </div>
+                    <div class="step-indicator" style="margin-top: 20px;">
+                        <div class="step-number" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); width: 30px; height: 30px; font-size: 14px;">⚡</div>
+                        <div class="step-content">
+                            <div class="step-title" style="font-size: 1em;">Nível Recomendado</div>
+                            <div class="step-description" style="font-size: 0.9em;">Intermediário a Avançado • 35+ projetos práticos</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
-                    <h3>🏗️ Estruturas de Dados</h3>
-                    <p>Implementação e análise completa de estruturas de dados fundamentais, com foco em aplicações práticas e análise de complexidade.</p>
+                    <h3>🏗️ Arquitetura de Dados</h3>
+                    <p>Estudo aprofundado de estruturas de dados fundamentais e avançadas, com análise rigorosa de trade-offs entre tempo e espaço para diferentes cenários de aplicação.</p>
                     <div class="code-explanation">
-                        <h5>Estruturas Estudadas:</h5>
-                        <ul style="color: #065f46; margin-left: 20px;">
-                            <li>Arrays, Listas Ligadas e Pilhas</li>
-                            <li>Árvores Binárias e Árvores de Busca</li>
-                            <li>Grafos e Algoritmos de Percurso</li>
-                            <li>Hash Tables e Estruturas Avançadas</li>
+                        <h5>Estruturas Abordadas:</h5>
+                        <ul style="color: #cbd5e1; margin-left: 20px;">
+                            <li><strong>Lineares:</strong> Arrays dinâmicos, listas ligadas, pilhas, filas</li>
+                            <li><strong>Hierárquicas:</strong> Árvores binárias, AVL, Red-Black, B-trees</li>
+                            <li><strong>Grafos:</strong> Representações, algoritmos de percurso, caminhos mínimos</li>
+                            <li><strong>Hash:</strong> Tabelas hash, tratamento de colisões, bloom filters</li>
                         </ul>
+                    </div>
+                    <div class="step-indicator" style="margin-top: 20px;">
+                        <div class="step-number" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); width: 30px; height: 30px; font-size: 14px;">🔬</div>
+                        <div class="step-content">
+                            <div class="step-title" style="font-size: 1em;">Nível Recomendado</div>
+                            <div class="step-description" style="font-size: 0.9em;">Todos os níveis • 50+ implementações</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="language-card" onclick="window.location.href='plataforma_completa.html'">
-                    <h3>📊 Análise de Complexidade</h3>
-                    <p>Sistema avançado de análise algorítmica com IA para compreensão profunda de complexidade temporal, espacial e otimizações.</p>
+                    <h3>📊 Análise Computacional Avançada</h3>
+                    <p>Sistema de análise algorítmica baseado em inteligência artificial, oferecendo insights profundos sobre complexidade, gargalos e oportunidades de otimização em códigos reais.</p>
                     <div class="code-explanation">
-                        <h5>Recursos Analíticos:</h5>
-                        <ul style="color: #065f46; margin-left: 20px;">
-                            <li>Análise Automática Big O</li>
-                            <li>Visualizações Interativas</li>
-                            <li>Sugestões de Otimização</li>
-                            <li>Comparação de Algoritmos</li>
+                        <h5>Ferramentas Analíticas:</h5>
+                        <ul style="color: #cbd5e1; margin-left: 20px;">
+                            <li><strong>Análise IA:</strong> Detecção automática de padrões e complexidade Big O</li>
+                            <li><strong>Visualização:</strong> Gráficos interativos de performance e uso de memória</li>
+                            <li><strong>Benchmarking:</strong> Comparação empírica entre implementações</li>
+                            <li><strong>Otimização:</strong> Sugestões inteligentes de melhorias</li>
                         </ul>
+                    </div>
+                    <div class="step-indicator" style="margin-top: 20px;">
+                        <div class="step-number" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); width: 30px; height: 30px; font-size: 14px;">🤖</div>
+                        <div class="step-content">
+                            <div class="step-title" style="font-size: 1em;">Nível Recomendado</div>
+                            <div class="step-description" style="font-size: 0.9em;">Avançado a Especialista • Análise ilimitada</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="tips-section">
-                <h4>Metodologia de Ensino</h4>
-                <p style="color: #92400e;">Nossa abordagem pedagógica combina teoria sólida com prática intensiva, utilizando exemplos reais e projetos aplicados para consolidar o aprendizado de forma efetiva e duradoura.</p>
+                <h4>Metodologia Baseada em Evidências</h4>
+                <p style="color: #cbd5e1;">Nosso currículo foi desenvolvido em colaboração com profissionais da indústria e pesquisadores acadêmicos, seguindo as melhores práticas de ensino de ciência da computação. Cada exercício é validado por peer review e atualizado continuamente baseado em feedback de estudantes e resultados de aprendizagem mensuráveis.</p>
             </div>
-        </section>
-    </div>
 
-    <div class="version-indicator">✅ ESTÁVEL v2.1</div>
+    <div class="version-indicator">🎯 CORPORATIVO v3.0</div>
 </body>
 </html>

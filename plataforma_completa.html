@@ -55,9 +55,9 @@
 
         body {
             font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             min-height: 100vh;
-            color: #1e293b;
+            color: #e2e8f0;
             line-height: 1.6;
             visibility: hidden; /* Previne FOUC */
         }
@@ -98,27 +98,40 @@
 
         .header {
             text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 50px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
         }
 
         .header h1 {
-            color: #0f172a;
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -0.02em;
+            color: #f8fafc;
+            font-size: 3.2em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .header p {
-            color: #475569;
-            font-size: 1.3em;
+            color: #cbd5e1;
+            font-size: 1.4em;
             font-weight: 400;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -2467,6 +2480,6 @@ int main() {
     </script>
     
     <!-- Indicador de versão -->
-    <div class="version-indicator">v2.0 - Design Profissional</div>
+    <div class="version-indicator">🎯 CORPORATIVO v3.0</div>
 </body>
 </html>
