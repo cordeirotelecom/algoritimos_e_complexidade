@@ -11,7 +11,7 @@
 Esta é uma plataforma educacional completa que oferece uma experiência imersiva de aprendizado em algoritmos e complexidade computacional, combinando teoria sólida com prática intensiva através de múltiplas linguagens de programação.
 
 ### 🎮 **Acesso Rápido**
-- 🌐 **Demo Online**: [algoritmos-complexidade.netlify.app](https://algoritmos-complexidade.netlify.app)
+- 🌐 **Demo Online**: [algoritimoscomplexidade.netlify.app](https://algoritimoscomplexidade.netlify.app)
 - 🎯 **Exercícios Interativos**: Sistema gamificado com 15+ exercícios
 - 🚀 **Plataforma Completa**: Python, C, estruturas de dados e análise IA
 - 📚 **Portal de Aprendizado**: Hub central com todos os recursos
@@ -80,7 +80,7 @@ algoritimos_github/
 ## 🚀 Como Usar
 
 ### 1. **Acesso Online** (Recomendado)
-Visite: [algoritmos-complexidade.netlify.app](https://algoritmos-complexidade.netlify.app)
+Visite: [algoritimoscomplexidade.netlify.app](https://algoritimoscomplexidade.netlify.app)
 
 ### 2. **Instalação Local**
 ```bash
