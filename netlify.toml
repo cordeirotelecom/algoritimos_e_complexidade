@@ -8,16 +8,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Configurações de redirecionamento - Emergency Version
-[[redirects]]
-  from = "/index"
-  to = "/emergency.html"
-  status = 301
-
-[[redirects]]
-  from = "/"
-  to = "/emergency.html"
-  status = 200
+# Sem redirecionamentos - serve index.html diretamente
 
 # Headers para melhor performance
 [[headers]]
