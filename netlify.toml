@@ -11,12 +11,12 @@
 # Configurações de redirecionamento
 [[redirects]]
   from = "/index"
-  to = "/portal_aprendizado.html"
+  to = "/premium_links.html"
   status = 301
 
 [[redirects]]
   from = "/"
-  to = "/portal_aprendizado.html"
+  to = "/premium_links.html"
   status = 200
 
 # Headers para melhor performance
@@ -47,5 +47,6 @@
 # Configuração para SPA (Single Page Application)
 [[redirects]]
   from = "/*"
-  to = "/portal_aprendizado.html"
+  to = "/premium_links.html"
+  status = 404
   status = 404
