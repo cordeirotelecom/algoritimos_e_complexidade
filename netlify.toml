@@ -8,15 +8,15 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Configurações de redirecionamento
+# Configurações de redirecionamento - Ultra Premium 2025
 [[redirects]]
   from = "/index"
-  to = "/premium_links.html"
+  to = "/ultra_premium.html"
   status = 301
 
 [[redirects]]
   from = "/"
-  to = "/premium_links.html"
+  to = "/ultra_premium.html"
   status = 200
 
 # Headers para melhor performance
@@ -47,6 +47,6 @@
 # Configuração para SPA (Single Page Application)
 [[redirects]]
   from = "/*"
-  to = "/premium_links.html"
+  to = "/ultra_premium.html"
   status = 404
   status = 404

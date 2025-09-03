@@ -1,12 +1,13 @@
-# Redirecionamentos para Netlify
-/index.html /premium_links.html 301
-/ /premium_links.html 200
+# Redirecionamentos para Netlify - Ultra Premium 2025
+/index.html /ultra_premium.html 301
+/ /ultra_premium.html 200
 
 # Redirecionamentos para páginas principais
 /exercicios /exercicios_interativos.html 301
 /plataforma /plataforma_completa.html 301
-/portal /portal_aprendizado.html 301
+/portal /premium_links.html 301
 /links /premium_links.html 301
+/premium /ultra_premium.html 301
 
 # 404 fallback
-/* /premium_links.html 404
+/* /ultra_premium.html 404
