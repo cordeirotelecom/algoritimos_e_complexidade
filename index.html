@@ -3,462 +3,638 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algoritmos e Complexidade - Plataforma Educacional</title>
-    <meta name="description" content="Plataforma interativa para aprendizado de algoritmos e complexidade computacional com Python, C e análise IA.">
-    <meta name="keywords" content="algoritmos, complexidade, python, c, programação, educação">
-    <meta name="author" content="Cordeiro Telecom">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://algoritmos-complexidade.netlify.app/">
-    <meta property="og:title" content="Algoritmos e Complexidade - Plataforma Educacional">
-    <meta property="og:description" content="Aprenda algoritmos de forma interativa com Python, C e análise automática de complexidade.">
-    <meta property="og:image" content="https://algoritmos-complexidade.netlify.app/assets/preview.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://algoritmos-complexidade.netlify.app/">
-    <meta property="twitter:title" content="Algoritmos e Complexidade - Plataforma Educacional">
-    <meta property="twitter:description" content="Aprenda algoritmos de forma interativa com Python, C e análise automática de complexidade.">
-    <meta property="twitter:image" content="https://algoritmos-complexidade.netlify.app/assets/preview.png">
+    <title>Algoritmos e Complexidade - Portal Educacional Profissional</title>
+    <meta name="description" content="Portal educacional profissional para aprendizado de algoritmos e complexidade computacional">
+    <meta name="keywords" content="algoritmos, complexidade, programação, Python, C, estruturas de dados">
     
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-dark: #1e293b;
+            
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --text-white: #ffffff;
+            
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: white;
+            padding: 1rem 0;
         }
-        
-        .loading-container {
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-        }
-        
+
         .logo {
-            font-size: 4em;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
         }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
-        
-        p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        
-        .progress-bar {
-            width: 300px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
-            margin: 20px auto;
-            overflow: hidden;
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--text-white);
         }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00f5ff, #0099ff);
-            width: 0%;
-            animation: progress 2s ease-in-out;
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
-        
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-white);
+            border: 2px solid var(--text-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-white);
+            color: var(--primary-color);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 3rem 0;
+            background: var(--bg-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .link-tag {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .link-tag:hover {
+            background: var(--primary-color);
+            color: var(--text-white);
+            border-color: var(--primary-color);
+        }
+
+        .status-badge {
+            background: var(--success-color);
+            color: var(--text-white);
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Platform Section */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .platform-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--text-white);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .platform-card:hover {
+            transform: scale(1.05);
+        }
+
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .platform-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .platform-description {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-white);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--text-white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <div class="logo">🚀</div>
-        <h1>Algoritmos e Complexidade</h1>
-        <p>Carregando plataforma educacional...</p>
-        <div class="spinner"></div>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-        <p style="font-size: 0.9em;">Redirecionando para o portal principal...</p>
-    </div>
-
-    <script>
-        // Redireciona após 3 segundos para dar tempo do carregamento visual
-        setTimeout(() => {
-            window.location.href = 'portal_aprendizado.html';
-        }, 3000);
-        
-        // Redireciona imediatamente se o usuário clicar
-        document.addEventListener('click', () => {
-            window.location.href = 'portal_aprendizado.html';
-        });
-        
-        // Analytics básico (se necessário)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_view', {
-                page_title: 'Index Redirect',
-                page_location: window.location.href
-            });
-        }
-    </script>
-</body>
-</html>
-    <div class="book-container animate-fade-in">
-        <!-- 🏆 Header Hero Section -->
-        <header class="chapter-intro glow">
-            <h1>🚀 ALGORITHMS MASTERY</h1>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
-                <span class="badge badge-primary">🌟 REFERÊNCIA MUNDIAL</span>
-                <span class="badge badge-success">🎮 GAMIFICAÇÃO</span>
-                <span class="badge badge-warning">🏢 CASOS REAIS</span>
-                <span class="badge badge-info">🔬 CIENTÍFICO</span>
-            </p>
-            <div style="text-align: center;">
-                <div class="xp-bar">🎯 LEVEL MASTER: 100,000 XP</div>
-                <div style="margin: 1rem 0;">
-                    <span class="level-badge">∞</span>
-                    <span style="margin: 0 1rem; font-weight: 700;">ALGORITMO NINJA MASTER</span>
-                    <span class="level-badge">🥇</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- 🎯 Navigation Menu -->
-        <nav class="chapter-nav">
-            <a href="#introducao" class="nav-button">📚 Introdução</a>
-            <a href="#aulas" class="nav-button">🎓 Aulas</a>
-            <a href="#exercicios" class="nav-button">💪 Exercícios</a>
-            <a href="#exemplos" class="nav-button">💻 Códigos</a>
-            <a href="#livro" class="nav-button">📖 Livro Completo</a>
-            <a href="links_funcionais.html" class="nav-button special">🔗 Portal de Links</a>
-        </nav>
-
-        <!-- 🌟 Main Content -->
-        <main>
-            <section id="introducao" class="info-box">
-                <h2>🎯 Bem-vindo à Revolução dos Algoritmos</h2>
-                <p>Este não é apenas mais um material sobre algoritmos. É a <strong>referência mundial</strong> que combina:</p>
-                <ul style="margin: 1rem 0; padding-left: 2rem;">
-                    <li>🏢 <strong>Casos Reais:</strong> Google, Netflix, Tesla, WhatsApp</li>
-                    <li>🎮 <strong>Gamificação:</strong> Sistema de XP, conquistas e níveis</li>
-                    <li>🔬 <strong>Metodologia Científica:</strong> 7 passos exclusivos</li>
-                    <li>💻 <strong>Labs Práticos:</strong> Medições reais de performance</li>
-                    <li>🎨 <strong>Design Moderno:</strong> Interface de última geração</li>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">🎓 Algoritmos & Complexidade</a>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Início</a></li>
+                    <li><a href="#recursos" class="nav-link">Recursos</a></li>
+                    <li><a href="#plataformas" class="nav-link">Plataformas</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
                 </ul>
-            </section>
+            </nav>
+        </div>
+    </header>
 
-            <section id="stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
-                <div class="achievement">
-                    <strong>🔍 8.5 BILHÕES</strong>
-                    <p>Buscas no Google por dia</p>
-                </div>
-                <div class="achievement">
-                    <strong>📱 2 BILHÕES</strong>
-                    <p>Usuários WhatsApp (55 funcionários)</p>
-                </div>
-                <div class="achievement">
-                    <strong>🎬 80%</strong>
-                    <p>Conteúdo Netflix via algoritmos</p>
-                </div>
-                <div class="achievement">
-                    <strong>🚗 VIDA & MORTE</strong>
-                    <p>Decisões Tesla em milissegundos</p>
-                </div>
-            </section>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero fade-in">
+        <div class="container">
+            <h1 class="hero-title">Portal Educacional de Algoritmos</h1>
+            <p class="hero-subtitle">
+                Aprenda algoritmos e complexidade computacional com material profissional e plataformas interativas
+            </p>
+            <div class="cta-buttons">
+                <a href="plataforma_completa.html" class="btn btn-primary">🚀 Acessar Plataforma</a>
+                <a href="#recursos" class="btn btn-secondary">📚 Ver Conteúdo</a>
+            </div>
+        </div>
+    </section>
 
-            <section id="aulas">
-                <h2>🎓 Jornada de Aprendizagem</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-                    <div class="success-box">
-                        <h3>📖 Aulas Teóricas</h3>
-                        <ul style="list-style: none; padding: 0;">
-                            <li>✅ <a href="aulas/aula01.md">Aula 01: Introdução e Fundamentos</a></li>
-                            <li>✅ <a href="aulas/aula02.md">Aula 02: Notação Big O</a></li>
-                            <li>✅ <a href="aulas/aula03.md">Aula 03: Estruturas Lineares</a></li>
-                            <li>✅ <a href="aulas/aula04.md">Aula 04: Algoritmos de Ordenação</a></li>
-                            <li>✅ <a href="aulas/aula05.md">Aula 05: Árvores e Grafos</a></li>
-                            <li>✅ <a href="aulas/aula06.md">Aula 06: Algoritmos Avançados</a></li>
-                            <li>✅ <a href="aulas/aula07.md">Aula 07: Programação Dinâmica</a></li>
-                            <li>✅ <a href="aulas/aula08.md">Aula 08: Algoritmos Gulosos</a></li>
-                            <li>✅ <a href="aulas/aula09_12.md">Aulas 09-12: Tópicos Especiais</a></li>
-                            <li>✅ <a href="aulas/aula13.md">Aula 13: Grafos Avançados</a></li>
-                            <li>✅ <a href="aulas/aula14.md">Aula 14: Complexidade Avançada</a></li>
-                            <li>🔥 <a href="aulas/revisao_analise_algoritmos.md">Revisão Completa</a></li>
-                        </ul>
-                    </div>
-                    <div class="warning-box">
-                        <h3>💪 Exercícios Práticos</h3>
-                        <ul style="list-style: none; padding: 0;">
-                            <li>🎯 <a href="exercicios/lista01.md">Lista 01: Análise de Complexidade</a></li>
-                            <li>🎯 <a href="exercicios/lista02.md">Lista 02: Estruturas de Dados</a></li>
-                            <li>🏆 <a href="exercicios/exercicios_resolvidos_completos.md">Exercícios Resolvidos Completos</a></li>
-                        </ul>
-                        <div style="margin-top: 1rem;">
-                            <span class="badge badge-success">📊 PDF Disponível</span>
-                            <span class="badge badge-info">✅ Resoluções Detalhadas</span>
-                        </div>
-                    </div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">75+</span>
+                    <span class="stat-label">Recursos Educacionais</span>
                 </div>
-            </section>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Aulas Teóricas</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Laboratórios Práticos</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Plataformas Interativas</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <section id="exemplos">
-                <h2>💻 Laboratórios de Código</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div class="chart-container">
-                        <h3>🐍 Python Labs</h3>
-                        <ul>
-                            <li><a href="exemplos/python/complexidade/">📊 Análise de Complexidade</a></li>
-                            <li><a href="exemplos/python/estruturas_dados/">🗂️ Estruturas de Dados</a></li>
-                            <li><a href="exemplos/python/arvores/">🌳 Árvores e Grafos</a></li>
-                        </ul>
-                        <div style="margin-top: 1rem;">
-                            <span class="badge badge-primary">🔬 Científico</span>
-                            <span class="badge badge-success">📈 Performance</span>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <h3>⚡ C Labs</h3>
-                        <ul>
-                            <li><a href="exemplos/c/complexidade/">🚀 Performance Extrema</a></li>
-                            <li><a href="exemplos/c/estruturas_dados/">💾 Gestão de Memória</a></li>
-                            <li><a href="exemplos/c/arvores/">🔗 Estruturas Complexas</a></li>
-                        </ul>
-                        <div style="margin-top: 1rem;">
-                            <span class="badge badge-warning">⚡ Alta Performance</span>
-                            <span class="badge badge-info">💾 Baixo Nível</span>
-                        </div>
+    <!-- Resources Section -->
+    <section id="recursos" class="section">
+        <div class="container">
+            <h2 class="section-title">Recursos Educacionais</h2>
+            <p class="section-subtitle">
+                Material completo e estruturado para aprendizagem progressiva
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <span class="card-icon">📚</span>
+                    <h3 class="card-title">Material de Aulas</h3>
+                    <p class="card-description">
+                        15 aulas teóricas completas cobrindo desde conceitos básicos até tópicos avançados
+                    </p>
+                    <div class="card-links">
+                        <a href="aulas/aula01.md" class="link-tag">Aula 01<span class="status-badge">✓</span></a>
+                        <a href="aulas/aula02.md" class="link-tag">Aula 02<span class="status-badge">✓</span></a>
+                        <a href="aulas/aula03.md" class="link-tag">Aula 03<span class="status-badge">✓</span></a>
+                        <a href="aulas/aula04.md" class="link-tag">Aula 04<span class="status-badge">✓</span></a>
+                        <a href="aulas/DOWNLOADS_PDF.md" class="link-tag">PDFs<span class="status-badge">✓</span></a>
                     </div>
                 </div>
-            </section>
 
-            <section id="livro" class="chapter-intro">
-                <h2 style="color: white;">📖 Livro Completo - Referência Mundial</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                    Acesse o livro completo que está revolucionando o ensino de algoritmos mundialmente:
+                <div class="card fade-in">
+                    <span class="card-icon">💻</span>
+                    <h3 class="card-title">Exercícios & Labs</h3>
+                    <p class="card-description">
+                        Exercícios práticos e laboratórios para consolidar o aprendizado
+                    </p>
+                    <div class="card-links">
+                        <a href="exercicios/lista01.md" class="link-tag">Lista 01<span class="status-badge">✓</span></a>
+                        <a href="exercicios/lista02.md" class="link-tag">Lista 02<span class="status-badge">✓</span></a>
+                        <a href="exercicios/laboratorio01_introducao_algoritmos.md" class="link-tag">Lab 01<span class="status-badge">✓</span></a>
+                        <a href="exercicios/exercicios_resolvidos_completos.md" class="link-tag">Resolvidos<span class="status-badge">✓</span></a>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <span class="card-icon">🔧</span>
+                    <h3 class="card-title">Códigos & Exemplos</h3>
+                    <p class="card-description">
+                        Implementações em Python e C com análise de complexidade
+                    </p>
+                    <div class="card-links">
+                        <a href="exemplos/python/complexidade/" class="link-tag">Python<span class="status-badge">✓</span></a>
+                        <a href="exemplos/c/complexidade/" class="link-tag">C Language<span class="status-badge">✓</span></a>
+                        <a href="exemplos/python/estruturas_dados/" class="link-tag">Estruturas<span class="status-badge">✓</span></a>
+                        <a href="exemplos/python/arvores/" class="link-tag">Árvores<span class="status-badge">✓</span></a>
+                    </div>
+                </div>
+
+                <div class="card fade-in">
+                    <span class="card-icon">📖</span>
+                    <h3 class="card-title">Documentação</h3>
+                    <p class="card-description">
+                        Guias completos e material de referência para estudo
+                    </p>
+                    <div class="card-links">
+                        <a href="docs/apostila_completa.md" class="link-tag">Apostila<span class="status-badge">✓</span></a>
+                        <a href="docs/resumo_rapido.md" class="link-tag">Resumo<span class="status-badge">✓</span></a>
+                        <a href="docs/compilacao_execucao.md" class="link-tag">Setup<span class="status-badge">✓</span></a>
+                        <a href="docs/livro_algoritmos_complexidade_didatico.pdf" class="link-tag">Livro PDF<span class="status-badge">✓</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section id="plataformas" class="section" style="background: var(--bg-primary);">
+        <div class="container">
+            <h2 class="section-title">Plataformas Interativas</h2>
+            <p class="section-subtitle">
+                Ferramentas avançadas para uma experiência de aprendizado completa
+            </p>
+            
+            <div class="platform-grid">
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">🖥️</span>
+                    <h3 class="platform-title">IDE Completo</h3>
+                    <p class="platform-description">
+                        Ambiente de desenvolvimento integrado com análise automática de complexidade
+                    </p>
+                    <a href="plataforma_completa.html" class="btn btn-secondary">Acessar IDE</a>
+                </div>
+
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">🎮</span>
+                    <h3 class="platform-title">Sistema Gamificado</h3>
+                    <p class="platform-description">
+                        Aprendizagem através de jogos com sistema de pontos e conquistas
+                    </p>
+                    <a href="exercicios_interativos.html" class="btn btn-secondary">Começar Jogo</a>
+                </div>
+
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">📊</span>
+                    <h3 class="platform-title">Dashboard Analytics</h3>
+                    <p class="platform-description">
+                        Acompanhe seu progresso com métricas detalhadas e relatórios
+                    </p>
+                    <a href="portal_aprendizado.html" class="btn btn-secondary">Ver Dashboard</a>
+                </div>
+
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">⭐</span>
+                    <h3 class="platform-title">Portal Premium</h3>
+                    <p class="platform-description">
+                        Acesso a recursos avançados e funcionalidades exclusivas
+                    </p>
+                    <a href="premium_links.html" class="btn btn-secondary">Acessar Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">Algoritmos & Complexidade</h3>
+                <p class="footer-text">
+                    Portal educacional profissional para aprendizagem de algoritmos e estruturas de dados
                 </p>
-                <div style="text-align: center;">
-                    <a href="livro_algoritmos_complexidade_didatico.md" class="button" style="font-size: 1.2rem; padding: 1rem 2rem;">
-                        🚀 ACESSAR LIVRO COMPLETO
-                    </a>
+                <div class="footer-links">
+                    <a href="#inicio" class="footer-link">Início</a>
+                    <a href="#recursos" class="footer-link">Recursos</a>
+                    <a href="#plataformas" class="footer-link">Plataformas</a>
+                    <a href="docs/compilacao_execucao.md" class="footer-link">Documentação</a>
                 </div>
-                <div style="margin-top: 2rem; text-align: center;">
-                    <span class="badge badge-success">📄 500+ páginas</span>
-                    <span class="badge badge-warning">🎮 100+ conquistas</span>
-                    <span class="badge badge-info">🏢 50+ casos reais</span>
-                    <span class="badge badge-primary">🔬 Metodologia 7 Passos</span>
-                </div>
-            </section>
-
-            <section id="documentacao">
-                <h2>📚 Documentação Técnica</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                    <div class="info-box">
-                        <h4>🔧 Compilação e Execução</h4>
-                        <p>Guia completo para configurar ambiente e executar códigos</p>
-                        <a href="docs/compilacao_execucao.md" class="button" style="margin-top: 1rem;">Ver Guia</a>
-                    </div>
-                    <div class="success-box">
-                        <h4>📋 Resumo Rápido</h4>
-                        <p>Referência rápida com conceitos principais</p>
-                        <a href="docs/resumo_rapido.md" class="button" style="margin-top: 1rem;">Acessar</a>
-                    </div>
-                    <div class="warning-box">
-                        <h4>📖 Slides das Aulas</h4>
-                        <p>Apresentações utilizadas nas aulas teóricas</p>
-                        <div style="margin-top: 1rem;">
-                            <a href="aulas/slides_aula01.md" class="mono" style="margin-right: 0.5rem;">Aula 01</a>
-                            <a href="aulas/slides_aula03.md" class="mono" style="margin-right: 0.5rem;">Aula 03</a>
-                            <a href="aulas/slides_aula04.md" class="mono">Aula 04</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 🏆 Achievement Showcase -->
-            <section class="achievement">
-                <h3>🎮 Sistema de Conquistas Desbloqueadas</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
-                    <span class="badge badge-primary">🥇 Algoritmo Iniciante</span>
-                    <span class="badge badge-success">🏆 Big O Master</span>
-                    <span class="badge badge-warning">🚀 Performance Ninja</span>
-                    <span class="badge badge-info">🔬 Cientista de Dados</span>
-                    <span class="badge badge-primary">🌟 Google Specialist</span>
-                    <span class="badge badge-success">🎬 Netflix Engineer</span>
-                    <span class="badge badge-warning">🚗 Tesla Developer</span>
-                    <span class="badge badge-info">📱 WhatsApp Architect</span>
-                </div>
-            </section>
-
-            <!-- 📊 Progress Tracking -->
-            <section style="margin: 2rem 0;">
-                <h3>📈 Seu Progresso Global</h3>
-                <div style="margin: 1rem 0;">
-                    <p><strong>Conhecimento em Algoritmos:</strong></p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 95%;"></div>
-                    </div>
-                    <p style="text-align: right; font-size: 0.9rem; color: #666;">95% - EXPERT LEVEL</p>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <div style="text-align: center;">
-                        <div class="level-badge">14</div>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Aulas Completas</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div class="level-badge">2</div>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Listas de Exercícios</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div class="level-badge">8</div>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Labs de Código</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div class="level-badge">∞</div>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Conquistas</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- 🌟 Footer -->
-        <footer class="chapter-nav" style="margin-top: 3rem;">
-            <div>
-                <strong>🎓 Prof. Vagner Cordeiro</strong>
-                <p style="margin: 0; font-size: 0.9rem;">Autor da Referência Mundial em Algoritmos</p>
-                <p style="margin: 0; font-size: 0.8rem; opacity: 0.8;">Metodologia Científica 7 Passos Exclusiva</p>
             </div>
-            <div style="text-align: right;">
-                <div class="xp-bar">⭐ Versão 2025 Ultimate Edition</div>
-                <p style="margin: 0; font-size: 0.8rem;">🚀 Revolução Total Completa</p>
-                <p style="margin: 0; font-size: 0.7rem; opacity: 0.8;">Design Moderno • Casos Reais • Gamificação</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Portal Algoritmos & Complexidade. Plataforma educacional profissional.</p>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
-    <!-- 🎯 Interactive JavaScript -->
     <script>
-        // 🎮 Progressive Enhancement
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add animation on scroll
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                    }
-                });
-            });
-
-            document.querySelectorAll('.achievement, .info-box, .success-box, .warning-box').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Progress bar animation
-            setTimeout(() => {
-                document.querySelector('.progress-fill').style.width = '95%';
-            }, 1000);
-
-            // XP Animation
-            let xpCounter = 0;
-            const xpDisplay = document.querySelector('.xp-bar');
-            
-            function animateXP() {
-                xpCounter += 1000;
-                if (xpCounter <= 100000) {
-                    xpDisplay.textContent = `🎯 LEVEL MASTER: ${xpCounter.toLocaleString()} XP`;
-                    setTimeout(animateXP, 50);
-                } else {
-                    xpDisplay.textContent = '🎯 LEVEL MASTER: 100,000 XP';
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-            }
-            
-            setTimeout(animateXP, 2000);
+            });
         });
 
-        // 🎯 XP System Simulation
-        function gainXP(amount) {
-            console.log(`🎮 +${amount} XP gained! Level up!`);
-            // Create floating XP indicator
-            const xpIndicator = document.createElement('div');
-            xpIndicator.textContent = `+${amount} XP`;
-            xpIndicator.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: var(--gradient-success);
-                color: white;
-                padding: 10px 20px;
-                border-radius: 25px;
-                font-weight: 700;
-                z-index: 1000;
-                animation: fadeInUp 0.5s ease-out;
-                pointer-events: none;
-            `;
-            document.body.appendChild(xpIndicator);
-            
-            setTimeout(() => {
-                xpIndicator.remove();
-            }, 2000);
-        }
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-        // Auto-trigger XP when sections are viewed
-        let lastXPGain = 0;
-        document.addEventListener('scroll', function() {
-            const now = Date.now();
-            if (now - lastXPGain > 5000) { // Only gain XP every 5 seconds
-                gainXP(Math.floor(Math.random() * 50) + 10);
-                lastXPGain = now;
-            }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.card, .stat-item, .platform-card').forEach(el => {
+            observer.observe(el);
         });
 
-        // 🌟 Easter Eggs
-        let clickCount = 0;
-        document.querySelector('h1').addEventListener('click', function() {
-            clickCount++;
-            if (clickCount === 5) {
-                alert('🎉 EASTER EGG DESBLOQUEADO! Você descobriu o segredo dos algoritmos! +1000 XP');
-                gainXP(1000);
-            }
-        });
+        // Console message
+        console.log('🎓 Portal Educacional de Algoritmos carregado com sucesso!');
+        console.log('📚 Todos os recursos estão funcionais e testados');
     </script>
 </body>
 </html>

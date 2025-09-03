@@ -1,12 +1,6 @@
 # Redirecionamentos para Netlify - Emergency Version
 /index.html /emergency.html 301
-/* Redirect root to new professional version */
-/    /index_novo.html    200
-
-/* Other redirects */
-/main    /index_novo.html    200
-/home    /index_novo.html    200
-/portal    /plataforma_completa.html    200
+/* Remove all redirects to serve index.html directly */
 
 # Redirecionamentos para páginas principais
 /exercicios /exercicios_interativos.html 301
