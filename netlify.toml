@@ -8,11 +8,20 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Cache busting para forçar reload
+# Force cache clear with aggressive headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    
 [[headers]]
   for = "*.html"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+    X-Cache-Buster = "v2025-09-03"
     
 [[headers]]
   for = "/index.html"
@@ -20,6 +29,7 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
     Pragma = "no-cache"
     Expires = "0"
+    X-Force-Refresh = "true"
 
 # Headers para melhor performance
 [[headers]]
