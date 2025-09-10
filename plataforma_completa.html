@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important; 
             background: #f8fafc !important; 
             color: #1e293b !important; 
-            opacity: 0; 
+            opacity: 1; 
             transition: opacity 0.3s ease; 
         }
         body.loaded { opacity: 1; }
@@ -2469,6 +2469,9 @@ int main() {
             loadCExercises();
             loadStructureExercises();
             updateProgressStats();
+            
+            // Controle de carregamento
+            document.body.classList.add('loaded');
             
             // Controle de carregamento de fontes
             document.fonts.ready.then(function() {
