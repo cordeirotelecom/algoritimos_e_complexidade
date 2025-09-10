@@ -1,11 +1,11 @@
-# Redirecionamentos limpos para melhor UX
-/ /enhanced.html 200
-/index.html /enhanced.html 301
+# Redirecionamento limpo e funcional
+/ /clean_portal.html 200
+/index.html /clean_portal.html 301
 
 # Redirecionamentos para plataformas específicas
 /exercicios /exercicios_interativos.html 301
 /plataforma /plataforma_completa.html 301
 /portal /portal_aprendizado.html 301
 
-# Fallback para 404
-/* /enhanced.html 404
+# Fallback
+/* /clean_portal.html 404
