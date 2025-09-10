@@ -59,7 +59,8 @@
             min-height: 100vh;
             color: #e2e8f0;
             line-height: 1.6;
-            visibility: hidden; /* Previne FOUC */
+            visibility: visible; /* Sempre visível */
+            opacity: 1; /* Sempre opaco */
         }
 
         body.fonts-loaded {
@@ -2462,16 +2463,18 @@ int main() {
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Adicionar classe loaded para mostrar a página
+            // Forçar visibilidade imediata
+            document.body.style.visibility = 'visible';
+            document.body.style.opacity = '1';
             document.body.classList.add('loaded');
+            document.body.classList.add('fonts-loaded');
+            
+            console.log('🎯 Plataforma carregada e visível');
             
             loadPythonExercises();
             loadCExercises();
             loadStructureExercises();
             updateProgressStats();
-            
-            // Controle de carregamento
-            document.body.classList.add('loaded');
             
             // Controle de carregamento de fontes
             document.fonts.ready.then(function() {
@@ -2481,8 +2484,20 @@ int main() {
             // Fallback caso as fontes demorem muito
             setTimeout(function() {
                 document.body.classList.add('fonts-loaded');
-            }, 1000);
+                document.body.style.visibility = 'visible';
+                document.body.style.opacity = '1';
+            }, 500);
         });
+        
+        // Fallback imediato - não espera nenhum evento
+        setTimeout(function() {
+            if (document.body) {
+                document.body.style.visibility = 'visible';
+                document.body.style.opacity = '1';
+                document.body.classList.add('loaded', 'fonts-loaded');
+                console.log('🚨 Fallback: Página forçada a ser visível');
+            }
+        }, 100);
     </script>
     
     <!-- Indicador de versão -->
