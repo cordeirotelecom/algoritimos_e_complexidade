@@ -1,14 +1,11 @@
-# Redirecionamentos para Netlify - Emergency Version
-/index.html /emergency.html 301
-/* Remove all redirects to serve index.html directly */
+# Redirecionamentos limpos para melhor UX
+/ /enhanced.html 200
+/index.html /enhanced.html 301
 
-# Redirecionamentos para páginas principais
+# Redirecionamentos para plataformas específicas
 /exercicios /exercicios_interativos.html 301
 /plataforma /plataforma_completa.html 301
-/portal /premium_links.html 301
-/links /premium_links.html 301
-/premium /ultra_premium.html 301
-/emergency /emergency.html 301
+/portal /portal_aprendizado.html 301
 
-# 404 fallback
-/* /emergency.html 404
+# Fallback para 404
+/* /enhanced.html 404

@@ -3,21 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algoritmos e Complexidade - Portal Educacional Profissional</title>
-    <meta name="description" content="Portal educacional profissional para aprendizado de algoritmos e complexidade computacional">
-    <meta name="keywords" content="algoritmos, complexidade, programação, Python, C, estruturas de dados">
-    <meta name="cache-buster" content="v2025-09-03-16-34">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <title>Algoritmos e Complexidade - Portal Educacional</title>
+    <meta name="description" content="Portal educacional para aprendizado de algoritmos e complexidade computacional">
+    <meta http-equiv="refresh" content="0; url=enhanced.html">
+    <link rel="canonical" href="enhanced.html">
     
     <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .redirect-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 20px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .redirect-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <h1>🎓 Algoritmos e Complexidade</h1>
+        <p>Carregando portal educacional avançado...</p>
+        <div style="margin: 20px 0;">
+            <div style="display: inline-block; animation: pulse 1.5s ease-in-out infinite;">⚡</div>
+        </div>
+        <p><small>Redirecionando automaticamente...</small></p>
+        <a href="enhanced.html" class="redirect-btn">🚀 Acesse o Portal</a>
+    </div>
+
+    <script>
+        // Redirecionamento imediato como fallback
+        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            window.location.replace('enhanced.html');
+        }
+    </script>
+</body>
+</html>
             --error-color: #ef4444;
             
             --bg-primary: #ffffff;

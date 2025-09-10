@@ -1,25 +1,11 @@
 [build]
-  # Diretório de publicação (raiz do projeto)
   publish = "."
-  
-  # Comando de build (não necessário para site estático)
-  command = "echo 'Site estático - sem build necessário'"
+  command = "echo 'Site estático'"
 
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect to enhanced version to bypass cache
-[[redirects]]
-  from = "/"
-  to = "/enhanced.html"
-  status = 200
-
-[[redirects]]
-  from = "/main"
-  to = "/enhanced.html"
-  status = 200
-
-# Force cache clear with aggressive headers
+# Headers para performance e cache busting
 [[headers]]
   for = "/*"
   [headers.values]
@@ -32,21 +18,17 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
     Pragma = "no-cache"
     Expires = "0"
-    X-Cache-Buster = "v2025-09-03"
+    X-Cache-Buster = "v2025-09-10-enhanced"
     
 [[headers]]
-  for = "/main.html"
+  for = "*.js"
   [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-    Pragma = "no-cache"
-    Expires = "0"
-    X-Force-Refresh = "true"
-
-# Headers para melhor performance
+    Cache-Control = "public, max-age=3600"
+    
 [[headers]]
-  for = "/*.js"
+  for = "*.css"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/*.css"
