@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/plataforma",
+      "dest": "/plataforma_garantida.html"
+    },
+    {
+      "src": "/exercicios",
+      "dest": "/exercicios_interativos.html"
+    },
+    {
+      "src": "/portal",
+      "dest": "/portal_aprendizado.html"
+    },
+    {
+      "src": "/enhanced",
+      "dest": "/enhanced.html"
+    },
+    {
+      "src": "/simples",
+      "dest": "/simples.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        }
+      ]
+    }
+  ]
+}
