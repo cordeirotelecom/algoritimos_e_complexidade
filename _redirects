@@ -1,5 +1,5 @@
-# Redirecionamentos diretos - sem conflitos
-/plataforma https://algoritimoscomplexidade.netlify.app/plataforma_completa.html 301
-/exercicios https://algoritimoscomplexidade.netlify.app/exercicios_interativos.html 301
-/portal https://algoritimoscomplexidade.netlify.app/portal_aprendizado.html 301
-/enhanced https://algoritimoscomplexidade.netlify.app/enhanced.html 301
+# Redirecionamentos mínimos - apenas essenciais
+/plataforma /plataforma_completa.html 301
+/exercicios /exercicios_interativos.html 301
+/portal /portal_aprendizado.html 301
+/enhanced /enhanced.html 301

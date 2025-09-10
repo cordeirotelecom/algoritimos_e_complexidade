@@ -2462,6 +2462,9 @@ int main() {
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar classe loaded para mostrar a página
+            document.body.classList.add('loaded');
+            
             loadPythonExercises();
             loadCExercises();
             loadStructureExercises();
