@@ -1,0 +1,27 @@
+{
+  "name": "academia-algoritmos-complexidade",
+  "version": "2.0.0",
+  "description": "Plataforma educacional para algoritmos e análise de complexidade",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Site estático - sem build necessário'",
+    "start": "echo 'Iniciando servidor local...'",
+    "deploy": "echo 'Deploy para Netlify'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cordeirotelecom/algoritimos_e_complexidade"
+  },
+  "keywords": [
+    "algoritmos",
+    "complexidade",
+    "educacao",
+    "programacao",
+    "python",
+    "c",
+    "estruturas-dados"
+  ],
+  "author": "cordeirotelecom",
+  "license": "MIT",
+  "homepage": "https://github.com/cordeirotelecom/algoritimos_e_complexidade#readme"
+}
