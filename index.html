@@ -3,21 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Algoritmos - Versão Limpa</title>
-    <meta name="description" content="Portal educacional para algoritmos e complexidade">
-    <meta name="cache-buster" content="v2025-09-10-clean-final">
+    <title>Academia de Algoritmos - SITE ATIVO</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.9);
+            color: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .btn {
+            background: #3b82f6;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        .btn:hover { background: #1d4ed8; }
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="status">🟢 ONLINE</div>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Academia de Algoritmos e Complexidade</h1>
+            <p>Plataforma Educacional para Análise Algorítmica</p>
+            <p><strong>✅ Site funcionando normalmente!</strong></p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🎯 Plataforma Completa</h3>
+                <p>IDE integrado para Python e C++</p>
+                <a href="plataforma_garantida.html" class="btn">Acessar</a>
+            </div>
+            
+            <div class="card">
+                <h3>📚 Exercícios Interativos</h3>
+                <p>Pratique com exercícios guiados</p>
+                <a href="exercicios_interativos.html" class="btn">Praticar</a>
+            </div>
+            
+            <div class="card">
+                <h3>🎓 Portal de Aprendizado</h3>
+                <p>Conteúdo teórico estruturado</p>
+                <a href="portal_aprendizado.html" class="btn">Estudar</a>
+            </div>
+            
+            <div class="card">
+                <h3>⚡ Versão Enhanced</h3>
+                <p>Recursos avançados</p>
+                <a href="enhanced.html" class="btn">Explorar</a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px; opacity: 0.8;">
+            <p>🚀 Todos os recursos estão funcionando corretamente!</p>
+            <p>Última atualização: <span id="timestamp"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('pt-BR');
+        console.log('✅ Site carregado com sucesso!');
+    </script>
+</body>
+</html>
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
