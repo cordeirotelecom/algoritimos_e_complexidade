@@ -8,10 +8,15 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect to fresh file to bypass cache
+# Redirect to enhanced version to bypass cache
 [[redirects]]
   from = "/"
-  to = "/main.html"
+  to = "/enhanced.html"
+  status = 200
+
+[[redirects]]
+  from = "/main"
+  to = "/enhanced.html"
   status = 200
 
 # Force cache clear with aggressive headers

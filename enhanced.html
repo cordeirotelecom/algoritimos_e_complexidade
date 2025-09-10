@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos e Complexidade - Portal Educacional Avançado</title>
+    <meta name="description" content="Portal educacional de última geração para aprendizado de algoritmos e complexidade computacional">
+    <meta name="keywords" content="algoritmos, complexidade, programação, Python, C, estruturas de dados, educação">
+    <meta name="cache-buster" content="v2025-09-10-enhanced">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AlgoritmosPTBR">
+    
+    <!-- Preload fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Enhanced color palette */
+            --primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-solid: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            
+            /* Enhanced background system */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-dark: #0f172a;
+            --bg-overlay: rgba(15, 23, 42, 0.8);
+            
+            /* Text colors */
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-light: #94a3b8;
+            --text-white: #ffffff;
+            
+            /* Enhanced shadows */
+            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --shadow-glow: 0 0 30px rgb(102 126 234 / 0.3);
+            
+            /* Border and radius */
+            --border-color: #e2e8f0;
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-xl: 20px;
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease-out;
+            --transition-normal: 0.3s ease-out;
+            --transition-slow: 0.5s ease-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Enhanced Header with glassmorphism */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-normal);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            transition: var(--transition-normal);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-solid);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* PWA Install Button */
+        .pwa-install-btn {
+            background: var(--primary);
+            color: var(--text-white);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            white-space: nowrap;
+        }
+
+        .pwa-install-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            background: var(--primary);
+            color: var(--text-white);
+            padding: 8rem 0 6rem;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.1"><circle cx="30" cy="30" r="1"/></g></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: var(--spacing-2xl);
+            opacity: 0.95;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: var(--spacing-xs);
+            font-weight: 500;
+        }
+
+        /* Enhanced CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-slow);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--text-white);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced Features Section */
+        .features {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-lg);
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-lg);
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        .feature-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .feature-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .feature-tag:hover {
+            background: var(--primary-solid);
+            color: var(--text-white);
+            border-color: var(--primary-solid);
+            transform: translateY(-1px);
+        }
+
+        .status-badge {
+            background: var(--success);
+            color: var(--text-white);
+            padding: 2px var(--spacing-sm);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: var(--spacing-xs);
+        }
+
+        /* Enhanced Platforms Section */
+        .platforms {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary);
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .platform-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--primary-solid);
+        }
+
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            background: var(--primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-description {
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-btn {
+            background: var(--primary);
+            color: var(--text-white);
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            transition: var(--transition-normal);
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Progress Tracker */
+        .progress-section {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .progress-item {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-normal);
+        }
+
+        .progress-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            position: relative;
+        }
+
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: var(--bg-tertiary);
+            stroke-width: 8;
+        }
+
+        .progress-circle-fill {
+            fill: none;
+            stroke: var(--primary-solid);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s ease-out;
+        }
+
+        .progress-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-solid);
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .progress-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-white);
+            padding: var(--spacing-3xl) 0 var(--spacing-xl);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .footer-link:hover {
+            color: var(--text-white);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-xl);
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero {
+                padding: 6rem 0 4rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--bg-tertiary);
+            border-top: 4px solid var(--primary-solid);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .hero::before {
+                animation: none;
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: #000000;
+                --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+                --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Enhanced Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#home" class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span>Algoritmos & Complexidade</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Início</a></li>
+                    <li><a href="#features" class="nav-link">Recursos</a></li>
+                    <li><a href="#platforms" class="nav-link">Plataformas</a></li>
+                    <li><a href="#progress" class="nav-link">Progresso</a></li>
+                    <li><a href="#footer" class="nav-link">Contato</a></li>
+                    <li><button id="installPWA" class="pwa-install-btn" style="display: none;">📱 Instalar App</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">Portal Educacional de Algoritmos</h1>
+                <p class="hero-subtitle">
+                    Transforme seu conhecimento em algoritmos com nossa plataforma interativa de última geração. 
+                    Aprenda Python, C, estruturas de dados e análise de complexidade com metodologia cientificamente comprovada.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="plataforma_completa.html" class="btn btn-primary">
+                        <span>🚀</span>
+                        Acessar Plataforma
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <span>📚</span>
+                        Explorar Conteúdo
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">75+</span>
+                        <span class="hero-stat-label">Recursos Educacionais</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">15</span>
+                        <span class="hero-stat-label">Aulas Teóricas</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">8</span>
+                        <span class="hero-stat-label">Laboratórios Práticos</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">4</span>
+                        <span class="hero-stat-label">Plataformas Interativas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Recursos Educacionais Avançados</h2>
+                <p class="section-subtitle">
+                    Material didático completo desenvolvido com metodologia científica para maximizar seu aprendizado
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card slide-in-left">
+                    <span class="feature-icon">📚</span>
+                    <h3 class="feature-title">Material de Aulas</h3>
+                    <p class="feature-description">
+                        15 aulas teóricas estruturadas cobrindo desde conceitos fundamentais até tópicos avançados, 
+                        com slides em PDF e explicações detalhadas para cada algoritmo.
+                    </p>
+                    <div class="feature-links">
+                        <a href="aulas/aula01.md" class="feature-tag">
+                            Aula 01<span class="status-badge">✓</span>
+                        </a>
+                        <a href="aulas/aula02.md" class="feature-tag">
+                            Aula 02<span class="status-badge">✓</span>
+                        </a>
+                        <a href="aulas/aula03.md" class="feature-tag">
+                            Aula 03<span class="status-badge">✓</span>
+                        </a>
+                        <a href="aulas/aula04.md" class="feature-tag">
+                            Aula 04<span class="status-badge">✓</span>
+                        </a>
+                        <a href="aulas/DOWNLOADS_PDF.md" class="feature-tag">
+                            📄 PDFs<span class="status-badge">✓</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="feature-card slide-in-right">
+                    <span class="feature-icon">💻</span>
+                    <h3 class="feature-title">Exercícios & Laboratórios</h3>
+                    <p class="feature-description">
+                        Exercícios práticos progressivos e laboratórios hands-on para consolidar o aprendizado 
+                        com feedback em tempo real e análise automática de complexidade.
+                    </p>
+                    <div class="feature-links">
+                        <a href="exercicios/lista01.md" class="feature-tag">
+                            Lista 01<span class="status-badge">✓</span>
+                        </a>
+                        <a href="exercicios/lista02.md" class="feature-tag">
+                            Lista 02<span class="status-badge">✓</span>
+                        </a>
+                        <a href="exercicios/laboratorio01_introducao_algoritmos.md" class="feature-tag">
+                            Lab 01<span class="status-badge">✓</span>
+                        </a>
+                        <a href="exercicios/exercicios_resolvidos_completos.md" class="feature-tag">
+                            🔬 Resolvidos<span class="status-badge">✓</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="feature-card slide-in-left">
+                    <span class="feature-icon">🔧</span>
+                    <h3 class="feature-title">Códigos & Exemplos</h3>
+                    <p class="feature-description">
+                        Implementações otimizadas em Python e C com análise detalhada de complexidade, 
+                        comparações de performance e casos de uso reais.
+                    </p>
+                    <div class="feature-links">
+                        <a href="exemplos/python/complexidade/" class="feature-tag">
+                            🐍 Python<span class="status-badge">✓</span>
+                        </a>
+                        <a href="exemplos/c/complexidade/" class="feature-tag">
+                            ⚡ C Language<span class="status-badge">✓</span>
+                        </a>
+                        <a href="exemplos/python/estruturas_dados/" class="feature-tag">
+                            🗂️ Estruturas<span class="status-badge">✓</span>
+                        </a>
+                        <a href="exemplos/python/arvores/" class="feature-tag">
+                            🌳 Árvores<span class="status-badge">✓</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="feature-card slide-in-right">
+                    <span class="feature-icon">📖</span>
+                    <h3 class="feature-title">Documentação Técnica</h3>
+                    <p class="feature-description">
+                        Guias completos de referência, apostila acadêmica com rigor científico e 
+                        material de apoio para estudo autônomo e consulta rápida.
+                    </p>
+                    <div class="feature-links">
+                        <a href="docs/apostila_completa.md" class="feature-tag">
+                            📋 Apostila<span class="status-badge">✓</span>
+                        </a>
+                        <a href="docs/resumo_rapido.md" class="feature-tag">
+                            ⚡ Resumo<span class="status-badge">✓</span>
+                        </a>
+                        <a href="docs/compilacao_execucao.md" class="feature-tag">
+                            🔧 Setup<span class="status-badge">✓</span>
+                        </a>
+                        <a href="docs/livro_algoritmos_complexidade_didatico.pdf" class="feature-tag">
+                            📚 Livro PDF<span class="status-badge">✓</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Platforms Section -->
+    <section id="platforms" class="platforms">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Plataformas Interativas</h2>
+                <p class="section-subtitle">
+                    Ferramentas de última geração para uma experiência de aprendizado imersiva e eficiente
+                </p>
+            </div>
+            
+            <div class="platforms-grid">
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">🖥️</span>
+                    <h3 class="platform-title">IDE Completo</h3>
+                    <p class="platform-description">
+                        Ambiente de desenvolvimento integrado com análise automática de complexidade, 
+                        editor inteligente e visualização de algoritmos em tempo real.
+                    </p>
+                    <a href="plataforma_completa.html" class="platform-btn">
+                        <span>🚀</span>
+                        Acessar IDE
+                    </a>
+                </div>
+
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">🎮</span>
+                    <h3 class="platform-title">Sistema Gamificado</h3>
+                    <p class="platform-description">
+                        Aprendizagem através de jogos com sistema de XP, conquistas, rankings 
+                        e desafios progressivos para manter o engajamento.
+                    </p>
+                    <a href="exercicios_interativos.html" class="platform-btn">
+                        <span>🎯</span>
+                        Começar Jogo
+                    </a>
+                </div>
+
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">📊</span>
+                    <h3 class="platform-title">Dashboard Analytics</h3>
+                    <p class="platform-description">
+                        Acompanhe seu progresso com métricas detalhadas, relatórios personalizados 
+                        e insights sobre seu desempenho de aprendizado.
+                    </p>
+                    <a href="portal_aprendizado.html" class="platform-btn">
+                        <span>📈</span>
+                        Ver Dashboard
+                    </a>
+                </div>
+
+                <div class="platform-card fade-in">
+                    <span class="platform-icon">⭐</span>
+                    <h3 class="platform-title">Portal Premium</h3>
+                    <p class="platform-description">
+                        Acesso a recursos exclusivos, sessões de mentoria, conteúdo avançado 
+                        e funcionalidades premium para acelerar seu aprendizado.
+                    </p>
+                    <a href="premium_links.html" class="platform-btn">
+                        <span>👑</span>
+                        Acessar Premium
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Tracker Section -->
+    <section id="progress" class="progress-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Acompanhe Seu Progresso</h2>
+                <p class="section-subtitle">
+                    Métricas em tempo real do seu desenvolvimento em algoritmos e complexidade
+                </p>
+            </div>
+            
+            <div class="progress-grid">
+                <div class="progress-item fade-in">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="progress-circle-bg"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-circle-fill" style="stroke-dashoffset: 62.8;"></circle>
+                        </svg>
+                        <div class="progress-percentage">75%</div>
+                    </div>
+                    <div class="progress-label">Conhecimento Teórico</div>
+                    <div class="progress-description">Aulas e conceitos fundamentais</div>
+                </div>
+
+                <div class="progress-item fade-in">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="progress-circle-bg"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-circle-fill" style="stroke-dashoffset: 100.48;"></circle>
+                        </svg>
+                        <div class="progress-percentage">60%</div>
+                    </div>
+                    <div class="progress-label">Prática em Código</div>
+                    <div class="progress-description">Exercícios e implementações</div>
+                </div>
+
+                <div class="progress-item fade-in">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="progress-circle-bg"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-circle-fill" style="stroke-dashoffset: 125.6;"></circle>
+                        </svg>
+                        <div class="progress-percentage">50%</div>
+                    </div>
+                    <div class="progress-label">Análise de Complexidade</div>
+                    <div class="progress-description">Big O e otimização</div>
+                </div>
+
+                <div class="progress-item fade-in">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="progress-circle-bg"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-circle-fill" style="stroke-dashoffset: 37.68;"></circle>
+                        </svg>
+                        <div class="progress-percentage">85%</div>
+                    </div>
+                    <div class="progress-label">Progresso Geral</div>
+                    <div class="progress-description">Conclusão do curso</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Algoritmos & Complexidade</h3>
+                    <p style="color: var(--text-light); line-height: 1.6; margin-bottom: var(--spacing-lg);">
+                        Portal educacional de última geração para aprendizado científico de algoritmos, 
+                        estruturas de dados e análise de complexidade computacional.
+                    </p>
+                    <div style="display: flex; gap: var(--spacing-md);">
+                        <a href="#" style="color: var(--text-light); font-size: 1.5rem; transition: var(--transition-fast);">🌐</a>
+                        <a href="#" style="color: var(--text-light); font-size: 1.5rem; transition: var(--transition-fast);">📧</a>
+                        <a href="#" style="color: var(--text-light); font-size: 1.5rem; transition: var(--transition-fast);">📱</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Recursos Educacionais</h3>
+                    <div class="footer-links">
+                        <a href="aulas/aula01.md" class="footer-link">Material de Aulas</a>
+                        <a href="exercicios/lista01.md" class="footer-link">Exercícios Práticos</a>
+                        <a href="exemplos/python/complexidade/" class="footer-link">Códigos & Exemplos</a>
+                        <a href="docs/apostila_completa.md" class="footer-link">Documentação</a>
+                        <a href="docs/livro_algoritmos_complexidade_didatico.pdf" class="footer-link">Livro Didático</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Plataformas Interativas</h3>
+                    <div class="footer-links">
+                        <a href="plataforma_completa.html" class="footer-link">IDE Completo</a>
+                        <a href="exercicios_interativos.html" class="footer-link">Sistema Gamificado</a>
+                        <a href="portal_aprendizado.html" class="footer-link">Dashboard Analytics</a>
+                        <a href="premium_links.html" class="footer-link">Portal Premium</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Suporte & Ajuda</h3>
+                    <div class="footer-links">
+                        <a href="docs/compilacao_execucao.md" class="footer-link">Guia de Instalação</a>
+                        <a href="#" class="footer-link">FAQ - Perguntas Frequentes</a>
+                        <a href="#" class="footer-link">Tutoriais em Vídeo</a>
+                        <a href="#" class="footer-link">Comunidade Discord</a>
+                        <a href="#" class="footer-link">Contato Direto</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Portal Algoritmos & Complexidade. Desenvolvido com ❤️ para educação de qualidade.</p>
+                <p style="margin-top: var(--spacing-sm); font-size: 0.9rem;">
+                    Prof. Vagner Cordeiro | Material Acadêmico Universitário | Versão 3.0 Enhanced
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced JavaScript functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove loading screen
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1000);
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            let lastScrollY = window.scrollY;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                lastScrollY = window.scrollY;
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = 80;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate progress circles
+                        if (entry.target.classList.contains('progress-item')) {
+                            const circle = entry.target.querySelector('.progress-circle-fill');
+                            const percentage = entry.target.querySelector('.progress-percentage').textContent;
+                            const value = parseInt(percentage);
+                            const circumference = 251.2;
+                            const offset = circumference - (value / 100) * circumference;
+                            
+                            setTimeout(() => {
+                                circle.style.strokeDashoffset = offset;
+                            }, 300);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .progress-item').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Enhanced button hover effects
+            document.querySelectorAll('.btn, .platform-btn, .feature-tag').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Keyboard navigation support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', () => {
+                document.body.classList.remove('keyboard-navigation');
+            });
+
+            // Performance monitoring
+            if ('performance' in window) {
+                window.addEventListener('load', () => {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    console.log('🚀 Portal carregado em:', Math.round(perfData.loadEventEnd - perfData.fetchStart), 'ms');
+                });
+            }
+
+            // Console welcome message
+            console.log('%c🎓 Portal Algoritmos & Complexidade', 'color: #667eea; font-size: 20px; font-weight: bold;');
+            console.log('%c📚 Versão 3.0 Enhanced - Carregado com sucesso!', 'color: #10b981; font-size: 14px;');
+            console.log('%c✨ Recursos: 75+ materiais educacionais, 4 plataformas interativas, design responsivo', 'color: #64748b; font-size: 12px;');
+            
+            // Performance tip
+            if (navigator.hardwareConcurrency) {
+                console.log(`💻 CPU detectada: ${navigator.hardwareConcurrency} cores - Performance otimizada`);
+            }
+        });
+
+        // PWA Installation
+        let deferredPrompt;
+        const installBtn = document.getElementById('installPWA');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('🎉 PWA instalado com sucesso!');
+                    installBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('📱 App instalado no dispositivo');
+            installBtn.style.display = 'none';
+        });
+
+        // Service Worker registration for better performance
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(() => console.log('💾 Cache service ativo'))
+                    .catch(() => console.log('📡 Modo online'));
+            });
+        }
+    </script>
+</body>
+</html>
