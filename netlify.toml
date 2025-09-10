@@ -1,6 +1,22 @@
 [build]
   publish = "."
-  command = "echo 'Site estático'"
+  command = "echo 'Site estático - rebuild forçado'"
+
+# Configurações de redirects
+[[redirects]]
+  from = "/plataforma"
+  to = "/plataforma_garantida.html"
+  status = 301
+
+[[redirects]]
+  from = "/exercicios"
+  to = "/exercicios_interativos.html"
+  status = 301
+
+[[redirects]]
+  from = "/portal"
+  to = "/portal_aprendizado.html"
+  status = 301
 
 # Headers otimizados
 [[headers]]
