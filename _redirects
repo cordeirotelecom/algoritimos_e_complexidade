@@ -1,6 +1,4 @@
-# Redirecionamentos mínimos - apenas essenciais
+# Redirecionamentos simplificados
 /plataforma /plataforma_garantida.html 301
-/plataforma-completa /plataforma_completa.html 301
 /exercicios /exercicios_interativos.html 301
 /portal /portal_aprendizado.html 301
-/enhanced /enhanced.html 301

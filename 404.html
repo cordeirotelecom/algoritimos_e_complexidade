@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Emergência - Academia de Algoritmos</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { color: #fbbf24; margin-bottom: 20px; }
+        .links {
+            margin-top: 30px;
+            display: grid;
+            gap: 15px;
+        }
+        .link {
+            background: #3b82f6;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .link:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+            border: 1px solid #10b981;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 Página de Emergência</h1>
+        <p>Parece que houve um problema com o link solicitado.</p>
+        
+        <div class="status">
+            <strong>🟢 Sistema Operacional</strong><br>
+            Todas as funcionalidades estão disponíveis através dos links abaixo.
+        </div>
+        
+        <div class="links">
+            <a href="/index.html" class="link">🏠 Página Inicial</a>
+            <a href="/plataforma_garantida.html" class="link">🎯 Plataforma Completa</a>
+            <a href="/exercicios_interativos.html" class="link">📚 Exercícios Interativos</a>
+            <a href="/portal_aprendizado.html" class="link">🎓 Portal de Aprendizado</a>
+            <a href="/enhanced.html" class="link">⚡ Versão Enhanced</a>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">
+            <p>Se você chegou aqui através de um link quebrado, use os links acima para navegar.</p>
+            <p>Erro ID: <code id="errorId"></code></p>
+        </div>
+    </div>
+    
+    <script>
+        // Mostrar ID do erro se estiver presente na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorId = urlParams.get('error') || 'URL_NOT_FOUND';
+        document.getElementById('errorId').textContent = errorId;
+        
+        // Log para debug
+        console.log('🚨 Página 404 carregada:', window.location.href);
+        console.log('🔍 Tentativa de redirecionamento automático...');
+        
+        // Tentar redirecionamento inteligente baseado na URL
+        const path = window.location.pathname;
+        if (path.includes('plataforma')) {
+            setTimeout(() => {
+                window.location.href = '/plataforma_garantida.html';
+            }, 3000);
+        } else if (path.includes('exercicio')) {
+            setTimeout(() => {
+                window.location.href = '/exercicios_interativos.html';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
