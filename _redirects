@@ -1,15 +1,16 @@
-# Redirecionamentos principais - estrutura corrigida
-/ /enhanced.html 200
-/index.html /enhanced.html 301
+# Portal Principal - Redirecionamento limpo e funcional
+/ /portal_principal.html 200
+/index.html /portal_principal.html 301
 
-# Redirecionamentos para plataformas específicas
+# Acesso direto às plataformas
 /exercicios /exercicios_interativos.html 301
 /plataforma /plataforma_completa.html 301
 /portal /portal_aprendizado.html 301
-
-# Acesso direto garantido
 /enhanced /enhanced.html 301
+
+# Testes e desenvolvimento
+/teste /teste_redirecionamentos.html 301
 /clean /clean_portal.html 301
 
-# Fallback para página principal
-/* /enhanced.html 404
+# Fallback
+/* /portal_principal.html 404

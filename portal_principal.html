@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Algoritmos - Acesso Principal</title>
+    <meta name="description" content="Portal educacional para algoritmos e complexidade computacional">
+    <meta name="cache-buster" content="v2025-09-10-final">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main-container {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 90%;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .platform-card {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .platform-card:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .platform-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .footer-info {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 3rem 1.5rem;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>🎓 Algoritmos & Complexidade</h1>
+        <p class="subtitle">Portal Educacional Avançado para Programação Algorítmica</p>
+        
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">14</span>
+                <span class="stat-label">Aulas Completas</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">75+</span>
+                <span class="stat-label">Recursos</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Plataformas</span>
+            </div>
+        </div>
+        
+        <div class="platforms-grid">
+            <a href="enhanced.html" class="platform-card">
+                <span class="platform-icon">🚀</span>
+                <div class="platform-title">Portal Enhanced</div>
+                <div class="platform-desc">Página principal moderna com design avançado e recursos PWA</div>
+            </a>
+            
+            <a href="exercicios_interativos.html" class="platform-card">
+                <span class="platform-icon">🎯</span>
+                <div class="platform-title">Exercícios Gamificados</div>
+                <div class="platform-desc">Sistema interativo com análise de complexidade em tempo real</div>
+            </a>
+            
+            <a href="plataforma_completa.html" class="platform-card">
+                <span class="platform-icon">💻</span>
+                <div class="platform-title">IDE Educacional</div>
+                <div class="platform-desc">Ambiente completo para programação em C e Python</div>
+            </a>
+            
+            <a href="portal_aprendizado.html" class="platform-card">
+                <span class="platform-icon">📚</span>
+                <div class="platform-title">Material Didático</div>
+                <div class="platform-desc">Aulas, documentação e recursos complementares</div>
+            </a>
+        </div>
+        
+        <div class="footer-info">
+            <p>✨ Versão 2025 Enhanced • Design Moderno • Performance Otimizada</p>
+            <p>🎓 Portal desenvolvido para excelência em algoritmos e complexidade</p>
+        </div>
+    </div>
+    
+    <script>
+        // Limpeza preventiva de cache
+        if ('caches' in window) {
+            caches.keys().then(names => {
+                names.forEach(name => caches.delete(name));
+            });
+        }
+        
+        console.log('🎓 Portal Principal carregado - versão limpa');
+        console.log('📍 URL atual:', window.location.href);
+        
+        // Log de navegação
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                console.log('🔗 Navegando para:', card.href);
+            });
+        });
+    </script>
+</body>
+</html>
