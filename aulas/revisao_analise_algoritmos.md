@@ -1,21 +1,142 @@
-# Revisão de Análise de Algoritmos
+<div style="page-break-after: always;"></div>
 
-## Índice
-1. [Introdução à Análise de Algoritmos](#introdução-à-análise-de-algoritmos)
-2. [Complexidade de Tempo e Espaço](#complexidade-de-tempo-e-espaço)
-3. [Notação Big-O](#notação-big-o)
-4. [Estruturas de Dados Fundamentais](#estruturas-de-dados-fundamentais)
-5. [Algoritmos de Ordenação](#algoritmos-de-ordenação)
-6. [Algoritmos de Busca](#algoritmos-de-busca)
-7. [**RECURSIVIDADE**](#recursividade)
-8. [Algoritmos em Árvores](#algoritmos-em-árvores)
-9. [Algoritmos de Grafos](#algoritmos-de-grafos)
-10. [Programação Dinâmica](#programação-dinâmica)
-11. [Exercícios Práticos](#exercícios-práticos)
+<div align="center" style="margin-top: 100px;">
+
+# APOSTILA DE ALGORITMOS E ANÁLISE DE COMPLEXIDADE
+
+## Uma Abordagem Prática e Didática
+
+<br><br><br>
+
+### **Professor Engenheiro de Computação**
+### **Vagner Cordeiro**
+
+<br><br><br>
 
 ---
 
-## Introdução à Análise de Algoritmos
+**VERSÃO 1.0**  
+**Setembro de 2025**
+
+<br><br>
+
+---
+
+*Material didático para estudo de Análise de Algoritmos e Estruturas de Dados*
+
+</div>
+
+<div style="page-break-after: always;"></div>
+
+---
+
+## **PREFÁCIO**
+
+Esta apostila foi desenvolvida com o objetivo de fornecer aos estudantes de Ciência da Computação e Engenharia de Software uma base sólida em análise de algoritmos e complexidade computacional. O material apresenta de forma didática e progressiva os conceitos fundamentais, desde a notação Big-O até técnicas avançadas de otimização.
+
+### **Objetivos de Aprendizagem**
+
+Ao final do estudo desta apostila, o aluno será capaz de:
+
+- **Analisar** a complexidade temporal e espacial de algoritmos
+- **Aplicar** a notação Big-O em problemas reais
+- **Compreender** e implementar algoritmos recursivos
+- **Otimizar** soluções utilizando técnicas de programação dinâmica
+- **Resolver** problemas de algoritmos de forma estruturada
+- **Identificar** padrões algorítmicos em diferentes contextos
+
+### **Metodologia**
+
+O material está estruturado de forma progressiva, começando com conceitos básicos e evoluindo para tópicos avançados. Cada capítulo inclui:
+
+- Fundamentação teórica
+- Exemplos práticos em Python e C
+- Exercícios resolvidos
+- Questões para fixação
+- Aplicações reais
+
+### **Sobre o Autor**
+
+**Prof. Vagner Cordeiro** é Professor Universitário do Curso de Graduação e Pós-Graduação em Sistemas de Informação na Faculdade Estácio de Florianópolis. Leciona diversas disciplinas como Análise de Algoritmos, Redes de Computadores, Segurança Cibernética, Tópicos de Big Data em Python, IoT e Indústria 4.0 em Python, e Pensamento Computacional. Atua também como Instrutor de Informática no Governo do Estado de SC pela SEJURI.
+
+Possui formação em Tecnólogo em Análise e Desenvolvimento de Sistemas, Técnico em Telecomunicações, Engenharia de Computação, especializações em Análise de Dados, MBA em Segurança da Informação e Engenharia e Segurança do Trabalho. Também possui Licenciatura em Matemática. 
+
+Com mais de 15 anos de experiência em empresas de destaque no setor de tecnologia de Santa Catarina como Intelbras, Embratel, Digitro e startups, traz para o ensino uma perspectiva prática e atual do mercado de trabalho em tecnologia.
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **ÍNDICE**
+
+**PREFÁCIO** .................................................... 3
+
+**CAPÍTULO 1 - INTRODUÇÃO À ANÁLISE DE ALGORITMOS** ............ 5
+- 1.1 Conceitos Fundamentais
+- 1.2 Importância da Análise Algorítmica
+- 1.3 Eficiência vs. Simplicidade
+
+**CAPÍTULO 2 - COMPLEXIDADE DE TEMPO E ESPAÇO** ................ 12
+- 2.1 Definições Básicas
+- 2.2 Análise de Caso Médio, Melhor e Pior
+- 2.3 Complexidade Espacial
+
+**CAPÍTULO 3 - NOTAÇÃO BIG-O** ................................. 18
+- 3.1 Definição Formal
+- 3.2 Propriedades da Notação Big-O
+- 3.3 Exemplos Práticos
+- 3.4 Outras Notações (Ω, Θ)
+
+**CAPÍTULO 4 - RECURSIVIDADE** ................................. 25
+- 4.1 Conceitos Fundamentais
+- 4.2 Casos Base e Recursivos
+- 4.3 Tipos de Recursão
+- 4.4 Análise de Complexidade Recursiva
+- 4.5 Técnicas de Otimização
+
+**CAPÍTULO 5 - ALGORITMOS DE ORDENAÇÃO** ....................... 45
+- 5.1 Algoritmos Básicos (O(n²))
+- 5.2 Algoritmos Eficientes (O(n log n))
+- 5.3 Análise Comparativa
+- 5.4 Quando Usar Cada Algoritmo
+
+**CAPÍTULO 6 - ALGORITMOS DE BUSCA** ........................... 58
+- 6.1 Busca Linear
+- 6.2 Busca Binária
+- 6.3 Busca em Estruturas Complexas
+
+**CAPÍTULO 7 - ANÁLISE AMORTIZADA** ............................ 65
+- 7.1 Conceitos e Aplicações
+- 7.2 Método do Agregado
+- 7.3 Método do Contador
+- 7.4 Método do Potencial
+
+**CAPÍTULO 8 - INVARIANTES DE LOOP** ........................... 72
+- 8.1 Definição e Importância
+- 8.2 Demonstração de Corretude
+- 8.3 Exemplos Práticos
+
+**CAPÍTULO 9 - ESTRATÉGIAS DE RESOLUÇÃO DE PROBLEMAS** ......... 78
+- 9.1 Metodologia RICE
+- 9.2 Padrões Algorítmicos Comuns
+- 9.3 Técnicas de Otimização
+
+**APÊNDICES** .................................................. 85
+- A. Tabela de Complexidades
+- B. Glossário de Termos
+- C. Bibliografia e Referências
+- D. Exercícios Adicionais
+
+---
+
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 1**
+# **INTRODUÇÃO À ANÁLISE DE ALGORITMOS**
+
+<div style="page-break-after: always;"></div>
+
+## **1.1 Conceitos Fundamentais**
 
 ### O que é um Algoritmo?
 Um algoritmo é uma sequência finita de instruções bem definidas e não ambíguas para resolver um problema computacional específico.
@@ -32,7 +153,12 @@ A análise de algoritmos é o processo de determinar a quantidade de recursos co
 
 ---
 
-## Complexidade de Tempo e Espaço
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 2**
+# **COMPLEXIDADE DE TEMPO E ESPAÇO**
+
+## **2.1 Definições Básicas**
 
 ### Complexidade de Tempo
 Mede o tempo de execução de um algoritmo em função do tamanho da entrada.
@@ -40,14 +166,19 @@ Mede o tempo de execução de um algoritmo em função do tamanho da entrada.
 ### Complexidade de Espaço
 Mede a quantidade de memória necessária para executar um algoritmo.
 
-### Casos de Análise:
+## **2.2 Casos de Análise**
 - **Melhor Caso**: Menor tempo possível para qualquer entrada de tamanho n
 - **Caso Médio**: Tempo médio para todas as entradas possíveis de tamanho n
 - **Pior Caso**: Maior tempo possível para qualquer entrada de tamanho n
 
 ---
 
-## Notação Big-O
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 3**
+# **NOTAÇÃO BIG-O**
+
+## **3.1 Definição Formal**
 
 A notação Big-O descreve o comportamento assintótico de algoritmos, ou seja, **como o tempo de execução cresce em relação ao tamanho da entrada**.
 
@@ -260,9 +391,87 @@ O(2ⁿ):    |      XXX      XXXXXXXX   (explode)
 - **Dequeue**: O(1)
 - **Front**: O(1)
 
+## **4.5 Exercícios de Fixação - Capítulo 4**
+
+### **Exercício 4.1**: Implementação Básica
+
+Implemente uma função recursiva que calcule a soma dos dígitos de um número:
+
+```python
+def soma_digitos(n):
+    # Caso base: se n < 10, retorna n
+    # Caso recursivo: último dígito + soma_digitos(n // 10)
+    pass
+```
+
+**Solução**:
+```python
+def soma_digitos(n):
+    if n < 10:
+        return n
+    return n % 10 + soma_digitos(n // 10)
+```
+
+### **Exercício 4.2**: Análise de Complexidade
+
+Qual a complexidade das seguintes funções recursivas?
+
+```python
+# Função A
+def funcao_a(n):
+    if n <= 1:
+        return 1
+    return funcao_a(n - 1)
+
+# Função B
+def funcao_b(n):
+    if n <= 1:
+        return 1
+    return funcao_b(n // 2)
+
+# Função C
+def funcao_c(n):
+    if n <= 1:
+        return 1
+    return funcao_c(n - 1) + funcao_c(n - 1)
+```
+
+**Respostas**: A = O(n), B = O(log n), C = O(2ⁿ)
+
+### **Exercício 4.3**: Problema Prático
+
+Implemente o algoritmo das "Torres de Hanói" recursivamente e calcule quantos movimentos são necessários para n=4 discos.
+
+**Resposta**: 2⁴ - 1 = 15 movimentos
+
+### **Exercício 4.4**: Otimização
+
+Converta a seguinte função recursiva para iterativa:
+
+```python
+def potencia_rec(base, exp):
+    if exp == 0:
+        return 1
+    return base * potencia_rec(base, exp - 1)
+```
+
+**Solução Iterativa**:
+```python
+def potencia_iter(base, exp):
+    resultado = 1
+    for i in range(exp):
+        resultado *= base
+    return resultado
+```
+
 ---
 
-## Algoritmos de Ordenação
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 5**
+# **ALGORITMOS DE ORDENAÇÃO**
+
+## **5.1 Algoritmos Básicos de Ordenação**
 
 ### Visão Geral dos Algoritmos de Ordenação
 
@@ -628,7 +837,12 @@ void quick_sort(int arr[], int low, int high) {
 
 ---
 
-## Algoritmos de Busca
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 6**
+# **ALGORITMOS DE BUSCA**
+
+## **6.1 Algoritmos de Busca Fundamentais**
 
 ### Busca Linear
 
@@ -923,11 +1137,65 @@ Busca Binária:
 Diferença: 50.000x mais rápida no pior caso!
 ```
 
+## **3.4 Exercícios de Fixação - Capítulo 3**
+
+### **Exercício 3.1**: Análise Básica de Complexidade
+
+Determine a complexidade Big-O dos seguintes códigos:
+
+```python
+# Código A
+def codigo_a(n):
+    count = 0
+    for i in range(n):
+        count += 1
+    return count
+
+# Código B  
+def codigo_b(n):
+    count = 0
+    for i in range(n):
+        for j in range(n):
+            count += 1
+    return count
+
+# Código C
+def codigo_c(n):
+    count = 0
+    i = 1
+    while i < n:
+        count += 1
+        i *= 2
+    return count
+```
+
+**Respostas**: A = O(n), B = O(n²), C = O(log n)
+
+### **Exercício 3.2**: Comparação de Algoritmos
+
+Para n = 1000, calcule aproximadamente quantas operações cada complexidade executaria:
+
+1. O(1): _____ operações
+2. O(log n): _____ operações  
+3. O(n): _____ operações
+4. O(n²): _____ operações
+
+**Respostas**: 1, 10, 1000, 1.000.000
+
+### **Exercício 3.3**: Problema Prático
+
+Um algoritmo de busca tem complexidade O(log n) e leva 1ms para processar 1000 elementos. Quanto tempo levará para processar 1.000.000 de elementos?
+
+**Resposta**: Aproximadamente 2ms (log₂(1.000.000) ≈ 20, log₂(1000) ≈ 10, então 20/10 = 2x)
+
 ---
 
-# RECURSIVIDADE
+<div style="page-break-after: always;"></div>
 
-## Conceitos Fundamentais - Explicação Simples
+# **CAPÍTULO 4**
+# **RECURSIVIDADE**
+
+## **4.1 Conceitos Fundamentais**
 
 ### O que é Recursividade?
 **Recursividade é como ensinar alguém a subir escadas:**
@@ -2136,7 +2404,12 @@ def bfs(grafo, inicio):
 
 ---
 
-## Análise Amortizada
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 7**
+# **ANÁLISE AMORTIZADA**
+
+## **7.1 Conceitos e Aplicações**
 
 ### O que é Análise Amortizada?
 
@@ -2312,7 +2585,12 @@ class UnionFind:
 
 ---
 
-## Invariantes de Loop
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 8**
+# **INVARIANTES DE LOOP**
+
+## **8.1 Definição e Importância**
 
 ### O que são Invariantes de Loop?
 
@@ -2816,4 +3094,171 @@ def maior_soma_subarray(arr):
 
 ---
 
-*Este documento serve como um guia completo para revisão de algoritmos e análise de complexidade, com foco especial em recursividade. Continue praticando e explorando novos problemas para aprofundar seu conhecimento!*
+<div style="page-break-after: always;"></div>
+
+# **APÊNDICES**
+
+## **APÊNDICE A - TABELA DE COMPLEXIDADES**
+
+### **Tabela Resumo de Complexidades Comuns**
+
+| **Complexidade** | **Nome** | **Exemplo** | **n=10** | **n=100** | **n=1000** |
+|---|---|---|---|---|---|
+| **O(1)** | Constante | Acesso a array[i] | 1 | 1 | 1 |
+| **O(log n)** | Logarítmica | Busca binária | 3 | 7 | 10 |
+| **O(n)** | Linear | Busca linear | 10 | 100 | 1000 |
+| **O(n log n)** | Linearítmica | Merge Sort | 30 | 700 | 10000 |
+| **O(n²)** | Quadrática | Bubble Sort | 100 | 10000 | 1000000 |
+| **O(2ⁿ)** | Exponencial | Subconjuntos | 1024 | 2¹⁰⁰ | 2¹⁰⁰⁰ |
+| **O(n!)** | Fatorial | Permutações | 3628800 | 100! | 1000! |
+
+### **Complexidades por Estrutura de Dados**
+
+| **Estrutura** | **Acesso** | **Busca** | **Inserção** | **Remoção** |
+|---|---|---|---|---|
+| **Array** | O(1) | O(n) | O(n) | O(n) |
+| **Lista Ligada** | O(n) | O(n) | O(1) | O(1) |
+| **Pilha** | O(1) | - | O(1) | O(1) |
+| **Fila** | O(1) | - | O(1) | O(1) |
+| **Hash Table** | O(1)* | O(1)* | O(1)* | O(1)* |
+| **Árvore Binária** | O(log n)* | O(log n)* | O(log n)* | O(log n)* |
+| **Heap** | O(1) | O(n) | O(log n) | O(log n) |
+
+*Caso médio
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE B - GLOSSÁRIO DE TERMOS**
+
+**Algoritmo**: Sequência finita de instruções bem definidas para resolver um problema.
+
+**Análise Amortizada**: Técnica para analisar o tempo total de uma sequência de operações.
+
+**Big-O**: Notação matemática que descreve o comportamento assintótico de funções.
+
+**Caso Base**: Condição de parada em algoritmos recursivos.
+
+**Complexidade Espacial**: Quantidade de memória necessária para executar um algoritmo.
+
+**Complexidade Temporal**: Tempo necessário para executar um algoritmo em função do tamanho da entrada.
+
+**Divide e Conquista**: Estratégia que divide um problema em subproblemas menores.
+
+**Estrutura de Dados**: Forma de organizar e armazenar dados para acesso e modificação eficientes.
+
+**Heurística**: Técnica para encontrar soluções aproximadas quando métodos exatos são impraticáveis.
+
+**Invariante de Loop**: Propriedade que permanece verdadeira durante todas as iterações de um loop.
+
+**Memoização**: Técnica de otimização que armazena resultados de funções para evitar recálculos.
+
+**Programação Dinâmica**: Método para resolver problemas complexos dividindo-os em subproblemas.
+
+**Recursão**: Técnica onde uma função chama a si mesma para resolver subproblemas.
+
+**Tail Recursion**: Tipo especial de recursão onde a chamada recursiva é a última operação.
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE C - BIBLIOGRAFIA E REFERÊNCIAS**
+
+### **Bibliografia Básica**
+
+1. **CORMEN, Thomas H. et al.** *Introduction to Algorithms*, 4th Edition. MIT Press, 2022.
+
+2. **SEDGEWICK, Robert; WAYNE, Kevin.** *Algorithms*, 4th Edition. Addison-Wesley, 2011.
+
+3. **KLEINBERG, Jon; TARDOS, Éva.** *Algorithm Design*. Pearson, 2005.
+
+### **Bibliografia Complementar**
+
+4. **AHO, Alfred V. et al.** *Data Structures and Algorithms*. Addison-Wesley, 1983.
+
+5. **SKIENA, Steven S.** *The Algorithm Design Manual*, 3rd Edition. Springer, 2020.
+
+6. **DASGUPTA, Sanjoy et al.** *Algorithms*. McGraw-Hill, 2008.
+
+### **Recursos Online**
+
+- **LeetCode**: https://leetcode.com/ - Prática de algoritmos
+- **HackerRank**: https://www.hackerrank.com/ - Desafios de programação  
+- **GeeksforGeeks**: https://www.geeksforgeeks.org/ - Tutoriais e exemplos
+- **VisuAlgo**: https://visualgo.net/ - Visualização de algoritmos
+- **Algorithm Visualizer**: https://algorithm-visualizer.org/ - Animações interativas
+
+### **Artigos Científicos Relevantes**
+
+- Knuth, D. E. (1976). "Big Omicron and big Omega and big Theta". *SIGACT News*, 8(2), 18-24.
+- Tarjan, R. E. (1985). "Amortized computational complexity". *SIAM Journal on Algebraic Discrete Methods*, 6(2), 306-318.
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE D - EXERCÍCIOS ADICIONAIS**
+
+### **Seção 1: Análise de Complexidade**
+
+**Exercício D.1**: Determine a complexidade dos seguintes algoritmos:
+
+```python
+# Algoritmo A
+def algoritmo_a(n):
+    soma = 0
+    for i in range(n):
+        for j in range(i):
+            soma += i * j
+    return soma
+
+# Algoritmo B  
+def algoritmo_b(n):
+    if n <= 1:
+        return 1
+    return algoritmo_b(n//2) + algoritmo_b(n//2) + n
+```
+
+**Exercício D.2**: Calcule quantas operações básicas são executadas para n=16:
+- Busca linear em array desordenado
+- Busca binária em array ordenado
+- Insertion sort
+
+### **Seção 2: Recursividade Avançada**
+
+**Exercício D.3**: Implemente a função `ackermann(m, n)` e analise sua complexidade.
+
+**Exercício D.4**: Converta o seguinte algoritmo recursivo para iterativo:
+
+```python
+def fibonacci_rec(n):
+    if n <= 1:
+        return n
+    return fibonacci_rec(n-1) + fibonacci_rec(n-2)
+```
+
+### **Seção 3: Problemas Práticos**
+
+**Exercício D.5**: **Problema da Moeda**: Dado um valor V e moedas de denominações [1, 5, 10, 25], encontre o número mínimo de moedas necessárias.
+
+**Exercício D.6**: **Torres de Hanói**: Implemente a solução recursiva e calcule o número de movimentos para n discos.
+
+### **Gabarito Resumido**
+
+- **D.1**: Algoritmo A: O(n²), Algoritmo B: O(n log n)
+- **D.2**: Linear: 16 ops (pior caso), Binária: 4 ops, Insertion: 136 ops (pior caso)
+- **D.3**: Ackermann tem crescimento mais que exponencial
+- **D.4**: Usar loop com duas variáveis para O(n)
+- **D.5**: Usar programação dinâmica para O(V×n)
+- **D.6**: 2ⁿ - 1 movimentos, O(2ⁿ) complexidade
+
+---
+
+**FIM DA APOSTILA**
+
+---
+
+*© 2025 - Prof. Vagner Cordeiro*  
+*Material Didático - Algoritmos e Análise de Complexidade*
