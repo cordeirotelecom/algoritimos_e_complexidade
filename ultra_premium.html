@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Portal Premium - Algoritmos & Complexidade 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Meta Tags Premium -->
+    <meta name="description" content="Portal Premium de Algoritmos e Complexidade - Plataforma educacional de nível internacional com IA, gamificação e análise automática">
+    <meta name="keywords" content="algoritmos, complexidade, python, c, programação, IA, machine learning, estruturas de dados, análise automática">
+    <meta name="author" content="Portal Premium - Algoritmos & Complexidade">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Open Graph Premium -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Portal Premium - Algoritmos & Complexidade">
+    <meta property="og:title" content="🚀 Portal Premium - Algoritmos & Complexidade 2025">
+    <meta property="og:description" content="A plataforma educacional mais avançada para algoritmos e complexidade computacional com IA integrada">
+    <meta property="og:url" content="https://fantastic-alfajores-55b686.netlify.app/">
+    
+    <!-- Twitter Cards Premium -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🚀 Portal Premium - Algoritmos & Complexidade">
+    <meta name="twitter:description" content="Plataforma educacional premium com IA integrada">
+    
+    <style>
+        :root {
+            /* Premium Color Palette 2025 */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            --aurora-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 20%, #f093fb 40%, #f5576c 60%, #43e97b 80%, #00f2fe 100%);
+            --cosmic-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 20%, #16213e 40%, #0f3460 60%, #533483 80%, #0a0a0a 100%);
+            --neon-gradient: linear-gradient(135deg, #ff006e 0%, #8338ec 25%, #3a86ff 50%, #06ffa5 75%, #ffbe0b 100%);
+            
+            /* Advanced Color System */
+            --color-primary: #667eea;
+            --color-secondary: #764ba2;
+            --color-accent: #00f2fe;
+            --color-success: #43e97b;
+            --color-warning: #ffbe0b;
+            --color-danger: #ff006e;
+            --color-info: #3a86ff;
+            
+            /* Ultra Modern Backgrounds */
+            --bg-cosmos: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(67, 233, 123, 0.2) 0%, transparent 50%), var(--cosmic-gradient);
+            --bg-glass-ultra: rgba(255, 255, 255, 0.06);
+            --bg-glass-hover: rgba(255, 255, 255, 0.12);
+            --bg-card-premium: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            
+            /* Text Hierarchy Premium */
+            --text-hero: #ffffff;
+            --text-primary: #f8fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-subtle: #64748b;
+            
+            /* Border System Advanced */
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(0, 242, 254, 0.3);
+            --border-glow: 0 0 20px rgba(102, 126, 234, 0.3);
+            
+            /* Shadow System Pro */
+            --shadow-neon: 0 0 50px rgba(102, 126, 234, 0.4);
+            --shadow-ultra: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
+            --shadow-glow-sm: 0 0 20px rgba(0, 242, 254, 0.3);
+            --shadow-glow-lg: 0 0 60px rgba(240, 147, 251, 0.4);
+            
+            /* Blur Effects Premium */
+            --blur-ultra: blur(30px);
+            --blur-mega: blur(50px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *::selection {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(0, 242, 254, 0.8));
+            color: white;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-cosmos);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            font-optical-sizing: auto;
+            font-feature-settings: "liga" 1, "kern" 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Cosmic Background System */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .cosmic-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: cosmicFloat1 20s ease-in-out infinite;
+        }
+
+        .cosmic-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.08) 0%, transparent 50%);
+            animation: cosmicFloat2 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes cosmicFloat1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.7; }
+            33% { transform: translate(30px, -30px) rotate(120deg) scale(1.1); opacity: 1; }
+            66% { transform: translate(-20px, 20px) rotate(240deg) scale(0.9); opacity: 0.5; }
+        }
+
+        @keyframes cosmicFloat2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.5; }
+            50% { transform: translate(-40px, 40px) rotate(180deg) scale(1.2); opacity: 0.8; }
+        }
+
+        /* Advanced Particle System */
+        .particles-advanced {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+            overflow: hidden;
+        }
+
+        .particle-advanced {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            filter: blur(1px);
+            animation: particleFloat 12s linear infinite;
+        }
+
+        .particle-advanced:nth-child(odd) {
+            background: radial-gradient(circle, var(--color-accent), transparent);
+            width: 3px;
+            height: 3px;
+        }
+
+        .particle-advanced:nth-child(even) {
+            background: radial-gradient(circle, var(--color-warning), transparent);
+            width: 2px;
+            height: 2px;
+        }
+
+        .particle-advanced:nth-child(3n) {
+            background: radial-gradient(circle, var(--color-success), transparent);
+            width: 4px;
+            height: 4px;
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0); 
+                opacity: 0; 
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { 
+                transform: translateY(-10vh) translateX(100px) rotate(360deg) scale(1); 
+                opacity: 0; 
+            }
+        }
+
+        /* Ultra Loading Screen */
+        .loading-ultra {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cosmic-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-ultra.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1);
+        }
+
+        .loading-logo-ultra {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: logoFloat 3s ease-in-out infinite;
+            filter: drop-shadow(var(--shadow-neon));
+        }
+
+        .loading-text-ultra {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 0.1em;
+        }
+
+        .loading-progress-ultra {
+            width: 400px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-bar-ultra {
+            height: 100%;
+            background: var(--aurora-gradient);
+            border-radius: 4px;
+            animation: loadingProgress 4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .loading-bar-ultra::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(5deg) scale(1.05); }
+        }
+
+        @keyframes loadingProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Navigation Ultra Premium */
+        .navbar-ultra {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: var(--blur-ultra);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar-ultra.scrolled {
+            background: rgba(10, 10, 10, 0.9);
+            box-shadow: var(--shadow-ultra);
+            border-bottom-color: var(--border-accent);
+        }
+
+        .nav-content-ultra {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo-ultra {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-logo-ultra::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--aurora-gradient);
+            border-radius: 1px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-logo-ultra:hover::after {
+            opacity: 1;
+        }
+
+        .nav-menu-ultra {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link-ultra {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+        }
+
+        .nav-link-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-glass-ultra);
+            border-radius: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link-ultra:hover::before {
+            opacity: 1;
+        }
+
+        .nav-link-ultra:hover {
+            color: var(--text-hero);
+            transform: translateY(-2px);
+        }
+
+        .nav-cta-ultra {
+            background: var(--aurora-gradient);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-cta-ultra:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta-ultra:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow-lg);
+        }
+
+        /* Hero Section Ultra */
+        .hero-ultra {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-ultra::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 60%;
+            background: radial-gradient(ellipse, rgba(102, 126, 234, 0.1), transparent);
+            border-radius: 50%;
+            animation: heroGlow 15s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.1) rotate(180deg); }
+        }
+
+        .hero-content-ultra {
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge-ultra {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-glass-ultra);
+            backdrop-filter: var(--blur-ultra);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.1), transparent);
+            animation: badgeShimmer 3s infinite;
+        }
+
+        @keyframes badgeShimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .hero-title-ultra {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 900;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            animation: fadeInUp 1s ease 0.4s both;
+            position: relative;
+        }
+
+        .hero-title-ultra::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 200px;
+            height: 4px;
+            background: var(--aurora-gradient);
+            border-radius: 2px;
+            transform: translateX(-50%) scaleX(0);
+            animation: titleUnderline 1s ease 1.5s both;
+        }
+
+        @keyframes titleUnderline {
+            to { transform: translateX(-50%) scaleX(1); }
+        }
+
+        .hero-subtitle-ultra {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            font-weight: 500;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-actions-ultra {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .cta-primary-ultra {
+            background: var(--aurora-gradient);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 1.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        .cta-primary-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-primary-ultra:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary-ultra:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-glow-lg);
+        }
+
+        .cta-secondary-ultra {
+            background: var(--bg-glass-ultra);
+            backdrop-filter: var(--blur-ultra);
+            border: 2px solid var(--border-glass);
+            color: var(--text-primary);
+            padding: 1.5rem 3rem;
+            border-radius: 1.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cta-secondary-ultra:hover {
+            background: var(--bg-glass-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        /* Stats Section Ultra */
+        .stats-ultra {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid-ultra {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card-ultra {
+            background: var(--bg-card-premium);
+            backdrop-filter: var(--blur-ultra);
+            border: 1px solid var(--border-glass);
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .stat-card-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--aurora-gradient);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .stat-card-ultra:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card-ultra:hover {
+            transform: translateY(-20px) scale(1.02);
+            background: var(--bg-glass-hover);
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-ultra);
+        }
+
+        .stat-icon-ultra {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+            filter: drop-shadow(var(--shadow-glow-sm));
+        }
+
+        .stat-number-ultra {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .stat-label-ultra {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Features Grid Ultra */
+        .features-ultra {
+            padding: 8rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .features-header-ultra {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .features-title-ultra {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .features-subtitle-ultra {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-grid-ultra {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 4rem;
+        }
+
+        .feature-card-ultra {
+            background: var(--bg-card-premium);
+            backdrop-filter: var(--blur-ultra);
+            border: 1px solid var(--border-glass);
+            border-radius: 2rem;
+            padding: 4rem 3rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--aurora-gradient);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card-ultra:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card-ultra:hover {
+            transform: translateY(-20px);
+            background: var(--bg-glass-hover);
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-ultra);
+        }
+
+        .feature-icon-ultra {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-title-ultra {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-hero);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-description-ultra {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .feature-actions-ultra {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-btn-ultra {
+            background: var(--bg-glass-ultra);
+            border: 1px solid var(--border-glass);
+            border-radius: 1rem;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-btn-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--aurora-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .feature-btn-ultra:hover::before {
+            left: 0;
+        }
+
+        .feature-btn-ultra:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow-sm);
+            border-color: transparent;
+        }
+
+        /* Status Badge Ultra */
+        .status-ultra {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--color-success);
+            background: linear-gradient(135deg, var(--color-success), var(--color-accent));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            animation: statusPulse 3s infinite;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Footer Ultra */
+        .footer-ultra {
+            padding: 6rem 2rem 4rem;
+            border-top: 1px solid var(--border-glass);
+            background: var(--bg-card-premium);
+            backdrop-filter: var(--blur-ultra);
+            margin-top: 8rem;
+        }
+
+        .footer-content-ultra {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo-ultra {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--aurora-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .footer-text-ultra {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-links-ultra {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link-ultra {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-link-ultra::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link-ultra:hover::after {
+            width: 100%;
+        }
+
+        .footer-link-ultra:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-copy-ultra {
+            color: var(--text-subtle);
+            font-size: 1rem;
+        }
+
+        /* Scroll Indicator Ultra */
+        .scroll-indicator-ultra {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 8px;
+            background: var(--aurora-gradient);
+            z-index: 10001;
+            transition: width 0.1s ease;
+            box-shadow: var(--shadow-glow-sm);
+        }
+
+        /* Floating Action Button */
+        .fab-ultra {
+            position: fixed;
+            bottom: 3rem;
+            right: 3rem;
+            width: 70px;
+            height: 70px;
+            background: var(--aurora-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-glow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        .fab-ultra:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: var(--shadow-ultra);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up-ultra {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Mobile Responsive Ultra */
+        @media (max-width: 768px) {
+            .hero-ultra { padding: 6rem 1rem 3rem; }
+            .stats-ultra { padding: 4rem 1rem; }
+            .features-ultra { padding: 6rem 1rem; }
+            .footer-ultra { padding: 4rem 1rem 3rem; }
+            .nav-menu-ultra { display: none; }
+            .features-grid-ultra { grid-template-columns: 1fr; }
+            .stats-grid-ultra { grid-template-columns: repeat(2, 1fr); }
+            .hero-actions-ultra { flex-direction: column; align-items: center; }
+            .fab-ultra { bottom: 2rem; right: 2rem; width: 60px; height: 60px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title-ultra { font-size: 3rem; }
+            .hero-subtitle-ultra { font-size: 1.2rem; }
+            .stats-grid-ultra { grid-template-columns: 1fr; }
+            .feature-card-ultra { padding: 2.5rem 2rem; }
+            .footer-links-ultra { flex-direction: column; gap: 1.5rem; }
+        }
+
+        /* Ultra Advanced Effects */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* Success Notification Ultra */
+        .notification-ultra {
+            position: fixed;
+            top: 7rem;
+            right: 2rem;
+            background: var(--color-success);
+            background: linear-gradient(135deg, var(--color-success), var(--color-accent));
+            color: white;
+            padding: 2rem 3rem;
+            border-radius: 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-glow-lg);
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10000;
+        }
+
+        .notification-ultra.show {
+            transform: translateX(0);
+        }
+
+        .notification-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: notificationShimmer 2s infinite;
+        }
+
+        @keyframes notificationShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ultra Loading Screen -->
+    <div class="loading-ultra" id="loadingUltra">
+        <div class="loading-logo-ultra">🚀</div>
+        <div class="loading-text-ultra">Portal Premium 2025</div>
+        <div class="loading-progress-ultra">
+            <div class="loading-bar-ultra"></div>
+        </div>
+    </div>
+
+    <!-- Cosmic Background -->
+    <div class="cosmic-bg"></div>
+
+    <!-- Advanced Particles -->
+    <div class="particles-advanced" id="particlesAdvanced"></div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator-ultra" id="scrollIndicatorUltra"></div>
+
+    <!-- Ultra Navigation -->
+    <nav class="navbar-ultra" id="navbarUltra">
+        <div class="nav-content-ultra">
+            <a href="#" class="nav-logo-ultra">🚀 Portal Premium</a>
+            <ul class="nav-menu-ultra">
+                <li><a href="#home" class="nav-link-ultra">Início</a></li>
+                <li><a href="#features" class="nav-link-ultra">Recursos</a></li>
+                <li><a href="#platform" class="nav-link-ultra">Plataforma</a></li>
+                <li><a href="premium_links.html" class="nav-cta-ultra">⚡ Portal Premium</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Success Notification -->
+    <div class="notification-ultra" id="notificationUltra">
+        ✨ Portal Premium 2025 carregado com sucesso!
+    </div>
+
+    <!-- Hero Section Ultra -->
+    <section id="home" class="hero-ultra">
+        <div class="hero-content-ultra">
+            <div class="hero-badge-ultra">
+                ✨ Versão Premium 2025 - Tecnologia de Ponta
+            </div>
+            <h1 class="hero-title-ultra">Algoritmos & Complexidade</h1>
+            <p class="hero-subtitle-ultra">
+                A plataforma educacional mais avançada do mundo para aprendizagem de algoritmos, estruturas de dados e análise de complexidade computacional com inteligência artificial integrada.
+            </p>
+            <div class="hero-actions-ultra">
+                <a href="premium_links.html" class="cta-primary-ultra">🚀 Explorar Portal Premium</a>
+                <a href="plataforma_completa.html" class="cta-secondary-ultra">💻 IDE Completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section Ultra -->
+    <section class="stats-ultra" id="stats">
+        <div class="stats-grid-ultra">
+            <div class="stat-card-ultra fade-in-up-ultra">
+                <div class="stat-icon-ultra">📚</div>
+                <span class="stat-number-ultra" data-target="75">0</span>
+                <span class="stat-label-ultra">Links Premium</span>
+            </div>
+            <div class="stat-card-ultra fade-in-up-ultra">
+                <div class="stat-icon-ultra">🎓</div>
+                <span class="stat-number-ultra" data-target="15">0</span>
+                <span class="stat-label-ultra">Aulas Avançadas</span>
+            </div>
+            <div class="stat-card-ultra fade-in-up-ultra">
+                <div class="stat-icon-ultra">🔬</div>
+                <span class="stat-number-ultra" data-target="12">0</span>
+                <span class="stat-label-ultra">Labs Interativos</span>
+            </div>
+            <div class="stat-card-ultra fade-in-up-ultra">
+                <div class="stat-icon-ultra">🚀</div>
+                <span class="stat-number-ultra" data-target="6">0</span>
+                <span class="stat-label-ultra">Plataformas IA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section Ultra -->
+    <section id="features" class="features-ultra">
+        <div class="features-header-ultra">
+            <h2 class="features-title-ultra">Recursos Premium</h2>
+            <p class="features-subtitle-ultra">
+                Tecnologia de ponta para uma experiência educacional incomparável
+            </p>
+        </div>
+
+        <div class="features-grid-ultra">
+            <div class="feature-card-ultra fade-in-up-ultra">
+                <div class="status-ultra">✅ 100% Funcional</div>
+                <div class="feature-icon-ultra">📚</div>
+                <h3 class="feature-title-ultra">Material Completo</h3>
+                <p class="feature-description-ultra">
+                    Mais de 15 aulas teóricas, 8 laboratórios práticos e exercícios resolvidos com análise detalhada de complexidade.
+                </p>
+                <div class="feature-actions-ultra">
+                    <a href="aulas/aula01.md" class="feature-btn-ultra">📖 Aulas</a>
+                    <a href="exercicios/" class="feature-btn-ultra">💻 Exercícios</a>
+                    <a href="docs/" class="feature-btn-ultra">📄 Documentos</a>
+                </div>
+            </div>
+
+            <div class="feature-card-ultra fade-in-up-ultra">
+                <div class="status-ultra">🚀 Premium</div>
+                <div class="feature-icon-ultra">🤖</div>
+                <h3 class="feature-title-ultra">IA Integrada</h3>
+                <p class="feature-description-ultra">
+                    Análise automática de complexidade, sugestões de otimização e feedback inteligente em tempo real.
+                </p>
+                <div class="feature-actions-ultra">
+                    <a href="plataforma_completa.html" class="feature-btn-ultra">🖥️ IDE IA</a>
+                    <a href="exercicios_interativos.html" class="feature-btn-ultra">🎯 Gamificado</a>
+                </div>
+            </div>
+
+            <div class="feature-card-ultra fade-in-up-ultra">
+                <div class="status-ultra">⚡ Ultra Rápido</div>
+                <div class="feature-icon-ultra">🔧</div>
+                <h3 class="feature-title-ultra">Código Premium</h3>
+                <p class="feature-description-ultra">
+                    Implementações em Python e C com otimizações avançadas e comparações de performance.
+                </p>
+                <div class="feature-actions-ultra">
+                    <a href="exemplos/python/" class="feature-btn-ultra">🐍 Python</a>
+                    <a href="exemplos/c/" class="feature-btn-ultra">⚡ C Lang</a>
+                </div>
+            </div>
+
+            <div class="feature-card-ultra fade-in-up-ultra">
+                <div class="status-ultra">🌐 Online</div>
+                <div class="feature-icon-ultra">📊</div>
+                <h3 class="feature-title-ultra">Dashboard Analytics</h3>
+                <p class="feature-description-ultra">
+                    Acompanhe seu progresso com métricas avançadas, conquistas e sistema de ranking.
+                </p>
+                <div class="feature-actions-ultra">
+                    <a href="portal_aprendizado.html" class="feature-btn-ultra">📈 Dashboard</a>
+                    <a href="stable.html" class="feature-btn-ultra">✅ Estável</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Ultra -->
+    <footer class="footer-ultra">
+        <div class="footer-content-ultra">
+            <div class="footer-logo-ultra">🚀 Portal Premium</div>
+            <p class="footer-text-ultra">
+                A mais avançada plataforma educacional para algoritmos e complexidade computacional do Brasil
+            </p>
+            <div class="footer-links-ultra">
+                <a href="premium_links.html" class="footer-link-ultra">Portal Premium</a>
+                <a href="docs/apostila_completa.md" class="footer-link-ultra">Documentação</a>
+                <a href="exercicios/" class="footer-link-ultra">Exercícios</a>
+                <a href="plataforma_completa.html" class="footer-link-ultra">Plataforma</a>
+            </div>
+            <p class="footer-copy-ultra">
+                © 2025 Portal Premium - Algoritmos & Complexidade | Tecnologia Educacional de Nível Internacional
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button class="fab-ultra" id="fabUltra" onclick="scrollToTop()">⬆️</button>
+
+    <script>
+        // Ultra Advanced Portal System 2025
+        class UltraPortal {
+            constructor() {
+                this.isLoaded = false;
+                this.particles = [];
+                this.init();
+            }
+
+            async init() {
+                console.log('🚀 Initializing Ultra Portal 2025...');
+                await this.loadingSequence();
+                this.initializeFeatures();
+                this.createAdvancedParticles();
+                this.setupEventListeners();
+                this.startAnalytics();
+                console.log('✨ Ultra Portal 2025 Ready!');
+            }
+
+            async loadingSequence() {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        document.getElementById('loadingUltra').classList.add('hidden');
+                        this.showNotification();
+                        resolve();
+                    }, 4000);
+                });
+            }
+
+            showNotification() {
+                const notification = document.getElementById('notificationUltra');
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 5000);
+            }
+
+            initializeFeatures() {
+                this.initScrollEffects();
+                this.initCounterAnimations();
+                this.initIntersectionObserver();
+                this.initKeyboardShortcuts();
+            }
+
+            initScrollEffects() {
+                const navbar = document.getElementById('navbarUltra');
+                const scrollIndicator = document.getElementById('scrollIndicatorUltra');
+                const fab = document.getElementById('fabUltra');
+
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.pageYOffset;
+                    const docHeight = document.body.scrollHeight - window.innerHeight;
+                    const scrollPercent = (scrollTop / docHeight) * 100;
+
+                    // Update scroll indicator
+                    scrollIndicator.style.width = scrollPercent + '%';
+
+                    // Navbar effects
+                    if (scrollTop > 100) {
+                        navbar.classList.add('scrolled');
+                        fab.style.opacity = '1';
+                        fab.style.visibility = 'visible';
+                    } else {
+                        navbar.classList.remove('scrolled');
+                        fab.style.opacity = '0';
+                        fab.style.visibility = 'hidden';
+                    }
+                });
+            }
+
+            initCounterAnimations() {
+                const counters = document.querySelectorAll('[data-target]');
+                const observerOptions = {
+                    threshold: 0.7,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.animateCounter(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                counters.forEach(counter => observer.observe(counter));
+            }
+
+            animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2500;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current);
+                    }
+                }, 16);
+            }
+
+            initIntersectionObserver() {
+                const animatedElements = document.querySelectorAll('.fade-in-up-ultra');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                animatedElements.forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(60px)';
+                    element.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                    observer.observe(element);
+                });
+            }
+
+            createAdvancedParticles() {
+                const container = document.getElementById('particlesAdvanced');
+                const particleCount = 30;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle-advanced';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 15 + 8) + 's';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    container.appendChild(particle);
+                    this.particles.push(particle);
+                }
+            }
+
+            initKeyboardShortcuts() {
+                document.addEventListener('keydown', (e) => {
+                    // Ctrl/Cmd + P for Premium Portal
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                        e.preventDefault();
+                        window.location.href = 'premium_links.html';
+                    }
+                    
+                    // Ctrl/Cmd + K for Platform
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                        e.preventDefault();
+                        window.location.href = 'plataforma_completa.html';
+                    }
+
+                    // Esc for home
+                    if (e.key === 'Escape') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
+
+            setupEventListeners() {
+                // Smooth scrolling for navigation
+                document.querySelectorAll('.nav-link-ultra').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+
+                // Easter egg: Triple click logo
+                const logo = document.querySelector('.nav-logo-ultra');
+                let clickCount = 0;
+                logo.addEventListener('click', () => {
+                    clickCount++;
+                    if (clickCount === 3) {
+                        this.activateUltraMode();
+                        clickCount = 0;
+                    }
+                    setTimeout(() => clickCount = 0, 1000);
+                });
+            }
+
+            activateUltraMode() {
+                console.log('🌟 ULTRA MODE ACTIVATED!');
+                
+                // Rainbow particles
+                this.particles.forEach(particle => {
+                    particle.style.background = 'linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b)';
+                    particle.style.animation = 'particleFloat 3s linear infinite';
+                });
+
+                // Show ultra message
+                const ultraMessage = document.createElement('div');
+                ultraMessage.innerHTML = '🌟 ULTRA MODE ATIVADO! 🌟<br>Performance Máxima Desbloqueada!';
+                ultraMessage.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+                    color: white;
+                    padding: 4rem;
+                    border-radius: 2rem;
+                    font-size: 2rem;
+                    font-weight: 900;
+                    text-align: center;
+                    z-index: 10001;
+                    box-shadow: 0 0 100px rgba(102, 126, 234, 0.8);
+                    animation: ultraPulse 2s infinite;
+                `;
+
+                document.body.appendChild(ultraMessage);
+                setTimeout(() => ultraMessage.remove(), 6000);
+
+                // Add ultra animation
+                const ultraStyle = document.createElement('style');
+                ultraStyle.textContent = `
+                    @keyframes ultraPulse {
+                        0%, 100% { transform: translate(-50%, -50%) scale(1); filter: hue-rotate(0deg); }
+                        50% { transform: translate(-50%, -50%) scale(1.1); filter: hue-rotate(180deg); }
+                    }
+                `;
+                document.head.appendChild(ultraStyle);
+            }
+
+            startAnalytics() {
+                const analytics = {
+                    startTime: Date.now(),
+                    interactions: 0,
+                    scrollDepth: 0,
+                    deviceInfo: {
+                        userAgent: navigator.userAgent,
+                        platform: navigator.platform,
+                        language: navigator.language,
+                        screen: `${screen.width}x${screen.height}`,
+                        colorDepth: screen.colorDepth,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+                    }
+                };
+
+                // Track interactions
+                document.addEventListener('click', () => analytics.interactions++);
+                
+                // Track scroll depth
+                window.addEventListener('scroll', () => {
+                    const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                    analytics.scrollDepth = Math.max(analytics.scrollDepth, scrollPercent);
+                });
+
+                // Log analytics periodically
+                setInterval(() => {
+                    const sessionTime = Math.floor((Date.now() - analytics.startTime) / 1000);
+                    console.log('📊 Ultra Analytics:', {
+                        ...analytics,
+                        sessionTime: `${sessionTime}s`,
+                        performance: {
+                            memory: navigator.deviceMemory || 'unknown',
+                            connection: navigator.connection?.effectiveType || 'unknown',
+                            loadTime: performance.now()
+                        }
+                    });
+                }, 30000);
+
+                console.log('📈 Ultra Analytics initialized');
+            }
+        }
+
+        // Global Functions
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize Ultra Portal
+        document.addEventListener('DOMContentLoaded', () => {
+            new UltraPortal();
+        });
+
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`⚡ Ultra Portal loaded in ${loadTime.toFixed(2)}ms`);
+            
+            // Report performance metrics
+            if ('web-vitals' in window) {
+                setTimeout(() => {
+                    console.log('📊 Core Web Vitals monitored');
+                }, 1000);
+            }
+        });
+
+        // Advanced keyboard shortcuts
+        console.log('⌨️ Ultra Shortcuts:');
+        console.log('• Ctrl+P: Portal Premium');
+        console.log('• Ctrl+K: Plataforma');
+        console.log('• Esc: Scroll to top');
+        console.log('• Triple-click logo: Ultra Mode');
+
+        console.log('🚀 Ultra Portal 2025 - The Most Advanced Educational Platform');
+    </script>
+</body>
+</html>

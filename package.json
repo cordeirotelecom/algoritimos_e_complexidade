@@ -1,27 +1,23 @@
 {
-  "name": "academia-algoritmos-complexidade",
-  "version": "2.0.0",
-  "description": "Plataforma educacional para algoritmos e análise de complexidade",
-  "main": "index.html",
+  "name": "algoritimos_github",
+  "version": "1.0.0",
+  "main": "sw.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
-    "build": "echo 'Site estático - sem build necessário'",
-    "start": "echo 'Iniciando servidor local...'",
-    "deploy": "echo 'Deploy para Netlify'"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cordeirotelecom/algoritimos_e_complexidade"
+    "url": "git+https://github.com/cordeirotelecom/algoritimos_e_complexidade.git"
   },
-  "keywords": [
-    "algoritmos",
-    "complexidade",
-    "educacao",
-    "programacao",
-    "python",
-    "c",
-    "estruturas-dados"
-  ],
-  "author": "cordeirotelecom",
-  "license": "MIT",
-  "homepage": "https://github.com/cordeirotelecom/algoritimos_e_complexidade#readme"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cordeirotelecom/algoritimos_e_complexidade/issues"
+  },
+  "homepage": "https://github.com/cordeirotelecom/algoritimos_e_complexidade#readme",
+  "description": ""
 }

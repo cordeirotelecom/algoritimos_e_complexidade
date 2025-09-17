@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto de Algoritmos - Plataforma Corporativa</title>
+    <style>
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Corporativo */
+        .header {
+            text-align: center;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -0.025em;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .header .subtitle {
+            color: #cbd5e1;
+            font-size: 1.3rem;
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Navegação */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-color: #3b82f6;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Seções de Conteúdo */
+        .section {
+            display: none;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeSlideIn 0.6s ease-out;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Headers de Seção */
+        .section-header {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .section-header h2 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-header p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        /* Grid de Módulos */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .module-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .module-card:hover::before {
+            opacity: 1;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 80px rgba(59, 130, 246, 0.25);
+            border-color: #3b82f6;
+            background: rgba(30, 41, 59, 0.95);
+        }
+
+        .module-card h3 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .module-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* Lista de Características */
+        .features-list {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .features-list h4 {
+            color: #22d3ee;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            color: #cbd5e1;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .features-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Caixas de Destaque */
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .highlight-box h4 {
+            color: #34d399;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .highlight-box h4::before {
+            content: '🎯';
+            margin-right: 12px;
+            font-size: 1.4rem;
+        }
+
+        .highlight-box p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Trilha de Aprendizagem */
+        .learning-path {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .learning-path h3 {
+            color: #60a5fa;
+            font-weight: 800;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .step-content p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Botões de Ação */
+        .action-btn {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Indicador de Status */
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            z-index: 1000;
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-indicator">✅ FUNCIONANDO v4.0</div>
+    
+    <div class="container">
+        <!-- Header Principal -->
+        <header class="header">
+            <h1>🎓 Instituto de Algoritmos Corporativo</h1>
+            <p class="subtitle">Plataforma Educacional Enterprise para Desenvolvimento de Competências Avançadas em Ciência da Computação</p>
+            <div class="badge">Certificação Profissional • Padrão Internacional</div>
+        </header>
+
+        <!-- Navegação -->
+        <nav class="nav">
+            <a href="#overview" class="nav-item active" onclick="showSection('overview', this)">Visão Geral</a>
+            <a href="#methodology" class="nav-item" onclick="showSection('methodology', this)">Metodologia</a>
+            <a href="#modules" class="nav-item" onclick="showSection('modules', this)">Módulos</a>
+            <a href="#platform" class="nav-item" onclick="showSection('platform', this)">Plataforma</a>
+        </nav>
+
+        <!-- Seção: Visão Geral -->
+        <section id="overview" class="section active">
+            <div class="section-header">
+                <h2>🎯 Visão Geral do Programa</h2>
+                <p>Programa abrangente de capacitação em algoritmos e estruturas de dados, desenvolvido para profissionais que buscam excelência técnica e competitividade no mercado de tecnologia.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Objetivos Estratégicos</h4>
+                <p>Formar profissionais capazes de projetar, implementar e otimizar soluções algorítmicas complexas, com domínio tanto de fundamentos teóricos quanto de aplicações práticas em ambientes corporativos de alta demanda.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card" onclick="showSection('modules', document.querySelector('[onclick*=modules]'))">
+                    <h3>🐍 Python Avançado</h3>
+                    <p>Desenvolvimento de algoritmos elegantes e eficientes, explorando recursos avançados da linguagem para soluções enterprise.</p>
+                    <div class="features-list">
+                        <h4>Competências Desenvolvidas:</h4>
+                        <ul>
+                            <li>Estruturas de dados nativas otimizadas</li>
+                            <li>Programação funcional e orientada a objetos</li>
+                            <li>Algoritmos de ordenação e busca</li>
+                            <li>Análise de complexidade prática</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showSection('modules', document.querySelector('[onclick*=modules]'))">
+                    <h3>⚡ C para Sistemas</h3>
+                    <p>Programação de baixo nível com foco em performance crítica e gerenciamento manual de recursos computacionais.</p>
+                    <div class="features-list">
+                        <h4>Competências Desenvolvidas:</h4>
+                        <ul>
+                            <li>Gerenciamento avançado de memória</li>
+                            <li>Ponteiros e estruturas complexas</li>
+                            <li>Otimização de performance de sistema</li>
+                            <li>Programação concorrente e paralela</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showSection('modules', document.querySelector('[onclick*=modules]'))">
+                    <h3>🏗️ Arquitetura de Dados</h3>
+                    <p>Design e implementação de estruturas de dados sofisticadas para aplicações de grande escala.</p>
+                    <div class="features-list">
+                        <h4>Competências Desenvolvidas:</h4>
+                        <ul>
+                            <li>Árvores balanceadas e estruturas hierárquicas</li>
+                            <li>Algoritmos de grafos e redes</li>
+                            <li>Hash tables e indexação avançada</li>
+                            <li>Estruturas distribuídas e concorrentes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card" onclick="showSection('platform', document.querySelector('[onclick*=platform]'))">
+                    <h3>🤖 Análise Inteligente</h3>
+                    <p>Sistema de IA para análise automática de complexidade e otimização de algoritmos em tempo real.</p>
+                    <div class="features-list">
+                        <h4>Recursos Tecnológicos:</h4>
+                        <ul>
+                            <li>Análise automática Big O</li>
+                            <li>Visualizações interativas de performance</li>
+                            <li>Sugestões inteligentes de otimização</li>
+                            <li>Benchmarking comparativo avançado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Metodologia -->
+        <section id="methodology" class="section">
+            <div class="section-header">
+                <h2>📚 Metodologia de Ensino</h2>
+                <p>Abordagem pedagógica científica baseada em evidências, combinando teoria sólida com prática intensiva através de projetos reais da indústria.</p>
+            </div>
+
+            <div class="learning-path">
+                <h3>🗺️ Trilha de Aprendizagem Estruturada</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Fundamentação Teórica</h4>
+                        <p>Estudo rigoroso de conceitos fundamentais: notação Big O, análise assintótica, teoria da complexidade computacional e matemática discreta aplicada.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Implementação Prática</h4>
+                        <p>Desenvolvimento hands-on de algoritmos clássicos com código comentado, debugging assistido e análise de casos de teste abrangentes.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Otimização Avançada</h4>
+                        <p>Técnicas de melhoria de performance: profiling, cache optimization, paralelização e adaptação para arquiteturas específicas.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Aplicação Corporativa</h4>
+                        <p>Projetos reais baseados em desafios da indústria: sistemas distribuídos, big data processing e algoritmos de machine learning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Validação Científica</h4>
+                <p>Nosso currículo foi desenvolvido em parceria com universidades de renome e validado por profissionais seniores da indústria. Cada módulo passa por peer review e é atualizado continuamente baseado em métricas de aprendizagem e feedback do mercado.</p>
+            </div>
+        </section>
+
+        <!-- Seção: Módulos -->
+        <section id="modules" class="section">
+            <div class="section-header">
+                <h2>🎓 Módulos de Especialização</h2>
+                <p>Programa modular flexível que permite personalização da trilha de aprendizagem conforme objetivos profissionais e nível de experiência.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <h3>Módulo 1: Python Enterprise</h3>
+                    <p><strong>Duração:</strong> 8 semanas | <strong>Nível:</strong> Intermediário</p>
+                    <div class="features-list">
+                        <h4>Conteúdo Programático:</h4>
+                        <ul>
+                            <li>Design patterns para algoritmos</li>
+                            <li>Otimização com NumPy e Cython</li>
+                            <li>Algoritmos paralelos com multiprocessing</li>
+                            <li>Profiling e debugging avançado</li>
+                            <li>Integração com sistemas distribuídos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h3>Módulo 2: C Sistemas Críticos</h3>
+                    <p><strong>Duração:</strong> 10 semanas | <strong>Nível:</strong> Avançado</p>
+                    <div class="features-list">
+                        <h4>Conteúdo Programático:</h4>
+                        <ul>
+                            <li>Arquitetura de computadores aplicada</li>
+                            <li>Memory pools e custom allocators</li>
+                            <li>Lock-free data structures</li>
+                            <li>SIMD e vetorização</li>
+                            <li>Kernel-level programming</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h3>Módulo 3: Estruturas Avançadas</h3>
+                    <p><strong>Duração:</strong> 12 semanas | <strong>Nível:</strong> Especialista</p>
+                    <div class="features-list">
+                        <h4>Conteúdo Programático:</h4>
+                        <ul>
+                            <li>B-trees e estruturas persistentes</li>
+                            <li>Algoritmos distribuídos e consensus</li>
+                            <li>Consistent hashing e DHTs</li>
+                            <li>Graph databases e algoritmos de grafos</li>
+                            <li>Probabilistic data structures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Plataforma -->
+        <section id="platform" class="section">
+            <div class="section-header">
+                <h2>🚀 Plataforma Tecnológica</h2>
+                <p>Ambiente de desenvolvimento integrado com ferramentas de última geração para análise, desenvolvimento e otimização de algoritmos.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <h3>🔬 Lab Virtual Interativo</h3>
+                    <p>Ambiente completo de desenvolvimento com editor de código, compilador em nuvem e sistema de testes automatizados.</p>
+                    <a href="plataforma_completa.html" class="action-btn" style="margin-top: 20px;">Acessar Laboratório</a>
+                </div>
+
+                <div class="module-card">
+                    <h3>🎮 Sistema Gamificado</h3>
+                    <p>Experiência de aprendizagem envolvente com pontuação XP, badges de conquista e ranking global de estudantes.</p>
+                    <a href="exercicios_interativos.html" class="action-btn" style="margin-top: 20px;">Começar Desafios</a>
+                </div>
+
+                <div class="module-card">
+                    <h3>📊 Analytics de Performance</h3>
+                    <p>Dashboard completo com métricas de aprendizagem, análise de progresso e recomendações personalizadas de estudo.</p>
+                    <a href="portal_aprendizado.html" class="action-btn" style="margin-top: 20px;">Ver Dashboard</a>
+                </div>
+
+                <div class="module-card">
+                    <h3>🤖 IA de Análise</h3>
+                    <p>Sistema inteligente que analisa seu código automaticamente, identifica padrões e sugere otimizações específicas.</p>
+                    <a href="plataforma_completa.html#complexity" class="action-btn" style="margin-top: 20px;">Analisar Código</a>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Tecnologias Utilizadas</h4>
+                <p>Nossa plataforma utiliza tecnologias de ponta: CodeMirror para edição de código, Chart.js para visualizações, WebAssembly para execução de alta performance, e algoritmos de machine learning para análise inteligente de código.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Sistema de navegação
+        function showSection(sectionId, navElement) {
+            // Esconder todas as seções
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remover classe active de todos os nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Mostrar seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Ativar nav item selecionado
+            navElement.classList.add('active');
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎯 Plataforma Corporativa v4.0 - Totalmente Funcional');
+            
+            // Ativar primeira seção
+            showSection('overview', document.querySelector('.nav-item'));
+            
+            // Adicionar event listeners para navegação por hash
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    const navItem = document.querySelector(`[href="#${hash}"]`);
+                    if (navItem) {
+                        showSection(hash, navItem);
+                    }
+                }
+            });
+
+            // Verificar hash inicial
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                const navItem = document.querySelector(`[href="#${hash}"]`);
+                if (navItem) {
+                    showSection(hash, navItem);
+                }
+            }
+
+            // Animação de entrada
+            document.body.style.opacity = '1';
+        });
+
+        // Adicionar smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
