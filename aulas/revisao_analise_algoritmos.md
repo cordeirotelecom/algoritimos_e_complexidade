@@ -160,16 +160,114 @@ A análise de algoritmos é o processo de determinar a quantidade de recursos co
 
 ## **2.1 Definições Básicas**
 
-### Complexidade de Tempo
-Mede o tempo de execução de um algoritmo em função do tamanho da entrada.
+### **Complexidade de Tempo**
+Mede o número de operações fundamentais que um algoritmo executa em função do tamanho da entrada (n).
 
-### Complexidade de Espaço
-Mede a quantidade de memória necessária para executar um algoritmo.
+```python
+# Exemplo simples: busca linear
+def busca_linear(lista, item):
+    for i in range(len(lista)):    # Executa n vezes
+        if lista[i] == item:       # 1 operação por iteração
+            return i
+    return -1
+
+# Complexidade: O(n) - no pior caso, verifica todos os elementos
+```
+
+### **Complexidade de Espaço**
+Mede a quantidade de memória adicional que um algoritmo usa, além da entrada.
+
+```python
+# Exemplo: soma recursiva
+def soma_recursiva(n):
+    if n <= 1:
+        return n
+    return n + soma_recursiva(n - 1)
+
+# Espaço: O(n) - cada chamada usa memória na pilha
+```
 
 ## **2.2 Casos de Análise**
-- **Melhor Caso**: Menor tempo possível para qualquer entrada de tamanho n
-- **Caso Médio**: Tempo médio para todas as entradas possíveis de tamanho n
-- **Pior Caso**: Maior tempo possível para qualquer entrada de tamanho n
+
+### **Melhor Caso (Best Case)**
+```python
+# Busca linear - melhor caso
+lista = [10, 20, 30, 40, 50]
+busca_linear(lista, 10)  # Encontra na primeira posição = O(1)
+```
+
+### **Caso Médio (Average Case)**
+```python
+# Busca linear - caso médio
+# Em média, encontra na metade da lista = O(n/2) = O(n)
+```
+
+### **Pior Caso (Worst Case)**
+```python
+# Busca linear - pior caso
+busca_linear(lista, 99)  # Item não existe, verifica toda lista = O(n)
+```
+
+## **2.3 Operações Fundamentais**
+
+### **Operações Básicas por Estrutura**
+
+| Estrutura | Acesso | Busca | Inserção | Remoção |
+|-----------|--------|-------|----------|---------|
+| Array | O(1) | O(n) | O(n) | O(n) |
+| Lista Ligada | O(n) | O(n) | O(1) | O(1) |
+| Pilha | O(1) | O(n) | O(1) | O(1) |
+| Fila | O(1) | O(n) | O(1) | O(1) |
+
+### **Macete: Contagem de Operações**
+```python
+# Como contar operações:
+def exemplo(n):
+    count = 0                    # 1 operação
+    for i in range(n):           # n iterações
+        count += 1               # 1 operação por iteração
+    return count                 # 1 operação
+
+# Total: 1 + n + 1 = n + 2 operações = O(n)
+```
+}
+
+# Macete: Hash table = O(1) para acesso por chave
+print(dados["nome"])  # O(1) acesso direto
+```
+
+### **Ponteiros e Referências**
+
+```python
+# Python usa referências automaticamente
+lista_a = [1, 2, 3]
+lista_b = lista_a        # lista_b aponta para lista_a
+lista_b.append(4)        # Modifica lista_a também!
+
+# Macete: Para copiar, use copy()
+import copy
+lista_c = copy.copy(lista_a)    # Cópia rasa
+lista_d = copy.deepcopy(lista_a) # Cópia profunda
+```
+
+### **Macetes de Estruturas de Dados**
+
+```
+ACESSO POR ÍNDICE:
+Array/Lista → O(1)    # Posição = base + índice × tamanho
+Lista Ligada → O(n)   # Precisa percorrer desde o início
+
+BUSCA:
+Array Ordenado → O(log n)  # Busca binária
+Hash Table → O(1)*         # Média, O(n) pior caso
+Lista Ligada → O(n)        # Sempre linear
+
+INSERÇÃO:
+Array (final) → O(1)       # Amortizada
+Array (meio) → O(n)        # Precisa deslocar elementos
+Lista Ligada → O(1)        # Se tiver a posição
+Hash Table → O(1)*         # Média
+```
 
 ---
 
@@ -471,35 +569,164 @@ def potencia_iter(base, exp):
 # **CAPÍTULO 5**
 # **ALGORITMOS DE ORDENAÇÃO**
 
-## **5.1 Algoritmos Básicos de Ordenação**
+## **5.1 Visão Geral dos Algoritmos**
 
-### Visão Geral dos Algoritmos de Ordenação
+### **Tabela Comparativa Essencial**
 
-| Algoritmo | Melhor Caso | Caso Médio | Pior Caso | Espaço | Estável | In-place |
-|-----------|-------------|------------|-----------|--------|---------|----------|
-| Bubble Sort | O(n) | O(n²) | O(n²) | O(1) | Sim | Sim |
-| Selection Sort | O(n²) | O(n²) | O(n²) | O(1) | Não | Sim |
-| Insertion Sort | O(n) | O(n²) | O(n²) | O(1) | Sim | Sim |
-| Merge Sort | O(n log n) | O(n log n) | O(n log n) | O(n) | Sim | Não |
-| Quick Sort | O(n log n) | O(n log n) | O(n²) | O(log n) | Não | Sim |
-| Heap Sort | O(n log n) | O(n log n) | O(n log n) | O(1) | Não | Sim |
+| Algoritmo | Complexidade | Quando Usar |
+|-----------|--------------|-------------|
+| **Bubble Sort** | O(n²) | Nunca (só para ensinar) |
+| **Selection Sort** | O(n²) | Datasets muito pequenos |
+| **Insertion Sort** | O(n²) | Arrays quase ordenados |
+| **Merge Sort** | O(n log n) | Quando precisa de estabilidade |
+| **Quick Sort** | O(n log n) | Uso geral, performance |
+| **Heap Sort** | O(n log n) | Quando espaço é limitado |
 
-### Bubble Sort
+## **5.2 Algoritmos Básicos (O(n²))**
 
-**Conceito:** Compara elementos adjacentes e os troca se estiverem na ordem errada.
-
-**Implementação Python:**
+### **Bubble Sort - "Ordenação da Bolha"**
 ```python
 def bubble_sort(arr):
     n = len(arr)
-    
     for i in range(n):
-        # Flag para otimização: se não houve troca, array está ordenado
-        trocou = False
-        
-        # Últimos i elementos já estão ordenados
         for j in range(0, n - i - 1):
             if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# Macete: "Bolhas sobem" - maior elemento "flutua" para o fim
+```
+
+### **Selection Sort - "Ordenação por Seleção"**
+```python
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+
+# Macete: "Seleciona o menor" e coloca na posição correta
+```
+
+### **Insertion Sort - "Ordenação por Inserção"**
+```python
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+# Macete: Como organizar cartas na mão - insere cada carta no lugar certo
+```
+
+## **5.3 Algoritmos Eficientes (O(n log n))**
+
+### **Merge Sort - "Dividir para Conquistar"**
+```python
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
+        
+        merge_sort(left)   # Ordena metade esquerda
+        merge_sort(right)  # Ordena metade direita
+        
+        # Intercala as duas metades
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+        
+        # Copia elementos restantes
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+
+# Macete: Sempre O(n log n) - divide até ficar trivial, depois intercala
+```
+
+### **Quick Sort - "Pivô e Partição"**
+```python
+def quick_sort(arr, low=0, high=None):
+    if high is None:
+        high = len(arr) - 1
+    
+    if low < high:
+        # Particiona e encontra posição do pivô
+        pi = partition(arr, low, high)
+        
+        # Ordena elementos antes e depois do pivô
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+def partition(arr, low, high):
+    pivot = arr[high]  # Escolhe último elemento como pivô
+    i = low - 1
+    
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+# Macete: Escolhe pivô, separa menores/maiores, repete recursivamente
+```
+
+## **5.4 Quando Usar Cada Algoritmo**
+
+### **Escolha Prática**
+
+```python
+# Para arrays pequenos (n < 50)
+def ordenar_pequeno(arr):
+    return insertion_sort(arr)  # Simples e eficiente
+
+# Para arrays médios/grandes (n > 50)
+def ordenar_grande(arr):
+    return quick_sort(arr)      # Rápido na prática
+
+# Quando precisa de garantias (sempre O(n log n))
+def ordenar_garantido(arr):
+    return merge_sort(arr)      # Nunca degrada para O(n²)
+
+# Quando memória é limitada
+def ordenar_economico(arr):
+    return heap_sort(arr)       # O(1) de espaço extra
+```
+
+### **Macetes de Complexidade**
+
+```python
+# Como lembrar das complexidades:
+
+# O(n²) - Dois loops aninhados
+# Bubble, Selection, Insertion = todos O(n²)
+
+# O(n log n) - Divide e conquista
+# Merge, Quick, Heap = todos O(n log n)
+
+# Exceções importantes:
+# - Insertion Sort: O(n) para arrays quase ordenados
+# - Quick Sort: O(n²) no pior caso (pivô sempre o menor/maior)
+```
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 trocou = True
         
@@ -970,172 +1197,66 @@ def busca_binaria_debug(arr, x):
         if arr[meio] == x:
             print(f"  Encontrado! Posição {meio}")
             print(f"  Total de comparações: {comparacoes}")
+## **6.2 Busca Binária**
+
+### **Conceito: Dividir pela Metade**
+Funciona apenas em arrays **ordenados**. Compara com o elemento do meio e elimina metade da busca.
+
+**Implementação Simples:**
+```python
+def busca_binaria(arr, x):
+    esq, dir = 0, len(arr) - 1
+    
+    while esq <= dir:
+        meio = (esq + dir) // 2
+        
+        if arr[meio] == x:
             return meio
         elif arr[meio] < x:
-            print(f"    {arr[meio]} < {x}, buscar à direita")
-            esquerda = meio + 1
+            esq = meio + 1  # Busca na metade direita
         else:
-            print(f"    {arr[meio]} > {x}, buscar à esquerda")
-            direita = meio - 1
+            dir = meio - 1  # Busca na metade esquerda
     
-    print(f"  Não encontrado após {comparacoes} comparações")
-    return -1
+    return -1  # Não encontrado
+
+# Macete: Sempre elimina metade das possibilidades
 ```
 
-**Implementação Python (Recursiva):**
+**Versão Recursiva:**
 ```python
-def busca_binaria_recursiva(arr, x, esquerda=0, direita=None):
-    if direita is None:
-        direita = len(arr) - 1
+def busca_binaria_rec(arr, x, esq=0, dir=None):
+    if dir is None:
+        dir = len(arr) - 1
     
-    # Caso base: elemento não encontrado
-    if esquerda > direita:
+    if esq > dir:
         return -1
     
-    meio = (esquerda + direita) // 2
+    meio = (esq + dir) // 2
     
-    # Caso base: elemento encontrado
     if arr[meio] == x:
         return meio
-    
-    # Busca recursiva
-    if arr[meio] < x:
-        return busca_binaria_recursiva(arr, x, meio + 1, direita)
+    elif arr[meio] < x:
+        return busca_binaria_rec(arr, x, meio + 1, dir)
     else:
-        return busca_binaria_recursiva(arr, x, esquerda, meio - 1)
+        return busca_binaria_rec(arr, x, esq, meio - 1)
 ```
 
-**Implementação C (Iterativa):**
-```c
-#include <stdio.h>
+### **Comparação: Linear vs Binária**
 
-int busca_binaria_iterativa(int arr[], int n, int x) {
-    int esquerda = 0, direita = n - 1;
-    
-    while (esquerda <= direita) {
-        int meio = esquerda + (direita - esquerda) / 2;
-        
-        if (arr[meio] == x) {
-            return meio;
-        }
-        
-        if (arr[meio] < x) {
-            esquerda = meio + 1;
-        } else {
-            direita = meio - 1;
-        }
-    }
-    
-    return -1;  // Não encontrado
-}
+| Aspecto | Linear | Binária |
+|---------|--------|---------|
+| **Complexidade** | O(n) | O(log n) |
+| **Pré-requisito** | Nenhum | Array ordenado |
+| **Array 1.000** | 500 comparações | 10 comparações |
+| **Array 1.000.000** | 500.000 comparações | 20 comparações |
 
-int busca_binaria_debug(int arr[], int n, int x) {
-    printf("Buscando %d em array ordenado\n", x);
-    int esquerda = 0, direita = n - 1;
-    int comparacoes = 0;
-    
-    while (esquerda <= direita) {
-        int meio = esquerda + (direita - esquerda) / 2;
-        comparacoes++;
-        
-        printf("  Comparação %d: esq=%d, dir=%d, meio=%d\n", 
-               comparacoes, esquerda, direita, meio);
-        printf("    arr[%d] = %d\n", meio, arr[meio]);
-        
-        if (arr[meio] == x) {
-            printf("  Encontrado na posição %d!\n", meio);
-            printf("  Total de comparações: %d\n", comparacoes);
-            return meio;
-        }
-        
-        if (arr[meio] < x) {
-            printf("    %d < %d, buscar à direita\n", arr[meio], x);
-            esquerda = meio + 1;
-        } else {
-            printf("    %d > %d, buscar à esquerda\n", arr[meio], x);
-            direita = meio - 1;
-        }
-    }
-    
-    printf("  Não encontrado após %d comparações\n", comparacoes);
-    return -1;
-}
-```
+**Quando usar cada uma:**
+- **Linear**: Arrays pequenos ou não ordenados
+- **Binária**: Arrays grandes e ordenados
 
-**Implementação C (Recursiva):**
-```c
-#include <stdio.h>
-
-int busca_binaria_recursiva(int arr[], int esquerda, int direita, int x) {
-    if (direita >= esquerda) {
-        int meio = esquerda + (direita - esquerda) / 2;
-        
-        // Elemento encontrado
-        if (arr[meio] == x) {
-            return meio;
-        }
-        
-        // Se elemento é menor que meio, está na metade esquerda
-        if (arr[meio] > x) {
-            return busca_binaria_recursiva(arr, esquerda, meio - 1, x);
-        }
-        
-        // Caso contrário, está na metade direita
-        return busca_binaria_recursiva(arr, meio + 1, direita, x);
-    }
-    
-    return -1;  // Elemento não encontrado
-}
-
-int main() {
-    int arr[] = {2, 3, 4, 10, 40, 50, 60, 70};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int x = 10;
-    
-    // Teste busca binária iterativa com debug
-    printf("=== Busca Binária Iterativa ===\n");
-    int resultado1 = busca_binaria_debug(arr, n, x);
-    
-    // Teste busca binária recursiva
-    printf("\n=== Busca Binária Recursiva ===\n");
-    int resultado2 = busca_binaria_recursiva(arr, 0, n - 1, x);
-    
-    if (resultado2 != -1) {
-        printf("Elemento %d encontrado no índice %d (recursiva)\n", x, resultado2);
-    } else {
-        printf("Elemento %d não encontrado (recursiva)\n", x);
-    }
-    
-    return 0;
-}
-```
-
-### Comparação entre Busca Linear e Binária
-
-**Análise de Complexidade:**
-
-| Aspecto | Busca Linear | Busca Binária |
-|---------|--------------|---------------|
-| **Complexidade Tempo** | O(n) | O(log n) |
-| **Complexidade Espaço** | O(1) | O(1) iterativa, O(log n) recursiva |
-| **Pré-requisito** | Nenhum | Array deve estar ordenado |
-| **Melhor para** | Arrays pequenos ou não ordenados | Arrays grandes e ordenados |
-
-**Exemplo de Performance:**
-
-```
-Para um array de 1.000.000 elementos:
-
-Busca Linear:
-- Pior caso: 1.000.000 comparações
-- Caso médio: 500.000 comparações
-
-Busca Binária:
-- Pior caso: 20 comparações (log₂ 1.000.000 ≈ 20)
-- Caso médio: ~18 comparações
-
-Diferença: 50.000x mais rápida no pior caso!
-```
+### **Macete para Lembrar:**
+- Busca Linear = "um por um" = O(n)
+- Busca Binária = "corta pela metade" = O(log n)
 
 ## **3.4 Exercícios de Fixação - Capítulo 3**
 
@@ -1676,206 +1797,60 @@ bool eh_par(int n) {
 }
 
 bool eh_impar(int n) {
-    if (n == 0) {
-        return false;
-    }
-    return eh_par(n - 1);
-}
-
-int main() {
-    int num = 7;
-    printf("%d é %s\n", num, eh_par(num) ? "par" : "ímpar");
-    return 0;
-}
-```
-
 ---
 
-## **Técnicas de Otimização**
+## **4.5 Técnicas de Otimização**
 
-### **1. Memoização - O Cache Inteligente**
-
+### **Memoização - "Cache Inteligente"**
 ```python
-# ❌ SEM memoização: O(2ⁿ)
+# ❌ Lento: O(2ⁿ)
 def fib_lento(n):
     if n <= 1: return n
     return fib_lento(n-1) + fib_lento(n-2)
 
-# ✅ COM memoização: O(n)  
+# ✅ Rápido: O(n)
 def fib_rapido(n, cache={}):
     if n in cache:
         return cache[n]
-    
     if n <= 1:
-        cache[n] = n
         return n
-    
     cache[n] = fib_rapido(n-1, cache) + fib_rapido(n-2, cache)
     return cache[n]
 
-# Usando decorador do Python (ainda mais fácil):
-from functools import lru_cache
-
-@lru_cache(maxsize=None)
-def fib_automatico(n):
-    if n <= 1: return n
-    return fib_automatico(n-1) + fib_automatico(n-2)
+# Macete: Guardar resultados para não recalcular
 ```
 
-### **2. Programação Dinâmica Bottom-Up**
-
+### **Programação Dinâmica Bottom-Up**
 ```python
-# Em vez de recursão, construa de baixo para cima:
-def fib_bottom_up(n):
+def fib_iterativo(n):
     if n <= 1: return n
     
-    # Tabela para guardar resultados
-    dp = [0] * (n + 1)
-    dp[0], dp[1] = 0, 1
-    
-    # Construir do menor para o maior
+    a, b = 0, 1
     for i in range(2, n + 1):
-        dp[i] = dp[i-1] + dp[i-2]
-    
-    return dp[n]
+        a, b = b, a + b
+    return b
 
-# Complexidade: O(n) tempo, O(n) espaço
-# Vantagem: Sem risco de stack overflow
+# Macete: Construir de baixo para cima, sem recursão
 ```
 
-## Recursividade em Estruturas de Dados
+### **Recursividade vs Iteração**
 
-### 1. Soma de Elementos em Lista
-```python
-def soma_lista(lista):
-    # Caso base: lista vazia
-    if not lista:
-        return 0
-    
-    # Caso recursivo
-    return lista[0] + soma_lista(lista[1:])
+| Aspecto | Recursão | Iteração |
+|---------|----------|----------|
+| **Legibilidade** | ✓ Mais clara | ✗ Mais verbosa |
+| **Memória** | ✗ Usa pilha | ✓ Constante |
+| **Performance** | ✗ Mais lenta | ✓ Mais rápida |
+| **Stack Overflow** | ✗ Risco | ✓ Sem risco |
 
-# Exemplo
-print(soma_lista([1, 2, 3, 4, 5]))  # Output: 15
-```
+**Quando usar recursão:**
+- Problemas naturalmente recursivos (árvores, fractais)
+- Código mais limpo e legível
+- Profundidade limitada
 
-### 2. Busca em Lista
-```python
-def busca_recursiva(lista, elemento, indice=0):
-    # Caso base: elemento não encontrado
-    if indice >= len(lista):
-        return -1
-    
-    # Caso base: elemento encontrado
-    if lista[indice] == elemento:
-        return indice
-    
-    # Caso recursivo
-    return busca_recursiva(lista, elemento, indice + 1)
-```
-
-### 3. Inversão de String
-```python
-def inverter_string(s):
-    # Caso base
-    if len(s) <= 1:
-        return s
-    
-    # Caso recursivo
-    return s[-1] + inverter_string(s[:-1])
-
-# Exemplo
-print(inverter_string("hello"))  # Output: "olleh"
-```
-
-### 4. Contagem de Dígitos
-```python
-def contar_digitos(n):
-    # Caso base
-    if n < 10:
-        return 1
-    
-    # Caso recursivo
-    return 1 + contar_digitos(n // 10)
-
-# Exemplo
-print(contar_digitos(12345))  # Output: 5
-```
-
-## Recursividade vs Iteração
-
-### Quando Usar Recursividade:
-✅ **Problemas que têm estrutura recursiva natural**
-- Árvores e grafos
-- Fractais
-- Dividir e conquistar
-
-✅ **Problemas que podem ser quebrados em subproblemas menores**
-- Torres de Hanói
-- Busca em profundidade
-
-✅ **Quando a solução recursiva é mais clara e elegante**
-
-### Quando Evitar Recursividade:
-❌ **Problemas com alta sobreposição de subproblemas** (sem memoização)
-- Fibonacci ingênuo
-
-❌ **Quando a profundidade pode ser muito grande**
-- Risco de stack overflow
-
-❌ **Problemas simples onde iteração é mais eficiente**
-
-### Comparação: Fatorial Recursivo vs Iterativo
-
-**Recursivo:**
-```python
-def fatorial_recursivo(n):
-    if n <= 1:
-        return 1
-    return n * fatorial_recursivo(n - 1)
-```
-
-**Iterativo:**
-```python
-def fatorial_iterativo(n):
-    resultado = 1
-    for i in range(1, n + 1):
-        resultado *= i
-    return resultado
-```
-
-**Análise:**
-- **Recursivo**: Mais legível, mas usa mais memória
-- **Iterativo**: Mais eficiente em memória, mas menos intuitivo
-
-## Tipos Especiais de Recursividade
-
-### 1. Recursividade Linear
-Cada chamada recursiva gera apenas uma nova chamada.
-```python
-def fatorial(n):  # Exemplo já visto
-    if n <= 1:
-        return 1
-    return n * fatorial(n - 1)
-```
-
-### 2. Recursividade Binária
-Cada chamada recursiva gera duas novas chamadas.
-```python
-def fibonacci(n):  # Exemplo já visto
-    if n <= 1:
-        return n
-    return fibonacci(n - 1) + fibonacci(n - 2)
-```
-
-### 3. Recursividade de Cauda (Tail Recursion)
-A chamada recursiva é a última operação da função.
-```python
-def fatorial_cauda(n, acumulador=1):
-    if n <= 1:
-        return acumulador
-    return fatorial_cauda(n - 1, n * acumulador)
-```
+**Quando usar iteração:**
+- Performance crítica
+- Grandes volumes de dados
+- Memória limitada
 
 **Vantagem:** Pode ser otimizada pelo compilador para usar espaço constante.
 
@@ -2343,16 +2318,142 @@ def gcd(a, b):
 
 ---
 
-## Algoritmos em Árvores
+<div style="page-break-after: always;"></div>
 
-### Árvore Binária
-Uma árvore onde cada nó tem no máximo dois filhos.
+# **CAPÍTULO 7**
+# **ALGORITMOS DE ORDENAÇÃO AVANÇADOS**
 
-### Traversal de Árvore:
-- **Inorder**: Esquerda → Raiz → Direita
-- **Preorder**: Raiz → Esquerda → Direita
-- **Postorder**: Esquerda → Direita → Raiz
+## **7.1 Análise dos Algoritmos Elementares**
 
+### **Limitações dos Algoritmos O(n²)**
+```python
+# Bubble Sort - O(n²) - Só para ensinar!
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+# Macete: n² operações = LENTO para n > 1000
+```
+
+## **7.2 Ordenação por Intercalação (MergeSort)**
+
+### **Macete: Divide e Conquista**
+```python
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    # Divide
+    meio = len(arr) // 2
+    esq = merge_sort(arr[:meio])
+    dir = merge_sort(arr[meio:])
+    
+    # Conquista (intercala)
+    return merge(esq, dir)
+
+def merge(esq, dir):
+    resultado = []
+    i = j = 0
+    
+    # Intercala ordenado
+    while i < len(esq) and j < len(dir):
+        if esq[i] <= dir[j]:
+            resultado.append(esq[i])
+            i += 1
+        else:
+            resultado.append(dir[j])
+            j += 1
+    
+    # Adiciona sobras
+    resultado.extend(esq[i:])
+    resultado.extend(dir[j:])
+    return resultado
+
+# Complexidade: O(n log n) SEMPRE!
+# Espaço: O(n) - precisa de array auxiliar
+```
+
+## **7.3 Ordenação Rápida (QuickSort)**
+
+### **Macete: Pivô e Partição**
+```python
+def quick_sort(arr, inicio=0, fim=None):
+    if fim is None:
+        fim = len(arr) - 1
+    
+    if inicio < fim:
+        # Particiona e encontra pivô
+        pivo = particionar(arr, inicio, fim)
+        
+        # Recursão nas duas partes
+        quick_sort(arr, inicio, pivo - 1)
+        quick_sort(arr, pivo + 1, fim)
+
+def particionar(arr, inicio, fim):
+    pivo = arr[fim]  # Último elemento como pivô
+    i = inicio - 1   # Índice do menor elemento
+    
+    for j in range(inicio, fim):
+        if arr[j] <= pivo:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    arr[i + 1], arr[fim] = arr[fim], arr[i + 1]
+    return i + 1
+
+# Complexidade:
+# Melhor/Médio: O(n log n)
+# Pior: O(n²) - se sempre escolher pior pivô
+# Espaço: O(log n) - recursão
+```
+
+## **7.4 ShellSort**
+
+### **Macete: Insertion Sort com Gaps**
+```python
+def shell_sort(arr):
+    n = len(arr)
+    gap = n // 2  # Começa com gap = metade
+    
+    while gap > 0:
+        # Insertion sort com gap
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+            
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            
+            arr[j] = temp
+        
+        gap //= 2  # Reduz gap pela metade
+
+# Complexidade: O(n^1.25) a O(n^1.5)
+# Melhor que O(n²), pior que O(n log n)
+```
+
+### **Comparação de Algoritmos Avançados**
+
+| Algoritmo | Melhor | Médio | Pior | Espaço | Estável |
+|-----------|--------|--------|------|--------|---------|
+| MergeSort | O(n log n) | O(n log n) | O(n log n) | O(n) | Sim |
+| QuickSort | O(n log n) | O(n log n) | O(n²) | O(log n) | Não |
+| ShellSort | O(n log n) | O(n^1.25) | O(n²) | O(1) | Não |
+
+---
+
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 8**  
+# **ALGORITMOS EM ÁRVORES BINÁRIAS E AVL**
+
+## **8.1 Árvore Binária de Busca (BST)**
+
+### **Estrutura Básica**
 ```python
 class No:
     def __init__(self, valor):
@@ -2360,28 +2461,354 @@ class No:
         self.esquerda = None
         self.direita = None
 
-def inorder(raiz):
-    if raiz:
-        inorder(raiz.esquerda)
-        print(raiz.valor)
-        inorder(raiz.direita)
+class BST:
+    def __init__(self):
+        self.raiz = None
 ```
+
+### **Busca - O(log n) / O(n)**
+```python
+def buscar(self, valor, no=None):
+    if no is None:
+        no = self.raiz
+    
+    if no is None or no.valor == valor:
+        return no
+    
+    # Macete: < vai esquerda, > vai direita
+    if valor < no.valor:
+        return self.buscar(valor, no.esquerda)
+    else:
+        return self.buscar(valor, no.direita)
+```
+
+### **Inserção - O(log n) / O(n)**
+```python
+def inserir(self, valor):
+    self.raiz = self._inserir_rec(self.raiz, valor)
+
+def _inserir_rec(self, no, valor):
+    if no is None:
+        return No(valor)
+    
+    # Macete: menor esquerda, maior direita
+    if valor < no.valor:
+        no.esquerda = self._inserir_rec(no.esquerda, valor)
+    elif valor > no.valor:
+        no.direita = self._inserir_rec(no.direita, valor)
+    
+    return no
+```
+
+### **Remoção - O(log n) / O(n)**
+```python
+def remover(self, valor):
+    self.raiz = self._remover_rec(self.raiz, valor)
+
+def _remover_rec(self, no, valor):
+    if no is None:
+        return no
+    
+    if valor < no.valor:
+        no.esquerda = self._remover_rec(no.esquerda, valor)
+    elif valor > no.valor:
+        no.direita = self._remover_rec(no.direita, valor)
+    else:
+        # Achou o nó para remover
+        if no.esquerda is None:
+            return no.direita
+        elif no.direita is None:
+            return no.esquerda
+        
+        # Dois filhos: substitui pelo sucessor
+        sucessor = self._minimo(no.direita)
+        no.valor = sucessor.valor
+        no.direita = self._remover_rec(no.direita, sucessor.valor)
+    
+    return no
+
+def _minimo(self, no):
+    while no.esquerda:
+        no = no.esquerda
+    return no
+```
+
+## **8.2 Percursos em Árvores**
+
+### **Macetes dos Percursos**
+```python
+# In-Order: Esquerda → Raiz → Direita (ordem crescente em BST)
+def in_order(self, no):
+    if no:
+        self.in_order(no.esquerda)
+        print(no.valor)          # Processa raiz
+        self.in_order(no.direita)
+
+# Pré-Order: Raiz → Esquerda → Direita (cópia da árvore)
+def pre_order(self, no):
+    if no:
+        print(no.valor)          # Processa raiz ANTES
+        self.pre_order(no.esquerda)
+        self.pre_order(no.direita)
+
+# Pós-Order: Esquerda → Direita → Raiz (deletar árvore)
+def pos_order(self, no):
+    if no:
+        self.pos_order(no.esquerda)
+        self.pos_order(no.direita)
+        print(no.valor)          # Processa raiz DEPOIS
+```
+
+### **Complexidade dos Percursos: O(n)**
+Cada nó é visitado exatamente uma vez.
+
+## **8.3 Balanceamento - Algoritmo DSW**
+
+### **Problema: BST Degenerada**
+```python
+# Inserindo [1,2,3,4,5] sequencialmente vira lista ligada!
+# Busca fica O(n) ao invés de O(log n)
+```
+
+### **Algoritmo DSW (Day-Stout-Warren)**
+```python
+def balancear_dsw(self):
+    # Fase 1: Criar "espinha dorsal" (vine)
+    self._criar_vine()
+    
+    # Fase 2: Criar árvore balanceada
+    n = self._contar_nos()
+    self._vine_para_arvore(n)
+
+def _criar_vine(self):
+    # Rotações à direita para criar lista ligada à direita
+    pseudo_raiz = No(0)
+    pseudo_raiz.direita = self.raiz
+    atual = pseudo_raiz
+    
+    while atual.direita:
+        if atual.direita.esquerda:
+            # Rotação à direita
+            self._rotacao_direita(atual)
+        else:
+            atual = atual.direita
+    
+    self.raiz = pseudo_raiz.direita
+
+# Complexidade DSW: O(n) - linear!
+```
+
+## **8.4 Árvore AVL**
+
+### **Propriedade AVL**
+```python
+# Macete: Diferença de altura entre filhos ≤ 1
+def altura(self, no):
+    if no is None:
+        return 0
+    return max(self.altura(no.esquerda), self.altura(no.direita)) + 1
+
+def fator_balanceamento(self, no):
+    if no is None:
+        return 0
+    return self.altura(no.esquerda) - self.altura(no.direita)
+
+def esta_balanceada(self, no):
+    return abs(self.fator_balanceamento(no)) <= 1
+```
+
+### **Rotações AVL**
+```python
+# Rotação Simples à Direita
+def rotacao_direita(self, y):
+    x = y.esquerda
+    t2 = x.direita
+    
+    # Rotação
+    x.direita = y
+    y.esquerda = t2
+    
+    return x  # Nova raiz
+
+# Rotação Simples à Esquerda  
+def rotacao_esquerda(self, x):
+    y = x.direita
+    t2 = y.esquerda
+    
+    # Rotação
+    y.esquerda = x
+    x.direita = t2
+    
+    return y  # Nova raiz
+
+# Macete: 4 casos de rotação
+# LL → Rotação direita
+# RR → Rotação esquerda  
+# LR → Esquerda depois direita
+# RL → Direita depois esquerda
+```
+
+### **Complexidade AVL: SEMPRE O(log n)**
+- Busca: O(log n)
+- Inserção: O(log n) 
+- Remoção: O(log n)
+- Altura máxima: 1.44 × log₂(n)
 
 ---
 
-## Algoritmos de Grafos
+<div style="page-break-after: always;"></div>
 
-### Representação:
-- **Lista de Adjacência**: Mais eficiente em espaço
-- **Matriz de Adjacência**: Mais eficiente para consultas
+# **CAPÍTULO 9**
+# **ALGORITMOS EM GRAFOS**
 
-### Busca em Profundidade (DFS):
+## **9.1 Conceitos Básicos**
 ```python
-def dfs(grafo, inicio, visitados=set()):
+# Grafo = G(V, E) onde V = vértices, E = arestas
+# Tipos: Dirigido (setas), Não-dirigido, Ponderado (com pesos)
+```
+
+## **9.2 Representação**
+
+### **Lista de Adjacência (mais comum)**
+```python
+grafo = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'D'],
+    'D': ['B', 'C']
+}
+# Espaço: O(V + E) - eficiente para grafos esparsos
+```
+
+### **Matriz de Adjacência**
+```python
+# matriz[i][j] = 1 se existe aresta entre i e j
+matriz = [
+    [0, 1, 1, 0],  # A conecta com B, C
+    [1, 0, 0, 1],  # B conecta com A, D
+    [1, 0, 0, 1],  # C conecta com A, D
+    [0, 1, 1, 0]   # D conecta com B, C
+]
+# Espaço: O(V²) - melhor para grafos densos
+```
+
+## **9.3 Algoritmos de Busca**
+
+### **DFS - Busca em Profundidade**
+```python
+def dfs(grafo, inicio, visitados=None):
+    if visitados is None:
+        visitados = set()
+    
     visitados.add(inicio)
     print(inicio)
     
     for vizinho in grafo[inicio]:
+        if vizinho not in visitados:
+            dfs(grafo, vizinho, visitados)
+    
+    return visitados
+
+# Macete: "Vai fundo" - usa pilha (recursão)
+# Uso: detectar ciclos, componentes conectados
+```
+
+### **BFS - Busca em Largura**
+```python
+from collections import deque
+
+def bfs(grafo, inicio):
+    visitados = set([inicio])
+    fila = deque([inicio])
+    
+    while fila:
+        vertice = fila.popleft()
+        print(vertice)
+        
+        for vizinho in grafo[vertice]:
+            if vizinho not in visitados:
+                visitados.add(vizinho)
+                fila.append(vizinho)
+    
+    return visitados
+
+# Macete: "Vai por camadas" - usa fila
+# Uso: menor caminho (sem pesos)
+```
+
+## **9.4 Caminho Mínimo**
+
+### **Dijkstra (para pesos positivos)**
+```python
+import heapq
+
+def dijkstra(grafo, inicio):
+    distancias = {v: float('inf') for v in grafo}
+    distancias[inicio] = 0
+    heap = [(0, inicio)]
+    
+    while heap:
+        dist_atual, vertice = heapq.heappop(heap)
+        
+        if dist_atual > distancias[vertice]:
+            continue
+            
+        for vizinho, peso in grafo[vertice]:
+            nova_dist = dist_atual + peso
+            if nova_dist < distancias[vizinho]:
+                distancias[vizinho] = nova_dist
+                heapq.heappush(heap, (nova_dist, vizinho))
+    
+    return distancias
+
+# Complexidade: O((V + E) log V)
+# Macete: Sempre escolhe o vértice mais próximo
+```
+
+### **Resumo - Quando Usar Cada Algoritmo**
+
+| Algoritmo | Uso | Complexidade |
+|-----------|-----|--------------|
+| **DFS** | Ciclos, componentes | O(V + E) |
+| **BFS** | Menor caminho (sem peso) | O(V + E) |
+| **Dijkstra** | Menor caminho (peso ≥ 0) | O((V+E) log V) |
+| **Floyd-Warshall** | Todos os pares | O(V³) |
+    for k in range(n):          # Vértice intermediário
+        for i in range(n):      # Vértice origem
+            for j in range(n):  # Vértice destino
+                if dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+    
+    return dist
+
+# Macete: Todos os pares de vértices
+# Funciona com pesos negativos (sem ciclos negativos)
+```
+
+### **Resumo de Complexidades - Grafos**
+
+| Operação | Lista Adj. | Matriz Adj. |
+|----------|------------|-------------|
+| Espaço | O(V + E) | O(V²) |
+| Adicionar vértice | O(1) | O(V²) |
+| Adicionar aresta | O(1) | O(1) |
+| Verificar aresta | O(V) | O(1) |
+| DFS/BFS | O(V + E) | O(V²) |
+
+### **Quando Usar Cada Algoritmo**
+
+```
+BUSCA:
+- DFS: Detectar ciclos, componentes, topologia
+- BFS: Menor caminho (não ponderado), nível por nível
+
+CAMINHO MÍNIMO:
+- Dijkstra: Um para todos, pesos positivos
+- Floyd-Warshall: Todos para todos, permite negativos
+- Bellman-Ford: Um para todos, detecta ciclo negativo
+```
+
+---
         if vizinho not in visitados:
             dfs(grafo, vizinho, visitados)
 ```
@@ -2570,207 +2997,85 @@ class UnionFind:
 
 #### Fibonacci Heap
 
-```python
-# Operações em Fibonacci Heap (conceitual):
-# - Insert: O(1) amortizado
-# - Extract-Min: O(log n) amortizado  
-# - Decrease-Key: O(1) amortizado
-# - Delete: O(log n) amortizado
-# - Union: O(1) real
+# **CAPÍTULO 10**
+# **PROGRAMAÇÃO DINÂMICA**
 
-# A análise amortizada é crucial aqui porque:
-# - Extract-Min pode ser O(n) no pior caso
-# - Mas o potencial acumulado pelas inserções "paga" por isso
+## **10.1 Conceito: "Dividir + Memorizar"**
+```python
+# Problema: Fibonacci ingênuo é muito lento
+def fib_lento(n):
+    if n <= 1: return n
+    return fib_lento(n-1) + fib_lento(n-2)  # O(2^n) - LENTO!
+
+# Solução: Guardar resultados calculados
+def fib_rapido(n):
+    memo = {}
+    def fib_aux(x):
+        if x in memo: return memo[x]
+        if x <= 1: return x
+        memo[x] = fib_aux(x-1) + fib_aux(x-2)
+        return memo[x]
+    return fib_aux(n)  # O(n) - RÁPIDO!
+
+# Macete: DP = Recursão + Memoização
 ```
 
----
-
-<div style="page-break-after: always;"></div>
-
-# **CAPÍTULO 8**
-# **INVARIANTES DE LOOP**
-
-## **8.1 Definição e Importância**
-
-### O que são Invariantes de Loop?
-
-Uma **invariante de loop** é uma propriedade que:
-1. É verdadeira antes da primeira iteração do loop
-2. Se é verdadeira antes de uma iteração, permanece verdadeira após a iteração
-3. Quando o loop termina, a invariante + condição de parada implica na correção do algoritmo
-
-### Como Usar Invariantes para Provar Correção
-
-#### Exemplo 1: Busca Linear
-
+## **10.2 Problema da Mochila 0/1**
 ```python
-def busca_linear(arr, x):
-    """
-    Invariante: arr[0..i-1] não contém x
-    """
-    for i in range(len(arr)):
-        # Invariante: x não está em arr[0..i-1]
-        
-        if arr[i] == x:
-            return i  # Encontrado!
-        
-        # Invariante se mantém: x não está em arr[0..i]
+def mochila(pesos, valores, capacidade):
+    n = len(pesos)
+    # dp[i][w] = valor máximo com i itens e capacidade w
+    dp = [[0] * (capacidade + 1) for _ in range(n + 1)]
     
-    # Loop terminou: x não está em arr[0..n-1] = arr completo
-    return -1
+    for i in range(1, n + 1):
+        for w in range(1, capacidade + 1):
+            # Opção 1: não pegar item i-1
+            dp[i][w] = dp[i-1][w]
+            
+            # Opção 2: pegar item i-1 (se couber)
+            if pesos[i-1] <= w:
+                pegar = valores[i-1] + dp[i-1][w - pesos[i-1]]
+                dp[i][w] = max(dp[i][w], pegar)
+    
+    return dp[n][capacidade]
+
+# Macete: Para cada item, decide "pegar ou não pegar"
 ```
 
-**Prova da Invariante:**
-- **Inicialização**: Antes da primeira iteração (i=0), arr[0..-1] é vazio, então não contém x ✓
-- **Manutenção**: Se arr[0..i-1] não contém x e arr[i] ≠ x, então arr[0..i] não contém x ✓
-- **Terminação**: Se loop termina, então arr[0..n-1] não contém x ✓
-
-#### Exemplo 2: Insertion Sort
-
+## **10.3 Maior Subsequência Comum (LCS)**
 ```python
-def insertion_sort(arr):
-    """
-    Invariante: arr[0..i-1] está ordenado
-    """
-    for i in range(1, len(arr)):
-        # Invariante: arr[0..i-1] está ordenado
-        
-        key = arr[i]
-        j = i - 1
-        
-        # Invariante do loop interno: arr[j+2..i] > key e arr[0..j] ∪ {key} ∪ arr[j+2..i] 
-        # é uma permutação de arr[0..i] original
-        while j >= 0 and arr[j] > key:
-            arr[j + 1] = arr[j]
-            j -= 1
-        
-        arr[j + 1] = key
-        
-        # Invariante se mantém: arr[0..i] agora está ordenado
+def lcs(str1, str2):
+    m, n = len(str1), len(str2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
     
-    # Loop terminou: arr[0..n-1] está ordenado
-    return arr
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1  # Caracteres iguais
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])  # Pega o melhor
+    
+    return dp[m][n]
+
+# Exemplo: LCS("ABCD", "AEBD") = "ABD" (tamanho 3)
 ```
 
-**Prova da Invariante:**
-- **Inicialização**: arr[0..0] tem um elemento, logo está ordenado ✓
-- **Manutenção**: Se arr[0..i-1] está ordenado, após inserir arr[i] na posição correta, arr[0..i] fica ordenado ✓
-- **Terminação**: arr[0..n-1] = array completo está ordenado ✓
+## **10.4 Quando Usar DP**
+- **Subproblemas sobrepostos**: mesmo cálculo repetido
+- **Subestrutura ótima**: solução ótima contém soluções ótimas menores
+- **Decisões sequenciais**: escolhas em cada passo
 
-#### Exemplo 3: Busca Binária
-
+### **Padrão Bottom-Up (sem recursão)**
 ```python
-def busca_binaria(arr, x):
-    """
-    Invariante: se x está no array, então x está em arr[left..right]
-    """
-    left, right = 0, len(arr) - 1
-    
-    # Invariante inicial: se x existe, está em arr[0..n-1]
-    
-    while left <= right:
-        # Invariante: se x existe no array original, então x está em arr[left..right]
-        
-        mid = (left + right) // 2
-        
-        if arr[mid] == x:
-            return mid
-        elif arr[mid] < x:
-            left = mid + 1  # x só pode estar em arr[mid+1..right]
-        else:
-            right = mid - 1  # x só pode estar em arr[left..mid-1]
-        
-        # Invariante se mantém com novo intervalo [left, right]
-    
-    # Loop terminou com left > right: intervalo vazio, x não existe
-    return -1
+def fib_bottom_up(n):
+    if n <= 1: return n
+    a, b = 0, 1
+    for i in range(2, n + 1):
+        a, b = b, a + b
+    return b
+
+# Vantagem: sem risco de stack overflow
 ```
-
-### Invariantes em Algoritmos Mais Complexos
-
-#### Exemplo: Algoritmo de Dijkstra
-
-```python
-import heapq
-
-def dijkstra(graph, start):
-    """
-    Invariante: Para todo vértice v em S (conjunto de vértices processados),
-    dist[v] é a distância mínima real de start até v
-    """
-    dist = {v: float('inf') for v in graph}
-    dist[start] = 0
-    pq = [(0, start)]
-    S = set()  # Conjunto de vértices processados
-    
-    # Invariante inicial: S = {}, dist[start] = 0, dist[outros] = ∞
-    
-    while pq:
-        # Invariante: Para todo v em S, dist[v] é ótimo
-        
-        current_dist, u = heapq.heappop(pq)
-        
-        if u in S:
-            continue
-        
-        S.add(u)
-        # u agora tem distância ótima (propriedade do algoritmo guloso)
-        
-        for v, weight in graph[u]:
-            if v not in S and dist[u] + weight < dist[v]:
-                dist[v] = dist[u] + weight
-                heapq.heappush(pq, (dist[v], v))
-        
-        # Invariante se mantém: todos os vértices em S têm distância ótima
-    
-    return dist
-```
-
-### Como Criar Invariantes
-
-#### Passo 1: Identifique o objetivo
-"O que o algoritmo deve conseguir ao final?"
-
-#### Passo 2: Generalize para o meio do loop
-"Que progresso parcial o algoritmo fez até agora?"
-
-#### Passo 3: Verifique as três propriedades
-1. **Inicialização**: Verdadeira antes do primeiro loop
-2. **Manutenção**: Se verdadeira antes, continua após iteração
-3. **Terminação**: Invariante + condição de parada = correção
-
-#### Exemplo Prático: Encontrar Máximo
-
-```python
-def encontrar_maximo(arr):
-    """
-    Objetivo: Retornar o maior elemento do array
-    Invariante: max_so_far é o maior elemento em arr[0..i-1]
-    """
-    if not arr:
-        return None
-    
-    max_so_far = arr[0]  # Inicialização: maior em arr[0..0]
-    
-    for i in range(1, len(arr)):
-        # Invariante: max_so_far = max(arr[0..i-1])
-        
-        if arr[i] > max_so_far:
-            max_so_far = arr[i]
-        
-        # Invariante se mantém: max_so_far = max(arr[0..i])
-    
-    # Terminação: max_so_far = max(arr[0..n-1]) = máximo do array
-    return max_so_far
-```
-
-### Invariantes em C
-
-```c
-#include <stdio.h>
-
-int encontrar_maximo(int arr[], int n) {
-    /*
      * Invariante: max_so_far é o maior elemento em arr[0..i-1]
      */
     if (n <= 0) return -1;  // Erro
@@ -3094,6 +3399,244 @@ def maior_soma_subarray(arr):
 
 ---
 
+---
+
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 10**
+# **ALGORITMOS DE PROGRAMAÇÃO DINÂMICA**
+
+## **10.1 Conceito de Programação Dinâmica**
+
+### **Macete: Subproblemas + Memoização**
+```python
+# Fibonacci Ingênuo: O(2^n) - MUITO LENTO!
+def fib_ingenuo(n):
+    if n <= 1:
+        return n
+    return fib_ingenuo(n-1) + fib_ingenuo(n-2)
+
+# Fibonacci com DP: O(n) - RÁPIDO!
+def fib_dp(n):
+    if n <= 1:
+        return n
+    
+    dp = [0] * (n + 1)
+    dp[0], dp[1] = 0, 1
+    
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+    
+    return dp[n]
+
+# Macete: Evita recalcular subproblemas!
+```
+
+## **10.2 Problema da Mochila (0/1 Knapsack)**
+
+### **Formulação**
+```python
+def mochila_01(pesos, valores, capacidade):
+    n = len(pesos)
+    # dp[i][w] = valor máximo com i itens e capacidade w
+    dp = [[0 for _ in range(capacidade + 1)] for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for w in range(1, capacidade + 1):
+            # Não pega o item i-1
+            dp[i][w] = dp[i-1][w]
+            
+            # Se cabe, tenta pegar o item i-1
+            if pesos[i-1] <= w:
+                pegar = valores[i-1] + dp[i-1][w - pesos[i-1]]
+                dp[i][w] = max(dp[i][w], pegar)
+    
+    return dp[n][capacidade]
+
+# Complexidade: O(n × W) onde W = capacidade
+# Espaço: O(n × W)
+```
+
+## **10.3 Maior Subsequência Comum (LCS)**
+
+### **Macete: Comparar Caractere por Caractere**
+```python
+def lcs(texto1, texto2):
+    m, n = len(texto1), len(texto2)
+    # dp[i][j] = LCS de texto1[0:i] e texto2[0:j]
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if texto1[i-1] == texto2[j-1]:
+                # Caracteres iguais: soma 1
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                # Caracteres diferentes: pega o melhor
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    return dp[m][n]
+
+# Exemplo: LCS("ABCDGH", "AEDFHR") = "ADH" (tamanho 3)
+# Complexidade: O(m × n)
+```
+
+---
+
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 11**
+# **ALGORITMOS DE BUSCA E HASHING**
+
+## **11.1 Busca Linear vs Binária**
+
+### **Busca Linear - O(n)**
+```python
+def busca_linear(arr, x):
+    for i in range(len(arr)):
+        if arr[i] == x:
+            return i
+    return -1
+
+# Macete: Funciona em qualquer array
+# Não precisa estar ordenado
+```
+
+### **Busca Binária - O(log n)**
+```python
+def busca_binaria(arr, x):
+    esq, dir = 0, len(arr) - 1
+    
+    while esq <= dir:
+        meio = (esq + dir) // 2
+        
+        if arr[meio] == x:
+            return meio
+        elif arr[meio] < x:
+            esq = meio + 1  # Procura na direita
+        else:
+            dir = meio - 1  # Procura na esquerda
+    
+    return -1
+
+# REQUISITO: Array deve estar ORDENADO!
+# Macete: Divide pela metade a cada iteração
+```
+
+## **11.2 Tabelas Hash**
+
+### **Conceito: Acesso O(1)**
+```python
+class TabelaHash:
+    def __init__(self, tamanho=10):
+        self.tamanho = tamanho
+        self.tabela = [[] for _ in range(tamanho)]  # Lista de listas
+    
+    def _hash(self, chave):
+        # Função hash simples
+        return hash(chave) % self.tamanho
+    
+    def inserir(self, chave, valor):
+        indice = self._hash(chave)
+        bucket = self.tabela[indice]
+        
+        # Atualiza se já existe
+        for i, (k, v) in enumerate(bucket):
+            if k == chave:
+                bucket[i] = (chave, valor)
+                return
+        
+        # Adiciona novo
+        bucket.append((chave, valor))
+    
+    def buscar(self, chave):
+        indice = self._hash(chave)
+        bucket = self.tabela[indice]
+        
+        for k, v in bucket:
+            if k == chave:
+                return v
+        
+        return None  # Não encontrado
+
+# Complexidade:
+# Melhor caso: O(1) - sem colisões
+# Pior caso: O(n) - todas as chaves no mesmo bucket
+```
+
+---
+
+<div style="page-break-after: always;"></div>
+
+# **CAPÍTULO 12**
+# **ALGORITMOS GULOSOS E DIVISÃO E CONQUISTA**
+
+## **12.1 Algoritmos Gulosos (Greedy)**
+
+### **Conceito: Escolha Localmente Ótima**
+```python
+# Problema da Troca: Dar troco com menor número de moedas
+def troco_guloso(valor, moedas=[100, 50, 25, 10, 5, 1]):
+    resultado = []
+    
+    for moeda in moedas:
+        while valor >= moeda:
+            resultado.append(moeda)
+            valor -= moeda
+    
+    return resultado
+
+# Exemplo: troco_guloso(189) = [100, 50, 25, 10, 1, 1, 1, 1]
+# Funciona para sistema monetário brasileiro!
+```
+
+### **Problema da Mochila Fracionária**
+```python
+def mochila_fracionaria(itens, capacidade):
+    # itens = [(peso, valor), ...]
+    # Ordena por valor/peso (densidade de valor)
+    itens.sort(key=lambda x: x[1]/x[0], reverse=True)
+    
+    valor_total = 0
+    for peso, valor in itens:
+        if capacidade >= peso:
+            # Pega item inteiro
+            capacidade -= peso
+            valor_total += valor
+        else:
+            # Pega fração do item
+            fracao = capacidade / peso
+            valor_total += fracao * valor
+            break
+    
+    return valor_total
+
+# Macete: Sempre pega item com melhor custo-benefício
+```
+
+## **12.2 Divisão e Conquista**
+
+### **Template Geral**
+```python
+def divisao_conquista(problema):
+    # Caso base
+    if problema_pequeno(problema):
+        return resolucao_direta(problema)
+    
+    # Divisão
+    subproblemas = dividir(problema)
+    
+    # Conquista (recursão)
+    resultados = []
+    for sub in subproblemas:
+        resultados.append(divisao_conquista(sub))
+    
+    # Combinação
+    return combinar(resultados)
+```
+
+---
+
 <div style="page-break-after: always;"></div>
 
 # **APÊNDICES**
@@ -3130,7 +3673,7 @@ def maior_soma_subarray(arr):
 
 <div style="page-break-after: always;"></div>
 
-## **APÊNDICE B - GLOSSÁRIO DE TERMOS**
+## **APÊNDICE C - GLOSSÁRIO DE TERMOS**
 
 **Algoritmo**: Sequência finita de instruções bem definidas para resolver um problema.
 
@@ -3164,7 +3707,820 @@ def maior_soma_subarray(arr):
 
 <div style="page-break-after: always;"></div>
 
-## **APÊNDICE C - BIBLIOGRAFIA E REFERÊNCIAS**
+## **APÊNDICE B - TRUQUES E MACETES DE PROGRAMAÇÃO**
+
+### **B.1 Bitwise Operations (Operações de Bit)**
+```python
+# Verificar se número é par
+def eh_par(n):
+    return (n & 1) == 0  # Mais rápido que n % 2
+
+# Multiplicar/dividir por 2^k
+def mult_por_2k(n, k):
+    return n << k  # n * 2^k
+
+def div_por_2k(n, k):
+    return n >> k  # n // 2^k
+
+# Trocar dois números sem variável auxiliar
+def trocar_xor(a, b):
+    a = a ^ b
+    b = a ^ b
+    a = a ^ b
+    return a, b
+
+# Contar bits setados (população de bits)
+def contar_bits(n):
+    count = 0
+    while n:
+        count += n & 1
+        n >>= 1
+    return count
+
+# Macete: bin(n).count('1') é mais simples!
+```
+
+### **B.2 Truques com Strings**
+```python
+# Verificar se string é palíndromo
+def palindromo(s):
+    return s == s[::-1]
+
+# Remover caracteres especiais
+def limpar_string(s):
+    return ''.join(c for c in s if c.isalnum())
+
+# Converter para title case
+def title_case(s):
+    return ' '.join(word.capitalize() for word in s.split())
+
+# Encontrar todas as permutações
+from itertools import permutations
+def todas_permutacoes(s):
+    return [''.join(p) for p in permutations(s)]
+```
+
+### **B.3 Truques com Listas**
+```python
+# Achatar lista aninhada
+def achatar(lista):
+    resultado = []
+    for item in lista:
+        if isinstance(item, list):
+            resultado.extend(achatar(item))
+        else:
+            resultado.append(item)
+    return resultado
+
+# List comprehension para achatar um nível
+def achatar_1nivel(lista):
+    return [item for sublista in lista for item in sublista]
+
+# Remover duplicatas mantendo ordem
+def remover_duplicatas(lista):
+    return list(dict.fromkeys(lista))
+
+# Dividir lista em chunks
+def chunks(lista, tamanho):
+    return [lista[i:i+tamanho] for i in range(0, len(lista), tamanho)]
+```
+
+### **B.4 Decoradores Úteis**
+```python
+import time
+import functools
+
+# Medir tempo de execução
+def cronometro(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        inicio = time.time()
+        resultado = func(*args, **kwargs)
+        fim = time.time()
+        print(f"{func.__name__} levou {fim - inicio:.4f}s")
+        return resultado
+    return wrapper
+
+# Memoização simples
+def memoize(func):
+    cache = {}
+    @functools.wraps(func)
+    def wrapper(*args):
+        if args in cache:
+            return cache[args]
+        resultado = func(*args)
+        cache[args] = resultado
+        return resultado
+    return wrapper
+
+# Uso:
+@cronometro
+@memoize
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+```
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE C - ESTRUTURAS DE DADOS ESPECIAIS**
+
+### **C.1 Heap (Priority Queue)**
+```python
+import heapq
+
+class MinHeap:
+    def __init__(self):
+        self.heap = []
+    
+    def push(self, item):
+        heapq.heappush(self.heap, item)
+    
+    def pop(self):
+        return heapq.heappop(self.heap)
+    
+    def peek(self):
+        return self.heap[0] if self.heap else None
+    
+    def __len__(self):
+        return len(self.heap)
+
+# Para MaxHeap, use números negativos
+class MaxHeap:
+    def __init__(self):
+        self.heap = []
+    
+    def push(self, item):
+        heapq.heappush(self.heap, -item)
+    
+    def pop(self):
+        return -heapq.heappop(self.heap)
+```
+
+### **C.2 Trie (Árvore de Prefixos)**
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_word = True
+    
+    def search(self, word):
+        node = self._find_node(word)
+        return node is not None and node.is_end_word
+    
+    def starts_with(self, prefix):
+        return self._find_node(prefix) is not None
+    
+    def _find_node(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return None
+            node = node.children[char]
+        return node
+
+# Uso: Autocompletar, corretor ortográfico
+```
+
+### **C.3 Union-Find (Disjoint Set)**
+```python
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+    
+    def find(self, x):
+        # Path compression
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+    
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        
+        if root_x != root_y:
+            # Union by rank
+            if self.rank[root_x] < self.rank[root_y]:
+                self.parent[root_x] = root_y
+            elif self.rank[root_x] > self.rank[root_y]:
+                self.parent[root_y] = root_x
+            else:
+                self.parent[root_y] = root_x
+                self.rank[root_x] += 1
+    
+    def connected(self, x, y):
+        return self.find(x) == self.find(y)
+
+# Uso: Detectar ciclos, componentes conectados
+```
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE D - PADRÕES DE CÓDIGO COMUNS**
+
+### **D.1 Two Pointers (Dois Ponteiros)**
+```python
+# Verificar se array tem soma alvo
+def tem_soma_alvo(arr, alvo):
+    arr.sort()
+    esq, dir = 0, len(arr) - 1
+    
+    while esq < dir:
+        soma_atual = arr[esq] + arr[dir]
+        if soma_atual == alvo:
+            return True
+        elif soma_atual < alvo:
+            esq += 1
+        else:
+            dir -= 1
+    
+    return False
+
+# Remover duplicatas de array ordenado
+def remover_duplicatas_ordenado(arr):
+    if not arr:
+        return 0
+    
+    i = 0
+    for j in range(1, len(arr)):
+        if arr[j] != arr[i]:
+            i += 1
+            arr[i] = arr[j]
+    
+    return i + 1  # Novo comprimento
+```
+
+### **D.2 Sliding Window (Janela Deslizante)**
+```python
+# Maior substring sem caracteres repetidos
+def maior_substring_unica(s):
+    char_map = {}
+    esq = 0
+    max_len = 0
+    
+    for dir in range(len(s)):
+        if s[dir] in char_map and char_map[s[dir]] >= esq:
+            esq = char_map[s[dir]] + 1
+        
+        char_map[s[dir]] = dir
+        max_len = max(max_len, dir - esq + 1)
+    
+    return max_len
+
+# Soma máxima de subarray de tamanho k
+def soma_maxima_janela(arr, k):
+    if len(arr) < k:
+        return -1
+    
+    # Primeira janela
+    soma_janela = sum(arr[:k])
+    soma_maxima = soma_janela
+    
+    # Deslizar janela
+    for i in range(k, len(arr)):
+        soma_janela = soma_janela - arr[i-k] + arr[i]
+        soma_maxima = max(soma_maxima, soma_janela)
+    
+    return soma_maxima
+```
+
+### **D.3 Fast & Slow Pointers**
+```python
+# Detectar ciclo em lista ligada
+def tem_ciclo(head):
+    if not head or not head.next:
+        return False
+    
+    lento = head
+    rapido = head.next
+    
+    while rapido and rapido.next:
+        if lento == rapido:
+            return True
+        lento = lento.next
+        rapido = rapido.next.next
+    
+    return False
+
+# Encontrar meio da lista ligada
+def encontrar_meio(head):
+    lento = rapido = head
+    
+    while rapido and rapido.next:
+        lento = lento.next
+        rapido = rapido.next.next
+    
+    return lento
+```
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE E - PROBLEMAS CLÁSSICOS DE ENTREVISTA**
+
+### **E.1 Array e String**
+```python
+# 1. Rotacionar array k posições
+def rotacionar_array(nums, k):
+    n = len(nums)
+    k = k % n
+    # Reverter todo array, depois reverter partes
+    nums.reverse()
+    nums[:k] = nums[:k][::-1]
+    nums[k:] = nums[k:][::-1]
+
+# 2. Produto de array exceto self
+def produto_exceto_self(nums):
+    n = len(nums)
+    resultado = [1] * n
+    
+    # Produto à esquerda
+    for i in range(1, n):
+        resultado[i] = resultado[i-1] * nums[i-1]
+    
+    # Produto à direita
+    direita = 1
+    for i in range(n-1, -1, -1):
+        resultado[i] *= direita
+        direita *= nums[i]
+    
+    return resultado
+
+# 3. Maior subarray (Kadane's Algorithm)
+def maior_subarray(nums):
+    max_atual = max_global = nums[0]
+    
+    for i in range(1, len(nums)):
+        max_atual = max(nums[i], max_atual + nums[i])
+        max_global = max(max_global, max_atual)
+    
+    return max_global
+```
+
+### **E.2 Árvores**
+```python
+# 1. Validar BST
+def validar_bst(root, min_val=float('-inf'), max_val=float('inf')):
+    if not root:
+        return True
+    
+    if root.val <= min_val or root.val >= max_val:
+        return False
+    
+    return (validar_bst(root.left, min_val, root.val) and
+            validar_bst(root.right, root.val, max_val))
+
+# 2. Árvore balanceada
+def eh_balanceada(root):
+    def altura(node):
+        if not node:
+            return 0
+        
+        altura_esq = altura(node.left)
+        if altura_esq == -1:
+            return -1
+        
+        altura_dir = altura(node.right)
+        if altura_dir == -1:
+            return -1
+        
+        if abs(altura_esq - altura_dir) > 1:
+            return -1
+        
+        return max(altura_esq, altura_dir) + 1
+    
+    return altura(root) != -1
+
+# 3. Serialize/Deserialize árvore binária
+class Codec:
+    def serialize(self, root):
+        def preorder(node):
+            if node:
+                vals.append(str(node.val))
+                preorder(node.left)
+                preorder(node.right)
+            else:
+                vals.append("#")
+        
+        vals = []
+        preorder(root)
+        return ",".join(vals)
+    
+    def deserialize(self, data):
+        def build():
+            val = next(vals)
+            if val == "#":
+                return None
+            
+            node = TreeNode(int(val))
+            node.left = build()
+            node.right = build()
+            return node
+        
+        vals = iter(data.split(","))
+        return build()
+```
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE F - EXERCÍCIOS RESOLVIDOS (TEÓRICOS)**
+
+### **F.1 Questões sobre Modularização e Funções**
+
+**Questão 1:** A modularização de algoritmos é importante para organizar melhor o código, facilitar a manutenção, entre outras coisas. Sobre funções e procedimentos, assinale a alternativa correta sobre a modularização:
+
+a) O procedimento sempre retorna um valor ao programa.  
+b) A função retorna um valor ao programa.  
+c) As variáveis definidas no escopo de cada função são acessíveis em todo o programa.  
+d) As variáveis locais são declaradas no escopo do programa inteiro.  
+e) Variáveis globais não são acessíveis no corpo de uma função.
+
+**Resposta:** **b) A função retorna um valor ao programa.**
+
+**Explicação:** Funções são subprogramas que sempre retornam um valor, enquanto procedimentos executam ações mas não retornam valores. Variáveis locais têm escopo limitado à função onde foram declaradas.
+
+---
+
+**Questão 2:** Do ponto de vista de projeção de algoritmos, quais são as questões mais importantes a serem consideradas na escolha de um algoritmo?
+
+a) Corretude, eficiência, robustez e reusabilidade  
+b) Corretude, eficiência, robustez e recursividade  
+c) Corretude, eficiência, robustez e versatilidade  
+d) Corretude, independência, robustez e autenticidade  
+e) Corretude, independência, robustez e recursividade
+
+**Resposta:** **a) Corretude, eficiência, robustez e reusabilidade**
+
+**Explicação:** Os pilares fundamentais na escolha de algoritmos são:
+- **Corretude:** O algoritmo deve resolver o problema corretamente
+- **Eficiência:** Deve ter boa performance (tempo e espaço)
+- **Robustez:** Capaz de lidar com entradas inesperadas
+- **Reusabilidade:** Pode ser aplicado em diferentes contextos
+
+---
+
+### **F.2 Questões sobre Complexidade de Algoritmos**
+
+**Questão 3:** Qual das seguintes afirmações sobre complexidade de algoritmos está correta?
+
+a) A complexidade de um algoritmo é sempre medida em termos de tempo de execução.  
+b) A complexidade de um algoritmo nunca leva em consideração o espaço de memória utilizado.  
+c) A complexidade de um algoritmo pode ser representada pela notação "O(n)" para denotar seu pior caso.  
+d) A complexidade de um algoritmo no melhor caso é sempre pior do que no pior caso.  
+e) A complexidade de um algoritmo não depende da entrada que ele processa.
+
+**Resposta:** **c) A complexidade de um algoritmo pode ser representada pela notação "O(n)" para denotar seu pior caso.**
+
+**Explicação:** A notação Big O representa o limite superior da complexidade (pior caso). A complexidade pode ser temporal ou espacial, e sempre depende da entrada.
+
+---
+
+**Questão 4:** O que significa uma complexidade O(1) em termos de tempo de execução de um algoritmo?
+
+a) O tempo de execução do algoritmo é diretamente proporcional ao tamanho da entrada.  
+b) O tempo de execução do algoritmo aumenta exponencialmente à medida que o tamanho da entrada aumenta.  
+c) O tempo de execução do algoritmo permanece constante, independentemente do tamanho de entrada.  
+d) O tempo de execução do algoritmo é impossível de determinar.  
+e) O tempo de execução do algoritmo é igual a zero.
+
+**Resposta:** **c) O tempo de execução do algoritmo permanece constante, independentemente do tamanho de entrada.**
+
+**Explicação:** O(1) significa complexidade constante - o tempo não varia com o tamanho da entrada. Exemplo: acessar um elemento específico de um array.
+
+---
+
+**Questão 5:** Com relação ao algoritmo abaixo, calcule a complexidade Big O, no pior caso:
+```
+(1) para i de 1 até n faça
+(2)   para j de 0 até n-1 faça
+(3)     a = a*(i+j)
+```
+
+a) O(n)  b) O(n²)  c) O(1)  d) O(n³)  e) O(n log n)
+
+**Resposta:** **b) O(n²)**
+
+**Explicação:** Temos dois loops aninhados, cada um executando n vezes. O loop externo executa n vezes, e para cada execução, o loop interno executa n vezes. Total: n × n = n² operações.
+
+---
+
+**Questão 6:** Qual a complexidade do algoritmo a seguir?
+```c
+bool localizar(int vetor[10], int valor) {
+    int tamanho = 10;
+    for (int i = 0; i < tamanho; i++) {
+        if(vetor[i] == valor)
+            return true;
+    }
+    return false;
+}
+```
+
+a) O(n)  b) O(log n)  c) O(n²)  d) O(n log n)  e) O(n³)
+
+**Resposta:** **a) O(n)**
+
+**Explicação:** O algoritmo realiza uma busca linear. No pior caso, precisa verificar todos os elementos do vetor. Se o tamanho fosse n (ao invés de 10), seriam n operações.
+
+---
+
+**Questão 7:** Suponha que um algoritmo, sendo executado com uma entrada de tamanho n, leve exatos 5n²+10n+200 instruções de máquina. Qual a complexidade de pior caso desse algoritmo, considerando a Notação O (Big Oh)?
+
+a) O(n)  b) O(n²)  c) O(1)  d) O(n³)  e) O(n log n)
+
+**Resposta:** **b) O(n²)**
+
+**Explicação:** Na notação Big O, consideramos apenas o termo de maior ordem. Em 5n²+10n+200, o termo dominante é 5n², que simplifica para O(n²).
+
+---
+
+**Questão 8:** A complexidade de algoritmos considera o tempo de execução que um código usa para solucionar um problema. Selecione a alternativa que mostra a notação da menor complexidade entre as seguintes: Ordem quadrática; Ordem cúbica; Ordem logarítmica; Ordem linear; Ordem exponencial
+
+a) O(n²)  b) O(n³)  c) O(n)  d) O(cⁿ)  e) O(log n)
+
+**Resposta:** **e) O(log n)**
+
+**Explicação:** Em ordem crescente de complexidade: O(log n) < O(n) < O(n²) < O(n³) < O(cⁿ). A complexidade logarítmica é a menor entre as listadas.
+
+---
+
+### **F.3 Questões sobre Ponteiros**
+
+**Questão 9:** Em relação aos ponteiros nas linguagens de programação, selecione a opção que justifica sua aplicação:
+
+a) Flexibilidade de endereçamento e controle do gerenciamento de armazenamento dinâmico.  
+b) Aumento da legibilidade dos programas.  
+c) Facilidade de implementação no gerenciamento dinâmico.  
+d) Dificuldade na implementação de tipos primitivos.  
+e) Código fica mais legível e menos propenso a erros.
+
+**Resposta:** **a) Flexibilidade de endereçamento e controle do gerenciamento de armazenamento dinâmico.**
+
+**Explicação:** Ponteiros permitem acesso direto à memória, possibilitam alocação dinâmica e oferecem flexibilidade no gerenciamento de dados.
+
+---
+
+**Questão 10:** Marque a alternativa correta sobre ponteiros:
+
+a) Ponteiro é uma variável cujo conteúdo é um endereço de memória.  
+b) Ponteiro é uma variável cujo conteúdo é um valor de variável.  
+c) Ponteiros é um tipo de dado do tipo float que consegue armazenar outros tipos de dados.  
+d) Ponteiros é um tipo de dado do tipo int que consegue armazenar outros tipos de dados.  
+e) Todas as alternativas estão corretas.
+
+**Resposta:** **a) Ponteiro é uma variável cujo conteúdo é um endereço de memória.**
+
+**Explicação:** Por definição, um ponteiro armazena o endereço de memória onde outro dado está localizado, não o valor em si.
+
+---
+
+### **F.4 Questões sobre Recursividade**
+
+**Questão 11:** Qual é o conceito fundamental por trás da recursividade em algoritmos?
+
+a) Repetição de uma operação em um loop.  
+b) Dividir um problema em subproblemas semelhantes menores.  
+c) Utilizar funções matemáticas.  
+d) Organizar dados em uma pilha.  
+e) Multiplicação de números inteiros.
+
+**Resposta:** **b) Dividir um problema em subproblemas semelhantes menores.**
+
+**Explicação:** Recursividade baseia-se no princípio "divide e conquista", onde um problema é decomposto em versões menores do mesmo problema.
+
+---
+
+**Questão 12:** O que é necessário para que uma função recursiva não entre em um loop infinito?
+
+a) Ela deve sempre conter uma instrução "while".  
+b) Ela deve ser chamada com um valor negativo.  
+c) Ela deve conter uma condição de parada.  
+d) Ela deve chamar outra função recursiva.  
+e) Ela deve ser executada apenas uma vez.
+
+**Resposta:** **c) Ela deve conter uma condição de parada.**
+
+**Explicação:** O caso base (condição de parada) é essencial para interromper as chamadas recursivas e evitar loops infinitos.
+
+---
+
+**Questão 13:** Considere a seguinte função recursiva em Python para calcular o fatorial:
+```python
+def fatorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * fatorial(n - 1)
+```
+Qual é o valor de fatorial(4)?
+
+a) 4  b) 6  c) 12  d) 24  e) 120
+
+**Resposta:** **d) 24**
+
+**Explicação:** 
+- fatorial(4) = 4 × fatorial(3)
+- fatorial(3) = 3 × fatorial(2) 
+- fatorial(2) = 2 × fatorial(1)
+- fatorial(1) = 1 × fatorial(0)
+- fatorial(0) = 1
+- Resultado: 4 × 3 × 2 × 1 = 24
+
+---
+
+**Questão 14:** Existem casos em que um procedimento ou função chama a si próprio. Sobre introdução à computação, é correto afirmar que:
+
+a) quando um procedimento ou função chama a si próprio, denomina-se passagem de parâmetro por referência.  
+b) quando um procedimento ou função chama a si próprio, denomina-se passagem de parâmetro por valor.  
+c) quando um procedimento ou função chama a si próprio, denomina-se recursividade.  
+d) quando um procedimento ou função chama a si próprio, denomina-se passagem de parâmetro por variável.  
+e) quando um procedimento ou função chama a si próprio, denomina-se passagem de parâmetro por recursão.
+
+**Resposta:** **c) quando um procedimento ou função chama a si próprio, denomina-se recursividade.**
+
+**Explicação:** Por definição, recursividade é quando uma função chama a si mesma direta ou indiretamente.
+
+---
+
+**Questão 15:** Sobre funções recursivas, analise as afirmativas:
+
+I. Toda função recursiva precisa de um caso base para evitar chamadas infinitas.  
+II. O uso de recursividade pode levar a consumo elevado de memória devido à pilha de chamadas.  
+III. Recursividade é sempre mais eficiente que a versão iterativa.  
+IV. Funções recursivas podem ser reescritas como funções iterativas.  
+V. Um algoritmo recursivo sempre executa mais rapidamente que um iterativo.
+
+Quais são as alternativas corretas?
+
+**Resposta:** **I, II e IV estão corretas.**
+
+**Explicação:**
+- I: ✓ Caso base é obrigatório
+- II: ✓ Cada chamada usa memória da pilha
+- III: ✗ Nem sempre é mais eficiente
+- IV: ✓ Qualquer recursão pode ser convertida para iteração
+- V: ✗ Frequentemente recursão é mais lenta
+
+---
+
+### **F.5 Questões sobre Estruturas de Dados**
+
+**Questão 16:** Estrutura de dados caracterizada por: Ou não ter elemento algum (árvore vazia); Ou tem um elemento distinto denominado raiz, com dois ponteiros para duas estruturas diferentes, denominadas subárvore esquerda e subárvore direita. Essa estrutura é chamada de:
+
+a) Trevo Binário  b) Nó Folha  c) Fila  d) Árvore Binária  e) Folha Binária
+
+**Resposta:** **d) Árvore Binária**
+
+**Explicação:** A definição descreve perfeitamente uma árvore binária: estrutura hierárquica com no máximo dois filhos por nó.
+
+---
+
+**Questão 17:** Considerando uma árvore de pesquisa binária com N nós, qual é a complexidade da inserção em uma árvore de pesquisa binária balanceada?
+
+a) O(1)  b) O(log N)  c) O(N)  d) O(N log N)  e) O(N²)
+
+**Resposta:** **b) O(log N)**
+
+**Explicação:** Em uma árvore balanceada, a altura é log N, e a inserção requer percorrer da raiz até uma folha, resultando em O(log N).
+
+---
+
+### **F.6 Questões sobre Algoritmos de Busca**
+
+**Questão 18:** A busca sequencial e a busca binária são dois algoritmos para pesquisa. Diante do cenário, quais alternativas são corretas?
+
+a) O tempo de execução da busca binária é menor do que o da busca sequencial.  
+b) A busca sequencial é uma solução mais eficiente que a busca binária.  
+c) A busca sequencial é um algoritmo simples de implementar, mas não é muito eficiente.  
+d) A taxa de crescimento de log(n) é maior do que n.
+
+**Resposta:** **a) e c) estão corretas.**
+
+**Explicação:**
+- a) ✓ Busca binária: O(log n) vs Sequencial: O(n)
+- b) ✗ Busca binária é mais eficiente
+- c) ✓ Sequencial é simples mas O(n)
+- d) ✗ log(n) cresce mais lentamente que n
+
+---
+
+### **F.7 Questões sobre Algoritmos de Ordenação**
+
+**Questão 19:** A ordenação é uma operação comum em muitas aplicações. Sobre alguns algoritmos de ordenação, é correto afirmar:
+
+a) O quicksort particiona os itens em dois segmentos separados por um elemento pivô e ordena-os recursivamente.  
+b) O selection sort divide os itens em dois segmentos, ordena-os individualmente e depois mescla-os.  
+c) O insertion sort troca dois elementos adjacentes se estiverem fora de ordem.  
+d) O bubble sort busca um elemento fora de ordem em elementos sucessivos.  
+e) O bubble sort é baseado em passar sempre o menor valor para a primeira posição.
+
+**Resposta:** **a) O quicksort particiona os itens em dois segmentos separados por um elemento pivô e ordena-os recursivamente.**
+
+**Explicação:** Esta é a descrição correta do QuickSort. As outras alternativas confundem as características dos algoritmos.
+
+---
+
+### **F.8 Questões sobre Desenvolvimento de Algoritmos**
+
+**Questão 20:** (ENADE) Avalie se, no contexto da lógica de programação, as etapas para o desenvolvimento de um programa estão corretamente descritas:
+
+I. Estuda-se o enunciado do problema para definir os dados de entrada, o processamento e os dados de saída.  
+II. Usa-se fluxogramas ou português estruturado para descrever o problema com suas soluções.  
+III. O algoritmo é transformado em códigos da linguagem de programação escolhida.
+
+a) I, II e III  b) I e III, apenas  c) II e III, apenas  d) I e II, apenas  e) I, apenas
+
+**Resposta:** **a) I, II e III**
+
+**Explicação:** Todas as etapas estão corretas e representam o processo completo de desenvolvimento: análise → projeto → implementação.
+
+---
+
+### **F.9 Questões Adicionais (Nível Fácil)**
+
+**Questão 21:** Quantas vezes posso chamar a mesma função?
+
+a) 1  b) 4  c) nenhuma  d) quantas quiser  e) 3
+
+**Resposta:** **d) quantas quiser**
+
+**Explicação:** Não há limite para o número de chamadas de uma função, exceto limitações de memória do sistema.
+
+---
+
+**Questão 22:** Em programação, qual é a principal diferença entre recursividade e iteração?
+
+a) A recursividade usa um contador para executar repetições.  
+b) A recursividade utiliza estruturas de laço como for e while.  
+c) A recursividade é uma técnica onde uma função chama a si mesma até atingir um caso base, enquanto a iteração usa estruturas de laço.  
+d) A iteração ocorre apenas em linguagens que suportam estruturas de laço.  
+e) A recursividade é sempre mais eficiente que a iteração.
+
+**Resposta:** **c) A recursividade é uma técnica onde uma função chama a si mesma até atingir um caso base, enquanto a iteração usa estruturas de laço.**
+
+**Explicação:** Esta é a diferença fundamental: recursão usa chamadas de função, iteração usa loops.
+
+---
+
+**Questão 23:** Qual das seguintes afirmações sobre recursividade está correta?
+
+a) Funções recursivas são mais rápidas que funções iterativas em qualquer caso.  
+b) Toda função recursiva deve ter pelo menos dois casos base.  
+c) Uma função recursiva chama a si mesma até atingir um caso base.  
+d) Funções recursivas não podem usar estruturas de dados como pilhas.  
+e) Recursividade sempre leva a um aumento de consumo de memória.
+
+**Resposta:** **c) Uma função recursiva chama a si mesma até atingir um caso base.**
+
+**Explicação:** Esta é a definição correta de recursividade. O caso base é o que interrompe as chamadas recursivas.
+
+---
+
+### **F.10 Resumo dos Conceitos-Chave**
+
+**Principais tópicos abordados nos exercícios:**
+
+1. **Modularização:** Funções vs Procedimentos, escopo de variáveis
+2. **Complexidade:** Big O, análise de loops, casos de complexidade
+3. **Ponteiros:** Definição, uso, vantagens
+4. **Recursividade:** Caso base, pilha de chamadas, comparação com iteração
+5. **Estruturas de Dados:** Árvores binárias, operações básicas
+6. **Algoritmos de Busca:** Linear vs Binária, complexidades
+7. **Algoritmos de Ordenação:** Características dos principais algoritmos
+8. **Desenvolvimento:** Etapas de criação de programas
+
+**Dicas para resolver questões similares:**
+- Sempre identifique o conceito principal sendo testado
+- Para complexidade, conte os loops aninhados
+- Para recursividade, trace a execução passo a passo
+- Para estruturas de dados, visualize a organização dos elementos
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## **APÊNDICE G - BIBLIOGRAFIA E REFERÊNCIAS**
 
 ### **Bibliografia Básica**
 
