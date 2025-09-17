@@ -1,996 +1,768 @@
----
-marp: true
-theme: default
-class: lead
-paginate: true
-backgroundColor: #f8f9fa
-color: #2c3e50
-math: mathjax
-style: |
-  .columns {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-  .small-text { font-size: 0.8em; }
-  .highlight { background: #fff3cd; padding: 10px; border-radius: 8px; border-left: 4px solid #ffc107; }
-  .code-block { background: #f8f9fa; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; }
-  .complexity-table { font-size: 0.7em; }
-  .step-by-step { background: #e3f2fd; padding: 10px; border-radius: 8px; margin: 10px 0; }
-  .math-step { background: #f3e5f5; padding: 8px; border-radius: 6px; margin: 5px 0; }
----
+# Revisão de Análise de Algoritmos
 
-# 📊 Revisão Completa: Análise de Algoritmos
-## Notação Big O e Estruturas de Dados
-
-**Objetivo**: Dominar completamente a análise de complexidade computacional  
-**Foco**: Conceitos fundamentais com exemplos práticos e comparativos  
-**Nível**: Didático e passo a passo para qualquer pessoa entender
+## Índice
+1. [Introdução à Análise de Algoritmos](#introdução-à-análise-de-algoritmos)
+2. [Complexidade de Tempo e Espaço](#complexidade-de-tempo-e-espaço)
+3. [Notação Big-O](#notação-big-o)
+4. [Estruturas de Dados Fundamentais](#estruturas-de-dados-fundamentais)
+5. [Algoritmos de Ordenação](#algoritmos-de-ordenação)
+6. [Algoritmos de Busca](#algoritmos-de-busca)
+7. [**RECURSIVIDADE**](#recursividade)
+8. [Algoritmos em Árvores](#algoritmos-em-árvores)
+9. [Algoritmos de Grafos](#algoritmos-de-grafos)
+10. [Programação Dinâmica](#programação-dinâmica)
+11. [Exercícios Práticos](#exercícios-práticos)
 
 ---
 
-## 🎯 Roteiro de Aprendizagem
+## Introdução à Análise de Algoritmos
 
-### **Parte I: Fundamentos da Análise** 
-1. **O que é Análise de Algoritmos?**
-2. **Por que Big O é Importante?**
-3. **Matemática por Trás da Notação**
+### O que é um Algoritmo?
+Um algoritmo é uma sequência finita de instruções bem definidas e não ambíguas para resolver um problema computacional específico.
 
-### **Parte II: Notação Big O Detalhada**
-4. **Definição Formal e Intuição**
-5. **Classes de Complexidade Principais**
-6. **Exemplos Práticos Passo a Passo**
+### Características de um Bom Algoritmo:
+- **Finitude**: Deve terminar após um número finito de passos
+- **Definição**: Cada passo deve ser precisamente definido
+- **Entrada**: Zero ou mais entradas
+- **Saída**: Uma ou mais saídas
+- **Efetividade**: Cada operação deve ser básica o suficiente para ser executada
 
-### **Parte III: Estruturas de Dados**
-7. **Homogêneas vs Heterogêneas**
-8. **Ponteiros e Referências**
-9. **Análise Comparativa**
-
-### **Parte IV: Aplicação Prática**
-10. **Problemas Computacionais Reais**
-11. **Classificação de Algoritmos**
-12. **Otimização e Trade-offs**
+### Análise de Algoritmos
+A análise de algoritmos é o processo de determinar a quantidade de recursos computacionais (tempo e espaço) que um algoritmo consome.
 
 ---
 
-## 🤔 O que é Análise de Algoritmos?
+## Complexidade de Tempo e Espaço
 
-<div class="highlight">
+### Complexidade de Tempo
+Mede o tempo de execução de um algoritmo em função do tamanho da entrada.
 
-**Definição Simples**: É como medimos a "eficiência" de um algoritmo, ou seja, quanto tempo e memória ele precisa para resolver um problema.
+### Complexidade de Espaço
+Mede a quantidade de memória necessária para executar um algoritmo.
 
-</div>
-
-### **Analogia do Mundo Real**
-
-Imagine que você precisa **organizar 1000 livros** em uma estante:
-
-<div class="columns">
-
-**🐌 Método Lento**
-- Pegar um livro por vez
-- Procurar a posição certa
-- Inserir e reorganizar tudo
-- **Tempo**: Horas inteiras
-
-**⚡ Método Rápido**
-- Separar por categoria primeiro
-- Ordenar cada categoria
-- Montar a estante final
-- **Tempo**: 30 minutos
-
-</div>
-
-**Pergunta Fundamental**: Como o tempo muda quando temos **10.000 livros** ao invés de 1000?
+### Casos de Análise:
+- **Melhor Caso**: Menor tempo possível para qualquer entrada de tamanho n
+- **Caso Médio**: Tempo médio para todas as entradas possíveis de tamanho n
+- **Pior Caso**: Maior tempo possível para qualquer entrada de tamanho n
 
 ---
 
-## 📈 Por que Big O é Crucial?
+## Notação Big-O
 
-### **Cenário Real: Sistema de E-commerce**
+A notação Big-O descreve o comportamento assintótico de algoritmos.
 
-<div class="step-by-step">
+### Classes de Complexidade Comuns:
 
-**Situação**: Você tem um site com produtos para buscar
+| Notação | Nome | Exemplo |
+|---------|------|---------|
+| O(1) | Constante | Acesso a array por índice |
+| O(log n) | Logarítmica | Busca binária |
+| O(n) | Linear | Busca linear |
+| O(n log n) | Linearítmica | Merge Sort, Quick Sort |
+| O(n²) | Quadrática | Bubble Sort, Selection Sort |
+| O(n³) | Cúbica | Multiplicação de matrizes ingênua |
+| O(2ⁿ) | Exponencial | Torres de Hanói |
+| O(n!) | Fatorial | Problema do caixeiro viajante |
 
-</div>
-
-| **Usuários** | **Algoritmo Ruim O(n²)** | **Algoritmo Bom O(log n)** |
-|--------------|---------------------------|----------------------------|
-| 100 produtos | 0.01 segundos | 0.001 segundos |
-| 1.000 produtos | 1 segundo | 0.003 segundos |
-| 10.000 produtos | 100 segundos ⚠️ | 0.013 segundos ✅ |
-| 100.000 produtos | 2.8 horas 💥 | 0.017 segundos ✅ |
-
-<div class="highlight">
-
-**Conclusão**: Um algoritmo ruim pode **quebrar** seu sistema quando ele cresce!
-
-</div>
-
----
-
-## 🧮 Matemática por Trás (Passo a Passo)
-
-### **Etapa 1: O que Estamos Medindo?**
-
-<div class="math-step">
-
-**Entrada**: Tamanho do problema → `n`  
-**Saída**: Número de operações → `f(n)`
-
-</div>
-
-### **Etapa 2: Função de Crescimento**
-
-Para um algoritmo que percorre uma lista:
-
-<div class="math-step">
-
-```
-Lista de tamanho n = [1, 2, 3, ..., n]
-Operações necessárias = n comparações
-Portanto: f(n) = n
-```
-
-</div>
-
-### **Etapa 3: Comportamento Assintótico**
-
-<div class="math-step">
-
-**Pergunta**: Como `f(n)` se comporta quando `n → ∞`?
-
-$$f(n) = 3n^2 + 2n + 1$$
-
-Quando n = 1000:
-- $3n^2 = 3.000.000$ (dominante)
-- $2n = 2.000$ (pequeno)
-- $1 = 1$ (desprezível)
-
-**Resultado**: $f(n) ≈ 3n^2$ → $O(n^2)$
-
-</div>
+### Regras para Análise:
+1. **Constantes são ignoradas**: O(2n) = O(n)
+2. **Termo dominante**: O(n² + n) = O(n²)
+3. **Pior caso**: Consideramos sempre o pior cenário
 
 ---
 
-## 📚 Definição Formal de Big O
+## Estruturas de Dados Fundamentais
 
-<div class="highlight">
+### Array/Vetor
+- **Acesso**: O(1)
+- **Busca**: O(n)
+- **Inserção**: O(n) - no meio, O(1) - no final
+- **Remoção**: O(n) - no meio, O(1) - no final
 
-**Big O Notation**: $f(n) = O(g(n))$ se existem constantes positivas $c$ e $n_0$ tais que:
+### Lista Ligada
+- **Acesso**: O(n)
+- **Busca**: O(n)
+- **Inserção**: O(1) - conhecendo a posição
+- **Remoção**: O(1) - conhecendo a posição
 
-$$f(n) ≤ c \cdot g(n) \text{ para todo } n ≥ n_0$$
+### Pilha (Stack)
+- **Push**: O(1)
+- **Pop**: O(1)
+- **Top**: O(1)
 
-</div>
-
-### **Tradução em Português Simples**
-
-<div class="step-by-step">
-
-"A função $f(n)$ cresce **no máximo** tão rápido quanto $g(n)$, ignorando constantes e termos menores."
-
-</div>
-
-### **Exemplo Matemático Completo**
-
-<div class="math-step">
-
-**Dado**: $f(n) = 5n^2 + 3n + 7$  
-**Queremos provar**: $f(n) = O(n^2)$
-
-**Escolhemos**: $g(n) = n^2$, $c = 6$, $n_0 = 10$
-
-**Verificação**:
-Para $n ≥ 10$:
-$$5n^2 + 3n + 7 ≤ 5n^2 + 3n^2 + 7n^2 = 15n^2$$
-$$15n^2 ≤ 6n^2?$$ ❌
-
-**Correção**: $c = 15$, então $f(n) ≤ 15n^2$ ✅
-
-</div>
+### Fila (Queue)
+- **Enqueue**: O(1)
+- **Dequeue**: O(1)
+- **Front**: O(1)
 
 ---
 
-## 🏆 Classes de Complexidade Principais
+## Algoritmos de Ordenação
 
-### **1. O(1) - Constante**
+### Bubble Sort
+- **Complexidade**: O(n²)
+- **Estável**: Sim
+- **In-place**: Sim
 
-<div class="highlight">
+### Selection Sort
+- **Complexidade**: O(n²)
+- **Estável**: Não
+- **In-place**: Sim
 
-**Característica**: Tempo não muda com o tamanho da entrada
+### Insertion Sort
+- **Complexidade**: O(n²) - pior caso, O(n) - melhor caso
+- **Estável**: Sim
+- **In-place**: Sim
 
-</div>
+### Merge Sort
+- **Complexidade**: O(n log n)
+- **Estável**: Sim
+- **In-place**: Não
 
-<div class="code-block">
+### Quick Sort
+- **Complexidade**: O(n log n) - médio, O(n²) - pior caso
+- **Estável**: Não
+- **In-place**: Sim
 
+---
+
+## Algoritmos de Busca
+
+### Busca Linear
 ```python
-def acessar_primeiro_elemento(lista):
-    return lista[0]  # Sempre 1 operação
-
-# Exemplos:
-print(acessar_primeiro_elemento([1]))           # 1 operação
-print(acessar_primeiro_elemento([1,2,3,4,5]))   # 1 operação  
-print(acessar_primeiro_elemento(range(1000000))) # 1 operação
+def busca_linear(lista, elemento):
+    for i in range(len(lista)):
+        if lista[i] == elemento:
+            return i
+    return -1
 ```
+**Complexidade**: O(n)
 
-</div>
-
-**Gráfico Mental**: Linha horizontal 📈 ————————
-
-**Exemplos Reais**:
-- Acessar elemento de array por índice
-- Operações matemáticas básicas
-- Verificar se lista está vazia
-
----
-
-## 📊 O(log n) - Logarítmica
-
-<div class="highlight">
-
-**Característica**: Cresce muito devagar, dividindo o problema pela metade
-
-</div>
-
-### **Exemplo Passo a Passo: Busca Binária**
-
-<div class="step-by-step">
-
-**Problema**: Encontrar número 7 em `[1, 3, 5, 7, 9, 11, 13, 15]`
-
-</div>
-
-<div class="math-step">
-
-**Passo 1**: Lista = [1, 3, 5, 7, 9, 11, 13, 15], meio = 7  
-**Comparação**: 7 == 7? ✅ **Encontrado!**
-
-**Total de operações**: 1 (sorte!)
-
-</div>
-
-<div class="math-step">
-
-**Caso médio** para buscar 11:  
-**Passo 1**: meio = 7, 11 > 7 → buscar direita [9, 11, 13, 15]  
-**Passo 2**: meio = 11, 11 == 11? ✅ **Encontrado!**
-
-**Total**: 2 operações para 8 elementos
-
-</div>
-
-**Fórmula**: $\log_2(n)$ divisões → $\log_2(8) = 3$ operações máximo
-
----
-
-## 📈 O(n) - Linear
-
-<div class="highlight">
-
-**Característica**: Tempo cresce proporcionalmente ao tamanho da entrada
-
-</div>
-
-<div class="code-block">
-
+### Busca Binária
 ```python
-def encontrar_maior(lista):
-    maior = lista[0]           # 1 operação
-    for elemento in lista:     # n operações
-        if elemento > maior:   # 1 comparação por elemento
-            maior = elemento   # às vezes 1 atribuição
-    return maior
-
-# Análise matemática:
-# f(n) = 1 + n + n + (no máximo n) = 1 + 3n = O(n)
-```
-
-</div>
-
-### **Visualização do Crescimento**
-
-| **n** | **Operações** | **Tempo (ms)** |
-|-------|---------------|----------------|
-| 10 | 31 | 0.01 |
-| 100 | 301 | 0.1 |
-| 1.000 | 3.001 | 1.0 |
-| 10.000 | 30.001 | 10.0 |
-
-**Padrão**: Dobrar entrada → Dobrar tempo
-
----
-
-## 🔄 O(n log n) - Linearítmica
-
-<div class="highlight">
-
-**Característica**: Muito comum em algoritmos de ordenação eficientes
-
-</div>
-
-### **Exemplo: Merge Sort Explicado**
-
-<div class="step-by-step">
-
-**Estratégia**: "Dividir para Conquistar"
-
-</div>
-
-<div class="math-step">
-
-**Divisão**: Quebrar array em 2 até ter elementos únicos  
-**Níveis**: $\log_2(n)$ níveis de divisão  
-**Junção**: Cada nível processa todos os $n$ elementos  
-**Total**: $n \times \log_2(n)$ operações
-
-</div>
-
-<div class="code-block">
-
-```python
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr                    # O(1)
-    
-    meio = len(arr) // 2
-    esquerda = merge_sort(arr[:meio])   # T(n/2)
-    direita = merge_sort(arr[meio:])    # T(n/2)
-    
-    return merge(esquerda, direita)     # O(n)
-
-# Recorrência: T(n) = 2T(n/2) + O(n) = O(n log n)
-```
-
-</div>
-
----
-
-## 💥 O(n²) - Quadrática
-
-<div class="highlight">
-
-**Característica**: Cada elemento é comparado com todos os outros
-
-</div>
-
-### **Exemplo Clássico: Bubble Sort**
-
-<div class="code-block">
-
-```python
-def bubble_sort(lista):
-    n = len(lista)
-    for i in range(n):          # Loop externo: n vezes
-        for j in range(n-1):    # Loop interno: n-1 vezes
-            if lista[j] > lista[j+1]:
-                # Troca elementos
-                lista[j], lista[j+1] = lista[j+1], lista[j]
-    return lista
-
-# Análise: n × (n-1) = n² - n = O(n²)
-```
-
-</div>
-
-### **Crescimento Explosivo**
-
-| **n** | **n²** | **Tempo Real** |
-|-------|--------|----------------|
-| 10 | 100 | 0.01s |
-| 100 | 10.000 | 1s |
-| 1.000 | 1.000.000 | 100s |
-| 10.000 | 100.000.000 | 3 horas! |
-
----
-
-## 🚀 O(2ⁿ) - Exponencial
-
-<div class="highlight">
-
-**Característica**: Cresce exponencialmente - muito perigoso!
-
-</div>
-
-### **Exemplo: Fibonacci Recursivo Ingênuo**
-
-<div class="code-block">
-
-```python
-def fibonacci(n):
-    if n <= 1:
-        return n                    # Caso base
-    return fibonacci(n-1) + fibonacci(n-2)  # 2 chamadas recursivas
-
-# Análise: T(n) = T(n-1) + T(n-2) + O(1) ≈ O(2^n)
-```
-
-</div>
-
-### **Árvore de Recursão para fib(5)**
-
-<div class="math-step">
-
-```
-                fib(5)
-              /        \
-         fib(4)          fib(3)
-        /      \        /      \
-   fib(3)   fib(2)  fib(2)   fib(1)
-   /   \    /   \   /   \
-fib(2) fib(1) fib(1) fib(0) fib(1) fib(0)
-```
-
-**Operações**: 2⁵ ≈ 32 chamadas para calcular fib(5)!
-
-</div>
-
----
-
-## 📊 Comparação Visual das Complexidades
-
-### **Gráfico de Crescimento**
-
-```
-Operações |
-    10⁶   |                                    ●O(2ⁿ)
-          |                                   /
-    10⁵   |                              ●O(n²)
-          |                             /
-    10⁴   |                        ●O(n log n)
-          |                      /
-    10³   |              ●O(n)
-          |            /
-    10²   |      ●O(log n)
-          |   ●O(1)
-    10¹   |●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━► n
-          0   10²  10³  10⁴  10⁵  10⁶  10⁷
-```
-
-### **Regra de Ouro**
-
-<div class="highlight">
-
-**Para n = 1.000.000**:
-- O(1): 1 operação ✅
-- O(log n): 20 operações ✅
-- O(n): 1.000.000 operações ✅
-- O(n log n): 20.000.000 operações ⚠️
-- O(n²): 1.000.000.000.000 operações ❌
-- O(2ⁿ): Impossível! 💥
-
-</div>
-
----
-
-## 🏗️ Estruturas de Dados: Homogêneas
-
-<div class="highlight">
-
-**Definição**: Estruturas que armazenam elementos do **mesmo tipo**
-
-</div>
-
-### **1. Arrays (Vetores)**
-
-<div class="code-block">
-
-```c
-// C - Array homogêneo
-int numeros[5] = {10, 20, 30, 40, 50};
-float notas[3] = {8.5, 9.0, 7.5};
-
-// Todos elementos são do mesmo tipo!
-```
-
-```python
-# Python - Lista homogênea (por convenção)
-idades = [25, 30, 18, 45, 33]  # Todos inteiros
-salarios = [2500.0, 3200.0, 1800.0]  # Todos float
-```
-
-</div>
-
-### **Análise de Complexidade**
-
-| **Operação** | **Complexidade** | **Explicação** |
-|--------------|------------------|----------------|
-| **Acesso** | O(1) | `arr[i]` - cálculo direto |
-| **Busca** | O(n) | Precisa percorrer todos |
-| **Inserção** | O(n) | Shift de elementos |
-| **Remoção** | O(n) | Shift de elementos |
-
----
-
-## 🧩 Estruturas de Dados: Heterogêneas
-
-<div class="highlight">
-
-**Definição**: Estruturas que armazenam elementos de **tipos diferentes**
-
-</div>
-
-### **1. Structs (C) / Classes (Python)**
-
-<div class="code-block">
-
-```c
-// C - Struct heterogênea
-struct Pessoa {
-    char nome[50];     // String
-    int idade;         // Inteiro
-    float salario;     // Float
-    int ativo;         // Boolean (0/1)
-};
-
-struct Pessoa funcionario = {"João", 30, 5000.0, 1};
-```
-
-```python
-# Python - Classe heterogênea
-class Pessoa:
-    def __init__(self, nome, idade, salario, ativo):
-        self.nome = nome       # String
-        self.idade = idade     # Inteiro  
-        self.salario = salario # Float
-        self.ativo = ativo     # Boolean
-
-funcionario = Pessoa("João", 30, 5000.0, True)
-```
-
-</div>
-
----
-
-## 🔗 Ponteiros e Referências
-
-<div class="highlight">
-
-**Conceito**: Variáveis que "apontam" para endereços de memória
-
-</div>
-
-### **Analogia Simples**
-
-<div class="step-by-step">
-
-**Ponteiro** = Endereço de uma casa  
-**Valor** = O que tem dentro da casa  
-**Desreferenciar** = Ir até a casa e ver o que tem lá
-
-</div>
-
-### **Exemplo Prático em C**
-
-<div class="code-block">
-
-```c
-#include <stdio.h>
-
-int main() {
-    int numero = 42;           // Variável normal
-    int *ponteiro = &numero;   // Ponteiro aponta para numero
-    
-    printf("Valor: %d\n", numero);        // 42
-    printf("Endereço: %p\n", &numero);    // 0x7fff...
-    printf("Ponteiro: %p\n", ponteiro);   // 0x7fff... (mesmo)
-    printf("*Ponteiro: %d\n", *ponteiro); // 42 (desreferencia)
-    
-    *ponteiro = 100;           // Muda valor através do ponteiro
-    printf("Novo valor: %d\n", numero);   // 100
-    
-    return 0;
-}
-```
-
-</div>
-
----
-
-## 🔍 Listas Ligadas: Ponteiros em Ação
-
-### **Estrutura Passo a Passo**
-
-<div class="math-step">
-
-**Nó da Lista**:
-```c
-struct No {
-    int dados;        // Informação armazenada
-    struct No *prox;  // Ponteiro para próximo nó
-};
-```
-
-</div>
-
-### **Visualização Mental**
-
-<div class="code-block">
-
-```
-[10|●]──→[20|●]──→[30|●]──→[NULL]
- ^        ^        ^        ^
- |        |        |        |
-nó1     nó2      nó3    fim da lista
-```
-
-</div>
-
-### **Análise de Complexidade**
-
-| **Operação** | **Array** | **Lista Ligada** | **Por quê?** |
-|--------------|-----------|------------------|--------------|
-| **Acesso** | O(1) | O(n) | Lista: precisa percorrer |
-| **Inserção (início)** | O(n) | O(1) | Lista: só muda ponteiros |
-| **Busca** | O(n) | O(n) | Ambos: percorrer sequencial |
-| **Memória** | Contígua | Fragmentada | Array: bloco único |
-
----
-
-## 🧮 Análise Matemática Completa
-
-### **Exemplo: Algoritmo de Busca**
-
-<div class="step-by-step">
-
-**Problema**: Encontrar elemento em lista não ordenada
-
-</div>
-
-<div class="math-step">
-
-**Cenário 1 - Melhor Caso**: Elemento está na primeira posição  
-$$T_{melhor}(n) = 1 = O(1)$$
-
-**Cenário 2 - Pior Caso**: Elemento está na última posição  
-$$T_{pior}(n) = n = O(n)$$
-
-**Cenário 3 - Caso Médio**: Elemento está em posição aleatória  
-$$T_{médio}(n) = \frac{1 + 2 + 3 + ... + n}{n} = \frac{n(n+1)/2}{n} = \frac{n+1}{2} = O(n)$$
-
-</div>
-
-### **Interpretação**
-
-<div class="highlight">
-
-Mesmo no caso médio, a complexidade é **O(n)** porque ignoramos constantes na notação Big O.
-
-</div>
-
----
-
-## 🎯 Problemas Computacionais por Classe
-
-### **Classe O(1) - Problemas Constantes**
-
-<div class="step-by-step">
-
-**Características**: Solução não depende do tamanho da entrada
-
-</div>
-
-**Exemplos Práticos**:
-- Calcular área de círculo: `A = π × r²`
-- Verificar se número é par: `n % 2 == 0`
-- Acessar elemento de array: `arr[index]`
-- Operações em pilha: `push()`, `pop()`
-
-<div class="code-block">
-
-```python
-def eh_par(numero):
-    return numero % 2 == 0  # Sempre 1 operação
-
-# Funciona igual para qualquer número:
-print(eh_par(5))          # 1 operação
-print(eh_par(999999999))  # 1 operação
-```
-
-</div>
-
----
-
-### **Classe O(log n) - Problemas Logarítmicos**
-
-<div class="step-by-step">
-
-**Características**: Dividem problema pela metade a cada passo
-
-</div>
-
-**Exemplos Práticos**:
-- Busca binária em array ordenado
-- Operações em árvore binária balanceada
-- Algoritmos "dividir para conquistar"
-
-<div class="code-block">
-
-```python
-def busca_binaria(lista, alvo):
+def busca_binaria(lista, elemento):
     esquerda, direita = 0, len(lista) - 1
     
     while esquerda <= direita:
         meio = (esquerda + direita) // 2
-        
-        if lista[meio] == alvo:
+        if lista[meio] == elemento:
             return meio
-        elif lista[meio] < alvo:
-            esquerda = meio + 1      # Elimina metade esquerda
+        elif lista[meio] < elemento:
+            esquerda = meio + 1
         else:
-            direita = meio - 1       # Elimina metade direita
+            direita = meio - 1
     
-    return -1  # Não encontrado
-
-# Máximo log₂(n) iterações
+    return -1
 ```
-
-</div>
+**Complexidade**: O(log n)
 
 ---
 
-### **Classe O(n) - Problemas Lineares**
+# RECURSIVIDADE
 
-<div class="step-by-step">
+## Conceitos Fundamentais
 
-**Características**: Precisam examinar cada elemento uma vez
+### O que é Recursividade?
+Recursividade é uma técnica de programação onde uma função chama a si mesma para resolver subproblemas menores do mesmo tipo. É uma alternativa elegante à iteração para muitos problemas.
 
-</div>
+### Elementos de uma Função Recursiva:
 
-**Exemplos Práticos**:
-- Encontrar maior elemento em lista
-- Somar todos elementos de array
-- Busca linear em lista não ordenada
-- Percorrer lista ligada
+#### 1. Caso Base (Base Case)
+A condição que para a recursão. Sem ele, a função executaria infinitamente.
 
-<div class="code-block">
+#### 2. Caso Recursivo (Recursive Case)
+A parte onde a função chama a si mesma com um problema menor.
 
+#### 3. Progresso em Direção ao Caso Base
+Cada chamada recursiva deve nos aproximar do caso base.
+
+### Estrutura Básica:
 ```python
-def encontrar_maior_menor(lista):
+def funcao_recursiva(parametro):
+    # Caso base
+    if condicao_parada:
+        return valor_base
+    
+    # Caso recursivo
+    return funcao_recursiva(parametro_menor)
+```
+
+## Exemplos Clássicos de Recursividade
+
+### 1. Fatorial
+O fatorial de n (n!) é o produto de todos os números inteiros positivos de 1 até n.
+
+**Definição Matemática:**
+- n! = n × (n-1) × (n-2) × ... × 1
+- 0! = 1 (por definição)
+
+**Implementação Recursiva:**
+```python
+def fatorial(n):
+    # Caso base
+    if n == 0 or n == 1:
+        return 1
+    
+    # Caso recursivo
+    return n * fatorial(n - 1)
+
+# Exemplo de uso
+print(fatorial(5))  # Output: 120
+```
+
+**Análise de Complexidade:**
+- Tempo: O(n)
+- Espaço: O(n) - devido à pilha de chamadas
+
+**Trace de Execução para fatorial(4):**
+```
+fatorial(4)
+├── 4 * fatorial(3)
+    ├── 3 * fatorial(2)
+        ├── 2 * fatorial(1)
+            └── 1 (caso base)
+        └── 2 * 1 = 2
+    └── 3 * 2 = 6
+└── 4 * 6 = 24
+```
+
+### 2. Sequência de Fibonacci
+A sequência de Fibonacci é definida como:
+- F(0) = 0
+- F(1) = 1
+- F(n) = F(n-1) + F(n-2) para n > 1
+
+**Implementação Recursiva Simples:**
+```python
+def fibonacci(n):
+    # Casos base
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    
+    # Caso recursivo
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Exemplo
+print(fibonacci(6))  # Output: 8
+```
+
+**Análise de Complexidade:**
+- Tempo: O(2ⁿ) - muito ineficiente!
+- Espaço: O(n) - profundidade da recursão
+
+**Fibonacci Otimizado (Memoização):**
+```python
+def fibonacci_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    
+    memo[n] = fibonacci_memo(n - 1, memo) + fibonacci_memo(n - 2, memo)
+    return memo[n]
+```
+
+**Complexidade Otimizada:**
+- Tempo: O(n)
+- Espaço: O(n)
+
+### 3. Torres de Hanói
+Problema clássico que envolve mover discos entre três torres seguindo regras específicas.
+
+**Regras:**
+1. Só pode mover um disco por vez
+2. Só pode mover o disco do topo de uma torre
+3. Não pode colocar um disco maior sobre um menor
+
+**Implementação:**
+```python
+def torres_hanoi(n, origem, destino, auxiliar):
+    if n == 1:
+        print(f"Mover disco de {origem} para {destino}")
+        return
+    
+    # Mover n-1 discos para torre auxiliar
+    torres_hanoi(n - 1, origem, auxiliar, destino)
+    
+    # Mover o disco maior para o destino
+    print(f"Mover disco de {origem} para {destino}")
+    
+    # Mover n-1 discos da auxiliar para o destino
+    torres_hanoi(n - 1, auxiliar, destino, origem)
+
+# Exemplo
+torres_hanoi(3, 'A', 'C', 'B')
+```
+
+**Complexidade:** O(2ⁿ)
+
+## Recursividade em Estruturas de Dados
+
+### 1. Soma de Elementos em Lista
+```python
+def soma_lista(lista):
+    # Caso base: lista vazia
     if not lista:
-        return None, None
+        return 0
     
-    maior = menor = lista[0]    # 2 operações
-    
-    for elemento in lista[1:]:  # n-1 iterações
-        if elemento > maior:    # 1 comparação
-            maior = elemento    # às vezes 1 atribuição
-        if elemento < menor:    # 1 comparação
-            menor = elemento    # às vezes 1 atribuição
-    
-    return maior, menor
+    # Caso recursivo
+    return lista[0] + soma_lista(lista[1:])
 
-# Total: 2 + (n-1) × 2 = 2n = O(n)
+# Exemplo
+print(soma_lista([1, 2, 3, 4, 5]))  # Output: 15
 ```
 
-</div>
+### 2. Busca em Lista
+```python
+def busca_recursiva(lista, elemento, indice=0):
+    # Caso base: elemento não encontrado
+    if indice >= len(lista):
+        return -1
+    
+    # Caso base: elemento encontrado
+    if lista[indice] == elemento:
+        return indice
+    
+    # Caso recursivo
+    return busca_recursiva(lista, elemento, indice + 1)
+```
 
----
+### 3. Inversão de String
+```python
+def inverter_string(s):
+    # Caso base
+    if len(s) <= 1:
+        return s
+    
+    # Caso recursivo
+    return s[-1] + inverter_string(s[:-1])
 
-### **Classe O(n²) - Problemas Quadráticos**
+# Exemplo
+print(inverter_string("hello"))  # Output: "olleh"
+```
 
-<div class="step-by-step">
+### 4. Contagem de Dígitos
+```python
+def contar_digitos(n):
+    # Caso base
+    if n < 10:
+        return 1
+    
+    # Caso recursivo
+    return 1 + contar_digitos(n // 10)
 
-**Características**: Comparam cada elemento com todos os outros
+# Exemplo
+print(contar_digitos(12345))  # Output: 5
+```
 
-</div>
+## Recursividade vs Iteração
 
-**Exemplos Práticos**:
-- Bubble Sort, Selection Sort, Insertion Sort
-- Encontrar todos os pares em lista
-- Multiplicação de matrizes simples
-- Verificar duplicatas (algoritmo ingênuo)
+### Quando Usar Recursividade:
+✅ **Problemas que têm estrutura recursiva natural**
+- Árvores e grafos
+- Fractais
+- Dividir e conquistar
 
-<div class="code-block">
+✅ **Problemas que podem ser quebrados em subproblemas menores**
+- Torres de Hanói
+- Busca em profundidade
+
+✅ **Quando a solução recursiva é mais clara e elegante**
+
+### Quando Evitar Recursividade:
+❌ **Problemas com alta sobreposição de subproblemas** (sem memoização)
+- Fibonacci ingênuo
+
+❌ **Quando a profundidade pode ser muito grande**
+- Risco de stack overflow
+
+❌ **Problemas simples onde iteração é mais eficiente**
+
+### Comparação: Fatorial Recursivo vs Iterativo
+
+**Recursivo:**
+```python
+def fatorial_recursivo(n):
+    if n <= 1:
+        return 1
+    return n * fatorial_recursivo(n - 1)
+```
+
+**Iterativo:**
+```python
+def fatorial_iterativo(n):
+    resultado = 1
+    for i in range(1, n + 1):
+        resultado *= i
+    return resultado
+```
+
+**Análise:**
+- **Recursivo**: Mais legível, mas usa mais memória
+- **Iterativo**: Mais eficiente em memória, mas menos intuitivo
+
+## Tipos Especiais de Recursividade
+
+### 1. Recursividade Linear
+Cada chamada recursiva gera apenas uma nova chamada.
+```python
+def fatorial(n):  # Exemplo já visto
+    if n <= 1:
+        return 1
+    return n * fatorial(n - 1)
+```
+
+### 2. Recursividade Binária
+Cada chamada recursiva gera duas novas chamadas.
+```python
+def fibonacci(n):  # Exemplo já visto
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```
+
+### 3. Recursividade de Cauda (Tail Recursion)
+A chamada recursiva é a última operação da função.
+```python
+def fatorial_cauda(n, acumulador=1):
+    if n <= 1:
+        return acumulador
+    return fatorial_cauda(n - 1, n * acumulador)
+```
+
+**Vantagem:** Pode ser otimizada pelo compilador para usar espaço constante.
+
+### 4. Recursividade Mútua
+Duas ou mais funções se chamam mutuamente.
+```python
+def eh_par(n):
+    if n == 0:
+        return True
+    return eh_impar(n - 1)
+
+def eh_impar(n):
+    if n == 0:
+        return False
+    return eh_par(n - 1)
+```
+
+## Técnicas de Otimização
+
+### 1. Memoização
+Armazenar resultados de chamadas anteriores para evitar recálculos.
 
 ```python
-def encontrar_pares_soma(lista, soma_alvo):
-    pares = []
-    n = len(lista)
+# Fibonacci com memoização usando decorador
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fibonacci_otimizado(n):
+    if n <= 1:
+        return n
+    return fibonacci_otimizado(n - 1) + fibonacci_otimizado(n - 2)
+```
+
+### 2. Programação Dinâmica Bottom-Up
+Construir a solução de baixo para cima.
+
+```python
+def fibonacci_dp(n):
+    if n <= 1:
+        return n
     
-    for i in range(n):           # n iterações
-        for j in range(i+1, n):  # n-1, n-2, ..., 1 iterações
-            if lista[i] + lista[j] == soma_alvo:
-                pares.append((lista[i], lista[j]))
+    dp = [0] * (n + 1)
+    dp[1] = 1
     
-    return pares
-
-# Total: n × (n-1) / 2 = O(n²)
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+    
+    return dp[n]
 ```
 
-</div>
+## Problemas Comuns e Debugging
 
----
+### 1. Stack Overflow
+**Causa:** Recursão muito profunda ou sem caso base adequado.
 
-## ⚡ Otimização e Trade-offs
-
-### **Caso Prático: Sistema de Busca**
-
-<div class="highlight">
-
-**Cenário**: Você tem um site com 1 milhão de produtos
-
-</div>
-
-<div class="columns">
-
-**❌ Abordagem Ingênua**
+**Solução:**
 ```python
-def buscar_produto(produtos, nome):
-    for produto in produtos:  # O(n)
-        if produto.nome == nome:
-            return produto
-    return None
+import sys
+sys.setrecursionlimit(10000)  # Aumentar limite (use com cuidado)
 ```
 
-**✅ Abordagem Otimizada**
+### 2. Casos Base Incorretos
+**Problema:**
 ```python
-# Pré-processamento O(n log n)
-produtos_dict = {p.nome: p for p in produtos}
-
-def buscar_produto(nome):  # O(1)
-    return produtos_dict.get(nome)
+def conta_regressiva(n):
+    print(n)
+    return conta_regressiva(n - 1)  # Sem caso base!
 ```
 
-</div>
+**Solução:**
+```python
+def conta_regressiva(n):
+    if n <= 0:  # Caso base
+        return
+    print(n)
+    conta_regressiva(n - 1)
+```
 
-### **Trade-off Analisado**
+### 3. Parâmetros Incorretos
+Certifique-se de que cada chamada recursiva progride em direção ao caso base.
 
-| **Aspecto** | **Busca Linear** | **Hash Table** |
-|-------------|------------------|----------------|
-| **Busca** | O(n) | O(1) |
-| **Memória** | O(n) | O(n) |
-| **Pré-processamento** | O(1) | O(n) |
-| **Inserção** | O(1) | O(1) |
+## Exercícios Práticos de Recursividade
 
----
+### Nível Básico:
 
-## 🎮 Exercício Prático Completo
+1. **Potência:** Calcule x^n usando recursividade.
+2. **Soma de Dígitos:** Some todos os dígitos de um número.
+3. **Máximo em Lista:** Encontre o maior elemento de uma lista recursivamente.
 
-### **Problema**: Sistema de Notas de Alunos
+### Nível Intermediário:
 
-<div class="step-by-step">
+4. **Palíndromo:** Verifique se uma string é palíndromo.
+5. **Busca Binária:** Implemente busca binária recursiva.
+6. **GCD/MDC:** Calcule o máximo divisor comum usando algoritmo de Euclides.
 
-**Requisitos**:
-1. Armazenar notas de 1000 alunos
-2. Calcular média da turma
-3. Encontrar maior e menor nota
-4. Buscar nota de aluno específico
+### Nível Avançado:
 
-</div>
+7. **Permutações:** Gere todas as permutações de uma string.
+8. **Subconjuntos:** Gere todos os subconjuntos de um conjunto.
+9. **N-Queens:** Resolva o problema das N rainhas.
 
-### **Solução Passo a Passo**
-
-<div class="code-block">
+### Soluções dos Exercícios:
 
 ```python
-class SistemaNotas:
-    def __init__(self):
-        self.notas = {}  # Hash table: O(1) para busca
-        
-    def adicionar_nota(self, aluno, nota):  # O(1)
-        self.notas[aluno] = nota
-        
-    def calcular_media(self):  # O(n)
-        if not self.notas:
-            return 0
-        return sum(self.notas.values()) / len(self.notas)
-        
-    def encontrar_extremos(self):  # O(n)
-        if not self.notas:
-            return None, None
-        valores = list(self.notas.values())
-        return min(valores), max(valores)
-        
-    def buscar_nota(self, aluno):  # O(1)
-        return self.notas.get(aluno, "Aluno não encontrado")
+# 1. Potência
+def potencia(x, n):
+    if n == 0:
+        return 1
+    return x * potencia(x, n - 1)
+
+# 2. Soma de Dígitos
+def soma_digitos(n):
+    if n < 10:
+        return n
+    return (n % 10) + soma_digitos(n // 10)
+
+# 3. Máximo em Lista
+def maximo_lista(lista):
+    if len(lista) == 1:
+        return lista[0]
+    
+    max_resto = maximo_lista(lista[1:])
+    return lista[0] if lista[0] > max_resto else max_resto
+
+# 4. Palíndromo
+def eh_palindromo(s):
+    if len(s) <= 1:
+        return True
+    
+    if s[0] != s[-1]:
+        return False
+    
+    return eh_palindromo(s[1:-1])
+
+# 5. Busca Binária Recursiva
+def busca_binaria_rec(lista, elemento, inicio=0, fim=None):
+    if fim is None:
+        fim = len(lista) - 1
+    
+    if inicio > fim:
+        return -1
+    
+    meio = (inicio + fim) // 2
+    
+    if lista[meio] == elemento:
+        return meio
+    elif lista[meio] < elemento:
+        return busca_binaria_rec(lista, elemento, meio + 1, fim)
+    else:
+        return busca_binaria_rec(lista, elemento, inicio, meio - 1)
+
+# 6. GCD (Algoritmo de Euclides)
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
 ```
 
-</div>
+---
 
-### **Análise de Complexidade**
+## Algoritmos em Árvores
 
-<div class="math-step">
+### Árvore Binária
+Uma árvore onde cada nó tem no máximo dois filhos.
 
-**Complexidade Total**:
-- Adicionar 1000 notas: 1000 × O(1) = O(n)
-- Calcular média: O(n)
-- Encontrar extremos: O(n)
-- Buscar nota: O(1)
+### Traversal de Árvore:
+- **Inorder**: Esquerda → Raiz → Direita
+- **Preorder**: Raiz → Esquerda → Direita
+- **Postorder**: Esquerda → Direita → Raiz
 
-**Complexidade Dominante**: O(n) para operações que percorrem todos os dados
+```python
+class No:
+    def __init__(self, valor):
+        self.valor = valor
+        self.esquerda = None
+        self.direita = None
 
-</div>
+def inorder(raiz):
+    if raiz:
+        inorder(raiz.esquerda)
+        print(raiz.valor)
+        inorder(raiz.direita)
+```
 
 ---
 
-## 📊 Resumo Comparativo Final
+## Algoritmos de Grafos
 
-### **Guia de Decisão Rápida**
+### Representação:
+- **Lista de Adjacência**: Mais eficiente em espaço
+- **Matriz de Adjacência**: Mais eficiente para consultas
 
-| **Se você precisa de...** | **Use...** | **Complexidade** |
-|---------------------------|------------|------------------|
-| Acesso rápido por posição | Array | O(1) |
-| Busca rápida por chave | Hash Table | O(1) |
-| Dados sempre ordenados | Árvore Balanceada | O(log n) |
-| Inserção/remoção frequente | Lista Ligada | O(1) início |
-| Menor uso de memória | Array | Menos overhead |
+### Busca em Profundidade (DFS):
+```python
+def dfs(grafo, inicio, visitados=set()):
+    visitados.add(inicio)
+    print(inicio)
+    
+    for vizinho in grafo[inicio]:
+        if vizinho not in visitados:
+            dfs(grafo, vizinho, visitados)
+```
 
-### **Algoritmos por Problema**
+### Busca em Largura (BFS):
+```python
+from collections import deque
 
-| **Problema** | **Algoritmo Recomendado** | **Complexidade** |
-|--------------|---------------------------|------------------|
-| Ordenação pequena (n < 50) | Insertion Sort | O(n²) |
-| Ordenação geral | Merge/Quick Sort | O(n log n) |
-| Busca em dados ordenados | Busca Binária | O(log n) |
-| Busca em dados não ordenados | Hash Table | O(1) |
-| Menor caminho em grafo | Dijkstra | O(n log n) |
-
----
-
-## 🎯 Checklist de Domínio
-
-### ✅ **Você deve saber identificar**:
-- [ ] **O(1)**: Operações que não dependem do tamanho
-- [ ] **O(log n)**: Algoritmos que dividem o problema
-- [ ] **O(n)**: Algoritmos que percorrem dados uma vez
-- [ ] **O(n log n)**: Algoritmos dividir-e-conquistar eficientes
-- [ ] **O(n²)**: Algoritmos com loops aninhados
-- [ ] **O(2ⁿ)**: Algoritmos exponenciais (evitar!)
-
-### ✅ **Você deve saber escolher**:
-- [ ] Array vs Lista Ligada para diferentes cenários
-- [ ] Estruturas homogêneas vs heterogêneas
-- [ ] Trade-offs entre tempo e memória
-- [ ] Quando otimizar e quando não vale a pena
-
-### ✅ **Você deve saber analisar**:
-- [ ] Contar operações em loops
-- [ ] Identificar casos melhor/médio/pior
-- [ ] Calcular complexidade de funções recursivas
-- [ ] Prever performance com dados grandes
+def bfs(grafo, inicio):
+    visitados = set()
+    fila = deque([inicio])
+    
+    while fila:
+        no = fila.popleft()
+        if no not in visitados:
+            visitados.add(no)
+            print(no)
+            fila.extend(grafo[no])
+```
 
 ---
 
-## 🚀 Próximos Passos
+## Programação Dinâmica
 
-### **Para Praticar Mais**:
-1. **Implemente** cada algoritmo mostrado
-2. **Meça** tempo real de execução
-3. **Compare** com as previsões teóricas
-4. **Otimize** algoritmos O(n²) para O(n log n)
+### Princípios:
+1. **Subestrutura Ótima**: A solução ótima contém soluções ótimas de subproblemas
+2. **Sobreposição de Subproblemas**: Os mesmos subproblemas são resolvidos múltiplas vezes
 
-### **Para Aprofundar**:
-- Análise amortizada
-- Complexidade de espaço
-- Algoritmos paralelos
-- Estruturas de dados avançadas
-
-<div class="highlight">
-
-**Lembre-se**: A análise de algoritmos é uma **ferramenta de previsão**. Use-a para tomar decisões informadas sobre qual algoritmo escolher antes mesmo de implementar!
-
-</div>
+### Exemplo: Problema da Mochila
+```python
+def mochila(pesos, valores, capacidade):
+    n = len(pesos)
+    dp = [[0 for _ in range(capacidade + 1)] for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for w in range(1, capacidade + 1):
+            if pesos[i-1] <= w:
+                dp[i][w] = max(
+                    valores[i-1] + dp[i-1][w - pesos[i-1]],
+                    dp[i-1][w]
+                )
+            else:
+                dp[i][w] = dp[i-1][w]
+    
+    return dp[n][capacidade]
+```
 
 ---
 
-## 🏁 Conclusão
+## Exercícios Práticos
 
-<div class="step-by-step">
+### Exercício 1: Análise de Complexidade
+Determine a complexidade dos seguintes códigos:
 
-**Você agora domina**:
-✅ Notação Big O e suas classes principais  
-✅ Diferenças entre estruturas de dados  
-✅ Como analisar algoritmos matematicamente  
-✅ Trade-offs em decisões de design  
-✅ Problemas computacionais reais
+```python
+# a)
+for i in range(n):
+    for j in range(n):
+        print(i, j)
 
-</div>
+# b)
+def busca_binaria(lista, x):
+    # ... implementação da busca binária
 
-<div class="highlight">
+# c)
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+```
 
-**Mensagem Final**: A análise de algoritmos não é apenas teoria acadêmica - é uma **ferramenta prática** que todo programador deve dominar para criar sistemas eficientes e escaláveis!
+### Exercício 2: Implementação
+Implemente um algoritmo de ordenação merge sort e analise sua complexidade.
 
-</div>
+### Exercício 3: Recursividade Avançada
+Implemente uma função recursiva que calcule o número de formas de subir uma escada com n degraus, onde você pode subir 1 ou 2 degraus por vez.
 
-**Próxima Etapa**: Aplicar esses conceitos em projetos reais e medir a diferença na prática! 🎯
+### Exercício 4: Programação Dinâmica
+Resolva o problema de encontrar a maior subsequência crescente em um array.
+
+---
+
+## Resumo dos Pontos Principais
+
+### Complexidade:
+- **O(1)**: Constante - ideal
+- **O(log n)**: Logarítmica - muito boa
+- **O(n)**: Linear - boa
+- **O(n log n)**: Linearítmica - aceitável
+- **O(n²)**: Quadrática - evitar para grandes entradas
+- **O(2ⁿ)**: Exponencial - evitar
+
+### Estratégias de Algoritmos:
+1. **Força Bruta**: Testar todas as possibilidades
+2. **Dividir e Conquistar**: Quebrar em subproblemas menores
+3. **Programação Dinâmica**: Resolver subproblemas e reutilizar soluções
+4. **Algoritmos Gulosos**: Fazer escolhas localmente ótimas
+5. **Backtracking**: Explorar todas as possibilidades com retrocesso
+
+### Recursividade - Pontos Chave:
+- **Sempre defina um caso base claro**
+- **Certifique-se de que a recursão progride em direção ao caso base**
+- **Considere o uso de memoização para otimizar**
+- **Avalie se uma solução iterativa seria mais eficiente**
+- **Cuidado com o limite da pilha de recursão**
+
+### Dicas para Análise:
+1. Identifique as operações dominantes
+2. Conte quantas vezes elas são executadas
+3. Expresse em função do tamanho da entrada
+4. Simplifique usando regras da notação Big-O
+
+---
+
+## Bibliografia e Recursos Adicionais
+
+### Livros Recomendados:
+- "Introduction to Algorithms" - Cormen, Leiserson, Rivest, Stein
+- "Algorithms" - Robert Sedgewick
+- "Algorithm Design" - Jon Kleinberg, Éva Tardos
+
+### Recursos Online:
+- LeetCode: Prática de algoritmos
+- HackerRank: Desafios de programação
+- Coursera/edX: Cursos de algoritmos
+
+### Visualizadores:
+- VisuAlgo: Visualização de algoritmos
+- Algorithm Visualizer: Animações interativas
+
+---
+
+*Este documento serve como um guia completo para revisão de algoritmos e análise de complexidade, com foco especial em recursividade. Continue praticando e explorando novos problemas para aprofundar seu conhecimento!*
