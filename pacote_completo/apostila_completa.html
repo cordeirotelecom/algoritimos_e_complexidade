@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apostila de Algoritmos e Análise de Complexidade - Prof. Vagner Cordeiro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header h2 {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .author-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .chapter {
+            background: white;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .chapter-header {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .chapter h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .chapter h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin: 20px 0 10px 0;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+        
+        .macete {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .macete h4 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .exercise {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .complexity-table {
+            margin: 20px 0;
+        }
+        
+        .complexity-table .excellent { background: #d4edda; color: #155724; }
+        .complexity-table .good { background: #d1ecf1; color: #0c5460; }
+        .complexity-table .warning { background: #fff3cd; color: #856404; }
+        .complexity-table .danger { background: #f8d7da; color: #721c24; }
+        
+        .navigation {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            width: 300px;
+        }
+        
+        .navigation h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+        
+        .navigation ul {
+            list-style: none;
+        }
+        
+        .navigation li {
+            margin: 8px 0;
+        }
+        
+        .navigation a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .navigation a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .download-section {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .download-btn {
+            background: white;
+            color: #28a745;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        @media print {
+            .navigation { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+        
+        @media (max-width: 768px) {
+            .navigation { 
+                position: relative; 
+                width: 100%; 
+                margin-bottom: 20px; 
+            }
+            
+            .header h1 { font-size: 2em; }
+            .chapter h2 { font-size: 2em; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation">
+        <h3>📚 Navegação</h3>
+        <ul>
+            <li><a href="#cap1">🔍 Cap 1: Introdução</a></li>
+            <li><a href="#cap2">⏱️ Cap 2: Complexidade</a></li>
+            <li><a href="#cap3">📐 Cap 3: Big-O</a></li>
+            <li><a href="#cap4">🔄 Cap 4: Recursividade</a></li>
+            <li><a href="#cap5">🔀 Cap 5: Ordenação</a></li>
+            <li><a href="#exercicios">🎯 Exercícios</a></li>
+            <li><a href="#tabelas">📊 Tabelas</a></li>
+            <li><a href="#download">💾 Download</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1>🧮 APOSTILA DE ALGORITMOS E ANÁLISE DE COMPLEXIDADE</h1>
+            <h2>📊 Uma Abordagem Prática e Didática</h2>
+            <div class="author-info">
+                <h3>👨‍🎓 Professor Engenheiro de Computação</h3>
+                <h2>Vagner Cordeiro</h2>
+                <p>📅 Versão 2.0 • 🗓️ Setembro de 2025</p>
+                <p>🎯 Material Didático • 📚 Algoritmos & Estruturas</p>
+            </div>
+        </header>
+
+        <div class="download-section" id="download">
+            <h2>💾 DOWNLOADS DISPONÍVEIS</h2>
+            <p>Baixe o material completo nos formatos que preferir:</p>
+            <a href="aulas/revisao_analise_algoritmos.pdf" class="download-btn" download>
+                📄 PDF Completo (9.5MB)
+            </a>
+            <a href="aulas/revisao_analise_algoritmos.md" class="download-btn" download>
+                📝 Markdown Original
+            </a>
+            <button class="download-btn" onclick="window.print()">
+                🖨️ Imprimir Esta Página
+            </button>
+        </div>
+
+        <!-- CAPÍTULO 1 -->
+        <section class="chapter" id="cap1">
+            <div class="chapter-header">
+                <h2>🔍 CAPÍTULO 1</h2>
+                <h3>INTRODUÇÃO À ANÁLISE DE ALGORITMOS</h3>
+                <p>🎯 Compreender os fundamentos da análise algorítmica</p>
+            </div>
+
+            <h3>🧩 O que é um Algoritmo?</h3>
+            <p>Um algoritmo é uma <strong>receita computacional</strong> - uma sequência finita de instruções bem definidas e não ambíguas para resolver um problema específico.</p>
+            
+            <div class="macete">
+                <h4>🎯 MACETE FUNDAMENTAL - "FDSEE"</h4>
+                <p><strong>F</strong>initude - Tem que parar!</p>
+                <p><strong>D</strong>efinição - Sem ambiguidade!</p>
+                <p><strong>S</strong>aída - Produz resultado!</p>
+                <p><strong>E</strong>ntrada - Recebe dados!</p>
+                <p><strong>E</strong>fetividade - É possível executar!</p>
+                <p><strong>💡 Dica:</strong> "Finito, Definido, com Saída, Entrada e Efetivo = Algoritmo Perfeito!"</p>
+            </div>
+
+            <h3>📊 Por que Analisar Algoritmos?</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>💰 Benefício</th>
+                            <th>📖 Descrição</th>
+                            <th>🎯 Impacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>💸 Redução de Custos</td>
+                            <td>Menos tempo = menos dinheiro</td>
+                            <td>Economia significativa</td>
+                        </tr>
+                        <tr>
+                            <td>⚡ Rapidez</td>
+                            <td>Usuários felizes com respostas</td>
+                            <td>Melhor experiência</td>
+                        </tr>
+                        <tr>
+                            <td>🏆 Ranking Profissional</td>
+                            <td>Destaque com soluções otimizadas</td>
+                            <td>Carreira acelerada</td>
+                        </tr>
+                        <tr>
+                            <td>🔄 Reutilização</td>
+                            <td>Códigos eficientes são mais úteis</td>
+                            <td>Produtividade aumentada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CAPÍTULO 2 -->
+        <section class="chapter" id="cap2">
+            <div class="chapter-header">
+                <h2>⏱️ CAPÍTULO 2</h2>
+                <h3>COMPLEXIDADE DE TEMPO E ESPAÇO</h3>
+                <p>🎯 Dominar a análise de recursos computacionais</p>
+            </div>
+
+            <h3>⏰ Complexidade de Tempo</h3>
+            <p>Mede o <strong>número de operações fundamentais</strong> que um algoritmo executa em função do tamanho da entrada (n).</p>
+
+            <div class="macete">
+                <h4>🎯 MACETE "LOOP-IF-CALL"</h4>
+                <p><strong>LOOP</strong> - Quantas vezes repete?</p>
+                <p><strong>IF</strong> - Comparações e decisões</p>
+                <p><strong>CALL</strong> - Chamadas de função</p>
+                <p><strong>💡 Regra:</strong> "Se está dentro de um loop, multiplique. Se é um IF, some. Se é uma chamada, analise recursivamente!"</p>
+            </div>
+
+            <div class="code-block">
+                <pre><code># 🔍 Exemplo: Busca Linear
+def busca_linear(lista, item):
+    for i in range(len(lista)):    # 🔄 LOOP: n iterações
+        if lista[i] == item:       # 🔀 IF: 1 comparação por iteração
+            return i               # ⚡ RETURN: operação constante
+    return -1                      # ⚡ RETURN: operação constante
+
+# 📊 Análise: n × 1 = O(n) operações no pior caso</code></pre>
+            </div>
+
+            <h3>🗄️ Complexidade de Espaço</h3>
+            <p>Mede a <strong>quantidade de memória adicional</strong> que um algoritmo usa, além da entrada original.</p>
+
+            <div class="macete">
+                <h4>🎯 MACETE "VAR-REC-EST"</h4>
+                <p><strong>VAR</strong>iáveis locais extras</p>
+                <p><strong>REC</strong>ursão (pilha de chamadas)</p>
+                <p><strong>EST</strong>ruturas auxiliares (arrays, listas)</p>
+                <p><strong>💡 Dica:</strong> "Variáveis extras, Recursão e Estruturas = Espaço!"</p>
+            </div>
+        </section>
+
+        <!-- CAPÍTULO 3 -->
+        <section class="chapter" id="cap3">
+            <div class="chapter-header">
+                <h2>📐 CAPÍTULO 3</h2>
+                <h3>NOTAÇÃO BIG-O</h3>
+                <p>🎯 Dominar a linguagem da eficiência</p>
+            </div>
+
+            <h3>📊 O que é Big-O?</h3>
+            <p>Big-O responde à pergunta: <strong>"E se eu tivesse MUITO mais dados?"</strong></p>
+
+            <div class="complexity-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>🏅 Rank</th>
+                            <th>📈 Complexidade</th>
+                            <th>🏷️ Nome</th>
+                            <th>💡 Exemplo</th>
+                            <th>n=1K</th>
+                            <th>n=1M</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="excellent">
+                            <td>🥇</td>
+                            <td>O(1)</td>
+                            <td>Constante</td>
+                            <td>Abrir gaveta marcada</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr class="excellent">
+                            <td>🥈</td>
+                            <td>O(log n)</td>
+                            <td>Logarítmica</td>
+                            <td>Buscar no dicionário</td>
+                            <td>10</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="good">
+                            <td>🥉</td>
+                            <td>O(n)</td>
+                            <td>Linear</td>
+                            <td>Ler livro página por página</td>
+                            <td>1K</td>
+                            <td>1M</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>4º</td>
+                            <td>O(n log n)</td>
+                            <td>Linearítmica</td>
+                            <td>Organizar cartas eficientemente</td>
+                            <td>10K</td>
+                            <td>20M</td>
+                        </tr>
+                        <tr class="danger">
+                            <td>5º</td>
+                            <td>O(n²)</td>
+                            <td>Quadrática</td>
+                            <td>Comparar todos com todos</td>
+                            <td>1M</td>
+                            <td>1T</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="macete">
+                <h4>🎯 MACETE "LISP" para Análise</h4>
+                <p><strong>L</strong>oops - Conte os loops aninhados</p>
+                <p><strong>I</strong>gnore - Constantes e termos menores</p>
+                <p><strong>S</strong>ome - Operações em sequência</p>
+                <p><strong>P</strong>ior - Foque no pior caso</p>
+            </div>
+        </section>
+
+        <!-- EXERCÍCIOS -->
+        <section class="chapter" id="exercicios">
+            <div class="chapter-header">
+                <h2>🎯 LABORATÓRIO DE EXERCÍCIOS</h2>
+                <h3>Do Básico ao Ninja - Pratique e Domine!</h3>
+                <p>🎮 Resolva na ordem, cada nível desbloqueia o próximo!</p>
+            </div>
+
+            <div class="exercise">
+                <h4>🥉 NÍVEL 1: PRIMEIRO CONTATO</h4>
+                <h5>🔢 Exercício 1.1: Contagem Regressiva Espacial</h5>
+                <p><strong>📝 MISSÃO:</strong> Crie uma função que faz contagem regressiva como um lançamento de foguete!</p>
+                
+                <div class="code-block">
+                    <pre><code># 🚀 DESAFIO: Implemente uma função que conta de n até 0
+def conta_regressiva(n):
+    # 🤔 DICA: Pense no caso base primeiro!
+    # Quando a contagem deve parar?
+    # Seu código aqui
+    pass
+
+# 🧪 TESTE: conta_regressiva(5) deve imprimir: 5 4 3 2 1 0 🚀</code></pre>
+                </div>
+
+                <div class="macete">
+                    <h4>💡 MACETE: "CBC"</h4>
+                    <p><strong>C</strong>aso <strong>B</strong>ase, depois <strong>C</strong>aso recursivo!</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>🥈 NÍVEL 2: ESQUENTANDO</h4>
+                <h5>🔍 Exercício 2.1: Detetive do Maior Número</h5>
+                <p><strong>📝 MISSÃO:</strong> Encontre o maior número em uma lista sem usar max()!</p>
+                
+                <div class="code-block">
+                    <pre><code># 🕵️ DESAFIO: Encontre o maior número em uma lista
+def maximo_lista(lista):
+    # 🤔 ESTRATÉGIA: Compare o primeiro com o máximo do resto
+    # Caso base: lista com 1 elemento
+    # Seu código aqui
+    pass
+
+# 🧪 TESTE: maximo_lista([3, 1, 4, 1, 5]) deve retornar 5</code></pre>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>🥇 NÍVEL 3: MODO NINJA</h4>
+                <h5>🔄 Exercício 3.1: Gerador de Permutações</h5>
+                <p><strong>📝 MISSÃO:</strong> Gere todas as formas possíveis de arranjar as letras de uma palavra!</p>
+                
+                <div class="code-block">
+                    <pre><code># 🔄 DESAFIO NINJA: Gere todas as permutações de uma string
+def permutacoes(s):
+    # 🤔 ESTRATÉGIA NINJA: 
+    # Para cada caractere, fixe ele e permute o resto
+    # Seu código aqui (prepare-se para um desafio!)
+    pass
+
+# 🧪 TESTE: permutacoes("abc") deve retornar ["abc", "acb", "bac", "bca", "cab", "cba"]</code></pre>
+                </div>
+
+                <div class="macete">
+                    <h4>🥷 TÉCNICA NINJA</h4>
+                    <p>"Fixe um, permute o resto, backtrack e continue"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABELAS DE REFERÊNCIA -->
+        <section class="chapter" id="tabelas">
+            <div class="chapter-header">
+                <h2>📊 TABELAS DE REFERÊNCIA</h2>
+                <h3>Seu Guia de Consulta Rápida</h3>
+                <p>🎯 Cole esta seção na parede!</p>
+            </div>
+
+            <h3>🏗️ Estruturas de Dados - Performance Guide</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>📚 Estrutura</th>
+                            <th>🎯 Acesso</th>
+                            <th>🔍 Busca</th>
+                            <th>➕ Inserção</th>
+                            <th>❌ Remoção</th>
+                            <th>🎯 Quando Usar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="excellent">
+                            <td>📋 Array</td>
+                            <td>O(1) ⚡</td>
+                            <td>O(n) 🐌</td>
+                            <td>O(n) 🐌</td>
+                            <td>O(n) 🐌</td>
+                            <td>Acesso frequente por índice</td>
+                        </tr>
+                        <tr class="good">
+                            <td>🔗 Lista Ligada</td>
+                            <td>O(n) 🐌</td>
+                            <td>O(n) 🐌</td>
+                            <td>O(1) ⚡</td>
+                            <td>O(1) ⚡</td>
+                            <td>Inserção/remoção frequente</td>
+                        </tr>
+                        <tr class="excellent">
+                            <td>#️⃣ Hash Table</td>
+                            <td>O(1) ⚡</td>
+                            <td>O(1) ⚡</td>
+                            <td>O(1) ⚡</td>
+                            <td>O(1) ⚡</td>
+                            <td>Busca super rápida</td>
+                        </tr>
+                        <tr class="good">
+                            <td>🌳 Árvore BST</td>
+                            <td>O(log n) 🚀</td>
+                            <td>O(log n) 🚀</td>
+                            <td>O(log n) 🚀</td>
+                            <td>O(log n) 🚀</td>
+                            <td>Dados ordenados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>🎯 Algoritmos Clássicos - Performance Guide</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>🔧 Algoritmo</th>
+                            <th>⏱️ Complexidade</th>
+                            <th>🗄️ Espaço</th>
+                            <th>🎯 Quando Usar</th>
+                            <th>💡 Macete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="danger">
+                            <td>🫧 Bubble Sort</td>
+                            <td>O(n²)</td>
+                            <td>O(1)</td>
+                            <td>🚫 Só para ensinar</td>
+                            <td>"Bolha sobe"</td>
+                        </tr>
+                        <tr class="good">
+                            <td>🚀 Merge Sort</td>
+                            <td>O(n log n)</td>
+                            <td>O(n)</td>
+                            <td>Precisa estabilidade</td>
+                            <td>"Divide e vence"</td>
+                        </tr>
+                        <tr class="excellent">
+                            <td>⚡ Quick Sort</td>
+                            <td>O(n log n)*</td>
+                            <td>O(log n)</td>
+                            <td>Performance geral</td>
+                            <td>"Pivô e particiona"</td>
+                        </tr>
+                        <tr class="good">
+                            <td>🔍 Busca Binária</td>
+                            <td>O(log n)</td>
+                            <td>O(1)</td>
+                            <td>Arrays ordenados</td>
+                            <td>"Dividir pela metade"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RESUMO FINAL -->
+        <section class="chapter">
+            <div class="chapter-header">
+                <h2>🎓 RESUMO MASTER</h2>
+                <h3>Seu Mapa Mental Definitivo</h3>
+                <p>🎯 Use como referência em provas, entrevistas e projetos!</p>
+            </div>
+
+            <h3>🚀 Os 7 Mandamentos do Algoritmo Eficiente</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>👑 Mandamento</th>
+                            <th>📖 Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1️⃣ ENTENDA O PROBLEMA</td>
+                            <td>Antes de codificar, desenhe!</td>
+                        </tr>
+                        <tr>
+                            <td>2️⃣ ANALISE A COMPLEXIDADE</td>
+                            <td>Big-O sempre em mente!</td>
+                        </tr>
+                        <tr>
+                            <td>3️⃣ ESCOLHA A ESTRUTURA</td>
+                            <td>Array, Lista, Hash, Árvore?</td>
+                        </tr>
+                        <tr>
+                            <td>4️⃣ IMPLEMENTE SIMPLES</td>
+                            <td>Funcione primeiro, otimize depois!</td>
+                        </tr>
+                        <tr>
+                            <td>5️⃣ TESTE COM CASOS</td>
+                            <td>Pequeno, grande, edge cases!</td>
+                        </tr>
+                        <tr>
+                            <td>6️⃣ OTIMIZE SE NECESSÁRIO</td>
+                            <td>Performance vs Legibilidade</td>
+                        </tr>
+                        <tr>
+                            <td>7️⃣ DOCUMENTE SEU CÓDIGO</td>
+                            <td>Futuro você agradece!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="macete" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                <h4>🏆 PARABÉNS! VOCÊ DOMINOU OS ALGORITMOS!</h4>
+                <p>Agora você tem todas as ferramentas para ser um(a) ninja da programação!</p>
+                <p>Continue praticando e compartilhe seu conhecimento! 🚀</p>
+                <p><strong>📚 Criado por Prof. Vagner Cordeiro</strong></p>
+                <p><em>Transformando estudantes em desenvolvedores excepcionais</em></p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scroll para navegação
+        document.querySelectorAll('.navigation a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Destacar seção ativa na navegação
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.chapter');
+            const navLinks = document.querySelectorAll('.navigation a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Funcionalidade de download
+        function downloadPDF() {
+            const link = document.createElement('a');
+            link.href = 'aulas/revisao_analise_algoritmos.pdf';
+            link.download = 'Apostila_Algoritmos_Complexidade.pdf';
+            link.click();
+        }
+
+        function downloadMarkdown() {
+            const link = document.createElement('a');
+            link.href = 'aulas/revisao_analise_algoritmos.md';
+            link.download = 'Apostila_Algoritmos_Complexidade.md';
+            link.click();
+        }
+
+        // Adicionar funcionalidade de busca
+        function addSearchFunctionality() {
+            const searchBox = document.createElement('input');
+            searchBox.type = 'text';
+            searchBox.placeholder = '🔍 Buscar na apostila...';
+            searchBox.style.cssText = `
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 2px solid #667eea;
+                border-radius: 25px;
+                font-size: 14px;
+            `;
+            
+            const navigation = document.querySelector('.navigation');
+            navigation.insertBefore(searchBox, navigation.firstChild);
+            
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const chapters = document.querySelectorAll('.chapter');
+                
+                chapters.forEach(chapter => {
+                    const content = chapter.textContent.toLowerCase();
+                    if (content.includes(searchTerm) || searchTerm === '') {
+                        chapter.style.display = 'block';
+                    } else {
+                        chapter.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Inicializar funcionalidades extras
+        document.addEventListener('DOMContentLoaded', function() {
+            addSearchFunctionality();
+            
+            // Adicionar tooltips nos elementos da tabela
+            const tableCells = document.querySelectorAll('td, th');
+            tableCells.forEach(cell => {
+                cell.addEventListener('mouseenter', function() {
+                    if (this.textContent.includes('O(')) {
+                        this.title = 'Complexidade computacional - Big O Notation';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
