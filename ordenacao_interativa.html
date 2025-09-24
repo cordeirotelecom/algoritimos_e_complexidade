@@ -205,6 +205,10 @@
     .compare-mode {
       background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
+    
+    .complexity-mode {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
     .visualization-container {
       margin-bottom: 40px;
       position: relative;
@@ -298,6 +302,33 @@
     
     .stat-card.time:hover {
       box-shadow: 0 10px 30px rgba(111,66,193,0.4);
+    }
+    
+    .stat-card.complexity {
+      background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+      box-shadow: 0 6px 20px rgba(253,126,20,0.25);
+    }
+    
+    .stat-card.complexity:hover {
+      box-shadow: 0 10px 30px rgba(253,126,20,0.4);
+    }
+    
+    .stat-card.efficiency {
+      background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+      box-shadow: 0 6px 20px rgba(32,201,151,0.25);
+    }
+    
+    .stat-card.efficiency:hover {
+      box-shadow: 0 10px 30px rgba(32,201,151,0.4);
+    }
+    
+    .stat-card.memory {
+      background: linear-gradient(135deg, #6610f2 0%, #495057 100%);
+      box-shadow: 0 6px 20px rgba(102,16,242,0.25);
+    }
+    
+    .stat-card.memory:hover {
+      box-shadow: 0 10px 30px rgba(102,16,242,0.4);
     }
     
     .stat-value {
@@ -499,6 +530,109 @@
     .tutorial-step h4 {
       margin: 0 0 10px 0;
       font-size: 1.2em;
+    }
+    
+    /* Estilos para o painel de análise de complexidade */
+    .complexity-analysis-panel {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      border-radius: 20px;
+      padding: 25px;
+      margin: 20px 0;
+      border: 2px solid rgba(63,81,181,0.2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .complexity-analysis-panel h3 {
+      text-align: center;
+      color: #3f51b5;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+    
+    .complexity-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+    
+    .complexity-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .complexity-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 15px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 10px;
+      border-left: 4px solid #3f51b5;
+    }
+    
+    .complexity-label {
+      font-weight: 500;
+      color: #2c3e50;
+    }
+    
+    .complexity-value {
+      font-weight: bold;
+      color: #3f51b5;
+    }
+    
+    .complexity-visualization {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .complexity-bar {
+      width: 100%;
+      height: 40px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .complexity-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4caf50, #2196f3);
+      border-radius: 20px;
+      transition: width 0.5s ease;
+      width: 0%;
+      position: relative;
+    }
+    
+    .complexity-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      color: #2c3e50;
+      z-index: 2;
+    }
+    
+    .complexity-toggle {
+      width: 100%;
+      margin-top: 15px;
+      background: linear-gradient(135deg, #3f51b5 0%, #9c27b0 100%);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .complexity-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(63,81,181,0.3);
     }
     
     .complexity-info {
@@ -799,6 +933,7 @@
         <div class="button-group">
           <button onclick="toggleTutorial()" class="tutorial-mode" id="tutorialBtn">📚 Tutorial</button>
           <button onclick="toggleComparison()" class="compare-mode" id="compareBtn">📊 Comparar</button>
+          <button onclick="toggleComplexityPanel()" class="complexity-mode" id="complexityBtn">🔬 Análise</button>
         </div>
       </div>
     </div>
@@ -821,6 +956,18 @@
       <div class="stat-card time">
         <div class="stat-value" id="timeElapsed">0s</div>
         <div class="stat-label">Tempo</div>
+      </div>
+      <div class="stat-card complexity">
+        <div class="stat-value" id="complexity">O(n²)</div>
+        <div class="stat-label">Complexidade</div>
+      </div>
+      <div class="stat-card efficiency">
+        <div class="stat-value" id="efficiency">-</div>
+        <div class="stat-label">Eficiência</div>
+      </div>
+      <div class="stat-card memory">
+        <div class="stat-value" id="memory">O(1)</div>
+        <div class="stat-label">Memória</div>
       </div>
     </div>
 
@@ -845,7 +992,43 @@
           <h4>3️⃣ Observe as Estatísticas</h4>
           <p>Veja como diferentes algoritmos fazem mais ou menos comparações e trocas.</p>
         </div>
+        <div class="tutorial-step">
+          <h4>4️⃣ Analise a Complexidade</h4>
+          <p>Compare a performance real com a complexidade teórica e veja a eficiência em tempo real.</p>
+        </div>
       </div>
+    </div>
+    
+    <!-- Novo Painel de Análise de Complexidade -->
+    <div class="complexity-analysis-panel" id="complexityPanel" style="display: none;">
+      <h3>📊 Análise de Complexidade em Tempo Real</h3>
+      <div class="complexity-content">
+        <div class="complexity-metrics">
+          <div class="complexity-item">
+            <span class="complexity-label">Comparações Teóricas (Pior Caso):</span>
+            <span class="complexity-value" id="theoreticalComparisons">-</span>
+          </div>
+          <div class="complexity-item">
+            <span class="complexity-label">Comparações Reais:</span>
+            <span class="complexity-value" id="realComparisons">0</span>
+          </div>
+          <div class="complexity-item">
+            <span class="complexity-label">Eficiência Relativa:</span>
+            <span class="complexity-value" id="relativeEfficiency">-</span>
+          </div>
+          <div class="complexity-item">
+            <span class="complexity-label">Performance vs Teórica:</span>
+            <span class="complexity-value" id="performanceRatio">-</span>
+          </div>
+        </div>
+        <div class="complexity-visualization">
+          <div class="complexity-bar">
+            <div class="complexity-fill" id="complexityFill"></div>
+            <span class="complexity-text">Performance Real</span>
+          </div>
+        </div>
+      </div>
+      <button onclick="toggleComplexityPanel()" class="complexity-toggle">🔬 Análise Detalhada</button>
     </div>
     
     <div class="comparison-table" id="comparisonTable">
@@ -1081,6 +1264,40 @@
       document.getElementById('swaps').textContent = swaps.toLocaleString();
       const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
       document.getElementById('timeElapsed').textContent = elapsed + 's';
+      
+      // Atualizar novas métricas
+      const currentAlg = document.getElementById('algorithmSelect').value;
+      const complexity = getComplexity(currentAlg);
+      document.getElementById('complexity').textContent = complexity.average;
+      document.getElementById('memory').textContent = complexity.space;
+      
+      // Calcular eficiência baseada em comparações vs tamanho do array
+      const efficiency = calculateEfficiency(comparisons, arraySize);
+      document.getElementById('efficiency').textContent = efficiency;
+      
+      // Atualizar análise de complexidade se o painel estiver visível
+      const complexityPanel = document.getElementById('complexityPanel');
+      if (complexityPanel && complexityPanel.style.display !== 'none') {
+        updateComplexityAnalysis();
+      }
+    }
+    
+    function getComplexity(algorithm) {
+      const complexities = {
+        bubble: { best: 'O(n)', average: 'O(n²)', worst: 'O(n²)', space: 'O(1)' },
+        selection: { best: 'O(n²)', average: 'O(n²)', worst: 'O(n²)', space: 'O(1)' },
+        insertion: { best: 'O(n)', average: 'O(n²)', worst: 'O(n²)', space: 'O(1)' },
+        merge: { best: 'O(n log n)', average: 'O(n log n)', worst: 'O(n log n)', space: 'O(n)' },
+        quick: { best: 'O(n log n)', average: 'O(n log n)', worst: 'O(n²)', space: 'O(log n)' }
+      };
+      return complexities[algorithm] || complexities.bubble;
+    }
+    
+    function calculateEfficiency(comps, size) {
+      if (comps === 0) return '-';
+      const theoretical = size * size; // Pior caso O(n²)
+      const efficiency = Math.max(0, Math.min(100, ((theoretical - comps) / theoretical * 100)));
+      return efficiency.toFixed(1) + '%';
     }
 
     function setAlgorithmInfo(alg) {
@@ -1421,6 +1638,62 @@
 
     function sleep(ms) { 
       return new Promise(resolve => setTimeout(resolve, ms)); 
+    }
+
+    // --- Funções do Painel de Complexidade ---
+    function toggleComplexityPanel() {
+      const panel = document.getElementById('complexityPanel');
+      const isVisible = panel.style.display !== 'none';
+      panel.style.display = isVisible ? 'none' : 'block';
+      updateComplexityAnalysis();
+    }
+    
+    function updateComplexityAnalysis() {
+      const currentAlg = document.getElementById('algorithmSelect').value;
+      const theoretical = calculateTheoreticalComparisons(currentAlg, arraySize);
+      
+      document.getElementById('theoreticalComparisons').textContent = theoretical.toLocaleString();
+      document.getElementById('realComparisons').textContent = comparisons.toLocaleString();
+      
+      if (theoretical > 0) {
+        const efficiency = ((theoretical - comparisons) / theoretical * 100);
+        const ratio = (comparisons / theoretical * 100);
+        
+        document.getElementById('relativeEfficiency').textContent = efficiency.toFixed(1) + '%';
+        document.getElementById('performanceRatio').textContent = ratio.toFixed(1) + '% do teórico';
+        
+        // Atualizar barra de visualização
+        const fillWidth = Math.min(100, ratio);
+        document.getElementById('complexityFill').style.width = fillWidth + '%';
+        
+        // Mudar cor baseado na performance
+        const fill = document.getElementById('complexityFill');
+        if (ratio <= 50) {
+          fill.style.background = 'linear-gradient(90deg, #4caf50, #8bc34a)'; // Verde - Excelente
+        } else if (ratio <= 75) {
+          fill.style.background = 'linear-gradient(90deg, #ff9800, #ffc107)'; // Amarelo - Bom
+        } else {
+          fill.style.background = 'linear-gradient(90deg, #f44336, #ff5722)'; // Vermelho - Precisa melhorar
+        }
+      }
+    }
+    
+    function calculateTheoreticalComparisons(algorithm, size) {
+      switch(algorithm) {
+        case 'bubble':
+        case 'selection':
+          return (size * (size - 1)) / 2; // O(n²)
+        case 'insertion':
+          return (size * (size - 1)) / 4; // O(n²) caso médio
+        case 'merge':
+          return size * Math.log2(size); // O(n log n)
+        case 'quick':
+          return size * Math.log2(size); // O(n log n) caso médio
+        case 'heap':
+          return size * Math.log2(size); // O(n log n)
+        default:
+          return size * size; // Padrão O(n²)
+      }
     }
 
     // --- Inicialização Avançada ---
