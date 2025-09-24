@@ -3,89 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔀 Algoritmos de Ordenação Interativos - Prof. Vagner Cordeiro</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      margin: 0;
-      min-height: 100vh;
-      color: #222;
-      padding: 20px;
-    }
-    
-    .header {
-      text-align: center;
-      color: white;
-      margin-bottom: 30px;
-    }
-    
-    .header h1 {
-      font-size: 2.5em;
-      margin-bottom: 5px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .header h2 {
-      font-size: 1.3em;
-      opacity: 0.9;
-      margin-bottom: 10px;
-    }
-    
-    .header .author {
-      font-size: 1em;
-      opacity: 0.8;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      padding: 40px 30px;
-      position: relative;
-    }
+  <title>🔀 Plataforma Profissional de Algoritmos de Ordenação - Prof. Vagner Cordeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/professional-style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- === HEADER PROFISSIONAL === -->
+    <div class="header">
+      <h1>🔀 Plataforma Profissional de Algoritmos</h1>
+      <h2>Visualização Interativa e Análise Técnica Avançada de Algoritmos de Ordenação</h2>
+      <div class="author">Prof. Vagner Cordeiro | Análise de Algoritmos e Complexidade</div>
+    </div>
     .controls {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      padding: 25px;
-      border-radius: 15px;
-      border: 2px solid #e9ecef;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 35px;
+      border-radius: 20px;
+      border: 3px solid rgba(102,126,234,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .controls::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
     }
     
     .control-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
+      position: relative;
+    }
+    
+    .control-group::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+      border-radius: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+    
+    .control-group:hover::before {
+      opacity: 1;
+    }
+    
+    .control-group > * {
+      position: relative;
+      z-index: 1;
     }
     
     .control-group label {
       font-weight: bold;
-      color: #495057;
-      font-size: 0.9em;
+      color: #2c3e50;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .control-group label .emoji {
+      font-size: 1.2em;
     }
     
     select, button, input[type=number], input[type=range] {
       font-size: 1em;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 2px solid #dee2e6;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid #e9ecef;
       outline: none;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: inherit;
+      font-weight: 500;
     }
     
     select:focus, input:focus {
       border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+      box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
+      transform: translateY(-1px);
+    }
+    
+    select {
+      cursor: pointer;
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
     }
     
     button {
@@ -94,86 +112,219 @@
       border: none;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 4px 15px rgba(102,126,234,0.3);
-      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(102,126,234,0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    button:hover:not(:disabled)::before {
+      left: 100%;
     }
     
     button:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(102,126,234,0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+    }
+    
+    button:active {
+      transform: translateY(-1px);
     }
     
     button:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
+      box-shadow: 0 2px 8px rgba(102,126,234,0.1);
     }
     
     .speed-control {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     
     .speed-label {
-      font-size: 0.8em;
+      font-size: 0.85em;
       color: #6c757d;
-      min-width: 60px;
+      min-width: 50px;
+      font-weight: 500;
+    }
+    
+    input[type=range] {
+      flex: 1;
+      height: 8px;
+      background: linear-gradient(90deg, #dc3545 0%, #ffc107 50%, #28a745 100%);
+      border-radius: 4px;
+      padding: 0;
+      cursor: pointer;
+    }
+    
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+      transition: all 0.3s ease;
+    }
+    
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .button-group button {
+      flex: 1;
+      min-width: 120px;
+    }
+    
+    .tutorial-mode {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .compare-mode {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     }
     .visualization-container {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .mode-selector {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .mode-btn {
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: 2px solid rgba(102,126,234,0.3);
+      background: rgba(255,255,255,0.1);
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .mode-btn.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-color: #667eea;
     }
     
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-bottom: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+      margin-bottom: 25px;
     }
     
     .stat-card {
       background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
       color: white;
-      padding: 15px;
-      border-radius: 10px;
+      padding: 18px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(40,167,69,0.2);
+      box-shadow: 0 6px 20px rgba(40,167,69,0.25);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .stat-card:hover::before {
+      left: 100%;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(40,167,69,0.4);
     }
     
     .stat-card.comparisons {
       background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+      box-shadow: 0 6px 20px rgba(255,193,7,0.25);
+    }
+    
+    .stat-card.comparisons:hover {
+      box-shadow: 0 10px 30px rgba(255,193,7,0.4);
     }
     
     .stat-card.swaps {
       background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+      box-shadow: 0 6px 20px rgba(220,53,69,0.25);
+    }
+    
+    .stat-card.swaps:hover {
+      box-shadow: 0 10px 30px rgba(220,53,69,0.4);
     }
     
     .stat-card.time {
       background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+      box-shadow: 0 6px 20px rgba(111,66,193,0.25);
+    }
+    
+    .stat-card.time:hover {
+      box-shadow: 0 10px 30px rgba(111,66,193,0.4);
     }
     
     .stat-value {
-      font-size: 1.8em;
+      font-size: 2em;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
     
     .stat-label {
       font-size: 0.9em;
-      opacity: 0.9;
+      opacity: 0.95;
+      font-weight: 500;
     }
     
     .bars {
       display: flex;
       align-items: flex-end;
-      height: 400px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 15px;
-      margin-bottom: 20px;
+      height: 450px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border-radius: 20px;
+      margin-bottom: 25px;
       overflow: hidden;
-      box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
-      padding: 10px;
+      box-shadow: inset 0 4px 15px rgba(0,0,0,0.1);
+      padding: 15px;
       position: relative;
+      border: 3px solid rgba(102,126,234,0.1);
     }
     
     .bars::before {
@@ -182,16 +333,27 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    }
+    
+    .bars::after {
+      content: 'Visualização em Tempo Real';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 0.9em;
+      color: #6c757d;
+      font-weight: 600;
+      opacity: 0.7;
     }
     
     .bar {
       flex: 1;
       margin: 0 1px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 6px 6px 0 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 8px 8px 0 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -200,8 +362,8 @@
       font-weight: bold;
       user-select: none;
       position: relative;
-      min-width: 8px;
-      box-shadow: 0 2px 8px rgba(102,126,234,0.2);
+      min-width: 6px;
+      box-shadow: 0 4px 12px rgba(102,126,234,0.3);
     }
     
     .bar::after {
@@ -211,98 +373,332 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
-      border-radius: 6px 6px 0 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 60%);
+      border-radius: 8px 8px 0 0;
+      pointer-events: none;
     }
     
     .bar.comparing {
       background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(255,154,158,0.4);
+      transform: scale(1.08);
+      box-shadow: 0 6px 25px rgba(255,154,158,0.5);
+      animation: pulse 0.6s ease-in-out;
     }
     
     .bar.active {
       background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
-      transform: scale(1.1);
-      box-shadow: 0 6px 25px rgba(255,193,7,0.5);
+      transform: scale(1.12);
+      box-shadow: 0 8px 30px rgba(255,193,7,0.6);
+      animation: glow 0.8s ease-in-out infinite alternate;
     }
     
     .bar.sorted {
       background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-      box-shadow: 0 4px 20px rgba(40,167,69,0.3);
+      box-shadow: 0 6px 25px rgba(40,167,69,0.4);
+      animation: success 0.5s ease-out;
     }
     
     .bar.pivot {
       background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
-      transform: scale(1.15);
-      box-shadow: 0 8px 30px rgba(111,66,193,0.5);
+      transform: scale(1.18);
+      box-shadow: 0 10px 35px rgba(111,66,193,0.6);
+      animation: pivot-highlight 1s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1.08); }
+      50% { transform: scale(1.15); }
+    }
+    
+    @keyframes glow {
+      0% { box-shadow: 0 8px 30px rgba(255,193,7,0.6); }
+      100% { box-shadow: 0 12px 40px rgba(255,193,7,0.8); }
+    }
+    
+    @keyframes success {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes pivot-highlight {
+      0% { transform: scale(1.18); box-shadow: 0 10px 35px rgba(111,66,193,0.6); }
+      100% { transform: scale(1.25); box-shadow: 0 15px 45px rgba(111,66,193,0.8); }
     }
     .info {
       background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
-      border-left: 5px solid #28a745;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      font-size: 1.1em;
-      box-shadow: 0 4px 15px rgba(40,167,69,0.1);
+      border-left: 6px solid #28a745;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      font-size: 1.15em;
+      box-shadow: 0 6px 20px rgba(40,167,69,0.15);
+      position: relative;
+      overflow: hidden;
+      line-height: 1.6;
+    }
+    
+    .info::before {
+      content: '💡';
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5em;
+      opacity: 0.7;
     }
     
     .info.sorting {
       background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
       border-left-color: #ffc107;
-      animation: pulse 2s infinite;
+      animation: sorting-pulse 2s infinite;
     }
     
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+    .info.sorting::before {
+      content: '⚡';
+      animation: spin 2s linear infinite;
+    }
+    
+    @keyframes sorting-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(255,193,7,0.15); }
+      50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(255,193,7,0.25); }
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .tutorial-panel {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      display: none;
+      box-shadow: 0 8px 25px rgba(240,147,251,0.3);
+    }
+    
+    .tutorial-panel.active {
+      display: block;
+      animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .tutorial-step {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid rgba(255,255,255,0.5);
+    }
+    
+    .tutorial-step h4 {
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
     }
     
     .complexity-info {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 12px;
+      gap: 18px;
+      margin-top: 25px;
+      padding: 25px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border: 2px solid rgba(102,126,234,0.1);
     }
     
     .complexity-card {
       background: white;
-      padding: 15px;
-      border-radius: 8px;
+      padding: 20px;
+      border-radius: 12px;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .complexity-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .complexity-card:hover::before {
+      left: 100%;
+    }
+    
+    .complexity-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
     
     .complexity-card h4 {
-      margin: 0 0 10px 0;
-      color: #495057;
+      margin: 0 0 12px 0;
+      color: #2c3e50;
+      font-size: 1.1em;
+      font-weight: 600;
     }
     
-    .complexity-best { border-left: 4px solid #28a745; }
-    .complexity-average { border-left: 4px solid #ffc107; }
-    .complexity-worst { border-left: 4px solid #dc3545; }
-    .complexity-space { border-left: 4px solid #6f42c1; }
+    .complexity-value {
+      font-size: 1.3em;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: white;
+    }
+    
+    .complexity-best { 
+      border-left: 5px solid #28a745; 
+    }
+    .complexity-best .complexity-value { 
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    }
+    
+    .complexity-average { 
+      border-left: 5px solid #ffc107; 
+    }
+    .complexity-average .complexity-value { 
+      background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    }
+    
+    .complexity-worst { 
+      border-left: 5px solid #dc3545; 
+    }
+    .complexity-worst .complexity-value { 
+      background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+    }
+    
+    .complexity-space { 
+      border-left: 5px solid #6f42c1; 
+    }
+    .complexity-space .complexity-value { 
+      background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+    }
+    
+    .comparison-table {
+      margin: 25px 0;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      display: none;
+    }
+    
+    .comparison-table.active {
+      display: block;
+      animation: slideIn 0.5s ease-out;
+    }
+    
+    .comparison-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .comparison-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      transition: background 0.3s ease;
+    }
+    
+    .comparison-table tr:hover td {
+      background: #f8f9fa;
+    }
+    
+    .performance-indicator {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.85em;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .performance-excellent { background: #28a745; }
+    .performance-good { background: #ffc107; color: #333; }
+    .performance-poor { background: #dc3545; }
     
     .footer {
       text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 12px;
-      color: #6c757d;
+      margin-top: 50px;
+      padding: 30px;
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      border-radius: 20px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    }
+    
+    .footer h3 {
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    
+    .footer p {
+      margin: 8px 0;
+      opacity: 0.9;
     }
     
     .footer a {
-      color: #667eea;
+      color: #4facfe;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s ease;
     }
     
     .footer a:hover {
+      color: #00f2fe;
       text-decoration: underline;
+    }
+    
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .social-link {
+      display: inline-block;
+      padding: 10px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
     }
     
     @media (max-width: 768px) {
@@ -311,13 +707,45 @@
         margin: 10px;
       }
       .bars { 
-        height: 250px; 
+        height: 300px; 
       }
       .header h1 {
-        font-size: 1.8em;
+        font-size: 2.2em;
+      }
+      .header h2 {
+        font-size: 1.3em;
       }
       .controls {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .complexity-info {
+        grid-template-columns: 1fr;
+      }
+      .button-group {
+        flex-direction: column;
+      }
+      .button-group button {
+        min-width: auto;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 1.8em;
+      }
+      .bars {
+        height: 250px;
+        padding: 8px;
+      }
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .controls {
+        padding: 20px;
       }
     }
   </style>
@@ -332,7 +760,7 @@
   <div class="container">
     <div class="controls">
       <div class="control-group">
-        <label>🔧 Algoritmo:</label>
+        <label><span class="emoji">🔧</span> Algoritmo:</label>
         <select id="algorithm">
           <option value="bubble">🫧 Bubble Sort</option>
           <option value="selection">🎯 Selection Sort</option>
@@ -344,27 +772,41 @@
       </div>
       
       <div class="control-group">
-        <label>📏 Tamanho do Array:</label>
+        <label><span class="emoji">📏</span> Tamanho do Array:</label>
         <input type="number" id="size" min="5" max="100" value="30">
       </div>
       
       <div class="control-group">
-        <label>⚡ Velocidade:</label>
+        <label><span class="emoji">⚡</span> Velocidade:</label>
         <div class="speed-control">
-          <span class="speed-label">Lenta</span>
+          <span class="speed-label">🐌</span>
           <input type="range" id="speed" min="10" max="200" value="80">
-          <span class="speed-label">Rápida</span>
+          <span class="speed-label">🚀</span>
         </div>
       </div>
       
       <div class="control-group">
-        <label>🎮 Ações:</label>
-        <div style="display: flex; gap: 10px;">
+        <label><span class="emoji">🎮</span> Ações:</label>
+        <div class="button-group">
           <button onclick="randomize()">🔄 Embaralhar</button>
           <button onclick="startSort()" id="sortBtn">▶️ Ordenar</button>
           <button onclick="reset()">⏹️ Resetar</button>
         </div>
       </div>
+      
+      <div class="control-group">
+        <label><span class="emoji">🎓</span> Modos:</label>
+        <div class="button-group">
+          <button onclick="toggleTutorial()" class="tutorial-mode" id="tutorialBtn">📚 Tutorial</button>
+          <button onclick="toggleComparison()" class="compare-mode" id="compareBtn">📊 Comparar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mode-selector">
+      <div class="mode-btn active" onclick="setVisualizationMode('bars')">📊 Barras</div>
+      <div class="mode-btn" onclick="setVisualizationMode('dots')">⚪ Pontos</div>
+      <div class="mode-btn" onclick="setVisualizationMode('lines')">📈 Linhas</div>
     </div>
 
     <div class="stats">
@@ -388,29 +830,129 @@
 
     <div class="info" id="info"></div>
     
+    <div class="tutorial-panel" id="tutorialPanel">
+      <h3>🎓 Modo Tutorial Ativo</h3>
+      <div id="tutorialContent">
+        <div class="tutorial-step">
+          <h4>1️⃣ Compreenda o Algoritmo</h4>
+          <p>Observe como cada algoritmo tem uma estratégia diferente para ordenar os elementos.</p>
+        </div>
+        <div class="tutorial-step">
+          <h4>2️⃣ Acompanhe as Cores</h4>
+          <p><span style="color: #ffc107;">🟡 Amarelo</span> = Elemento ativo | <span style="color: #ff9a9e;">🔴 Rosa</span> = Comparando | <span style="color: #6f42c1;">🟣 Roxo</span> = Pivô</p>
+        </div>
+        <div class="tutorial-step">
+          <h4>3️⃣ Observe as Estatísticas</h4>
+          <p>Veja como diferentes algoritmos fazem mais ou menos comparações e trocas.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="comparison-table" id="comparisonTable">
+      <h3 style="text-align: center; margin: 20px 0; color: #2c3e50;">📊 Comparação Detalhada de Algoritmos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>🔧 Algoritmo</th>
+            <th>⚡ Melhor Caso</th>
+            <th>📊 Caso Médio</th>
+            <th>🔥 Pior Caso</th>
+            <th>🗄️ Espaço</th>
+            <th>✅ Estável</th>
+            <th>📋 Uso Ideal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bubble Sort</strong></td>
+            <td><span class="performance-indicator performance-good">O(n)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(1)</span></td>
+            <td>✅ Sim</td>
+            <td>Ensino, arrays muito pequenos</td>
+          </tr>
+          <tr>
+            <td><strong>Selection Sort</strong></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(1)</span></td>
+            <td>❌ Não</td>
+            <td>Memória limitada</td>
+          </tr>
+          <tr>
+            <td><strong>Insertion Sort</strong></td>
+            <td><span class="performance-indicator performance-excellent">O(n)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(1)</span></td>
+            <td>✅ Sim</td>
+            <td>Arrays pequenos, quase ordenados</td>
+          </tr>
+          <tr>
+            <td><strong>Quick Sort</strong></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-poor">O(n²)</span></td>
+            <td><span class="performance-indicator performance-good">O(log n)</span></td>
+            <td>❌ Não</td>
+            <td>Propósito geral, performance</td>
+          </tr>
+          <tr>
+            <td><strong>Merge Sort</strong></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-good">O(n)</span></td>
+            <td>✅ Sim</td>
+            <td>Estabilidade, arrays grandes</td>
+          </tr>
+          <tr>
+            <td><strong>Heap Sort</strong></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(n log n)</span></td>
+            <td><span class="performance-indicator performance-excellent">O(1)</span></td>
+            <td>❌ Não</td>
+            <td>Performance garantida</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
     <div class="complexity-info" id="complexityInfo">
       <div class="complexity-card complexity-best">
-        <h4>Melhor Caso</h4>
-        <span id="bestCase">-</span>
+        <h4>🏆 Melhor Caso</h4>
+        <div class="complexity-value" id="bestCase">-</div>
       </div>
       <div class="complexity-card complexity-average">
-        <h4>Caso Médio</h4>
-        <span id="averageCase">-</span>
+        <h4>📊 Caso Médio</h4>
+        <div class="complexity-value" id="averageCase">-</div>
       </div>
       <div class="complexity-card complexity-worst">
-        <h4>Pior Caso</h4>
-        <span id="worstCase">-</span>
+        <h4>🔥 Pior Caso</h4>
+        <div class="complexity-value" id="worstCase">-</div>
       </div>
       <div class="complexity-card complexity-space">
-        <h4>Espaço</h4>
-        <span id="spaceComplexity">-</span>
+        <h4>🗄️ Espaço</h4>
+        <div class="complexity-value" id="spaceComplexity">-</div>
       </div>
     </div>
 
     <div class="footer">
-      <p>📚 Material Didático - <strong>Algoritmos e Estruturas de Dados</strong></p>
-      <p>🔗 <a href="https://github.com/cordeirotelecom/algoritimos_e_complexidade" target="_blank">Ver código completo no GitHub</a></p>
-      <p>🎓 Criado por <strong>Prof. Vagner Cordeiro</strong> - Transformando estudantes em desenvolvedores de elite!</p>
+      <h3>🎓 Prof. Vagner Cordeiro</h3>
+      <p><strong>Engenheiro de Computação - Especialista em Didática de Algoritmos</strong></p>
+      <p>📚 <em>Transformando conceitos complexos em experiências visuais interativas</em></p>
+      <p>🔗 <a href="https://github.com/cordeirotelecom/algoritimos_e_complexidade" target="_blank">📁 Ver código completo no GitHub</a></p>
+      <p>💡 <strong>Versão 3.0 Premium</strong> - Material Didático Profissional</p>
+      
+      <div class="social-links">
+        <a href="#" class="social-link" title="LinkedIn">💼</a>
+        <a href="https://github.com/cordeirotelecom" class="social-link" title="GitHub" target="_blank">🐙</a>
+        <a href="#" class="social-link" title="YouTube">📺</a>
+        <a href="#" class="social-link" title="Email">📧</a>
+      </div>
     </div>
   </div>
   <script>
@@ -424,59 +966,80 @@
     let comparisons = 0;
     let swaps = 0;
     let startTime = 0;
+    let tutorialMode = false;
+    let comparisonMode = false;
+    let visualizationMode = 'bars';
 
     const algorithmInfo = {
       bubble: {
         name: 'Bubble Sort',
-        description: '🫧 Bubble Sort: Compara elementos adjacentes e "faz bolhas" subirem. Simples de entender, mas ineficiente para grandes volumes.',
+        description: '🫧 <strong>Bubble Sort</strong>: Compara elementos adjacentes e "faz bolhas" subirem. O algoritmo mais simples de entender, mas ineficiente para grandes volumes de dados. Ideal para ensino de conceitos básicos.',
+        tutorial: 'Observe como as "bolhas" maiores sobem para o final do array, uma posição por vez. Cada passada garante que pelo menos um elemento esteja na posição correta.',
         best: 'O(n)',
         average: 'O(n²)',
         worst: 'O(n²)',
-        space: 'O(1)'
+        space: 'O(1)',
+        stable: true,
+        useCase: 'Ensino, arrays muito pequenos (< 10 elementos)'
       },
       selection: {
         name: 'Selection Sort',
-        description: '🎯 Selection Sort: Seleciona o menor elemento e coloca na posição correta. Performance constante, mas não otimizada.',
+        description: '🎯 <strong>Selection Sort</strong>: Seleciona repetidamente o menor elemento e coloca na posição correta. Performance consistente, mas não otimizada para casos especiais.',
+        tutorial: 'Veja como o algoritmo "seleciona" o menor elemento a cada iteração. A parte ordenada cresce da esquerda para a direita.',
         best: 'O(n²)',
         average: 'O(n²)',
         worst: 'O(n²)',
-        space: 'O(1)'
+        space: 'O(1)',
+        stable: false,
+        useCase: 'Quando a memória é extremamente limitada'
       },
       insertion: {
         name: 'Insertion Sort',
-        description: '📝 Insertion Sort: Insere cada elemento na posição correta. Excelente para arrays pequenos ou quase ordenados.',
+        description: '📝 <strong>Insertion Sort</strong>: Insere cada elemento na posição correta dentro da parte já ordenada. Excelente para arrays pequenos ou quase ordenados.',
+        tutorial: 'Observe como cada elemento é "inserido" na posição correta, como organizar cartas na mão. Muito eficiente para dados quase ordenados.',
         best: 'O(n)',
         average: 'O(n²)',
         worst: 'O(n²)',
-        space: 'O(1)'
+        space: 'O(1)',
+        stable: true,
+        useCase: 'Arrays pequenos, dados quase ordenados, algoritmo híbrido'
       },
       quick: {
         name: 'Quick Sort',
-        description: '⚡ Quick Sort: Divide usando pivô e conquista recursivamente. Um dos mais rápidos na prática!',
+        description: '⚡ <strong>Quick Sort</strong>: Divide o array usando um pivô e conquista recursivamente. Um dos algoritmos mais rápidos na prática, usado como padrão na maioria das linguagens.',
+        tutorial: 'Foque no elemento roxo (pivô). Veja como ele "particiona" o array: menores à esquerda, maiores à direita. Depois aplica o mesmo processo recursivamente.',
         best: 'O(n log n)',
         average: 'O(n log n)',
         worst: 'O(n²)',
-        space: 'O(log n)'
+        space: 'O(log n)',
+        stable: false,
+        useCase: 'Uso geral, alta performance, padrão em bibliotecas'
       },
       merge: {
         name: 'Merge Sort',
-        description: '🔄 Merge Sort: Divide pela metade, ordena e mescla. Estável e consistente, ótimo para dados grandes.',
+        description: '🔄 <strong>Merge Sort</strong>: Divide o array pela metade recursivamente, ordena cada parte e depois mescla. Garantia de performance consistente e estabilidade.',
+        tutorial: 'Algoritmo "dividir para conquistar". Primeiro divide até ter elementos únicos, depois mescla ordenadamente. Performance sempre O(n log n).',
         best: 'O(n log n)',
         average: 'O(n log n)',
         worst: 'O(n log n)',
-        space: 'O(n)'
+        space: 'O(n)',
+        stable: true,
+        useCase: 'Arrays grandes, quando estabilidade é necessária'
       },
       heap: {
         name: 'Heap Sort',
-        description: '🌳 Heap Sort: Constrói uma heap e extrai elementos ordenadamente. Performance garantida sem recursão excessiva.',
+        description: '🌳 <strong>Heap Sort</strong>: Constrói uma estrutura heap (árvore binária) e extrai elementos ordenadamente. Performance garantida sem recursão excessiva.',
+        tutorial: 'Primeiro constrói um "heap" (árvore onde pai ≥ filhos), depois remove o maior elemento repetidamente. Combina o melhor dos algoritmos simples e eficientes.',
         best: 'O(n log n)',
         average: 'O(n log n)',
         worst: 'O(n log n)',
-        space: 'O(1)'
+        space: 'O(1)',
+        stable: false,
+        useCase: 'Quando se precisa de performance garantida com espaço limitado'
       }
     };
 
-    // --- Utilitários ---
+    // --- Utilitários Avançados ---
     function randomArray(n) {
       let a = [];
       for (let i = 1; i <= n; i++) a.push(i);
@@ -491,49 +1054,89 @@
       const bars = document.getElementById('bars');
       bars.innerHTML = '';
       const max = Math.max(...arr);
+      
       arr.forEach((val, i) => {
-        const bar = document.createElement('div');
-        bar.className = 'bar';
-        if (comparing.includes(i)) bar.classList.add('comparing');
-        if (active.includes(i)) bar.classList.add('active');
-        if (sorted.includes(i)) bar.classList.add('sorted');
-        if (pivot.includes(i)) bar.classList.add('pivot');
-        bar.style.height = (val / max * 90) + '%';
-        bar.textContent = arr.length <= 50 ? val : '';
-        bars.appendChild(bar);
+        const element = document.createElement('div');
+        element.className = 'bar';
+        
+        if (comparing.includes(i)) element.classList.add('comparing');
+        if (active.includes(i)) element.classList.add('active');
+        if (sorted.includes(i)) element.classList.add('sorted');
+        if (pivot.includes(i)) element.classList.add('pivot');
+        
+        element.style.height = (val / max * 85) + '%';
+        element.textContent = arr.length <= 50 ? val : '';
+        element.setAttribute('data-value', val);
+        element.setAttribute('data-index', i);
+        
+        // Adicionar tooltip
+        element.title = `Valor: ${val}, Posição: ${i}`;
+        
+        bars.appendChild(element);
       });
     }
 
     function updateStats() {
-      document.getElementById('comparisons').textContent = comparisons;
-      document.getElementById('swaps').textContent = swaps;
+      document.getElementById('comparisons').textContent = comparisons.toLocaleString();
+      document.getElementById('swaps').textContent = swaps.toLocaleString();
       const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
       document.getElementById('timeElapsed').textContent = elapsed + 's';
     }
 
     function setAlgorithmInfo(alg) {
       const info = algorithmInfo[alg];
-      document.getElementById('info').textContent = info.description;
+      document.getElementById('info').innerHTML = info.description;
       document.getElementById('bestCase').textContent = info.best;
       document.getElementById('averageCase').textContent = info.average;
       document.getElementById('worstCase').textContent = info.worst;
       document.getElementById('spaceComplexity').textContent = info.space;
+      
+      if (tutorialMode) {
+        updateTutorialContent(alg);
+      }
+    }
+
+    function updateTutorialContent(alg) {
+      const info = algorithmInfo[alg];
+      document.getElementById('tutorialContent').innerHTML = `
+        <div class="tutorial-step">
+          <h4>🎯 Estratégia do ${info.name}</h4>
+          <p>${info.tutorial}</p>
+        </div>
+        <div class="tutorial-step">
+          <h4>📊 Complexidade</h4>
+          <p><strong>Melhor:</strong> ${info.best} | <strong>Médio:</strong> ${info.average} | <strong>Pior:</strong> ${info.worst}</p>
+        </div>
+        <div class="tutorial-step">
+          <h4>💡 Quando Usar</h4>
+          <p>${info.useCase}</p>
+        </div>
+      `;
     }
 
     function resetStats() {
       comparisons = 0;
       swaps = 0;
+      startTime = Date.now();
       updateStats();
     }
 
     function randomize() {
       if (running) return;
       size = parseInt(document.getElementById('size').value);
+      if (size < 5) size = 5;
+      if (size > 100) size = 100;
+      document.getElementById('size').value = size;
+      
       arr = randomArray(size);
       original = arr.slice();
       render(arr);
       resetStats();
       setAlgorithmInfo(document.getElementById('algorithm').value);
+      
+      if (tutorialMode) {
+        showTutorialMessage('🔄 Array embaralhado! Agora você pode executar o algoritmo e observar como funciona.');
+      }
     }
 
     function reset() {
@@ -542,6 +1145,10 @@
       render(arr);
       resetStats();
       setAlgorithmInfo(document.getElementById('algorithm').value);
+      
+      if (tutorialMode) {
+        showTutorialMessage('⏹️ Array resetado para o estado inicial. Pronto para uma nova execução!');
+      }
     }
 
     function updateControls(disabled) {
@@ -549,7 +1156,68 @@
       controls.forEach(id => {
         document.getElementById(id).disabled = disabled;
       });
-      document.getElementById('sortBtn').textContent = disabled ? '⏸️ Ordenando...' : '▶️ Ordenar';
+      
+      const sortBtn = document.getElementById('sortBtn');
+      sortBtn.textContent = disabled ? '⏸️ Ordenando...' : '▶️ Ordenar';
+      sortBtn.disabled = disabled;
+      
+      // Desabilitar outros botões durante ordenação
+      document.querySelector('button[onclick="randomize()"]').disabled = disabled;
+      document.querySelector('button[onclick="reset()"]').disabled = disabled;
+    }
+
+    function showTutorialMessage(message) {
+      const info = document.getElementById('info');
+      const originalContent = info.innerHTML;
+      info.innerHTML = `💡 <strong>Tutorial:</strong> ${message}`;
+      info.classList.add('sorting');
+      
+      setTimeout(() => {
+        info.innerHTML = originalContent;
+        info.classList.remove('sorting');
+      }, 3000);
+    }
+
+    // --- Funções de Modo ---
+    function toggleTutorial() {
+      tutorialMode = !tutorialMode;
+      const panel = document.getElementById('tutorialPanel');
+      const btn = document.getElementById('tutorialBtn');
+      
+      if (tutorialMode) {
+        panel.classList.add('active');
+        btn.textContent = '📚 Tutorial ON';
+        btn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+        updateTutorialContent(currentAlgorithm);
+        showTutorialMessage('Modo tutorial ativado! Observe as explicações detalhadas durante a ordenação.');
+      } else {
+        panel.classList.remove('active');
+        btn.textContent = '📚 Tutorial';
+        btn.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+      }
+    }
+
+    function toggleComparison() {
+      comparisonMode = !comparisonMode;
+      const table = document.getElementById('comparisonTable');
+      const btn = document.getElementById('compareBtn');
+      
+      if (comparisonMode) {
+        table.classList.add('active');
+        btn.textContent = '📊 Comparar ON';
+        btn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+      } else {
+        table.classList.remove('active');
+        btn.textContent = '📊 Comparar';
+        btn.style.background = 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)';
+      }
+    }
+
+    function setVisualizationMode(mode) {
+      visualizationMode = mode;
+      document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      render(arr); // Re-render com novo modo
     }
 
     // --- Event Listeners ---
@@ -755,8 +1423,42 @@
       return new Promise(resolve => setTimeout(resolve, ms)); 
     }
 
-    // --- Inicialização ---
-    randomize();
+    // --- Inicialização Avançada ---
+    function initialize() {
+      // Configurar estado inicial
+      randomize();
+      setAlgorithmInfo('bubble');
+      
+      // Adicionar eventos de teclado para acessibilidade
+      document.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && !running) {
+          e.preventDefault();
+          sort();
+        } else if (e.code === 'KeyR' && !running) {
+          e.preventDefault();
+          randomize();
+        } else if (e.code === 'KeyT') {
+          e.preventDefault();
+          toggleTutorial();
+        }
+      });
+      
+      // Mostrar mensagem de boas-vindas
+      setTimeout(() => {
+        const info = document.getElementById('info');
+        const originalContent = info.innerHTML;
+        info.innerHTML = '🚀 <strong>Bem-vindo!</strong> Escolha um algoritmo e clique em "Ordenar" para começar. Use as teclas: Espaço (ordenar), R (randomizar), T (tutorial).';
+        info.classList.add('sorting');
+        
+        setTimeout(() => {
+          info.innerHTML = originalContent;
+          info.classList.remove('sorting');
+        }, 4000);
+      }, 500);
+    }
+
+    // Inicializar quando a página carregar
+    window.addEventListener('DOMContentLoaded', initialize);
   </script>
 </body>
 </html>

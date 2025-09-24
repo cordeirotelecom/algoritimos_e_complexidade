@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Sistema Avançado de Algoritmos - Execução Passo a Passo Detalhada</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+      <!-- CSS personalizado -->
+  <link rel="stylesheet" href="assets/advanced-styles.css">
+  <!-- Chart.js para gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Meta tags para SEO -->
+    <meta name="description" content="Sistema avançado de visualização de algoritmos de ordenação com execução passo a passo, explicações em tempo real, e modo professor interativo.">
+    <meta name="keywords" content="algoritmos, ordenação, bubble sort, selection sort, visualização, educação, programação, passo a passo">
+    <meta name="author" content="Sistema Educacional de Algoritmos">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sistema Avançado de Algoritmos - Execução Passo a Passo">
+    <meta property="og:description" content="Aprenda algoritmos de ordenação de forma interativa com execução passo a passo detalhada">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+    <!-- Container principal com grid avançado -->
+    <div class="main-container">
+        
+        <!-- === SEÇÃO DE CABEÇALHO === -->
+        <section class="header-section" role="banner">
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>🚀 Sistema Avançado de Algoritmos de Ordenação</h1>
+                    <p class="subtitle">Execução Passo a Passo Ultra-Detalhada com Explicações em Tempo Real</p>
+                </div>
+                
+                <div class="feature-highlights">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <div class="feature-text">
+                            <strong>Modo Step-by-Step</strong>
+                            <small>Controle total da execução</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💻</span>
+                        <div class="feature-text">
+                            <strong>Código em Tempo Real</strong>
+                            <small>4 linguagens simultâneas</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🧠</span>
+                        <div class="feature-text">
+                            <strong>Explicações Inteligentes</strong>
+                            <small>IA contextual educativa</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">👨‍🏫</span>
+                        <div class="feature-text">
+                            <strong>Modo Professor</strong>
+                            <small>Perguntas interativas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SEÇÃO DE VISUALIZAÇÃO PRINCIPAL === -->
+        <section class="visualization-section" role="main">
+            <div class="visualization-header">
+                <h2 id="currentAlgorithmTitle">🫧 Bubble Sort - Algoritmo de Troca por Bolhas</h2>
+                <div class="algorithm-status">
+                    <span class="status-badge" id="algorithmStatus">Aguardando execução</span>
+                </div>
+            </div>
+
+            <!-- Canvas de visualização -->
+            <div class="canvas-container">
+                <canvas id="algorithmCanvas" width="1000" height="400" 
+                        aria-label="Visualização do algoritmo de ordenação"></canvas>
+                <div class="canvas-overlay" id="canvasOverlay">
+                    <div class="overlay-message" id="overlayMessage">
+                        Clique em "Gerar Array" para começar
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles principais -->
+            <div class="main-controls">
+                <div class="control-group">
+                    <label for="algorithmSelect" class="control-label">🔧 Algoritmo:</label>
+                    <select id="algorithmSelect" class="control-select" aria-label="Selecionar algoritmo">
+                        <option value="bubble">🫧 Bubble Sort - O(n²)</option>
+                        <option value="selection">🎯 Selection Sort - O(n²)</option>
+                        <option value="insertion">📝 Insertion Sort - O(n²)</option>
+                        <option value="merge">🔀 Merge Sort - O(n log n)</option>
+                        <option value="quick">⚡ Quick Sort - O(n log n)</option>
+                        <option value="heap">🏔️ Heap Sort - O(n log n)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="sizeSlider" class="control-label">📊 Tamanho: <span id="sizeValue">20</span></label>
+                    <input type="range" id="sizeSlider" class="control-slider" 
+                           min="5" max="50" value="20" step="1"
+                           aria-label="Controle de tamanho do array">
+                </div>
+
+                <div class="action-buttons">
+                    <button id="generateBtn" class="btn-primary" title="Gerar novo array aleatório">
+                        🎲 Gerar Array
+                    </button>
+                    <button id="startBtn" class="btn-success" title="Iniciar ordenação">
+                        ▶️ Iniciar Ordenação
+                    </button>
+                    <button id="stopBtn" class="btn-danger" title="Parar execução">
+                        ⏹️ Parar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Métricas em tempo real -->
+            <div class="metrics-display">
+                <div class="metric-item">
+                    <span class="metric-label">Comparações:</span>
+                    <span class="metric-value" id="comparisons">0</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Trocas:</span>
+                    <span class="metric-value" id="swaps">0</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Acessos:</span>
+                    <span class="metric-value" id="arrayAccesses">0</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Tempo:</span>
+                    <span class="metric-value" id="executionTime">0ms</span>
+                </div>
+            </div>
+
+            <!-- Informações do algoritmo -->
+            <div class="algorithm-info" id="algorithmInfo">
+                <div class="info-content">
+                    <h3>📚 Sobre o Algoritmo Atual</h3>
+                    <div id="algorithmDescription" class="algorithm-description">
+                        <p><strong>Bubble Sort:</strong> Algoritmo simples que compara elementos adjacentes repetidamente, fazendo os maiores "borbulharem" para o final do array.</p>
+                        <div class="complexity-info">
+                            <div class="complexity-item">
+                                <strong>Melhor caso:</strong> O(n) - array já ordenado
+                            </div>
+                            <div class="complexity-item">
+                                <strong>Caso médio:</strong> O(n²) - elementos aleatórios
+                            </div>
+                            <div class="complexity-item">
+                                <strong>Pior caso:</strong> O(n²) - array inversamente ordenado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === PAINEL DE CONTROLES STEP-BY-STEP === -->
+        <!-- Este painel será criado dinamicamente pelo JavaScript -->
+
+        <!-- === PAINEL DE CÓDIGO EM EXECUÇÃO === -->
+        <!-- Este painel será criado dinamicamente pelo JavaScript -->
+
+        <!-- === PAINEL DE EXPLICAÇÕES EM TEMPO REAL === -->
+        <!-- Este painel será criado dinamicamente pelo JavaScript -->
+
+    </div>
+
+    <!-- Modal para configurações avançadas -->
+    <div class="modal" id="settingsModal" role="dialog" aria-labelledby="settingsModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="settingsModalTitle">⚙️ Configurações Avançadas</h3>
+                <button class="modal-close" id="closeSettingsModal" aria-label="Fechar modal">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h4>🎨 Tema Visual</h4>
+                    <div class="theme-options">
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="professional" checked>
+                            <span>Profissional (Padrão)</span>
+                        </label>
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="dark">
+                            <span>Escuro</span>
+                        </label>
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="high-contrast">
+                            <span>Alto Contraste</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h4>🔊 Áudio</h4>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="soundEffects" checked>
+                        <span>Efeitos sonoros</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="voiceNarration">
+                        <span>Narração por voz (experimental)</span>
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <h4>♿ Acessibilidade</h4>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="reducedMotion">
+                        <span>Reduzir animações</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="highContrast">
+                        <span>Alto contraste automático</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="screenReaderMode">
+                        <span>Modo leitor de tela</span>
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <h4>📊 Performance</h4>
+                    <label for="maxArraySize">Tamanho máximo do array:</label>
+                    <input type="range" id="maxArraySize" min="10" max="200" value="100" step="10">
+                    <span id="maxArraySizeValue">100</span>
+
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="enableWebWorkers" checked>
+                        <span>Usar Web Workers para algoritmos complexos</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" id="resetSettings">🔄 Restaurar Padrões</button>
+                <button class="btn-primary" id="saveSettings">💾 Salvar Configurações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de configurações flutuante -->
+    <button class="floating-settings-btn" id="settingsBtn" title="Configurações avançadas" aria-label="Abrir configurações">
+        ⚙️
+    </button>
+
+    <!-- Botão de ajuda flutuante -->
+    <button class="floating-help-btn" id="helpBtn" title="Ajuda e tutoriais" aria-label="Abrir ajuda">
+        ❓
+    </button>
+
+    <!-- Sistema de mensagens toast -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" role="status"></div>
+
+    <!-- Loading spinner -->
+    <div class="loading-spinner" id="loadingSpinner" role="status" aria-label="Carregando...">
+        <div class="spinner-inner"></div>
+        <p>Inicializando sistema avançado...</p>
+    </div>
+
+    <!-- Scripts -->
+  <script src="assets/algorithm-system-advanced.js"></script>
+  <script src="assets/intelligent-explanations.js"></script>
+  <script src="assets/annotation-replay-system.js"></script>
+  <script src="assets/dual-comparison-system.js"></script>
+  <script src="assets/intelligent-test-generator.js"></script>
+  <script src="assets/gamification-system.js"></script>
+  <script src="assets/complexity-visualization.js"></script>
+  <script src="assets/pdf-report-system.js"></script>    <!-- Script de inicialização -->
+    <script>
+        // Inicialização após carregamento completo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Esconder loading spinner
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            if (loadingSpinner) {
+                setTimeout(() => {
+                    loadingSpinner.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingSpinner.style.display = 'none';
+                    }, 300);
+                }, 1000);
+            }
+
+            // Configurar controles básicos se o sistema não os criou
+            setupBasicControls();
+            
+            // Configurar modal de configurações
+            setupSettingsModal();
+            
+            // Configurar ajuda
+            setupHelpSystem();
+            
+            // Configurar acessibilidade
+            setupAccessibility();
+            
+            // Exibir mensagem de boas-vindas
+            showWelcomeMessage();
+        });
+
+        function setupBasicControls() {
+            const generateBtn = document.getElementById('generateBtn');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const sizeSlider = document.getElementById('sizeSlider');
+            const sizeValue = document.getElementById('sizeValue');
+            
+            if (generateBtn) {
+                generateBtn.addEventListener('click', () => {
+                    if (window.algorithmSystem) {
+                        window.algorithmSystem.generateRandomArray();
+                        window.algorithmSystem.draw();
+                        showToast('🎲 Novo array gerado!', 'success');
+                    }
+                });
+            }
+            
+            if (startBtn) {
+                startBtn.addEventListener('click', () => {
+                    if (window.algorithmSystem) {
+                        window.algorithmSystem.startSort();
+                        updateAlgorithmStatus('Executando...');
+                    }
+                });
+            }
+            
+            if (stopBtn) {
+                stopBtn.addEventListener('click', () => {
+                    if (window.algorithmSystem) {
+                        window.algorithmSystem.running = false;
+                        updateAlgorithmStatus('Parado');
+                        showToast('⏹️ Execução interrompida', 'info');
+                    }
+                });
+            }
+            
+            if (sizeSlider && sizeValue) {
+                sizeSlider.addEventListener('input', (e) => {
+                    sizeValue.textContent = e.target.value;
+                    if (window.algorithmSystem) {
+                        window.algorithmSystem.size = parseInt(e.target.value);
+                    }
+                });
+            }
+        }
+
+        function setupSettingsModal() {
+            const settingsBtn = document.getElementById('settingsBtn');
+            const settingsModal = document.getElementById('settingsModal');
+            const closeModal = document.getElementById('closeSettingsModal');
+            
+            if (settingsBtn) {
+                settingsBtn.addEventListener('click', () => {
+                    settingsModal.style.display = 'flex';
+                    settingsModal.setAttribute('aria-hidden', 'false');
+                });
+            }
+            
+            if (closeModal) {
+                closeModal.addEventListener('click', () => {
+                    settingsModal.style.display = 'none';
+                    settingsModal.setAttribute('aria-hidden', 'true');
+                });
+            }
+            
+            // Fechar com ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && settingsModal.style.display === 'flex') {
+                    settingsModal.style.display = 'none';
+                    settingsModal.setAttribute('aria-hidden', 'true');
+                }
+            });
+        }
+
+        function setupHelpSystem() {
+            const helpBtn = document.getElementById('helpBtn');
+            
+            if (helpBtn) {
+                helpBtn.addEventListener('click', () => {
+                    showHelpModal();
+                });
+            }
+        }
+
+        function setupAccessibility() {
+            // Configurar navegação por teclado
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey || e.metaKey) {
+                    switch(e.key) {
+                        case 'Enter':
+                            e.preventDefault();
+                            if (window.algorithmSystem) {
+                                window.algorithmSystem.startSort();
+                            }
+                            break;
+                        case ' ':
+                            e.preventDefault();
+                            if (window.algorithmSystem && window.algorithmSystem.stepMode) {
+                                window.algorithmSystem.nextStep();
+                            }
+                            break;
+                    }
+                }
+            });
+        }
+
+        function updateAlgorithmStatus(status) {
+            const statusBadge = document.getElementById('algorithmStatus');
+            if (statusBadge) {
+                statusBadge.textContent = status;
+                statusBadge.className = `status-badge status-${status.toLowerCase().replace(' ', '-')}`;
+            }
+        }
+
+        function showWelcomeMessage() {
+            setTimeout(() => {
+                showToast('🚀 Sistema avançado carregado! Use os controles Step-by-Step para uma experiência detalhada.', 'success', 6000);
+            }, 1500);
+        }
+
+        function showToast(message, type = 'info', duration = 4000) {
+            const toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) return;
+            
+            const toast = document.createElement('div');
+            toast.className = `toast-message toast-${type}`;
+            toast.textContent = message;
+            
+            toastContainer.appendChild(toast);
+            
+            // Animar entrada
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Remover após duração
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, duration);
+        }
+
+        function showHelpModal() {
+            const helpContent = `
+                <h3>📖 Guia de Uso do Sistema Avançado</h3>
+                
+                <h4>🔍 Modo Step-by-Step:</h4>
+                <ul>
+                    <li><strong>▶️ Play:</strong> Executa automaticamente com a velocidade selecionada</li>
+                    <li><strong>⏸️ Pause:</strong> Para a execução automática</li>
+                    <li><strong>⏭️ Next:</strong> Avança um passo manualmente</li>
+                    <li><strong>⏮️ Previous:</strong> Volta um passo (quando possível)</li>
+                    <li><strong>🔄 Reset:</strong> Reinicia para o estado inicial</li>
+                </ul>
+                
+                <h4>🏃 Velocidades Disponíveis:</h4>
+                <ul>
+                    <li><strong>🐌 Ultra Lento (5s):</strong> Para aulas e explicações detalhadas</li>
+                    <li><strong>🐢 Muito Lento (3s):</strong> Para entender cada operação</li>
+                    <li><strong>📚 Didático (2s):</strong> Velocidade ideal para aprendizado</li>
+                    <li><strong>⚡ Normal (0.5s):</strong> Velocidade padrão</li>
+                </ul>
+                
+                <h4>💻 Painel de Código:</h4>
+                <ul>
+                    <li>Acompanhe o código sendo executado linha por linha</li>
+                    <li>Veja variáveis mudando em tempo real</li>
+                    <li>4 linguagens: Pseudocódigo, JavaScript, Python, C/C++</li>
+                </ul>
+                
+                <h4>🧠 Explicações em Tempo Real:</h4>
+                <ul>
+                    <li>Entenda o que está acontecendo a cada operação</li>
+                    <li>Descubra por que cada decisão é tomada</li>
+                    <li>Antecipe a próxima operação</li>
+                </ul>
+                
+                <h4>👨‍🏫 Modo Professor:</h4>
+                <ul>
+                    <li>Perguntas interativas durante a execução</li>
+                    <li>Pontos de discussão automáticos</li>
+                    <li>Ideal para uso em sala de aula</li>
+                </ul>
+                
+                <h4>⌨️ Atalhos de Teclado:</h4>
+                <ul>
+                    <li><strong>Ctrl/Cmd + Enter:</strong> Iniciar ordenação</li>
+                    <li><strong>Ctrl/Cmd + Espaço:</strong> Próximo passo (modo step)</li>
+                    <li><strong>Esc:</strong> Fechar modais</li>
+                </ul>
+            `;
+            
+            showModal('Ajuda do Sistema', helpContent);
+        }
+
+        function showModal(title, content) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>${title}</h3>
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">×</button>
+                    </div>
+                    <div class="modal-body">
+                        ${content}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-primary" onclick="this.closest('.modal').remove()">Entendi!</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            modal.style.display = 'flex';
+            
+            // Fechar com clique fora
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+    </script>
+
+    <!-- Estilos adicionais inline para elementos dinâmicos -->
+    <style>
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+
+        .title-section h1 {
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            margin: 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .feature-highlights {
+            display: flex;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .feature-text small {
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+
+        .visualization-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .visualization-header h2 {
+            margin: 0;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .status-badge {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--bg-gray-100);
+            color: var(--text-secondary);
+        }
+
+        .canvas-container {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-normal);
+        }
+
+        .overlay-message {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .main-controls {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            align-items: end;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .control-label {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+
+        .control-select,
+        .control-slider {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--bg-gray-100);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--bg-white);
+            transition: all var(--transition-fast);
+        }
+
+        .control-select:focus,
+        .control-slider:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary,
+        .btn-success,
+        .btn-danger,
+        .btn-secondary {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--text-white);
+        }
+
+        .btn-success {
+            background: var(--success-green);
+            color: var(--text-white);
+        }
+
+        .btn-danger {
+            background: var(--error-red);
+            color: var(--text-white);
+        }
+
+        .btn-secondary {
+            background: var(--bg-gray-100);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover,
+        .btn-success:hover,
+        .btn-danger:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .metrics-display {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: var(--bg-gray-50);
+            border-radius: 8px;
+            min-width: 100px;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .algorithm-info {
+            background: var(--bg-gray-50);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+        }
+
+        .info-content h3 {
+            margin: 0 0 var(--spacing-md) 0;
+            color: var(--primary-blue);
+        }
+
+        .complexity-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .complexity-item {
+            background: var(--bg-white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .floating-settings-btn,
+        .floating-help-btn {
+            position: fixed;
+            right: var(--spacing-lg);
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            color: var(--text-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            z-index: 1000;
+        }
+
+        .floating-settings-btn {
+            bottom: calc(var(--spacing-lg) + 80px);
+        }
+
+        .floating-help-btn {
+            bottom: var(--spacing-lg);
+        }
+
+        .floating-settings-btn:hover,
+        .floating-help-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: var(--spacing-lg);
+        }
+
+        .modal-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--bg-gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--primary-blue);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .modal-body {
+            padding: var(--spacing-lg);
+        }
+
+        .modal-footer {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--bg-gray-100);
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+        }
+
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            transition: opacity var(--transition-normal);
+        }
+
+        .spinner-inner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--bg-gray-100);
+            border-top: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .toast-container {
+            position: fixed;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            z-index: 2500;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-highlights {
+                justify-content: center;
+            }
+
+            .main-controls {
+                flex-direction: column;
+            }
+
+            .metrics-display {
+                justify-content: center;
+            }
+
+            .floating-settings-btn,
+            .floating-help-btn {
+                right: var(--spacing-md);
+            }
+        }
+    </style>
+</body>
+</html>
