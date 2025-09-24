@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧮 Algoritmos Interativos - Prof. Vagner Cordeiro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        .footer {
+            margin-top: 50px;
+            opacity: 0.8;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2em; }
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Algoritmos Interativos</h1>
+        <p class="subtitle">Material Didático Premium</p>
+        
+        <div class="cards">
+            <div class="card">
+                <h2>🔀 Algoritmos de Ordenação</h2>
+                <p>Visualize e compare 6 algoritmos com interface premium</p>
+                <p><strong>✨ Funcionalidades:</strong></p>
+                <ul style="text-align: left; margin: 20px 0;">
+                    <li>Bubble, Selection, Insertion, Quick, Merge, Heap</li>
+                    <li>Estatísticas em tempo real</li>
+                    <li>Controle de velocidade dinâmico</li>
+                    <li>Design responsivo</li>
+                </ul>
+                <a href="ordenacao_interativa.html" class="btn">🚀 Abrir Simulador</a>
+            </div>
+            
+            <div class="card">
+                <h2>📚 Apostila Completa</h2>
+                <p>Material didático com exercícios gamificados</p>
+                <p><strong>✨ Conteúdo:</strong></p>
+                <ul style="text-align: left; margin: 20px 0;">
+                    <li>12 capítulos + 4 apêndices</li>
+                    <li>Macetes exclusivos</li>
+                    <li>Exercícios Bronze→Ninja</li>
+                    <li>Navegação interativa</li>
+                </ul>
+                <a href="apostila_completa.html" class="btn">📖 Estudar Agora</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3>👨‍🎓 Prof. Vagner Cordeiro</h3>
+            <p>Engenheiro de Computação</p>
+            <p>🔗 <a href="https://github.com/cordeirotelecom/algoritimos_e_complexidade" target="_blank" style="color: white;">GitHub do Projeto</a></p>
+        </div>
+    </div>
+</body>
+</html>
