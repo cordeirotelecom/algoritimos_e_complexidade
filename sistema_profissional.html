@@ -226,6 +226,248 @@
             box-shadow: var(--shadow-light);
         }
 
+        .btn-export {
+            background: var(--gradient-error);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Advanced Controls */
+        .advanced-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .theme-selector select {
+            padding: 0.5rem;
+            min-width: 150px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            background: var(--border);
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        input:checked + .slider {
+            background: var(--accent-blue);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Comparison View */
+        .comparison-container {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-container.active {
+            display: grid;
+        }
+
+        .algorithm-comparison {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+        }
+
+        .algorithm-comparison.winner {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 10px rgba(0, 184, 148, 0.3);
+        }
+
+        .comparison-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .comparison-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .comparison-metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Tutorial Panel */
+        .tutorial-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 300px;
+            background: var(--surface);
+            border: 2px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-heavy);
+            z-index: 1000;
+        }
+
+        .tutorial-panel.active {
+            display: block;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateY(-50%) translateX(100px); }
+            to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        }
+
+        .tutorial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .tutorial-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.25rem;
+        }
+
+        .tutorial-content {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .tutorial-step {
+            background: var(--primary-light);
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin: 0.5rem 0;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        /* Statistics Dashboard */
+        .stats-dashboard {
+            background: var(--primary-dark);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .performance-chart {
+            width: 100%;
+            height: 200px;
+            background: var(--background);
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .chart-bar {
+            background: var(--gradient-primary);
+            border-radius: 4px 4px 0 0;
+            min-width: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            filter: brightness(1.2);
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            writing-mode: vertical-lr;
+        }
+
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-medium);
@@ -578,6 +820,7 @@
                             <option value="insertion">Insertion Sort - O(n²)</option>
                             <option value="merge">Merge Sort - O(n log n)</option>
                             <option value="quick">Quick Sort - O(n log n)</option>
+                            <option value="compare">🔥 COMPARAR TODOS OS ALGORITMOS</option>
                         </select>
                     </div>
                     
@@ -613,6 +856,29 @@
                             <button class="btn btn-tertiary" onclick="resetAnalysis()">
                                 Reset
                             </button>
+                            <button class="btn btn-export" onclick="exportResults()" id="exportBtn" disabled>
+                                Exportar Dados
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Configurações Avançadas</label>
+                        <div class="advanced-controls">
+                            <div class="theme-selector">
+                                <label for="theme">Tema:</label>
+                                <select id="theme" onchange="changeTheme()">
+                                    <option value="dark">Dark Professional</option>
+                                    <option value="light">Light Clean</option>
+                                    <option value="contrast">High Contrast</option>
+                                </select>
+                            </div>
+                            <div class="tutorial-toggle">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="tutorialMode" onchange="toggleTutorial()">
+                                    <span class="slider">Modo Tutorial</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -669,6 +935,11 @@
                 </div>
             </section>
 
+            <!-- Comparação de Algoritmos -->
+            <div class="comparison-container" id="comparisonContainer">
+                <!-- Será populado dinamicamente -->
+            </div>
+
             <!-- Informações do Algoritmo -->
             <section class="section">
                 <h2 class="section-title">Análise Técnica</h2>
@@ -698,8 +969,56 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Dashboard de Estatísticas -->
+            <section class="section">
+                <h2 class="section-title">Dashboard de Estatísticas Avançado</h2>
+                <div class="stats-dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalTests">0</div>
+                            <div class="stat-label">Testes Realizados</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgComparisons">0</div>
+                            <div class="stat-label">Média Comparações</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="bestAlgorithm">-</div>
+                            <div class="stat-label">Melhor Algoritmo</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgTime">0.000s</div>
+                            <div class="stat-label">Tempo Médio</div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-chart" id="performanceChart">
+                        <!-- Gráfico de performance será gerado aqui -->
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
+
+    <!-- Tutorial Panel -->
+    <div class="tutorial-panel" id="tutorialPanel">
+        <div class="tutorial-header">
+            <div class="tutorial-title">Tutorial Interativo</div>
+            <button class="tutorial-close" onclick="closeTutorial()">✕</button>
+        </div>
+        <div class="tutorial-content" id="tutorialContent">
+            <div class="tutorial-step">
+                <strong>Passo 1:</strong> Selecione um algoritmo de ordenação no menu.
+            </div>
+            <div class="tutorial-step">
+                <strong>Passo 2:</strong> Ajuste o tamanho do dataset e velocidade.
+            </div>
+            <div class="tutorial-step">
+                <strong>Passo 3:</strong> Clique em "Iniciar Análise" para ver a visualização.
+            </div>
+        </div>
+    </div>
 
     <script>
         // Variáveis globais
@@ -713,6 +1032,15 @@
         let totalExecutions = 0;
         let currentProgress = 0;
         let animationId = null;
+        let tutorialMode = false;
+        let currentTheme = 'dark';
+        let comparisonMode = false;
+        let comparisonResults = [];
+        let statisticsData = {
+            totalTests: 0,
+            algorithmStats: {},
+            performanceHistory: []
+        };
 
         // Informações dos algoritmos
         const algorithmData = {
@@ -769,6 +1097,17 @@
             generateDataset();
             updateAlgorithmInfo();
             updateUI();
+            loadSavedConfig(); // Carregar configurações salvas
+            
+            // Mensagem de boas-vindas
+            const statusIndicator = document.getElementById('statusIndicator');
+            statusIndicator.className = 'status-indicator status-ready';
+            statusIndicator.innerHTML = '🚀 Sistema Profissional Carregado';
+            
+            // Reset após 3 segundos
+            setTimeout(() => {
+                statusIndicator.innerHTML = 'Sistema Pronto';
+            }, 3000);
         }
 
         // Event Listeners
@@ -788,7 +1127,18 @@
                 document.getElementById('speedValue').textContent = speedLabels[executionSpeed - 1];
             });
 
-            document.getElementById('algorithm').addEventListener('change', updateAlgorithmInfo);
+            document.getElementById('algorithm').addEventListener('change', function() {
+                updateAlgorithmInfo();
+                const algorithm = this.value;
+                comparisonMode = algorithm === 'compare';
+                
+                if (comparisonMode) {
+                    document.getElementById('comparisonContainer').classList.add('active');
+                    setupComparison();
+                } else {
+                    document.getElementById('comparisonContainer').classList.remove('active');
+                }
+            });
 
             // Keyboard shortcuts
             document.addEventListener('keydown', function(e) {
@@ -891,6 +1241,39 @@
         // Atualizar informações do algoritmo
         function updateAlgorithmInfo() {
             const algorithm = document.getElementById('algorithm').value;
+            
+            if (algorithm === 'compare') {
+                document.getElementById('algorithmInfo').innerHTML = `
+                    <div class="algorithm-name">🔥 Modo Comparação de Algoritmos</div>
+                    <div class="algorithm-description">
+                        Este modo executa todos os 5 algoritmos de ordenação com o mesmo dataset e compara suas performances em tempo real. 
+                        Os resultados incluem comparações, trocas, tempo de execução e complexidade para cada algoritmo. 
+                        O vencedor (algoritmo mais rápido) será destacado automaticamente.
+                    </div>
+                    
+                    <div class="complexity-info">
+                        <div class="complexity-item">
+                            <div class="complexity-label">Algoritmos</div>
+                            <div class="complexity-value">5</div>
+                        </div>
+                        <div class="complexity-item">
+                            <div class="complexity-label">Métricas</div>
+                            <div class="complexity-value">4</div>
+                        </div>
+                        <div class="complexity-item">
+                            <div class="complexity-label">Comparação</div>
+                            <div class="complexity-value">Tempo Real</div>
+                        </div>
+                        <div class="complexity-item">
+                            <div class="complexity-label">Resultado</div>
+                            <div class="complexity-value">Automático</div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('complexity').textContent = 'Comparativo';
+                return;
+            }
+
             const info = algorithmData[algorithm];
 
             document.getElementById('algorithmInfo').innerHTML = `
@@ -952,41 +1335,518 @@
             resetMetrics();
             updateUI();
 
-            const algorithm = document.getElementById('algorithm').value;
-            const delayTime = 1100 - (executionSpeed * 100);
+            if (comparisonMode) {
+                await runComparison();
+            } else {
+                const algorithm = document.getElementById('algorithm').value;
+                const delayTime = 1100 - (executionSpeed * 100);
 
-            try {
-                switch (algorithm) {
-                    case 'bubble':
-                        await bubbleSort(delayTime);
-                        break;
-                    case 'selection':
-                        await selectionSort(delayTime);
-                        break;
-                    case 'insertion':
-                        await insertionSort(delayTime);
-                        break;
-                    case 'merge':
-                        await mergeSort(0, dataset.length - 1, delayTime);
-                        break;
-                    case 'quick':
-                        await quickSort(0, dataset.length - 1, delayTime);
-                        break;
+                try {
+                    switch (algorithm) {
+                        case 'bubble':
+                            await bubbleSort(delayTime);
+                            break;
+                        case 'selection':
+                            await selectionSort(delayTime);
+                            break;
+                        case 'insertion':
+                            await insertionSort(delayTime);
+                            break;
+                        case 'merge':
+                            await mergeSort(0, dataset.length - 1, delayTime);
+                            break;
+                        case 'quick':
+                            await quickSort(0, dataset.length - 1, delayTime);
+                            break;
+                    }
+                } catch (error) {
+                    console.error('Erro durante execução:', error);
                 }
-            } catch (error) {
-                console.error('Erro durante execução:', error);
             }
 
             isRunning = false;
             totalExecutions++;
             document.getElementById('totalExecutions').textContent = totalExecutions;
             document.getElementById('arrayState').textContent = 'Ordenado';
+            
+            // Salvar estatísticas
+            saveExecutionStats();
+            updateStatsDashboard();
+            
             updateUI();
+            
+            // Habilitar botão de export
+            document.getElementById('exportBtn').disabled = false;
             
             // Status de conclusão
             const statusIndicator = document.getElementById('statusIndicator');
             statusIndicator.className = 'status-indicator status-completed';
             statusIndicator.innerHTML = '✓ Análise Concluída';
+        }
+
+        // Comparação de múltiplos algoritmos
+        async function runComparison() {
+            comparisonResults = [];
+            const algorithms = ['bubble', 'selection', 'insertion', 'merge', 'quick'];
+            const originalDataset = [...dataset];
+
+            for (let i = 0; i < algorithms.length; i++) {
+                const algorithm = algorithms[i];
+                dataset = [...originalDataset];
+                
+                const startTime = Date.now();
+                let comparisons = 0;
+                let swaps = 0;
+
+                // Executar algoritmo sem delay para comparação
+                switch (algorithm) {
+                    case 'bubble':
+                        const bubbleResult = await bubbleSortSilent();
+                        comparisons = bubbleResult.comparisons;
+                        swaps = bubbleResult.swaps;
+                        break;
+                    case 'selection':
+                        const selectionResult = await selectionSortSilent();
+                        comparisons = selectionResult.comparisons;
+                        swaps = selectionResult.swaps;
+                        break;
+                    case 'insertion':
+                        const insertionResult = await insertionSortSilent();
+                        comparisons = insertionResult.comparisons;
+                        swaps = insertionResult.swaps;
+                        break;
+                    case 'merge':
+                        const mergeResult = await mergeSortSilent(0, dataset.length - 1);
+                        comparisons = mergeResult.comparisons;
+                        swaps = mergeResult.swaps;
+                        break;
+                    case 'quick':
+                        const quickResult = await quickSortSilent(0, dataset.length - 1);
+                        comparisons = quickResult.comparisons;
+                        swaps = quickResult.swaps;
+                        break;
+                }
+
+                const executionTime = Date.now() - startTime;
+                
+                comparisonResults.push({
+                    algorithm,
+                    name: algorithmData[algorithm].name,
+                    comparisons,
+                    swaps,
+                    time: executionTime,
+                    complexity: algorithmData[algorithm].complexity
+                });
+            }
+
+            // Determinar vencedor (menor tempo)
+            const winner = comparisonResults.reduce((min, current) => 
+                current.time < min.time ? current : min
+            );
+
+            displayComparison(winner);
+            dataset = [...originalDataset];
+        }
+
+        // Versões silenciosas dos algoritmos para comparação
+        async function bubbleSortSilent() {
+            let comparisons = 0, swaps = 0;
+            for (let i = 0; i < dataset.length - 1; i++) {
+                for (let j = 0; j < dataset.length - i - 1; j++) {
+                    comparisons++;
+                    if (dataset[j] > dataset[j + 1]) {
+                        [dataset[j], dataset[j + 1]] = [dataset[j + 1], dataset[j]];
+                        swaps++;
+                    }
+                }
+            }
+            return { comparisons, swaps };
+        }
+
+        async function selectionSortSilent() {
+            let comparisons = 0, swaps = 0;
+            for (let i = 0; i < dataset.length - 1; i++) {
+                let minIndex = i;
+                for (let j = i + 1; j < dataset.length; j++) {
+                    comparisons++;
+                    if (dataset[j] < dataset[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+                if (minIndex !== i) {
+                    [dataset[i], dataset[minIndex]] = [dataset[minIndex], dataset[i]];
+                    swaps++;
+                }
+            }
+            return { comparisons, swaps };
+        }
+
+        async function insertionSortSilent() {
+            let comparisons = 0, swaps = 0;
+            for (let i = 1; i < dataset.length; i++) {
+                let key = dataset[i];
+                let j = i - 1;
+                while (j >= 0) {
+                    comparisons++;
+                    if (dataset[j] <= key) break;
+                    dataset[j + 1] = dataset[j];
+                    j--;
+                    swaps++;
+                }
+                dataset[j + 1] = key;
+            }
+            return { comparisons, swaps };
+        }
+
+        async function mergeSortSilent(left, right) {
+            let comparisons = 0, swaps = 0;
+            if (left < right) {
+                const mid = Math.floor((left + right) / 2);
+                const leftResult = await mergeSortSilent(left, mid);
+                const rightResult = await mergeSortSilent(mid + 1, right);
+                const mergeResult = await mergeSilent(left, mid, right);
+                
+                comparisons = leftResult.comparisons + rightResult.comparisons + mergeResult.comparisons;
+                swaps = leftResult.swaps + rightResult.swaps + mergeResult.swaps;
+            }
+            return { comparisons, swaps };
+        }
+
+        async function mergeSilent(left, mid, right) {
+            const leftArray = dataset.slice(left, mid + 1);
+            const rightArray = dataset.slice(mid + 1, right + 1);
+            let comparisons = 0, swaps = 0;
+            let i = 0, j = 0, k = left;
+
+            while (i < leftArray.length && j < rightArray.length) {
+                comparisons++;
+                if (leftArray[i] <= rightArray[j]) {
+                    dataset[k] = leftArray[i];
+                    i++;
+                } else {
+                    dataset[k] = rightArray[j];
+                    j++;
+                }
+                swaps++;
+                k++;
+            }
+
+            while (i < leftArray.length) {
+                dataset[k] = leftArray[i];
+                i++;
+                k++;
+                swaps++;
+            }
+
+            while (j < rightArray.length) {
+                dataset[k] = rightArray[j];
+                j++;
+                k++;
+                swaps++;
+            }
+            
+            return { comparisons, swaps };
+        }
+
+        async function quickSortSilent(low, high) {
+            let comparisons = 0, swaps = 0;
+            if (low < high) {
+                const partitionResult = await partitionSilent(low, high);
+                const pi = partitionResult.pivot;
+                comparisons += partitionResult.comparisons;
+                swaps += partitionResult.swaps;
+                
+                const leftResult = await quickSortSilent(low, pi - 1);
+                const rightResult = await quickSortSilent(pi + 1, high);
+                
+                comparisons += leftResult.comparisons + rightResult.comparisons;
+                swaps += leftResult.swaps + rightResult.swaps;
+            }
+            return { comparisons, swaps };
+        }
+
+        async function partitionSilent(low, high) {
+            const pivot = dataset[high];
+            let i = low - 1;
+            let comparisons = 0, swaps = 0;
+
+            for (let j = low; j < high; j++) {
+                comparisons++;
+                if (dataset[j] < pivot) {
+                    i++;
+                    [dataset[i], dataset[j]] = [dataset[j], dataset[i]];
+                    swaps++;
+                }
+            }
+
+            [dataset[i + 1], dataset[high]] = [dataset[high], dataset[i + 1]];
+            swaps++;
+            
+            return { pivot: i + 1, comparisons, swaps };
+        }
+
+        // Exibir resultado da comparação
+        function displayComparison(winner) {
+            const container = document.getElementById('comparisonContainer');
+            container.innerHTML = '';
+
+            comparisonResults.forEach(result => {
+                const div = document.createElement('div');
+                div.className = `algorithm-comparison ${result.algorithm === winner.algorithm ? 'winner' : ''}`;
+                
+                div.innerHTML = `
+                    <div class="comparison-title">
+                        ${result.name} ${result.algorithm === winner.algorithm ? '🏆' : ''}
+                    </div>
+                    <div class="comparison-metrics">
+                        <div class="comparison-metric">
+                            <span>Comparações:</span>
+                            <span>${result.comparisons.toLocaleString()}</span>
+                        </div>
+                        <div class="comparison-metric">
+                            <span>Trocas:</span>
+                            <span>${result.swaps.toLocaleString()}</span>
+                        </div>
+                        <div class="comparison-metric">
+                            <span>Tempo:</span>
+                            <span>${result.time}ms</span>
+                        </div>
+                        <div class="comparison-metric">
+                            <span>Complexidade:</span>
+                            <span>${result.complexity}</span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        // Configurar modo de comparação
+        function setupComparison() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            statusIndicator.className = 'status-indicator status-ready';
+            statusIndicator.innerHTML = '🔥 Modo Comparação Ativo';
+        }
+
+        // Sistema de temas
+        function changeTheme() {
+            const theme = document.getElementById('theme').value;
+            currentTheme = theme;
+            
+            const root = document.documentElement;
+            
+            if (theme === 'light') {
+                root.style.setProperty('--background', '#f8f9fa');
+                root.style.setProperty('--surface', '#ffffff');
+                root.style.setProperty('--primary-dark', '#e9ecef');
+                root.style.setProperty('--primary-light', '#f1f3f4');
+                root.style.setProperty('--text-primary', '#212529');
+                root.style.setProperty('--text-secondary', '#6c757d');
+                root.style.setProperty('--border', '#dee2e6');
+            } else if (theme === 'contrast') {
+                root.style.setProperty('--background', '#000000');
+                root.style.setProperty('--surface', '#1a1a1a');
+                root.style.setProperty('--primary-dark', '#000000');
+                root.style.setProperty('--primary-light', '#333333');
+                root.style.setProperty('--text-primary', '#ffffff');
+                root.style.setProperty('--text-secondary', '#cccccc');
+                root.style.setProperty('--border', '#666666');
+                root.style.setProperty('--accent-blue', '#00ccff');
+                root.style.setProperty('--accent-green', '#00ff88');
+                root.style.setProperty('--accent-orange', '#ffaa00');
+            } else {
+                // Reset to dark theme
+                root.style.setProperty('--background', '#0f0f0f');
+                root.style.setProperty('--surface', '#1e1e1e');
+                root.style.setProperty('--primary-dark', '#1a1a1a');
+                root.style.setProperty('--primary-light', '#2d2d2d');
+                root.style.setProperty('--text-primary', '#ffffff');
+                root.style.setProperty('--text-secondary', '#b0b0b0');
+                root.style.setProperty('--border', '#333333');
+                root.style.setProperty('--accent-blue', '#0066cc');
+                root.style.setProperty('--accent-green', '#00b894');
+                root.style.setProperty('--accent-orange', '#fd8900');
+            }
+        }
+
+        // Sistema de tutorial
+        function toggleTutorial() {
+            tutorialMode = document.getElementById('tutorialMode').checked;
+            const panel = document.getElementById('tutorialPanel');
+            
+            if (tutorialMode) {
+                panel.classList.add('active');
+                updateTutorialContent('Modo tutorial ativado! Agora você receberá instruções detalhadas.');
+            } else {
+                panel.classList.remove('active');
+            }
+        }
+
+        function closeTutorial() {
+            document.getElementById('tutorialMode').checked = false;
+            document.getElementById('tutorialPanel').classList.remove('active');
+            tutorialMode = false;
+        }
+
+        function updateTutorialContent(message) {
+            if (!tutorialMode) return;
+            
+            const content = document.getElementById('tutorialContent');
+            content.innerHTML = `
+                <div class="tutorial-step">
+                    <strong>Status:</strong> ${message}
+                </div>
+                <div class="tutorial-step">
+                    <strong>Dica:</strong> Use ESPAÇO para iniciar/pausar e R para gerar novo dataset.
+                </div>
+                <div class="tutorial-step">
+                    <strong>Avançado:</strong> Selecione "COMPARAR TODOS" para ver análise comparativa.
+                </div>
+            `;
+        }
+
+        // Salvar estatísticas de execução
+        function saveExecutionStats() {
+            const algorithm = comparisonMode ? 'comparison' : document.getElementById('algorithm').value;
+            const stats = {
+                algorithm,
+                comparisons: comparisonsCount,
+                swaps: swapsCount,
+                time: Date.now() - startTime,
+                datasetSize,
+                timestamp: new Date()
+            };
+
+            statisticsData.totalTests++;
+            if (!statisticsData.algorithmStats[algorithm]) {
+                statisticsData.algorithmStats[algorithm] = {
+                    executions: 0,
+                    totalComparisons: 0,
+                    totalSwaps: 0,
+                    totalTime: 0
+                };
+            }
+
+            const algStats = statisticsData.algorithmStats[algorithm];
+            algStats.executions++;
+            algStats.totalComparisons += comparisonsCount;
+            algStats.totalSwaps += swapsCount;
+            algStats.totalTime += stats.time;
+
+            statisticsData.performanceHistory.push(stats);
+        }
+
+        // Atualizar dashboard de estatísticas
+        function updateStatsDashboard() {
+            document.getElementById('totalTests').textContent = statisticsData.totalTests;
+
+            if (statisticsData.totalTests > 0) {
+                // Calcular médias
+                let totalComparisons = 0, totalTime = 0;
+                let bestAlgorithm = '';
+                let bestTime = Infinity;
+
+                Object.entries(statisticsData.algorithmStats).forEach(([alg, stats]) => {
+                    totalComparisons += stats.totalComparisons;
+                    totalTime += stats.totalTime;
+                    
+                    const avgTime = stats.totalTime / stats.executions;
+                    if (avgTime < bestTime) {
+                        bestTime = avgTime;
+                        bestAlgorithm = algorithmData[alg]?.name || alg;
+                    }
+                });
+
+                document.getElementById('avgComparisons').textContent = Math.round(totalComparisons / statisticsData.totalTests).toLocaleString();
+                document.getElementById('avgTime').textContent = (totalTime / statisticsData.totalTests / 1000).toFixed(3) + 's';
+                document.getElementById('bestAlgorithm').textContent = bestAlgorithm;
+
+                updatePerformanceChart();
+            }
+        }
+
+        // Atualizar gráfico de performance
+        function updatePerformanceChart() {
+            const chart = document.getElementById('performanceChart');
+            chart.innerHTML = '';
+
+            Object.entries(statisticsData.algorithmStats).forEach(([algorithm, stats]) => {
+                const avgTime = stats.totalTime / stats.executions;
+                const maxTime = Math.max(...Object.values(statisticsData.algorithmStats).map(s => s.totalTime / s.executions));
+                const height = (avgTime / maxTime) * 160;
+
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = height + 'px';
+                bar.title = `${algorithmData[algorithm]?.name || algorithm}: ${avgTime.toFixed(2)}ms médio`;
+                
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = algorithmData[algorithm]?.name || algorithm;
+                
+                bar.appendChild(label);
+                chart.appendChild(bar);
+            });
+        }
+
+        // Exportar dados
+        function exportResults() {
+            const data = {
+                executionSummary: {
+                    algorithm: comparisonMode ? 'Comparação Múltipla' : algorithmData[document.getElementById('algorithm').value]?.name,
+                    datasetSize,
+                    comparisons: comparisonsCount,
+                    swaps: swapsCount,
+                    executionTime: (Date.now() - startTime) / 1000,
+                    timestamp: new Date().toISOString()
+                },
+                comparisonResults: comparisonMode ? comparisonResults : null,
+                statistics: statisticsData,
+                systemConfig: {
+                    theme: currentTheme,
+                    tutorialMode,
+                    version: '2.0 Professional'
+                }
+            };
+
+            // Exportar JSON
+            const jsonBlob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const jsonUrl = URL.createObjectURL(jsonBlob);
+            const jsonLink = document.createElement('a');
+            jsonLink.href = jsonUrl;
+            jsonLink.download = `algoritmos_analysis_${new Date().toISOString().split('T')[0]}.json`;
+            jsonLink.click();
+
+            // Exportar CSV
+            const csvData = statisticsData.performanceHistory.map(stat => [
+                stat.algorithm,
+                stat.datasetSize,
+                stat.comparisons,
+                stat.swaps,
+                stat.time,
+                stat.timestamp.toISOString()
+            ]);
+            
+            const csvContent = 'Algorithm,Dataset Size,Comparisons,Swaps,Time (ms),Timestamp\n' + 
+                             csvData.map(row => row.join(',')).join('\n');
+            
+            const csvBlob = new Blob([csvContent], { type: 'text/csv' });
+            const csvUrl = URL.createObjectURL(csvBlob);
+            const csvLink = document.createElement('a');
+            csvLink.href = csvUrl;
+            csvLink.download = `algoritmos_data_${new Date().toISOString().split('T')[0]}.csv`;
+            csvLink.click();
+
+            // Feedback visual
+            const statusIndicator = document.getElementById('statusIndicator');
+            statusIndicator.className = 'status-indicator status-completed';
+            statusIndicator.innerHTML = '📊 Dados Exportados com Sucesso!';
+            
+            setTimeout(() => {
+                statusIndicator.className = 'status-indicator status-ready';
+                statusIndicator.innerHTML = 'Sistema Pronto';
+            }, 3000);
         }
 
         // Algoritmo Bubble Sort
@@ -1143,26 +2003,107 @@
         function generateNewDataset() {
             if (isRunning) return;
             generateDataset();
+            if (tutorialMode) {
+                updateTutorialContent('Novo dataset gerado! Pronto para análise.');
+            }
         }
 
         function resetAnalysis() {
             if (isRunning) return;
             generateDataset();
             totalExecutions = 0;
+            comparisonResults = [];
+            statisticsData = {
+                totalTests: 0,
+                algorithmStats: {},
+                performanceHistory: []
+            };
+            
             document.getElementById('totalExecutions').textContent = '0';
+            document.getElementById('comparisonContainer').classList.remove('active');
+            document.getElementById('exportBtn').disabled = true;
+            
+            // Reset dashboard
+            document.getElementById('totalTests').textContent = '0';
+            document.getElementById('avgComparisons').textContent = '0';
+            document.getElementById('bestAlgorithm').textContent = '-';
+            document.getElementById('avgTime').textContent = '0.000s';
+            document.getElementById('performanceChart').innerHTML = '';
             
             const statusIndicator = document.getElementById('statusIndicator');
             statusIndicator.className = 'status-indicator status-ready';
             statusIndicator.innerHTML = 'Sistema Resetado';
+            
+            if (tutorialMode) {
+                updateTutorialContent('Sistema resetado! Todas as estatísticas foram limpas.');
+            }
         }
 
         // Inicializar aplicação
-        window.addEventListener('load', initialize);
+        window.addEventListener('load', function() {
+            initialize();
+            
+            // Carregar estatísticas do localStorage se existir
+            const savedStats = localStorage.getItem('algorithmStats');
+            if (savedStats) {
+                statisticsData = JSON.parse(savedStats);
+                updateStatsDashboard();
+            }
+            
+            // Auto-save estatísticas
+            setInterval(() => {
+                localStorage.setItem('algorithmStats', JSON.stringify(statisticsData));
+            }, 30000); // A cada 30 segundos
+        });
+        
         window.addEventListener('resize', function() {
             if (!isRunning) {
                 renderBars();
             }
         });
+
+        // Salvar configurações no localStorage
+        window.addEventListener('beforeunload', function() {
+            const config = {
+                theme: currentTheme,
+                tutorialMode,
+                datasetSize,
+                executionSpeed
+            };
+            localStorage.setItem('algorithmConfig', JSON.stringify(config));
+            localStorage.setItem('algorithmStats', JSON.stringify(statisticsData));
+        });
+
+        // Carregar configurações salvas
+        function loadSavedConfig() {
+            const savedConfig = localStorage.getItem('algorithmConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                
+                if (config.theme && config.theme !== 'dark') {
+                    document.getElementById('theme').value = config.theme;
+                    changeTheme();
+                }
+                
+                if (config.tutorialMode) {
+                    document.getElementById('tutorialMode').checked = true;
+                    toggleTutorial();
+                }
+                
+                if (config.datasetSize) {
+                    document.getElementById('arraySize').value = config.datasetSize;
+                    datasetSize = config.datasetSize;
+                    document.getElementById('arraySizeValue').textContent = datasetSize;
+                }
+                
+                if (config.executionSpeed) {
+                    document.getElementById('speed').value = config.executionSpeed;
+                    executionSpeed = config.executionSpeed;
+                    const speedLabels = ['Muito Lento', 'Muito Lento', 'Lento', 'Lento', 'Médio', 'Médio', 'Rápido', 'Rápido', 'Muito Rápido', 'Instantâneo'];
+                    document.getElementById('speedValue').textContent = speedLabels[config.executionSpeed - 1];
+                }
+            }
+        }
     </script>
 </body>
 </html>
