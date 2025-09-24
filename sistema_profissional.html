@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Algoritmos de Ordenação | Sistema Profissional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-light: #2d2d2d;
+            --accent-blue: #0066cc;
+            --accent-green: #00b894;
+            --accent-orange: #fd8900;
+            --accent-red: #e74c3c;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --background: #0f0f0f;
+            --surface: #1e1e1e;
+            --border: #333333;
+            --gradient-primary: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            --gradient-success: linear-gradient(135deg, #00b894 0%, #008f72 100%);
+            --gradient-warning: linear-gradient(135deg, #fd8900 0%, #cc6d00 100%);
+            --gradient-error: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.3);
+            --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Profissional */
+        .header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+            box-shadow: var(--shadow-light);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .header-stat {
+            text-align: center;
+        }
+
+        .header-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.2rem;
+        }
+
+        .header-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-light);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        /* Controls Grid */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            background: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .control-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input[type="range"]:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .range-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .range-value {
+            font-weight: 700;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-success);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn-tertiary {
+            background: var(--gradient-warning);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Metrics Dashboard */
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .metric-card:nth-child(1)::before { background: var(--gradient-primary); }
+        .metric-card:nth-child(2)::before { background: var(--gradient-success); }
+        .metric-card:nth-child(3)::before { background: var(--gradient-warning); }
+        .metric-card:nth-child(4)::before { background: var(--gradient-error); }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        /* Visualization */
+        .visualization-container {
+            background: var(--primary-dark);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .visualization-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .visualization-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .visualization-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .bars-container {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 2px;
+            min-height: 350px;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .bar {
+            background: var(--gradient-primary);
+            border-radius: 3px 3px 0 0;
+            transition: all 0.4s ease;
+            position: relative;
+            min-width: 8px;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            filter: brightness(1.2);
+        }
+
+        .bar.highlight {
+            background: var(--gradient-warning) !important;
+            transform: scaleX(1.2);
+            filter: brightness(1.3);
+            box-shadow: 0 0 10px rgba(253, 137, 0, 0.5);
+        }
+
+        .bar.comparing {
+            background: var(--gradient-error) !important;
+            animation: pulse 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.4); }
+        }
+
+        /* Algorithm Information */
+        .algorithm-info {
+            background: var(--primary-light);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .algorithm-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .algorithm-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .complexity-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .complexity-item {
+            background: var(--background);
+            padding: 0.8rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .complexity-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .complexity-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Status Indicator */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .status-ready {
+            background: rgba(0, 184, 148, 0.1);
+            color: var(--accent-green);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        .status-running {
+            background: rgba(253, 137, 0, 0.1);
+            color: var(--accent-orange);
+            border: 1px solid rgba(253, 137, 0, 0.3);
+        }
+
+        .status-completed {
+            background: rgba(0, 102, 204, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(0, 102, 204, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                text-align: center;
+            }
+
+            .header-stats {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .logo-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .button-group {
+                justify-content: center;
+            }
+
+            .complexity-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .metrics-dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .bars-container {
+                min-height: 250px;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            border-top-color: var(--accent-blue);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1>Análise de Algoritmos de Ordenação</h1>
+                    <p>Sistema Profissional de Visualização e Análise de Performance</p>
+                </div>
+                <div class="header-stats">
+                    <div class="header-stat">
+                        <div class="header-stat-value" id="totalExecutions">0</div>
+                        <div class="header-stat-label">Execuções</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value" id="currentProgress">0%</div>
+                        <div class="header-stat-label">Progresso</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Controles -->
+            <section class="section">
+                <h2 class="section-title">Configurações de Análise</h2>
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label class="control-label" for="algorithm">Algoritmo de Ordenação</label>
+                        <select id="algorithm">
+                            <option value="bubble">Bubble Sort - O(n²)</option>
+                            <option value="selection">Selection Sort - O(n²)</option>
+                            <option value="insertion">Insertion Sort - O(n²)</option>
+                            <option value="merge">Merge Sort - O(n log n)</option>
+                            <option value="quick">Quick Sort - O(n log n)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" for="arraySize">Tamanho do Dataset</label>
+                        <input type="range" id="arraySize" min="10" max="100" value="40">
+                        <div class="range-display">
+                            <span>10</span>
+                            <span class="range-value" id="arraySizeValue">40</span>
+                            <span>100</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" for="speed">Velocidade de Execução</label>
+                        <input type="range" id="speed" min="1" max="10" value="5">
+                        <div class="range-display">
+                            <span>Lento</span>
+                            <span class="range-value" id="speedValue">Médio</span>
+                            <span>Rápido</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">Controles de Execução</label>
+                        <div class="button-group">
+                            <button class="btn btn-primary" id="startBtn" onclick="startAnalysis()">
+                                Iniciar Análise
+                            </button>
+                            <button class="btn btn-secondary" onclick="generateNewDataset()">
+                                Novo Dataset
+                            </button>
+                            <button class="btn btn-tertiary" onclick="resetAnalysis()">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Métricas -->
+            <section class="section">
+                <h2 class="section-title">Métricas de Performance</h2>
+                <div class="metrics-dashboard">
+                    <div class="metric-card">
+                        <div class="metric-value" id="comparisons">0</div>
+                        <div class="metric-label">Comparações</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="swaps">0</div>
+                        <div class="metric-label">Trocas</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="executionTime">0.000s</div>
+                        <div class="metric-label">Tempo Execução</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="complexity">O(n²)</div>
+                        <div class="metric-label">Complexidade</div>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem;">
+                    <span class="status-indicator status-ready" id="statusIndicator">
+                        <span class="status-dot"></span>
+                        Sistema Pronto
+                    </span>
+                </div>
+            </section>
+
+            <!-- Visualização -->
+            <section class="section">
+                <h2 class="section-title">Visualização de Algoritmo</h2>
+                <div class="visualization-container">
+                    <div class="visualization-header">
+                        <div class="visualization-title">Dataset de Análise</div>
+                        <div class="visualization-info">
+                            Elementos: <span id="elementCount">40</span> | 
+                            Estado: <span id="arrayState">Desordenado</span>
+                        </div>
+                    </div>
+                    <div class="bars-container" id="barsContainer">
+                        <!-- Barras serão geradas dinamicamente -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Informações do Algoritmo -->
+            <section class="section">
+                <h2 class="section-title">Análise Técnica</h2>
+                <div class="algorithm-info" id="algorithmInfo">
+                    <div class="algorithm-name">Bubble Sort</div>
+                    <div class="algorithm-description">
+                        O Bubble Sort é um algoritmo de ordenação simples que funciona comparando repetidamente elementos adjacentes e trocando-os se estiverem na ordem errada. O processo é repetido até que nenhuma troca seja necessária, indicando que a lista está ordenada.
+                    </div>
+                    
+                    <div class="complexity-info">
+                        <div class="complexity-item">
+                            <div class="complexity-label">Melhor Caso</div>
+                            <div class="complexity-value" id="bestCase">O(n)</div>
+                        </div>
+                        <div class="complexity-item">
+                            <div class="complexity-label">Caso Médio</div>
+                            <div class="complexity-value" id="averageCase">O(n²)</div>
+                        </div>
+                        <div class="complexity-item">
+                            <div class="complexity-label">Pior Caso</div>
+                            <div class="complexity-value" id="worstCase">O(n²)</div>
+                        </div>
+                        <div class="complexity-item">
+                            <div class="complexity-label">Espaço</div>
+                            <div class="complexity-value" id="spaceComplexity">O(1)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Variáveis globais
+        let dataset = [];
+        let datasetSize = 40;
+        let executionSpeed = 5;
+        let isRunning = false;
+        let comparisonsCount = 0;
+        let swapsCount = 0;
+        let startTime = 0;
+        let totalExecutions = 0;
+        let currentProgress = 0;
+        let animationId = null;
+
+        // Informações dos algoritmos
+        const algorithmData = {
+            bubble: {
+                name: 'Bubble Sort',
+                description: 'O Bubble Sort é um algoritmo de ordenação simples que funciona comparando repetidamente elementos adjacentes e trocando-os se estiverem na ordem errada. O processo é repetido até que nenhuma troca seja necessária, indicando que a lista está ordenada. É chamado de "bubble" porque elementos menores "borbulham" para o início da lista.',
+                bestCase: 'O(n)',
+                averageCase: 'O(n²)',
+                worstCase: 'O(n²)',
+                spaceComplexity: 'O(1)',
+                complexity: 'O(n²)'
+            },
+            selection: {
+                name: 'Selection Sort',
+                description: 'O Selection Sort divide a lista em duas partes: a sublista ordenada (inicialmente vazia) e a sublista desordenada. O algoritmo encontra repetidamente o menor elemento na sublista desordenada e o move para o final da sublista ordenada. É eficiente para pequenos datasets.',
+                bestCase: 'O(n²)',
+                averageCase: 'O(n²)',
+                worstCase: 'O(n²)',
+                spaceComplexity: 'O(1)',
+                complexity: 'O(n²)'
+            },
+            insertion: {
+                name: 'Insertion Sort',
+                description: 'O Insertion Sort constrói a lista ordenada final um elemento por vez. É muito eficiente para pequenos datasets e listas quase ordenadas. O algoritmo é similar ao processo de ordenar cartas de baralho na mão, inserindo cada carta na posição correta.',
+                bestCase: 'O(n)',
+                averageCase: 'O(n²)',
+                worstCase: 'O(n²)',
+                spaceComplexity: 'O(1)',
+                complexity: 'O(n²)'
+            },
+            merge: {
+                name: 'Merge Sort',
+                description: 'O Merge Sort é um algoritmo de divisão e conquista que divide a lista pela metade recursivamente até que cada sublista contenha apenas um elemento, depois combina essas sublistas de forma ordenada. É muito eficiente e tem performance consistente.',
+                bestCase: 'O(n log n)',
+                averageCase: 'O(n log n)',
+                worstCase: 'O(n log n)',
+                spaceComplexity: 'O(n)',
+                complexity: 'O(n log n)'
+            },
+            quick: {
+                name: 'Quick Sort',
+                description: 'O Quick Sort usa um elemento "pivô" para particionar a lista em duas sublistas: elementos menores que o pivô e elementos maiores. O processo é aplicado recursivamente às sublistas. É muito eficiente na prática, sendo um dos algoritmos de ordenação mais utilizados.',
+                bestCase: 'O(n log n)',
+                averageCase: 'O(n log n)',
+                worstCase: 'O(n²)',
+                spaceComplexity: 'O(log n)',
+                complexity: 'O(n log n)'
+            }
+        };
+
+        // Inicialização
+        function initialize() {
+            setupEventListeners();
+            generateDataset();
+            updateAlgorithmInfo();
+            updateUI();
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            document.getElementById('arraySize').addEventListener('input', function() {
+                datasetSize = parseInt(this.value);
+                document.getElementById('arraySizeValue').textContent = datasetSize;
+                document.getElementById('elementCount').textContent = datasetSize;
+                if (!isRunning) {
+                    generateDataset();
+                }
+            });
+
+            document.getElementById('speed').addEventListener('input', function() {
+                executionSpeed = parseInt(this.value);
+                const speedLabels = ['Muito Lento', 'Muito Lento', 'Lento', 'Lento', 'Médio', 'Médio', 'Rápido', 'Rápido', 'Muito Rápido', 'Instantâneo'];
+                document.getElementById('speedValue').textContent = speedLabels[executionSpeed - 1];
+            });
+
+            document.getElementById('algorithm').addEventListener('change', updateAlgorithmInfo);
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.code === 'Space' && !isRunning) {
+                    e.preventDefault();
+                    startAnalysis();
+                } else if (e.code === 'KeyR' && !isRunning) {
+                    e.preventDefault();
+                    generateNewDataset();
+                } else if (e.code === 'Escape' && isRunning) {
+                    e.preventDefault();
+                    // Implementar pausa se necessário
+                }
+            });
+        }
+
+        // Gerar dataset
+        function generateDataset() {
+            dataset = [];
+            for (let i = 0; i < datasetSize; i++) {
+                dataset.push(Math.floor(Math.random() * 280) + 20);
+            }
+            renderBars();
+            resetMetrics();
+            document.getElementById('arrayState').textContent = 'Desordenado';
+        }
+
+        // Renderizar barras
+        function renderBars(highlightIndices = []) {
+            const container = document.getElementById('barsContainer');
+            container.innerHTML = '';
+
+            const maxValue = Math.max(...dataset);
+            const containerWidth = container.clientWidth - 40;
+            const barWidth = Math.max(4, (containerWidth / dataset.length) - 2);
+
+            dataset.forEach((value, index) => {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                
+                if (highlightIndices.includes(index)) {
+                    bar.classList.add('highlight');
+                }
+
+                const height = (value / maxValue) * 300;
+                bar.style.height = height + 'px';
+                bar.style.width = barWidth + 'px';
+                bar.title = `Índice: ${index}, Valor: ${value}`;
+
+                container.appendChild(bar);
+            });
+        }
+
+        // Atualizar métricas
+        function updateMetrics() {
+            document.getElementById('comparisons').textContent = comparisonsCount.toLocaleString();
+            document.getElementById('swaps').textContent = swapsCount.toLocaleString();
+            
+            if (isRunning) {
+                const elapsed = ((Date.now() - startTime) / 1000).toFixed(3);
+                document.getElementById('executionTime').textContent = elapsed + 's';
+            }
+
+            // Atualizar progresso
+            const algorithm = document.getElementById('algorithm').value;
+            let expectedComparisons;
+            switch(algorithm) {
+                case 'bubble':
+                case 'selection':
+                    expectedComparisons = (datasetSize * (datasetSize - 1)) / 2;
+                    break;
+                case 'insertion':
+                    expectedComparisons = (datasetSize * (datasetSize - 1)) / 4;
+                    break;
+                case 'merge':
+                    expectedComparisons = datasetSize * Math.log2(datasetSize);
+                    break;
+                case 'quick':
+                    expectedComparisons = datasetSize * Math.log2(datasetSize);
+                    break;
+                default:
+                    expectedComparisons = datasetSize * datasetSize;
+            }
+
+            currentProgress = Math.min(100, (comparisonsCount / expectedComparisons) * 100);
+            document.getElementById('currentProgress').textContent = Math.round(currentProgress) + '%';
+            document.getElementById('progressBar').style.width = currentProgress + '%';
+        }
+
+        // Reset métricas
+        function resetMetrics() {
+            comparisonsCount = 0;
+            swapsCount = 0;
+            updateMetrics();
+            document.getElementById('executionTime').textContent = '0.000s';
+            document.getElementById('currentProgress').textContent = '0%';
+            document.getElementById('progressBar').style.width = '0%';
+        }
+
+        // Atualizar informações do algoritmo
+        function updateAlgorithmInfo() {
+            const algorithm = document.getElementById('algorithm').value;
+            const info = algorithmData[algorithm];
+
+            document.getElementById('algorithmInfo').innerHTML = `
+                <div class="algorithm-name">${info.name}</div>
+                <div class="algorithm-description">${info.description}</div>
+                
+                <div class="complexity-info">
+                    <div class="complexity-item">
+                        <div class="complexity-label">Melhor Caso</div>
+                        <div class="complexity-value">${info.bestCase}</div>
+                    </div>
+                    <div class="complexity-item">
+                        <div class="complexity-label">Caso Médio</div>
+                        <div class="complexity-value">${info.averageCase}</div>
+                    </div>
+                    <div class="complexity-item">
+                        <div class="complexity-label">Pior Caso</div>
+                        <div class="complexity-value">${info.worstCase}</div>
+                    </div>
+                    <div class="complexity-item">
+                        <div class="complexity-label">Espaço</div>
+                        <div class="complexity-value">${info.spaceComplexity}</div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('complexity').textContent = info.complexity;
+        }
+
+        // Atualizar UI
+        function updateUI() {
+            const startBtn = document.getElementById('startBtn');
+            const statusIndicator = document.getElementById('statusIndicator');
+
+            if (isRunning) {
+                startBtn.textContent = 'Executando...';
+                startBtn.disabled = true;
+                statusIndicator.className = 'status-indicator status-running';
+                statusIndicator.innerHTML = '<div class="loading"></div> Executando Análise';
+            } else {
+                startBtn.textContent = 'Iniciar Análise';
+                startBtn.disabled = false;
+                statusIndicator.className = 'status-indicator status-ready';
+                statusIndicator.innerHTML = 'Sistema Pronto';
+            }
+        }
+
+        // Função de delay
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Iniciar análise
+        async function startAnalysis() {
+            if (isRunning) return;
+
+            isRunning = true;
+            startTime = Date.now();
+            resetMetrics();
+            updateUI();
+
+            const algorithm = document.getElementById('algorithm').value;
+            const delayTime = 1100 - (executionSpeed * 100);
+
+            try {
+                switch (algorithm) {
+                    case 'bubble':
+                        await bubbleSort(delayTime);
+                        break;
+                    case 'selection':
+                        await selectionSort(delayTime);
+                        break;
+                    case 'insertion':
+                        await insertionSort(delayTime);
+                        break;
+                    case 'merge':
+                        await mergeSort(0, dataset.length - 1, delayTime);
+                        break;
+                    case 'quick':
+                        await quickSort(0, dataset.length - 1, delayTime);
+                        break;
+                }
+            } catch (error) {
+                console.error('Erro durante execução:', error);
+            }
+
+            isRunning = false;
+            totalExecutions++;
+            document.getElementById('totalExecutions').textContent = totalExecutions;
+            document.getElementById('arrayState').textContent = 'Ordenado';
+            updateUI();
+            
+            // Status de conclusão
+            const statusIndicator = document.getElementById('statusIndicator');
+            statusIndicator.className = 'status-indicator status-completed';
+            statusIndicator.innerHTML = '✓ Análise Concluída';
+        }
+
+        // Algoritmo Bubble Sort
+        async function bubbleSort(delayTime) {
+            for (let i = 0; i < dataset.length - 1; i++) {
+                for (let j = 0; j < dataset.length - i - 1; j++) {
+                    comparisonsCount++;
+                    renderBars([j, j + 1]);
+                    updateMetrics();
+                    await delay(delayTime);
+
+                    if (dataset[j] > dataset[j + 1]) {
+                        [dataset[j], dataset[j + 1]] = [dataset[j + 1], dataset[j]];
+                        swapsCount++;
+                        updateMetrics();
+                    }
+                }
+            }
+            renderBars();
+        }
+
+        // Algoritmo Selection Sort
+        async function selectionSort(delayTime) {
+            for (let i = 0; i < dataset.length - 1; i++) {
+                let minIndex = i;
+
+                for (let j = i + 1; j < dataset.length; j++) {
+                    comparisonsCount++;
+                    renderBars([i, j, minIndex]);
+                    updateMetrics();
+                    await delay(delayTime);
+
+                    if (dataset[j] < dataset[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+
+                if (minIndex !== i) {
+                    [dataset[i], dataset[minIndex]] = [dataset[minIndex], dataset[i]];
+                    swapsCount++;
+                    updateMetrics();
+                }
+            }
+            renderBars();
+        }
+
+        // Algoritmo Insertion Sort
+        async function insertionSort(delayTime) {
+            for (let i = 1; i < dataset.length; i++) {
+                let key = dataset[i];
+                let j = i - 1;
+
+                while (j >= 0) {
+                    comparisonsCount++;
+                    renderBars([i, j]);
+                    updateMetrics();
+                    await delay(delayTime);
+
+                    if (dataset[j] <= key) break;
+
+                    dataset[j + 1] = dataset[j];
+                    j--;
+                    swapsCount++;
+                    updateMetrics();
+                }
+                dataset[j + 1] = key;
+            }
+            renderBars();
+        }
+
+        // Algoritmo Merge Sort
+        async function mergeSort(left, right, delayTime) {
+            if (left < right) {
+                const mid = Math.floor((left + right) / 2);
+                await mergeSort(left, mid, delayTime);
+                await mergeSort(mid + 1, right, delayTime);
+                await merge(left, mid, right, delayTime);
+            }
+        }
+
+        async function merge(left, mid, right, delayTime) {
+            const leftArray = dataset.slice(left, mid + 1);
+            const rightArray = dataset.slice(mid + 1, right + 1);
+
+            let i = 0, j = 0, k = left;
+
+            while (i < leftArray.length && j < rightArray.length) {
+                comparisonsCount++;
+                renderBars([k]);
+                updateMetrics();
+                await delay(delayTime);
+
+                if (leftArray[i] <= rightArray[j]) {
+                    dataset[k] = leftArray[i];
+                    i++;
+                } else {
+                    dataset[k] = rightArray[j];
+                    j++;
+                }
+                swapsCount++;
+                k++;
+                updateMetrics();
+            }
+
+            while (i < leftArray.length) {
+                dataset[k] = leftArray[i];
+                i++;
+                k++;
+                swapsCount++;
+            }
+
+            while (j < rightArray.length) {
+                dataset[k] = rightArray[j];
+                j++;
+                k++;
+                swapsCount++;
+            }
+        }
+
+        // Algoritmo Quick Sort
+        async function quickSort(low, high, delayTime) {
+            if (low < high) {
+                const pi = await partition(low, high, delayTime);
+                await quickSort(low, pi - 1, delayTime);
+                await quickSort(pi + 1, high, delayTime);
+            }
+        }
+
+        async function partition(low, high, delayTime) {
+            const pivot = dataset[high];
+            let i = low - 1;
+
+            for (let j = low; j < high; j++) {
+                comparisonsCount++;
+                renderBars([j, high]);
+                updateMetrics();
+                await delay(delayTime);
+
+                if (dataset[j] < pivot) {
+                    i++;
+                    [dataset[i], dataset[j]] = [dataset[j], dataset[i]];
+                    swapsCount++;
+                    updateMetrics();
+                }
+            }
+
+            [dataset[i + 1], dataset[high]] = [dataset[high], dataset[i + 1]];
+            swapsCount++;
+            updateMetrics();
+            return i + 1;
+        }
+
+        // Funções auxiliares
+        function generateNewDataset() {
+            if (isRunning) return;
+            generateDataset();
+        }
+
+        function resetAnalysis() {
+            if (isRunning) return;
+            generateDataset();
+            totalExecutions = 0;
+            document.getElementById('totalExecutions').textContent = '0';
+            
+            const statusIndicator = document.getElementById('statusIndicator');
+            statusIndicator.className = 'status-indicator status-ready';
+            statusIndicator.innerHTML = 'Sistema Resetado';
+        }
+
+        // Inicializar aplicação
+        window.addEventListener('load', initialize);
+        window.addEventListener('resize', function() {
+            if (!isRunning) {
+                renderBars();
+            }
+        });
+    </script>
+</body>
+</html>
