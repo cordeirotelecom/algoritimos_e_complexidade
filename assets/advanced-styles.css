@@ -82,7 +82,8 @@ body {
   background: var(--bg-white);
   border-radius: 16px;
   box-shadow: var(--shadow-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-md) 0;
   overflow: hidden;
 }
 
@@ -91,7 +92,8 @@ body {
   background: var(--bg-white);
   border-radius: 16px;
   box-shadow: var(--shadow-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-md) 0;
   height: fit-content;
   position: sticky;
   top: var(--spacing-lg);
@@ -3494,39 +3496,115 @@ button:disabled {
     background: white;
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 20px;
-    margin: 20px 0;
+    padding: 30px;
+    margin: 30px 0;
     position: relative;
-    height: 450px;
+    height: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    clear: both;
+    width: 100%;
+    max-width: none;
 }
 
 .complexity-chart-container canvas {
-    max-width: 100%;
-    height: auto;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    position: relative !important;
+}
+
+/* Títulos e labels dos gráficos */
+.complexity-chart-container h4,
+.complexity-chart-container h5,
+.complexity-chart-container .chart-title {
+    margin: 0 0 20px 0 !important;
+    padding: 10px 0 !important;
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+/* Melhorias gerais de espaçamento para sistemas avançados */
+.sistema-avancado,
+.advanced-system,
+.system-container {
+    margin: 25px 0 !important;
+    padding: 25px !important;
+    clear: both !important;
+}
+
+.sistema-avancado h3,
+.sistema-avancado h4,
+.advanced-system h3,
+.advanced-system h4 {
+    margin: 0 0 20px 0 !important;
+    padding: 15px 0 !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+.sistema-avancado .controls,
+.sistema-avancado .panel,
+.advanced-system .controls,
+.advanced-system .panel {
+    margin: 15px 0 !important;
+    padding: 15px !important;
+    background: var(--bg-gray-50) !important;
+    border-radius: 8px !important;
+}
+
+/* Espaçamento específico para elementos de visualização */
+.visualization-element,
+.chart-element,
+.graph-element {
+    margin: 20px 0 !important;
+    padding: 20px !important;
+    clear: both !important;
+    position: relative !important;
+}
+
+/* Evitar sobreposição de elementos */
+.float-clear {
+    clear: both !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
 }
 
 /* Insights */
+.insights-container {
+    margin: 40px 0;
+    clear: both;
+    width: 100%;
+}
+
 .insights-container h4 {
-    margin: 0 0 15px 0;
+    margin: 0 0 20px 0;
     color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .insights-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
 }
 
 .insight-card {
     background: var(--card-bg);
     border-left: 4px solid transparent;
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
     display: flex;
-    gap: 15px;
+    gap: 20px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .insight-card.performance {
@@ -3994,8 +4072,9 @@ button:disabled {
     }
     
     .complexity-chart-container {
-        height: 350px;
-        padding: 15px;
+        height: 400px;
+        padding: 20px;
+        margin: 25px 0;
     }
 }
 
