@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Plataforma Ultra Avançada - Algoritmos de Ordenação</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="assets/advanced-styles.css">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Sistema ultra avançado de visualização de algoritmos com 7 sistemas integrados">
+    <meta name="keywords" content="algoritmos, ordenação, visualização, gamificação, análise complexidade">
+    <meta name="author" content="Sistema Educacional Ultra Avançado">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+    <!-- Loading inicial -->
+    <div id="loading-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%); color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999;">
+        <div style="text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">🚀 Plataforma Ultra Avançada</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Carregando sistemas avançados...</p>
+            <div style="width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        </div>
+        <div id="loading-progress" style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            Iniciando...
+        </div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="main-container" id="main-content" style="display: none;">
+        
+        <!-- Seção de cabeçalho -->
+        <section class="header-section" role="banner">
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>🚀 Sistema Ultra Avançado de Algoritmos</h1>
+                    <p class="subtitle">7 Sistemas Integrados • Gamificação • Análise de Complexidade • Relatórios PDF</p>
+                </div>
+                
+                <div class="feature-highlights">
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <div class="feature-text">
+                            <strong>Execução Passo-a-Passo</strong>
+                            <small>Controle total com 7 velocidades</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎯</span>
+                        <div class="feature-text">
+                            <strong>Comparação Dual</strong>
+                            <small>Algoritmos lado a lado</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🏆</span>
+                        <div class="feature-text">
+                            <strong>Sistema Gamificado</strong>
+                            <small>Conquistas e rankings</small>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <div class="feature-text">
+                            <strong>Análise Visual</strong>
+                            <small>Gráficos de complexidade</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de visualização principal -->
+        <section class="visualization-section">
+            <div class="canvas-container">
+                <canvas id="visualizationCanvas" width="800" height="400"></canvas>
+            </div>
+            
+            <div class="algorithm-info">
+                <h3 id="currentAlgorithmName">Bubble Sort</h3>
+                <p id="algorithmDescription">Algoritmo de ordenação por bolha - compara elementos adjacentes</p>
+            </div>
+        </section>
+
+        <!-- Painel de controles -->
+        <section class="step-controls-panel">
+            <h3>🎮 Controles Avançados</h3>
+            
+            <div class="main-controls">
+                <button id="playBtn" class="btn btn-primary">▶️ Executar</button>
+                <button id="pauseBtn" class="btn btn-secondary">⏸️ Pausar</button>
+                <button id="stepBtn" class="btn btn-accent">👣 Passo</button>
+                <button id="resetBtn" class="btn btn-outline">🔄 Reset</button>
+            </div>
+
+            <div class="algorithm-selector">
+                <label for="algorithmSelect">Algoritmo:</label>
+                <select id="algorithmSelect">
+                    <option value="bubble">Bubble Sort</option>
+                    <option value="selection">Selection Sort</option>
+                    <option value="insertion">Insertion Sort</option>
+                    <option value="merge">Merge Sort</option>
+                    <option value="quick">Quick Sort</option>
+                </select>
+            </div>
+
+            <div class="speed-control">
+                <label for="speedSelect">Velocidade:</label>
+                <select id="speedSelect">
+                    <option value="ultra-slow">🐌 Ultra Lento (5s)</option>
+                    <option value="very-slow">🐢 Muito Lento (3s)</option>
+                    <option value="didactic" selected>📚 Didático (2s)</option>
+                    <option value="slow">🎯 Lento (1s)</option>
+                    <option value="normal">⚡ Normal (0.5s)</option>
+                    <option value="fast">🚀 Rápido (0.2s)</option>
+                    <option value="instant">💨 Instantâneo</option>
+                </select>
+            </div>
+
+            <div class="array-controls">
+                <label for="arraySizeSlider">Tamanho: <span id="arraySizeValue">20</span></label>
+                <input type="range" id="arraySizeSlider" min="5" max="100" value="20">
+                
+                <button id="generateArrayBtn" class="btn btn-outline">🎲 Novo Array</button>
+                <button id="shuffleBtn" class="btn btn-outline">🔀 Embaralhar</button>
+            </div>
+        </section>
+
+        <!-- Painel de métricas -->
+        <section class="metrics-panel">
+            <h3>📊 Métricas de Execução</h3>
+            
+            <div class="metrics-display">
+                <div class="metric-item">
+                    <span class="metric-label">Comparações:</span>
+                    <span class="metric-value" id="comparisonsCount">0</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Trocas:</span>
+                    <span class="metric-value" id="swapsCount">0</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Tempo:</span>
+                    <span class="metric-value" id="executionTime">0ms</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Complexidade:</span>
+                    <span class="metric-value" id="complexityDisplay">O(n²)</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Estilos de animação -->
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 4px;
+        }
+        
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-secondary { background: #6b7280; color: white; }
+        .btn-accent { background: #10b981; color: white; }
+        .btn-outline { background: transparent; border: 2px solid #d1d5db; color: #374151; }
+        
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        
+        .algorithm-selector, .speed-control, .array-controls {
+            margin: 15px 0;
+        }
+        
+        .algorithm-selector label, .speed-control label, .array-controls label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .algorithm-selector select, .speed-control select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+        
+        .array-controls input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .metrics-display {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            color: #059669;
+        }
+    </style>
+
+    <!-- Scripts com carregamento sequencial -->
+    <script>
+        // Sistema de carregamento progressivo
+        const loadingSteps = [
+            'Carregando sistema principal...',
+            'Inicializando explicações inteligentes...',
+            'Configurando sistema de anotações...',
+            'Preparando comparação dual...',
+            'Ativando gerador de testes...',
+            'Iniciando sistema de gamificação...',
+            'Configurando análise de complexidade...',
+            'Preparando geração de relatórios...',
+            'Finalizando inicialização...'
+        ];
+
+        let currentLoadingStep = 0;
+        const loadingProgress = document.getElementById('loading-progress');
+        
+        function updateLoadingProgress() {
+            if (currentLoadingStep < loadingSteps.length) {
+                loadingProgress.textContent = loadingSteps[currentLoadingStep];
+                currentLoadingStep++;
+                setTimeout(updateLoadingProgress, 300);
+            }
+        }
+        
+        updateLoadingProgress();
+
+        // Função para carregar scripts sequencialmente
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`Falha ao carregar: ${src}`));
+                document.head.appendChild(script);
+            });
+        }
+
+        // Lista de scripts para carregar
+        const scriptsToLoad = [
+            'assets/algorithm-system-advanced.js',
+            'assets/intelligent-explanations.js',
+            'assets/annotation-replay-system.js',
+            'assets/dual-comparison-system.js',
+            'assets/intelligent-test-generator.js',
+            'assets/gamification-system.js',
+            'assets/complexity-visualization.js',
+            'assets/pdf-report-system.js'
+        ];
+
+        // Carregar scripts e inicializar
+        async function initializePlatform() {
+            try {
+                // Carregar todos os scripts
+                for (const scriptSrc of scriptsToLoad) {
+                    await loadScript(scriptSrc);
+                    console.log(`✅ ${scriptSrc} carregado`);
+                }
+
+                // Aguardar um pouco para garantir inicialização
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // Esconder loading e mostrar conteúdo
+                document.getElementById('loading-overlay').style.display = 'none';
+                document.getElementById('main-content').style.display = 'grid';
+
+                // Inicializar sistemas
+                initializeBasicControls();
+                
+                console.log('✅ Plataforma Ultra Avançada inicializada com sucesso!');
+
+            } catch (error) {
+                console.error('❌ Erro ao inicializar plataforma:', error);
+                loadingProgress.textContent = `Erro: ${error.message}`;
+                
+                // Mostrar conteúdo mesmo com erro
+                setTimeout(() => {
+                    document.getElementById('loading-overlay').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'grid';
+                    initializeBasicControls();
+                }, 2000);
+            }
+        }
+
+        // Inicializar controles básicos
+        function initializeBasicControls() {
+            // Array de exemplo
+            let currentArray = [64, 34, 25, 12, 22, 11, 90, 5, 77, 30, 26, 54, 93, 17, 31, 44, 55, 20];
+            let isRunning = false;
+
+            // Canvas e contexto
+            const canvas = document.getElementById('visualizationCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Função para desenhar array
+            function drawArray(arr, highlightIndices = []) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const barWidth = canvas.width / arr.length;
+                const maxVal = Math.max(...arr);
+                
+                arr.forEach((value, index) => {
+                    const barHeight = (value / maxVal) * (canvas.height - 40);
+                    const x = index * barWidth;
+                    const y = canvas.height - barHeight - 20;
+                    
+                    // Cor da barra
+                    if (highlightIndices.includes(index)) {
+                        ctx.fillStyle = '#ef4444'; // Vermelho para destacar
+                    } else {
+                        ctx.fillStyle = '#3b82f6'; // Azul padrão
+                    }
+                    
+                    // Desenhar barra
+                    ctx.fillRect(x + 2, y, barWidth - 4, barHeight);
+                    
+                    // Desenhar valor
+                    ctx.fillStyle = '#374151';
+                    ctx.font = '12px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(value.toString(), x + barWidth/2, canvas.height - 5);
+                });
+            }
+
+            // Desenhar array inicial
+            drawArray(currentArray);
+
+            // Event listeners dos controles
+            document.getElementById('playBtn').onclick = async () => {
+                if (isRunning) return;
+                isRunning = true;
+                
+                const algorithm = document.getElementById('algorithmSelect').value;
+                const speed = document.getElementById('speedSelect').value;
+                
+                await runAlgorithm(algorithm, currentArray, speed);
+                isRunning = false;
+            };
+
+            document.getElementById('resetBtn').onclick = () => {
+                currentArray = [64, 34, 25, 12, 22, 11, 90, 5, 77, 30, 26, 54, 93, 17, 31, 44, 55, 20];
+                drawArray(currentArray);
+                resetMetrics();
+            };
+
+            document.getElementById('generateArrayBtn').onclick = () => {
+                const size = parseInt(document.getElementById('arraySizeSlider').value);
+                currentArray = Array.from({length: size}, () => Math.floor(Math.random() * 100) + 1);
+                drawArray(currentArray);
+                resetMetrics();
+            };
+
+            document.getElementById('shuffleBtn').onclick = () => {
+                for (let i = currentArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [currentArray[i], currentArray[j]] = [currentArray[j], currentArray[i]];
+                }
+                drawArray(currentArray);
+                resetMetrics();
+            };
+
+            document.getElementById('arraySizeSlider').oninput = (e) => {
+                document.getElementById('arraySizeValue').textContent = e.target.value;
+            };
+
+            // Implementação básica do Bubble Sort
+            async function runAlgorithm(algorithm, arr, speed) {
+                const speedMs = {
+                    'ultra-slow': 5000,
+                    'very-slow': 3000,
+                    'didactic': 2000,
+                    'slow': 1000,
+                    'normal': 500,
+                    'fast': 200,
+                    'instant': 50
+                }[speed] || 2000;
+
+                let comparisons = 0;
+                let swaps = 0;
+                const startTime = Date.now();
+
+                if (algorithm === 'bubble') {
+                    for (let i = 0; i < arr.length - 1; i++) {
+                        for (let j = 0; j < arr.length - i - 1; j++) {
+                            comparisons++;
+                            updateMetric('comparisonsCount', comparisons);
+                            
+                            // Destacar elementos sendo comparados
+                            drawArray(arr, [j, j + 1]);
+                            await new Promise(resolve => setTimeout(resolve, speedMs));
+                            
+                            if (arr[j] > arr[j + 1]) {
+                                // Trocar elementos
+                                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                                swaps++;
+                                updateMetric('swapsCount', swaps);
+                                drawArray(arr, [j, j + 1]);
+                                await new Promise(resolve => setTimeout(resolve, speedMs));
+                            }
+                        }
+                    }
+                }
+
+                const endTime = Date.now();
+                updateMetric('executionTime', `${endTime - startTime}ms`);
+                drawArray(arr); // Desenhar array final
+            }
+
+            function updateMetric(id, value) {
+                document.getElementById(id).textContent = value;
+            }
+
+            function resetMetrics() {
+                updateMetric('comparisonsCount', '0');
+                updateMetric('swapsCount', '0');
+                updateMetric('executionTime', '0ms');
+            }
+        }
+
+        // Inicializar quando DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', initializePlatform);
+    </script>
+</body>
+</html>

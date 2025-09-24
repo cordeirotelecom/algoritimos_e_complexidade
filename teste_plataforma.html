@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Teste da Plataforma Ultra Avançada</title>
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="assets/advanced-styles.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="padding: 20px; text-align: center;">
+        <h1>🚀 Teste da Plataforma</h1>
+        <p>Se você está vendo isso, o HTML básico funciona!</p>
+        <div id="teste-script" style="background: #f0f0f0; padding: 10px; margin: 20px 0;">
+            JavaScript não carregado ainda...
+        </div>
+    </div>
+
+    <!-- Scripts básicos -->
+    <script>
+        console.log("HTML carregou corretamente");
+        document.getElementById('teste-script').innerHTML = "✅ JavaScript está funcionando!";
+        
+        // Teste se Chart.js carregou
+        if (typeof Chart !== 'undefined') {
+            document.getElementById('teste-script').innerHTML += "<br>✅ Chart.js carregou corretamente!";
+        } else {
+            document.getElementById('teste-script').innerHTML += "<br>❌ Chart.js não carregou!";
+        }
+    </script>
+    
+    <!-- Teste de carregamento dos scripts -->
+    <script>
+        const scripts = [
+            'assets/algorithm-system-advanced.js',
+            'assets/intelligent-explanations.js',
+            'assets/annotation-replay-system.js',
+            'assets/dual-comparison-system.js',
+            'assets/intelligent-test-generator.js',
+            'assets/gamification-system.js',
+            'assets/complexity-visualization.js',
+            'assets/pdf-report-system.js'
+        ];
+        
+        scripts.forEach((script, index) => {
+            const scriptElement = document.createElement('script');
+            scriptElement.src = script;
+            scriptElement.onload = () => {
+                console.log(`✅ ${script} carregou`);
+            };
+            scriptElement.onerror = () => {
+                console.error(`❌ Erro ao carregar ${script}`);
+                document.getElementById('teste-script').innerHTML += `<br>❌ Erro: ${script}`;
+            };
+            document.head.appendChild(scriptElement);
+        });
+    </script>
+</body>
+</html>
